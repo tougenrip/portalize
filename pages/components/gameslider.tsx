@@ -23,7 +23,6 @@ const GameSlider = () => {
     const [sliderRef, instanceRef] = useKeenSlider(
       {
         slides: {origin: 'center',},
-        track: {details:{slidesLength: -6,}},
         slideChanged() {
           console.log('slide changed')
         },

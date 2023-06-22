@@ -22,13 +22,13 @@ export default function Home() {
           
           <div className="relative w-[100vw] h-[700px] text-center">
             <div className="absolute w-full place-content-center gap-5 -z-10 opacity-30 flex top-1/2 -translate-y-[35%] left-1/2 -translate-x-1/2 overflow-hidden">
-              <GameCard/>
-              <GameCard/>
-              <GameCard/>
-              <GameCard/>
-              <GameCard/>
-              <GameCard/>
-              <GameCard/>
+              <GameCard title={undefined} desc={undefined} bg={undefined}/>
+              <GameCard title={undefined} desc={undefined} bg={undefined}/>
+              <GameCard title={undefined} desc={undefined} bg={undefined}/>
+              <GameCard title={undefined} desc={undefined} bg={undefined}/>
+              <GameCard title={undefined} desc={undefined} bg={undefined}/>
+              <GameCard title={undefined} desc={undefined} bg={undefined}/>
+              <GameCard title={undefined} desc={undefined} bg={undefined}/>
             </div>
             <p className="absolute bottom-[50%] translate-y-1/2  md:left-1/2 md:-translate-x-1/2 text-5xl font-light">Get Start Creating Your New Space</p>
             <ul className="absolute w-full md:flex grid grid-rows-4 justify-center bottom-[10%] md:bottom-[28%]  md:left-1/2 md:-translate-x-1/2 font-bold gap-2 md:gap-6 text-3xl md:text-4xl uppercase place-items-center">
