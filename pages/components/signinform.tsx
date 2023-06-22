@@ -11,7 +11,6 @@ import { FcGoogle } from "react-icons/fc";
 import {FaApple, FaTwitter, FaGithub} from "react-icons/fa"
 import Link from "next/link";
 import { useState } from "react";
-import type { NextPage } from "next";
 import axios from "axios";
 import Router from "next/router";
    
