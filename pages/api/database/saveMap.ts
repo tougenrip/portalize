@@ -4,10 +4,7 @@ import World from '../schemas/mapsch'
 import { useSession } from 'next-auth/react';
 
 // connect to MongoDB
-mongoose.connect("mongodb+srv://admin:admin@portalize.gkq1arb.mongodb.net/?retryWrites=true&w=majority", {
-  useNewUrlParser: true, 
-  useUnifiedTopology: true,
-});
+mongoose.connect(process.env.MONGODB_URI);
 
 
 

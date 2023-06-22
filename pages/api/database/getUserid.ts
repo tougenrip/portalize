@@ -3,10 +3,7 @@ import { useSession } from "next-auth/react";
 import clientPromise from "../../../lib/mongodb";
 
 export default async function getUserId(req,res) {
-    mongoose.connect(process.env.MONGODB_URI, {
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
-      });
+    mongoose.connect(process.env.MONGODB_URI);
       
       const client = await clientPromise;
       const db = client.db("test")
