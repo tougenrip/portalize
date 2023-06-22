@@ -79,10 +79,7 @@ import { Formik } from "formik";
     return (
       <Card color="transparent" shadow={false}>
         <form
-        className="mt-8 mb-2 w-[100%] max-w-screen-lg min-w-0 sm:w-[100%]"
-        onSubmit={(_, actions) => {
-          formSubmit(actions);
-        }}>
+        className="mt-8 mb-2 w-[100%] max-w-screen-lg min-w-0 sm:w-[100%]">
           <div className="mb-1 flex flex-col gap-2">
             <Input
             color="purple"
