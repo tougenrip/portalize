@@ -1,6 +1,6 @@
 import React from 'react'
 import { Input,Checkbox, ButtonGroup } from '@material-tailwind/react'
-import SignUpform from './components/signupform'
+import SignUpform from '../components/signupform'
 import Image from 'next/image'
 
 const signup = () => {

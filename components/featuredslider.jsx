@@ -1,6 +1,6 @@
 import React from 'react'
 import GameCard from './gamecard'
-import { items } from './data'
+import items from './data'
 import 'keen-slider/keen-slider.min.css'
 import { useKeenSlider } from 'keen-slider/react' // import from 'keen-slider/react.es' for to get an ES module
 

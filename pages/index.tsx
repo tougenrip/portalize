@@ -1,9 +1,9 @@
 import React from "react";
 import Image from 'next/image';
-import Button from "./components/button"
-import PricingCard from "./components/pricingcard"
-import GameCard from "./components/gamecard"
-import { Navbar } from "./components/Navbar";
+import Button from "../components/button"
+import PricingCard from "../components/pricingcard"
+import GameCard from "../components/gamecard"
+import Navbar  from "../components/Navbar";
 
 
 

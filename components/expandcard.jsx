@@ -1,4 +1,4 @@
-import { items } from './data';
+import items from './data';
 import React, {useState} from 'react'
 import { motion } from 'framer-motion'
 import { IconButton } from '@material-tailwind/react';

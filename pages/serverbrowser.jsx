@@ -1,10 +1,10 @@
-import { Navbar } from './components/Navbar'
+import Navbar from '../components/Navbar'
 import React , {Fragment, useState} from 'react'
-import SideBar from './components/SideBar'
-import ExpandCard from './components/expandcard';
-import GameSlider from './components/gameslider';
-import GameCard from './components/gamecard';
-import FeaturedSlider from './components/featuredslider';
+import SideBar from '../components/SideBar'
+import ExpandCard from '../components/expandcard';
+import GameSlider from '../components/gameslider';
+import GameCard from '../components/gamecard';
+import FeaturedSlider from '../components/featuredslider';
 
 
 const PortalizeSB = () => {

@@ -1,6 +1,6 @@
 import React from 'react'
-import SideBar from '../components/SideBar'
-import { Navbar } from '../components/Navbar'
+import SideBar from '../../components/SideBar'
+import Navbar from '../../components/Navbar'
 import { IconButton } from '@material-tailwind/react'
 
 const dashboard = () => {

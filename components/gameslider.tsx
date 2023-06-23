@@ -2,7 +2,7 @@ import 'keen-slider/keen-slider.min.css'
 import { useKeenSlider } from 'keen-slider/react' // import from 'keen-slider/react.es' for to get an ES module
 import ExpandCard from './expandcard';
 import { InferGetServerSidePropsType, GetServerSideProps } from 'next'
-import { items } from './data';
+import items from './data';
 
 type Repo = {
   _id: object,

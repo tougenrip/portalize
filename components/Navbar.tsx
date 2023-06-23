@@ -16,7 +16,7 @@ const ProfileMenu = () => {
 }
 
 
-export const Navbar = () => {
+ const Navbar = () => {
 
   const { data: session, status } = useSession();
   const userEmail = session?.user?.email;
@@ -208,3 +208,5 @@ export const Navbar = () => {
     </>
   );
 };
+
+export default Navbar

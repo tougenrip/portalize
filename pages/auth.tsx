@@ -14,7 +14,7 @@ import {
 import { Field, Form, Formik } from "formik";
 import axios from "axios";
 import Router from "next/router";
-import { Navbar } from "./components/Navbar";
+import Navbar from "../components/Navbar";
 import Image from "next/image";
 
 const Background = ({ children }: any) => (

@@ -1,5 +1,5 @@
 import React, {useState , useEffect} from 'react'
-import SignInform from './components/signinform'
+import SignInform from '../components/signinform'
 import Image from 'next/image'
 
 
