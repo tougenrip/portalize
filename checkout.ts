@@ -2,8 +2,6 @@ import { getServerSession } from "next-auth";
 import { getSession } from "next-auth/react";
 import { NextRequest, NextResponse } from "next/server";
 import Stripe from "stripe";
-import getStripe from "./pages/utils/getStripe";
-
 export async function checkout({lineItems}) {
   
 
