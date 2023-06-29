@@ -60,7 +60,7 @@ const authOptions:NextAuthOptions = {
     async jwt({token, user, trigger, session }){
       if (user) {
           token.user = {
-              id: user._id,
+              id: user.id as unknown,
               name: user.name,
               email: user.email,
               stripeCustomerId: user.stripeCustomerId,
@@ -76,7 +76,7 @@ const authOptions:NextAuthOptions = {
   // If we want to access our extra user info from sessions we have to pass it the token here to get them in sync:
   session: async({session, token}) => {
           if(token){
-              session.user = token.user;
+              session.user = token.user as any;
           }
           return session
       }
