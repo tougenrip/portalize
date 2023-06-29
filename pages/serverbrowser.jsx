@@ -9,17 +9,7 @@ import loadMaps from '../lib/loadMaps'
 
 
 
-export async function getStaticProps() {
-  // Instead of fetching your `/api` route you can call the same
-  // function directly in `getStaticProps`
-  const res = await fetch('http://localhost:3000/api/user/getMaps')
-    const data = await res.json()
-   
- 
-  // Props returned will be passed to the page component
-  return { props: { data } }
- 
-}
+
 
 
 
