@@ -13,7 +13,7 @@ import { CircularProgressbar } from 'react-circular-progressbar';
 
 export const getServerSideProps = async(req) => {
     const {id} = req.query
-  const [floormapRes, interiorRes] = await Promise.all([fetch(`http://localhost:3000/api/worlds/floormap/${id}`), fetch(`http://localhost:3000/api/worlds/interior/${id}`)]);
+  const [floormapRes, interiorRes] = await Promise.all([fetch(`${process.env.NEXT_PUBLIC_WEBSITE_URL}api/worlds/floormap/${id}`), fetch(`${process.env.NEXT_PUBLIC_WEBSITE_URL}api/worlds/interior/${id}`)]);
   const [floormap, interior] = await Promise.all([floormapRes.json(), interiorRes.json()])
   const [floormapdata, interiordata] = await Promise.all([JSON.parse(JSON.stringify(floormap)),JSON.parse(JSON.stringify(interior))])
   
