@@ -7,7 +7,7 @@ import {
   Input
 } from "@material-tailwind/react";
 import fetch from 'node-fetch'
-
+import { CircularProgressbar } from 'react-circular-progressbar';
 
 
 
@@ -15,35 +15,41 @@ export const getServerSideProps = async(req) => {
     const {id} = req.query
   const [floormapRes, interiorRes] = await Promise.all([fetch(`http://localhost:3000/api/worlds/floormap/${id}`), fetch(`http://localhost:3000/api/worlds/interior/${id}`)]);
   const [floormap, interior] = await Promise.all([floormapRes.json(), interiorRes.json()])
-  const [floormapdata, interiordata] = await Promise.all([JSON.stringify(floormap),JSON.stringify(interior)])
-  const data = [floormapdata, interiordata]
+  const [floormapdata, interiordata] = await Promise.all([JSON.parse(JSON.stringify(floormap)),JSON.parse(JSON.stringify(interior))])
+  
   return{
     
-    props:{data}
+    props:{floormapdata, interiordata}
     
   };
   
 }
-function App({data}) {
-  const[unityNumber, setUnityNumber] = useState(0);
-  const[unityString, setUnityString] = useState('text');
+function App({floormapdata, interiordata}) {
  
   const { unityProvider, loadingProgression, isLoaded, sendMessage } = useUnityContext({
-    loaderUrl: "/build/webgl-api-test.loader.js",
-    dataUrl: "/build/webgl-api-test.data.unityweb",
-    frameworkUrl: "/build/webgl-api-test.framework.js.unityweb",
-    codeUrl: "/build/webgl-api-test.wasm.unityweb",
+    loaderUrl: "/build/game/game.loader.js",
+    dataUrl: "/build/game/game.data",
+    frameworkUrl: "/build/game/game.framework.js",
+    codeUrl: "/build/game/game.wasm",
+    
   });
 
-  if(isLoaded === true){
-    console.log(data)
-    sendMessage('JavascriptHook','SetString', `${data}`)
-  }
-  
+   if(isLoaded === true){
+    
+    
+     setTimeout(() => sendMessage('PlaymodeManager','SetFloormap', `${floormapdata}`),5000);
+     setTimeout(() => sendMessage('PlaymodeManager','SetInterior',`${interiordata}`), 5000);
+     setTimeout(() => sendMessage('PlaymodeManager','LoadMap'), 5000);
+   }
+
   return (
+    
+
     <Fragment>
+      
+
       {!isLoaded && (
-        <p className="w-[100vh] h-[100vh] text-center">Loading Application... {Math.round(loadingProgression * 100)}%</p>
+        <CircularProgressbar className="z-50 h-5 w-5" value={Math.round(loadingProgression * 100)}  />
       )}
       <Unity
         className="-z-10"
@@ -52,16 +58,16 @@ function App({data}) {
       />
       <>
       </>
-      <ButtonGroup className="fixed top-5 left-5">
+      {/*<ButtonGroup className="fixed top-5 left-5">
       <Input type="number" value={unityNumber} onChange={(e) => {setUnityNumber(e.target.valueAsNumber)}}/>
       <Input type="text" onChange={(e) => {e.preventDefault(); setUnityString(e.target.value)}}/>
       <Button onClick={() => sendMessage('JavascriptHook','TintRed')}>Red</Button>
       <Button onClick={() => sendMessage('JavascriptHook','TintGreen')}>Green</Button>
       <Button onClick={() => sendMessage('JavascriptHook', 'SetNumber', unityNumber)}>number</Button>
       <Button onClick={() => sendMessage('JavascriptHook','SetString', unityString)}>text</Button>
-      {/* <Button onClick={() => sendMessage('JavascriptHook','SetString', floormapdata)}>floormapdata</Button>
-      <Button onClick={() => sendMessage('JavascriptHook','SetString', interiordata)}>interiordata</Button> */}
-    </ButtonGroup>
+       <Button onClick={() => sendMessage('JavascriptHook','SetString', floormapdata)}>floormapdata</Button>
+      <Button onClick={() => sendMessage('JavascriptHook','SetString', interiordata)}>interiordata</Button> 
+    </ButtonGroup>*/}
     </Fragment>
   );
 }

@@ -1,7 +1,8 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import mongoose from 'mongoose';
-import World from '../schemas/mapsch'
-import { useSession } from 'next-auth/react';
+import { getServerSession } from 'next-auth';
+import authOptions from '../auth/authOptions';
+import Mapsi from '../schemas/mapsch';
 
 // connect to MongoDB
 mongoose.connect(process.env.MONGODB_URI);
@@ -11,17 +12,22 @@ mongoose.connect(process.env.MONGODB_URI);
 // define and export the POST endpoint handler function
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
 
-
+  
   if (req.method === 'PUT') {
     try {
       // extract the map data and session from the request body
       const { title, desc, privite,likes,userLimit, floormap, interior } = req.body;
-      // get a CSRF token from the session,
+
+      const session = await getServerSession(req,res,authOptions)
+      const owner = session?.user?.id
+      const ownerEmail = session?.user?.email
 
       // create a new document in the Worlds collection
-      const newWorldMap = new World({
+      const newWorldMap = new Mapsi({
         title: title,
         desc: desc,
+        owner: owner,
+        ownerEmail: ownerEmail,
         privite: privite,
         likes: likes,
         userLimit:userLimit, 

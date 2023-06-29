@@ -102,7 +102,7 @@ const ProfileMenu = () => {
                 variant="circular"
                 alt="candice wu"
                 className="cursor-pointer max-w-[80px]"
-                src={userImage || './img/pp.webp'}
+                src={userImage || '/img/pp.webp'}
               />
             </MenuHandler>
             <MenuList>
@@ -128,7 +128,7 @@ const ProfileMenu = () => {
               <MenuItem className="flex items-center gap-2 ">
                 <PowerIcon strokeWidth={2} className="h-4 w-4" />
                 <Typography variant="small" className="font-normal">
-                  <Link onClick={() => signOut()} href={'http://localhost:3000/'}> Sign Out</Link>
+                  <Link onClick={() => signOut()} href={'/api/auth/signout'}> Sign Out</Link>
                 </Typography>
               </MenuItem></>) : (<><MenuItem className="flex items-center gap-2">
                 <UserCircleIcon strokeWidth={2} className="h-4 w-4" />

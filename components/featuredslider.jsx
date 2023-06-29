@@ -3,31 +3,43 @@ import GameCard from './gamecard'
 import items from './data'
 import 'keen-slider/keen-slider.min.css'
 import { useKeenSlider } from 'keen-slider/react' // import from 'keen-slider/react.es' for to get an ES module
+import { loadMaps } from '@components/lib/loadMaps'
+import { useState, useEffect } from 'react'
 
+import useSWR from 'swr'
+
+
+
+ 
 const FeaturedSlider = () => {
-    const [sliderRef, instanceRef] = new useKeenSlider(
-        {
-          slides: {origin: 'center', perView:1},
-          breakpoints: {
-            "(min-width: 768px)": {
-                slides: { perView: 4, spacing: 30, origin:0, },},
-        },
-          track: {details:{slidesLength: -6,}},
-          slideChanged() {
-            console.log('slide changed')
-          },
-          
-        },
-        [
-          // add plugins here
-        ]
-      )
 
-    const games = items.map(game => <div className="keen-slider__slide" key={game.id}><GameCard bg={game.url} title={game.title} desc={game.description}/></div>)
+  const fetcher = async (url) => {
+    const response = await fetch(url);
+    if (!response.ok) {
+      throw new Error('An error occurred while fetching the data.');
+    }
+    return response.json();
+  };
+  
+  const useFetch = (path) => {
+    const { data, error } = useSWR(`http://localhost:3000/${path}`, fetcher);
+  
+    const isLoading = !data && !error;
+  
+    return { data, error, isLoading };
+  };
+  const {data: games, error, isLoading} = useFetch('api/user/getMaps')
+
+  
+    
+      
+   
     
   return (
-    <div ref={sliderRef} className="keen-slider overflow-x-hidden p-[32px]">
-        {games}
+    <div className="grid grid-cols-3 grid-flow-col place-items-center overflow-x-hidden p-[32px]">
+      {games?.map((game) => (
+        <GameCard key={game.id} game={game} />
+      ))}
       </div>
   )
 }

@@ -14,12 +14,12 @@ type Repo = {
 export const getServerSideProps: GetServerSideProps<{
   repo: Repo
 }> = async () => {
-  const res = await fetch('http://localhost:3000/')
+  const res = await fetch('http://localhost:3000/get')
   const repo = await res.json()
   return { props: { repo } }
 }
 
-const GameSlider = () => {
+const GameSlider = ({ repo }) => {
     const [sliderRef, instanceRef] = useKeenSlider(
       {
         slides: {origin: 'center',},

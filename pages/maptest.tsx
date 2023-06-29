@@ -5,7 +5,7 @@ import React from 'react'
 const maptest = () => {
 
   return (
-    <form action="/api/database/saveMap" method="PUT">
+    <form action="/api/database/saveMap" method="POST">
   <button type="submit">Save Map Data</button>
 </form>
   )

@@ -1,7 +1,8 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import dbConnect from "../../lib/dbConnect";
-import UserModel from "../api/schemas/usersch";
+import User from "../api/schemas/usersch";
 import bcrypt from "bcrypt";
+import Stripe from "stripe";
 
 interface ResponseData {
   error?: string;
@@ -16,7 +17,7 @@ const validateEmail = (email: string): boolean => {
 const validateForm = async (
   username: string,
   email: string,
-  password: string
+  password: string,
 ) => {
   if (username.length < 3) {
     return { error: "Username must have 3 or more characters" };
@@ -26,7 +27,7 @@ const validateForm = async (
   }
 
   await dbConnect();
-  const emailUser = await UserModel.findOne({ email: email });
+  const emailUser = await User.findOne({ email: email });
 
   if (emailUser) {
     return { error: "Email already exists" };
@@ -50,8 +51,12 @@ export default async function handler(
       .json({ error: "This API call only accepts POST methods" });
   }
 
+  
+
+
+
   // get and validate body variables
-  const { username, email, password } = req.body;
+  const { username, email, password, stripeCustomerId, isActive } = req.body;
 
   const errorMessage = await validateForm(username, email, password);
   if (errorMessage) {
@@ -62,16 +67,33 @@ export default async function handler(
   const hashedPassword = await bcrypt.hash(password, 12);
 
   // create new User on MongoDB
-  const newUser = new UserModel({
+  const newUser = new User({
     name: username,
     email,
     hashedPassword,
+    stripeCustomerId,
+    isActive
   });
+  
+  const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
+    apiVersion: "2022-11-15",
+  });
+
 
   newUser
     .save()
-    .then(() =>
-      res.status(200).json({ msg: "Successfuly created new User: " + newUser })
+    .then(async() => {
+      await stripe.customers
+      .create({
+        email: email!,
+        name: username!,
+      }).then(async (customer) => {
+           return User.updateOne({email:email},{stripeCustomerId:customer.id})
+           
+          
+          }).finally(() => res.status(200).json({ msg: "Successfuly created new User: " + newUser }))
+    }
+      // res.status(200).json({ msg: "Successfuly created new User: " + newUser })
     )
     .catch((err: string) =>
       res.status(400).json({ error: "Error on '/api/register': " + err })

@@ -7,8 +7,39 @@ import {
   Button,
 } from "@material-tailwind/react";
 import { CheckIcon } from "@heroicons/react/24/outline";
+import {checkout} from "../checkout"
+import { useSession } from "next-auth/react";
+import Link from "next/link";
+import { useState } from "react";
  
 export default function PricingCard() {
+
+  const [isCheckoutLoading, setIsCheckoutLoading] = useState(false);
+  
+  const goToCheckout = async () => {
+    setIsCheckoutLoading(true);
+    const res = await fetch(`/api/stripe/create-checkout-session`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    const { redirectUrl } = await res.json();
+    if (redirectUrl) {
+      window.location.assign(redirectUrl);
+    } else {
+      setIsCheckoutLoading(false);
+      console.log("Error creating checkout session");
+    }
+  };
+  
+  const { data: session, status } = useSession();
+  const userEmail = session?.user?.email;
+  const userImage = session?.user?.image;
+  const userName = session?.user?.name;
+  const isLogged = status == 'authenticated';
+
+
   return (
     <Card color="purple" variant="gradient" className="w-full max-w-[20rem] p-8">
       <CardHeader
@@ -22,14 +53,14 @@ export default function PricingCard() {
           color="white"
           className="font-normal uppercase"
         >
-          standard
+          Premium
         </Typography>
         <Typography
           variant="h1"
           color="white"
           className="mt-6 flex justify-center gap-1 text-7xl font-normal"
         >
-          <span className="mt-2 text-4xl">$</span>29{" "}
+          <span className="mt-2 text-4xl">$</span>2.99{" "}
           <span className="self-end text-4xl">/mo</span>
         </Typography>
       </CardHeader>
@@ -68,15 +99,29 @@ export default function PricingCard() {
         </ul>
       </CardBody>
       <CardFooter className="mt-12 p-0">
-        <Button
+        {isLogged ? (<Button
           size="lg"
           color="white"
           className="text-blue-500 hover:scale-[1.02] focus:scale-[1.02] active:scale-100"
           ripple={false}
           fullWidth={true}
+          onClick={() => {
+            if (isCheckoutLoading) return;
+            else goToCheckout();
+          }}
         >
           Buy Now
-        </Button>
+        </Button>) : (<Link href={'/auth'}><Button
+          size="lg"
+          color="white"
+          className="text-blue-500 hover:scale-[1.02] focus:scale-[1.02] active:scale-100"
+          ripple={false}
+          fullWidth={true}
+          
+        >
+          Join Now
+        </Button></Link>)}
+        
       </CardFooter>
     </Card>
   );

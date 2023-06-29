@@ -1,5 +1,7 @@
 import mongoose from 'mongoose';
+import { getServerSession } from 'next-auth';
 import { useSession } from 'next-auth/react';
+import { authOptions } from '../auth/authOptions';
 
 
 
@@ -10,7 +12,10 @@ export const mapSchema = new mongoose.Schema({
     type: String,
   },
   owner: {
-    type: String,
+    type: String
+  },
+  ownerEmail: {
+    type: String
   },
   desc: {
     type: String,
@@ -37,6 +42,6 @@ export const mapSchema = new mongoose.Schema({
   
 });
 
-const Mapsi = mongoose.models.map || mongoose.model('map', mapSchema, 'map');
+const Mapsi = mongoose.models.maps || mongoose.model('maps', mapSchema, 'maps');
 
 export default Mapsi;

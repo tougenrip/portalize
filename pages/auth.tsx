@@ -14,8 +14,8 @@ import {
 import { Field, Form, Formik } from "formik";
 import axios from "axios";
 import Router from "next/router";
-import Navbar from "../components/Navbar";
 import Image from "next/image";
+import Link from "next/link";
 
 const Background = ({ children }: any) => (
   <Box
@@ -77,6 +77,8 @@ const Auth: NextPage = ({ providers }: any) => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const stripeCustomerId = '';
+  const isActive = false;
 
   const ProvidersButtons = ({ providers }: any) => (
     <Flex direction="column" w="100%">
@@ -106,6 +108,7 @@ const Auth: NextPage = ({ providers }: any) => {
   const redirectToHome = () => {
     const { pathname } = Router;
     if (pathname === "/auth") {
+      window.alert('You are being redirected')
       // TODO: redirect to a success register page
       Router.push("/");
     }
@@ -115,7 +118,7 @@ const Auth: NextPage = ({ providers }: any) => {
     const res = await axios
       .post(
         "/api/register",
-        { username, email, password },
+        { username, email, password, stripeCustomerId, isActive },
         {
           headers: {
             Accept: "application/json",
@@ -126,6 +129,7 @@ const Auth: NextPage = ({ providers }: any) => {
       .then(async () => {
         await loginUser();
         redirectToHome();
+        window.alert('You are successfully registered')
       })
       .catch((error) => {
         console.log(error);
@@ -141,7 +145,7 @@ const Auth: NextPage = ({ providers }: any) => {
       callbackUrl: `${window.location.origin}`,
     });
 
-    res.error ? console.log(res.error) : redirectToHome();
+    res.error ? window.alert('Please check your details.') : redirectToHome();
   };
 
   const formSubmit = (actions: any) => {
@@ -153,7 +157,7 @@ const Auth: NextPage = ({ providers }: any) => {
   return (
     <>
     <div className='absolute  top-2 left-[4%]'>
-         <Image src='/img/logo.png' className="relative scale-75 -left-7 md:left-0 md:scale-100 my-5" width={218} height={38} alt="Logo"/>
+         <Link href={'/'}><Image src='/img/logo.png' className="relative scale-75 -left-7 md:left-0 md:scale-100 my-5" width={218} height={38} alt="Logo"/></Link>
           </div>
     <Background>
       <Box

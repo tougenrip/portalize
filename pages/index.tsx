@@ -1,13 +1,24 @@
-import React from "react";
+import React, { useState } from "react";
 import Image from 'next/image';
 import Button from "../components/button"
 import PricingCard from "../components/pricingcard"
 import GameCard from "../components/gamecard"
 import Navbar  from "../components/Navbar";
+import Link from "next/link";
+import { useSession } from "next-auth/react";
 
 
 
 export default function Home() {
+
+  
+  const [isCheckoutLoading, setIsCheckoutLoading] = useState(false);
+
+  
+
+  const { data: session, status } = useSession();
+  const isLogged = status == 'authenticated';
+
   return (
     <>
      <Navbar/>
@@ -15,20 +26,14 @@ export default function Home() {
         <div className="hero-section">
           <div className="relative w-[100vw] h-[100vh] bg-Hero bg-cover bg-no-repeat">
             <p className="absolute bottom-[35%] w-[85%] left-1/2 md:translate-x-0 -translate-x-1/2 md:left-24 text-5xl xl:text-6xl font-light text-center md:text-start text-white">Create your 3D Space<br /><span className="font-bold text-2xl xl:text-2xl">With No-Code System</span><br /><span className="text-lg xl:text-3xl">Create 3D spaces without code knowledge and share your own domain. <br /> Explore Many Experiance and Communitys</span></p>
-            <span className="absolute left-1/2 -translate-x-1/2 md:translate-x-0 md:left-24 bottom-[14%] md:bottom-[14%]"><Button>LAUNCH EDITOR</Button></span>
+            <span className="absolute left-1/2 -translate-x-1/2 md:translate-x-0 md:left-24 bottom-[14%] md:bottom-[14%]">{isLogged ? (<Link href={'https://app.portalize.io/'}><Button>LAUNCH EDITOR</Button></Link>) : (<Link href={'/auth'}><Button>JOIN NOW</Button></Link>)}</span>
           </div>
         </div>
         <div className="cta-section">
           
           <div className="relative w-[100vw] h-[700px] text-center">
             <div className="absolute w-full place-content-center gap-5 -z-10 opacity-30 flex top-1/2 -translate-y-[35%] left-1/2 -translate-x-1/2 overflow-hidden">
-              <GameCard title={undefined} desc={undefined} bg={undefined}/>
-              <GameCard title={undefined} desc={undefined} bg={undefined}/>
-              <GameCard title={undefined} desc={undefined} bg={undefined}/>
-              <GameCard title={undefined} desc={undefined} bg={undefined}/>
-              <GameCard title={undefined} desc={undefined} bg={undefined}/>
-              <GameCard title={undefined} desc={undefined} bg={undefined}/>
-              <GameCard title={undefined} desc={undefined} bg={undefined}/>
+             
             </div>
             <p className="absolute bottom-[50%] translate-y-1/2  md:left-1/2 md:-translate-x-1/2 text-5xl font-light">Get Start Creating Your New Space</p>
             <ul className="absolute w-full md:flex grid grid-rows-4 justify-center bottom-[10%] md:bottom-[28%]  md:left-1/2 md:-translate-x-1/2 font-bold gap-2 md:gap-6 text-3xl md:text-4xl uppercase place-items-center">
