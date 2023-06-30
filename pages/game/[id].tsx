@@ -27,10 +27,10 @@ export const getServerSideProps = async(req) => {
 function App({floormapdata, interiordata}) {
  
   const { unityProvider, loadingProgression, isLoaded, sendMessage } = useUnityContext({
-    loaderUrl: "/build/game/game.loader.js",
-    dataUrl: "/build/game/game.data",
-    frameworkUrl: "/build/game/game.framework.js",
-    codeUrl: "/build/game/game.wasm",
+    loaderUrl: "https://portalize.io/build/game/game.loader.js",
+    dataUrl: "https://portalize.io/build/game/game.data",
+    frameworkUrl: "https://portalize.io/build/game/game.framework.js",
+    codeUrl: "https://portalize.io/build/game/game.wasm",
     
   });
 
@@ -49,7 +49,7 @@ function App({floormapdata, interiordata}) {
       
 
       {!isLoaded && (
-        <CircularProgressbar className="z-50 h-5 w-5" value={Math.round(loadingProgression * 100)}  />
+        <p className="w-[100vh] h-[100vh] text-center">Loading Application... {Math.round(loadingProgression * 100)}%</p>
       )}
       <Unity
         className="-z-10"
