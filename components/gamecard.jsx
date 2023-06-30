@@ -27,7 +27,7 @@ import {
           </Typography>
         </CardBody>
         <CardFooter className="pt-0">
-        <Link href={`game/${game._id}`}><Button className="">Join</Button></Link>
+        <Link href={`${process.env.NEXT_PUBLIC_WEBSITE_URL}game/${game._id}`}><Button className="">Join</Button></Link>
         </CardFooter>
       </Card>
     );
