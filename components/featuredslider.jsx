@@ -22,7 +22,7 @@ const FeaturedSlider = () => {
   };
   
   const useFetch = (path) => {
-    const { data, error } = useSWR(`http://localhost:3000/${path}`, fetcher);
+    const { data, error } = useSWR(`${process.env.NEXT_PUBLIC_WEBSITE_URL}${path}`, fetcher);
   
     const isLoading = !data && !error;
   
