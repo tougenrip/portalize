@@ -26,7 +26,7 @@ export default function Home() {
         <div className="hero-section">
           <div className="relative w-[100vw] h-[100vh] bg-Hero bg-cover bg-no-repeat">
             <p className="absolute bottom-[35%] w-[85%] left-1/2 md:translate-x-0 -translate-x-1/2 md:left-24 text-5xl xl:text-6xl font-light text-center md:text-start text-white">Create your 3D Space<br /><span className="font-bold text-2xl xl:text-2xl">With No-Code System</span><br /><span className="text-lg xl:text-3xl">Create 3D spaces without code knowledge and share your own domain. <br /> Explore Many Experiance and Communitys</span></p>
-            <span className="absolute left-1/2 -translate-x-1/2 md:translate-x-0 md:left-24 bottom-[14%] md:bottom-[14%]">{isLogged ? (<Link href={'https://app.portalize.io/'}><Button>LAUNCH EDITOR</Button></Link>) : (<Link href={'/auth'}><Button>JOIN NOW</Button></Link>)}</span>
+            <span className="absolute left-1/2 -translate-x-1/2 md:translate-x-0 md:left-24 bottom-[14%] md:bottom-[14%]">{isLogged ? (<Link href={`${process.env.NEXT_PUBLIC_WEBSITE_URL}editor`}><Button>LAUNCH EDITOR</Button></Link>) : (<Link href={'/auth'}><Button>JOIN NOW</Button></Link>)}</span>
           </div>
         </div>
         <div className="cta-section">
