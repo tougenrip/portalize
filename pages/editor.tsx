@@ -12,12 +12,14 @@ import fetch from 'node-fetch'
 
 
 function App({data}) {
+
+  
  
   const { unityProvider, loadingProgression, isLoaded, sendMessage } = useUnityContext({
-    loaderUrl: "https://portalize.io/build/editor/editor.loader.js",
-    dataUrl: "https://portalize.io/build/editor/editor.data",
-    frameworkUrl: "https://portalize.io/build/editor/editor.framework.js",
-    codeUrl: "https://portalize.io/build/editor/editor.wasm",
+    loaderUrl: "https://194.31.150.21/build/editor/editor.loader.js",
+    dataUrl: "https://194.31.150.21/build/editor/editor.data",
+    frameworkUrl: "https://194.31.150.21/build/editor/editor.framework.js",
+    codeUrl: "https://194.31.150.21/build/editor/editor.wasm",
   });
 
   
