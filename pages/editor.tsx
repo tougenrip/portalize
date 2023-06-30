@@ -16,10 +16,10 @@ function App({data}) {
   
  
   const { unityProvider, loadingProgression, isLoaded, sendMessage } = useUnityContext({
-    loaderUrl: "https://194.31.150.21/build/editor/editor.loader.js",
-    dataUrl: "https://194.31.150.21/build/editor/editor.data",
-    frameworkUrl: "https://194.31.150.21/build/editor/editor.framework.js",
-    codeUrl: "https://194.31.150.21/build/editor/editor.wasm",
+    loaderUrl: "https://app.portalize.io/build/editor/editor.loader.js",
+    dataUrl: "https://app.portalize.io/build/editor/editor.data",
+    frameworkUrl: "https://app.portalize.io/build/editor/editor.framework.js",
+    codeUrl: "https://app.portalize.io/build/editor/editor.wasm",
   });
 
   
