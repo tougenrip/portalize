@@ -113,7 +113,7 @@ const SideBar = (req,res) => {
                 size='xxl'
                 alt="UserLogo"
                 className={`cursor-pointer mt-5`}
-                src={userImage || '/img/pp.webp'}
+                src={userImage || '/img/pp_comp.webp'}
               />
 
         </div>

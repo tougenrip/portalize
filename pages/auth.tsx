@@ -23,7 +23,7 @@ const Background = ({ children }: any) => (
     flex="1 1 auto"
     justifyContent=""
     alignItems="center"
-    backgroundImage="url('/img/landing-page/herobg.png')" // coming from public folder
+    backgroundImage="url('/img/landing-page/herobg_comp.webp')" // coming from public folder
     backgroundSize="cover"
     backgroundRepeat="no-repeat"
     backgroundPosition="center"

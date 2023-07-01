@@ -18,7 +18,7 @@ export default mt({
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
         'gradient-conic':
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
-        'Hero': 'url(/img/landing-page/herobg.png)'
+        'Hero': 'url(/img/landing-page/herobg_comp.webp)'
       },
       fontFamily: { 
         'valorant' : ['valorant', 'sans-serif'],

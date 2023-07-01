@@ -70,7 +70,7 @@ const ProfileMenu = () => {
     <div className=" w-screen !z-50">
     <div className={` ${stickyClass} bg-base-100 flex flex-row-reverse  justify-end md:flex-row mt-8 mb-4 mx-4 gap-0 md:gap-10 md:justify-between md:mx-20`}>
       <div className=" self-center">
-        <a className="btn btn-ghost normal-case"><Image src='/img/logo.png' className=" scale-75 md:scale-100" width={218} height={38} alt="Logo"></Image></a>
+        <a className="btn btn-ghost normal-case"><Image src='/img/logo_comp.webp' className=" scale-75 md:scale-100" width={218} height={38} alt="Logo"></Image></a>
       </div>
 
       {isMobile ? (<div>
@@ -102,7 +102,7 @@ const ProfileMenu = () => {
                 variant="circular"
                 alt="candice wu"
                 className="cursor-pointer max-w-[80px]"
-                src={userImage || '/img/pp.webp'}
+                src={userImage || '/img/pp_comp.webp'}
               />
             </MenuHandler>
             <MenuList>

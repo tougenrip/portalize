@@ -6,6 +6,7 @@ import GameCard from "../components/gamecard"
 import Navbar  from "../components/Navbar";
 import Link from "next/link";
 import { useSession } from "next-auth/react";
+import Head from "next/head";
 
 
 
@@ -21,6 +22,11 @@ export default function Home() {
 
   return (
     <>
+    <Head>
+    
+        <title>Portalize - Next thing</title>
+     
+    </Head>
      <Navbar/>
       <main className="w-[100vw] font-body">
         <div className="hero-section">
@@ -50,7 +56,7 @@ export default function Home() {
               <p className="absolute align-middle top-1/2 -translate-y-1/2  md:left-24 z-10 text-2xl font-light sm:text-5xl md:text-8xl text-center md:text-start w-full"><span className="font-bold">Referance</span> Hall</p>
             </div>
             <div className="block md:relative">
-              <Image src={"/img/landing-page/room-bg1.png"} className="absolute top-[20%] md:top-[50%] md:-translate-y-1/2 z-0 right-0" alt="roombg1" width={1164} height={615} quality={80}></Image>
+              <Image src={"/img/landing-page/room-bg1_comp.webp"} className="absolute top-[20%] md:top-[50%] md:-translate-y-1/2 z-0 right-0" alt="roombg1" width={1164} height={615} quality={80}></Image>
             </div>
           </div>
         </div>
@@ -58,7 +64,7 @@ export default function Home() {
         <div className="room-section">
           <div className="relative w-[100vw] h-[100vh] md:h-[80vh] md:grid md:grid-cols-2">
           <div className="block md:relative">
-              <Image src={"/img/landing-page/room-bg2.png"} className="absolute top-[20%] md:top-[50%] md:-translate-y-1/2 z-0" alt="roombg1" width={1164} height={615} quality={80}></Image>
+              <Image src={"/img/landing-page/room-bg2_comp.webp"} className="absolute top-[20%] md:top-[50%] md:-translate-y-1/2 z-0" alt="roombg1" width={1164} height={615} quality={80}></Image>
             </div>
             <div className="block md:relative"> 
               <p className="absolute w-full text-center md:text-end align-middle top-1/2 -translate-y-1/2 right-24  z-10 text-2xl font-light sm:text-5xl md:text-8xl"><span className="font-bold">Referance</span> Hall</p>
@@ -75,7 +81,7 @@ export default function Home() {
               <p className="absolute align-middle top-1/2 -translate-y-1/2  md:left-24 z-10 text-2xl font-light sm:text-5xl md:text-8xl text-center md:text-start w-full"><span className="font-bold">Referance</span> Hall</p>
             </div>
             <div className="block md:relative">
-              <Image src={"/img/landing-page/room-bg1.png"} className="absolute top-[20%] md:top-[50%] md:-translate-y-1/2 z-0 right-0" alt="roombg1" width={1164} height={615} quality={80}></Image>
+              <Image src={"/img/landing-page/room-bg1_comp.webp"} className="absolute top-[20%] md:top-[50%] md:-translate-y-1/2 z-0 right-0" alt="roombg1" width={1164} height={615} quality={80}></Image>
             </div>
           </div>
         </div>
@@ -93,7 +99,7 @@ export default function Home() {
 
         <div className="cta-section">
           <div className="relative w-[100vw] h-[100vh]">
-            <Image src={"/img/landing-page/cta-bg.png"} width={671} height={702} alt="ctabg" className="absolute top-1/2 -translate-y-[40%] left-1/2 -translate-x-1/2"/>
+            <Image src={"/img/landing-page/cta-bg_comp.webp"} width={671} height={702} alt="ctabg" className="absolute top-1/2 -translate-y-[40%] left-1/2 -translate-x-1/2"/>
             <div className="absolute top-1/2 -translate-y-1/2 text-center font-extrabold text-4xl md:text-8xl w-full">
               <p className="">JOIN COMMUNITY<br />BUILD TOGETHER</p>
             </div>
