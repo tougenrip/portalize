@@ -24,7 +24,11 @@ const Dashboard = () => {
         reject(err);
       };
 
-      reader.readAsArrayBuffer(file)
+      setUserimg(reader.readAsArrayBuffer(file));
+
+      console.log (userImage)
+
+      
     }))
     
    }
