@@ -79,7 +79,7 @@ const Auth: NextPage = ({ providers }: any) => {
   const [password, setPassword] = useState("");
   const stripeCustomerId = '';
   const isActive = false;
-
+  const image = '';
   const ProvidersButtons = ({ providers }: any) => (
     <Flex direction="column" w="100%">
       {Object.values(providers).map(
@@ -118,7 +118,7 @@ const Auth: NextPage = ({ providers }: any) => {
     const res = await axios
       .post(
         "/api/register",
-        { username, email, password, stripeCustomerId, isActive },
+        { username, email, password, stripeCustomerId, isActive,image },
         {
           headers: {
             Accept: "application/json",
@@ -197,6 +197,7 @@ const Auth: NextPage = ({ providers }: any) => {
               <Form style={{ width: "100%" }}>
                 <Box display="flex" flexDirection="column" w="100%" mb={4}>
                   {authType === "Register" && (
+                    
                     <Field name="username">
                       {() => (
                         <FormControl isRequired mb={6}>

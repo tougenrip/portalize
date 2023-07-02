@@ -10,31 +10,70 @@ import axios from 'axios'
 
 const Dashboard = () => {
 
-  const getImageArray = (e) => {
-    const file = e.target.files[0]
-    
+ // State to store the file
+ const [file, setFile] = useState<File | null>(null);
 
-    return( new Promise((resolve, reject) =>{
-      const reader = new FileReader();
+ // State to store the base64
+ const [base64, setBase64] = useState<string | null>(null);
 
-      reader.onload = (e) => {
-        resolve(e.target.result);
-      };
-      reader.onerror = (err) => {
-        reject(err);
-      };
-
-      setUserimg(reader.readAsArrayBuffer(file));
-
-      console.log (userImage)
-
-      
-    }))
-    
+ // When the file is selected, set the file state
+ const onFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+   if (!e.target.files) {
+     return;
    }
 
+   setFile(e.target.files[0]);
+   const base64 = await toBase64(file as File);
 
-  const updateUser = async (req) => {
+   
+
+   setUserimg(base64 as string);
+
+   
+ };
+
+ // On click, clear the input value
+ const onClick = (e: React.MouseEvent<HTMLInputElement>) => {
+   e.currentTarget.value = "";
+ };
+
+ // On submit, upload the file
+ const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+   e.preventDefault();
+
+   if (!file) {
+     return;
+   }
+
+   // Convert the file to base64
+   const base64 = await toBase64(file as File);
+
+   
+
+   setUserimg(base64 as string);
+
+   // Clear the states after upload
+   setFile(null);
+   setBase64(null);
+ };
+
+ const toBase64 = (file: File) => {
+  return new Promise((resolve, reject) => {
+    const fileReader = new FileReader();
+
+    fileReader.readAsDataURL(file);
+
+    fileReader.onload = () => {
+      resolve(fileReader.result);
+    };
+
+    fileReader.onerror = (error) => {
+      reject(error);
+    };
+  });
+};
+
+  const updateUser = async () => {
 
     const res = await axios.put(
         "/api/user/updateUser",
@@ -48,7 +87,7 @@ const Dashboard = () => {
       )
       .then(async () => {
         window.alert('Updated User Details successfully')
-        update({name:`${userName}`,email:`${userEmail}`})
+        update({name:`${userName}`,email:`${userEmail}`, image:`${userImage}`})
       })
       .catch((error) => {
         console.log(error);
@@ -104,7 +143,7 @@ const Dashboard = () => {
             </div>
             <div id="accsettings" className='relative h-screen'><h2 className='absolute top-[20%] left-14 text-3xl md:text-5xl font-bold'>Account Settings</h2>
             <div className='absolute p-5 gap-10 top-[28%] bg-gray-900 left-0 max-h-[75%] overflow-x-hidden overflow-hidden h-[75%] w-full rounded-l-3xl'>
-              <form onSubmit={() => updateUser()} className='flex flex-col gap-4'>
+              <form onSubmit={() => updateUser()} className='flex flex-col gap-4' encType='multipart/form-data'>
               <Input label='Change Nickname' onChange={(e) => {setUsername(e.target.value); console.log(e.target.value)}}></Input>
               <Input label='Change Email*' onChange={(e) => setUseremail(e.target.value)}></Input>
               <Avatar
@@ -114,7 +153,7 @@ const Dashboard = () => {
                 className={`cursor-pointer mt-5 place-self-center`}
                 src={userImage || '/img/pp_comp.webp'}
               />
-              <Input type="file" onChange={getImageArray} label='Change profile picture'></Input>
+              <Input type="file" onChange={onFileChange} onClick={onClick} label='Change profile picture'></Input>
               <Button type='submit' > Save </Button>
               <p className='text-center text-xs text-red-500'>*Your stripe customer mail will not change</p>
               </form>

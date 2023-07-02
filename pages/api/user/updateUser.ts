@@ -27,7 +27,7 @@ if (req.method === 'PUT'){
       await User.findByIdAndUpdate(owner, {
         name:userName,
         email:userEmail,
-        image:userImage
+        image:userImage as string
       })
 
       await Mapsi.updateMany(owner as any, {owner:userName,ownerEmail:userEmail})
