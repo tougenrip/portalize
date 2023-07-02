@@ -10,10 +10,31 @@ import axios from 'axios'
 
 const Dashboard = () => {
 
-  const updateUser = async () => {
+  const getImageArray = (e) => {
+    const file = e.target.files[0]
+    
+
+    return( new Promise((resolve, reject) =>{
+      const reader = new FileReader();
+
+      reader.onload = (e) => {
+        resolve(e.target.result);
+      };
+      reader.onerror = (err) => {
+        reject(err);
+      };
+
+      reader.readAsArrayBuffer(file)
+    }))
+    
+   }
+
+
+  const updateUser = async (req) => {
+
     const res = await axios.put(
         "/api/user/updateUser",
-        { userName, userEmail },
+        { userName, userEmail, userImage },
         {
           headers: {
             Accept: "application/json",
@@ -87,9 +108,9 @@ const Dashboard = () => {
                 size='xxl'
                 alt="UserLogo"
                 className={`cursor-pointer mt-5 place-self-center`}
-                src={userImage || '/img/pp.webp'}
+                src={userImage || '/img/pp_comp.webp'}
               />
-              <Input type="file" placeholder={`${userImage}`} label='Change profile picture'></Input>
+              <Input type="file" onChange={getImageArray} label='Change profile picture'></Input>
               <Button type='submit' > Save </Button>
               <p className='text-center text-xs text-red-500'>*Your stripe customer mail will not change</p>
               </form>
