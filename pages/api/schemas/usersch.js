@@ -9,6 +9,7 @@ const userSchema = new Schema({
     hashedPassword:{type:String,required:true,minLength:5},
     stripeCustomerId:{type:String,default:''},
     isActive:{type:Boolean, default:false},
+    skyEnabled:{type:Boolean, default:false},
     image:{type:String},
     maps:{
         owned:{type:Array},

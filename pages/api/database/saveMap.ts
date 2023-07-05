@@ -3,6 +3,8 @@ import mongoose from 'mongoose';
 import { getServerSession } from 'next-auth';
 import authOptions from '../auth/authOptions';
 import Mapsi from '../schemas/mapsch';
+import User from '../schemas/usersch';
+import { getSession } from 'next-auth/react';
 
 // connect to MongoDB
 mongoose.connect(process.env.MONGODB_URI);
@@ -11,12 +13,84 @@ mongoose.connect(process.env.MONGODB_URI);
 
 // define and export the POST endpoint handler function
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+  const session = await getSession({req})
+   if(req.headers['x-api-key'] !== process.env.API_ROUTE_SECRET){return res.status(401).send('Unauthorized Access2')}
+  // if(!session){res.status(401).send('You`re not signed in!')}
 
+  switch(req.query.function){
+    case 'updateskyperm':
+      await UpdateSkyPerm()
+      break;
+    case 'updatebannerperm': 
+    await UpdateBannerPerm()
+    break;
+    case 'uploadMap':
+      await UploadMap()
+      break;
+  }
+  
+
+  async function UpdateBannerPerm(){
+    
+    if (req.method === 'PUT') {
+      try {
+        // extract the map data and session from the request body
+        const {state, } = req.query
+  
+        const session = await getServerSession(req,res,authOptions)
+        const owner = session?.user?.id
+  
+        // create a new document in the Worlds collection
+        await User.findByIdAndUpdate(owner,{bannerEnabled: state as unknown as boolean});
+  
+        // save the new document to the database
+        // send a success response back to the client with the CSRF token
+        res.status(201).json({ message: 'Map data saved successfully.' });
+      } catch (e) {
+        // send an error response back to the client
+        res.status(500).json({ error: e.message });
+      }
+    } else {
+      // send a 405 Method Not Allowed response back to the client
+      res.status(405).json({ error: 'Only POST requests allowed.' });
+    }
+  }
+    
+  
+  async function UpdateSkyPerm(){
+    
+    if (req.method === 'PUT') {
+      try {
+        // extract the map data and session from the request body
+        const {state } = req.query
+  
+        const session = await getServerSession(req,res,authOptions)
+        const owner = session?.user?.id
+  
+        // create a new document in the Worlds collection
+        await User.findByIdAndUpdate(owner,{skyEnabled: state as unknown as boolean});
+  
+        // save the new document to the database
+        // send a success response back to the client with the CSRF token
+        res.status(201).json({ message: 'Map data saved successfully.' });
+      } catch (e) {
+        // send an error response back to the client
+        res.status(500).json({ error: e.message });
+      }
+    } else {
+      // send a 405 Method Not Allowed response back to the client
+      res.status(405).json({ error: 'Only POST requests allowed.' });
+    }
+  }
+
+async function UploadMap(){
+  
   
   if (req.method === 'PUT') {
+    
     try {
       // extract the map data and session from the request body
-      const { title, desc, privite,likes,userLimit, floormap, interior } = req.body;
+      const { title, desc, privite,likes,userLimit, floormap, interior,img } = req.body;
 
       const session = await getServerSession(req,res,authOptions)
       const owner = session?.user?.id
@@ -32,7 +106,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         likes: likes,
         userLimit:userLimit, 
         floormap: floormap,
-        interior: interior
+        interior: interior,
+        img: img,
       });
 
       // save the new document to the database
@@ -48,4 +123,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     // send a 405 Method Not Allowed response back to the client
     res.status(405).json({ error: 'Only POST requests allowed.' });
   }
+}
+
 }

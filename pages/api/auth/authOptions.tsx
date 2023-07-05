@@ -60,9 +60,10 @@ const authOptions:NextAuthOptions = {
     async jwt({token, user, trigger, session }){
       if (user) {
           token.user = {
-              id: user.id as unknown,
+              id: user._id,
               name: user.name,
               email: user.email,
+              image:user.image,
               stripeCustomerId: user.stripeCustomerId,
               isActive: user.isActive
           }

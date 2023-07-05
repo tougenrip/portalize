@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import SideBar from '../../components/SideBar'
 import Navbar from '../../components/Navbar'
-import { Avatar, Button, IconButton, Input } from '@material-tailwind/react'
+import { Avatar, Button, IconButton, Input, Option, Select } from '@material-tailwind/react'
 import { useSession } from 'next-auth/react'
 import useSWR from 'swr'
 import Link from 'next/link'
@@ -10,74 +10,53 @@ import axios from 'axios'
 
 const Dashboard = () => {
 
- // State to store the file
- const [file, setFile] = useState<File | null>(null);
+  
 
- // State to store the base64
- const [base64, setBase64] = useState<string | null>(null);
 
- // When the file is selected, set the file state
- const onFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
-   if (!e.target.files) {
-     return;
-   }
+  const [isCheckoutLoading, setIsCheckoutLoading] = useState(false);
+  
+  const goToSkyCheckout = async () => {
+    setIsCheckoutLoading(true);
+    const res = await fetch(`/api/stripe/skyad-checkout-session?quantity=${minutes}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    const { redirectUrl } = await res.json();
+    if (redirectUrl) {
+      window.location.assign(redirectUrl);
+    } else {
+      setIsCheckoutLoading(false);
+      console.log("Error creating checkout session");
+    }
+  };
 
-   setFile(e.target.files[0]);
-   const base64 = await toBase64(file as File);
+  const convertToBase64 = (file) => {
+    return new Promise((resolve, reject) => {
+      const fileReader = new FileReader();
+      fileReader.readAsDataURL(file);
+      fileReader.onload = () => {
+        resolve(fileReader.result);
+      };
+      fileReader.onerror = (error) => {
+        reject(error);
+      };
+    });
+  };
+  const handleFileUpload = async (e) => {
+    const file = e.target.files[0];
+    const base64 = await convertToBase64(file);
+    setUserimg(base64);
+  };
 
-   
-
-   setUserimg(base64 as string);
-
-   
- };
-
- // On click, clear the input value
- const onClick = (e: React.MouseEvent<HTMLInputElement>) => {
-   e.currentTarget.value = "";
- };
-
- // On submit, upload the file
- const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-   e.preventDefault();
-
-   if (!file) {
-     return;
-   }
-
-   // Convert the file to base64
-   const base64 = await toBase64(file as File);
-
-   
-
-   setUserimg(base64 as string);
-
-   // Clear the states after upload
-   setFile(null);
-   setBase64(null);
- };
-
- const toBase64 = (file: File) => {
-  return new Promise((resolve, reject) => {
-    const fileReader = new FileReader();
-
-    fileReader.readAsDataURL(file);
-
-    fileReader.onload = () => {
-      resolve(fileReader.result);
-    };
-
-    fileReader.onerror = (error) => {
-      reject(error);
-    };
-  });
-};
+ 
 
   const updateUser = async () => {
 
     const res = await axios.put(
-        "/api/user/updateUser",
-        { userName, userEmail, userImage },
+        "/api/user/updateuser",
+        { userName, userEmail,userImage },
         {
           headers: {
             Accept: "application/json",
@@ -87,8 +66,8 @@ const Dashboard = () => {
       )
       .then(async () => {
         window.alert('Updated User Details successfully')
-        update({name:`${userName}`,email:`${userEmail}`, image:`${userImage}`})
-      })
+        
+      }).finally(async() => {update({name:`${userName}`,email:`${userEmail}`,image:`${userImage}`})})
       .catch((error) => {
         console.log(error);
       });
@@ -99,6 +78,7 @@ const Dashboard = () => {
   const [userName, setUsername] = useState(session?.user?.name)
   const [userEmail, setUseremail] = useState(session?.user?.email)
   const [userImage, setUserimg] = useState(session?.user?.image)
+  const [minutes ,setMinutes] = useState(null)
 
 
   
@@ -121,7 +101,7 @@ const Dashboard = () => {
             <div id="myspaces" className='relative h-screen'>
               <h2 className='absolute top-[10%] left-14 text-3xl md:text-5xl font-bold'>My Spaces</h2>
               <div className='absolute flex flex-col gap-5 top-[20%] left-0 max-h-[75%] overflow-x-hidden overflow-scroll scrollbar-none h-[75%] w-full'>
-                  
+                <UserMaps/>
               
               </div>
             </div>
@@ -134,8 +114,11 @@ const Dashboard = () => {
             <div id="adverts" className='relative h-screen'><h2 className='absolute top-[20%] left-14 text-3xl md:text-5xl font-bold'>Advertisement Panel</h2>
               <div className='absolute flex flex-col gap-5 top-[30%] bg-gray-900 left-0 max-h-[75%] overflow-x-hidden overflow-hidden h-[75%] w-full rounded-l-3xl'>
               <div className='relative flex flex-row gap-5 justify-between px-6 top-5 left-5 min-h-[40%] rounded-3xl w-[96%]'>
-                  <div className='flex flex-col justify-between py-8 px-5 w-72 rounded-3xl border text-center text-4xl'>Banner Advertisement<Button>Buy</Button></div>
-                  <div className='flex flex-col justify-between py-8 px-5 w-72 rounded-3xl border text-center text-4xl'>Sky Advertisement<Button>Buy</Button></div>
+                  <div className='flex flex-col justify-between py-8 px-5 w-72 rounded-3xl border text-center text-4xl'>Banner Advertisement<form> </form><Button>Buy</Button></div>
+                  <div className='flex flex-col justify-between py-8 px-5 w-72 rounded-3xl border text-center text-4xl'>Sky Advertisement<form className='text-xl flex flex-row gap-2 place-self-center' >For <input type="number" placeholder='x' onChange={(e) => setMinutes(e.target.value)} className='text-center w-10'/> minutes</form><Button onClick={() => {
+            if (isCheckoutLoading) return;
+            else goToSkyCheckout();
+          }}>Buy</Button></div>
                   <div className='flex flex-col justify-between py-8 px-5 w-72 rounded-3xl border text-center text-4xl'>Product Advertisement<Button>Buy</Button></div>
               </div>
                     
@@ -153,7 +136,7 @@ const Dashboard = () => {
                 className={`cursor-pointer mt-5 place-self-center`}
                 src={userImage || '/img/pp_comp.webp'}
               />
-              <Input type="file" onChange={onFileChange} onClick={onClick} label='Change profile picture'></Input>
+              <Input type="file" onChange={(e) => handleFileUpload(e)} label='Change profile picture'></Input>
               <Button type='submit' > Save </Button>
               <p className='text-center text-xs text-red-500'>*Your stripe customer mail will not change</p>
               </form>

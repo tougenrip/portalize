@@ -56,7 +56,7 @@ export default async function handler(
 
 
   // get and validate body variables
-  const { username, email, password, stripeCustomerId, isActive } = req.body;
+  const { username, email, password, stripeCustomerId, image, isActive } = req.body;
 
   const errorMessage = await validateForm(username, email, password);
   if (errorMessage) {
@@ -71,6 +71,7 @@ export default async function handler(
     name: username,
     email,
     hashedPassword,
+    image,
     stripeCustomerId,
     isActive
   });

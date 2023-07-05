@@ -12,7 +12,7 @@ import {
   export default function GameCard( {game} ) {
     return (
       <Card className="mt-6 w-[80vw] md:w-96  bg-black shadow-xl">
-        <CardHeader color="blue-gray" className={`relative h-56 bg-white bg-cover bg-bottom`} >
+        <CardHeader style={{background:`#ffffff url(${game.img})`}} color="blue-gray" className={`relative h-56 bg-white !bg-cover !bg-bottom`} >
           
         </CardHeader>
         <CardBody >

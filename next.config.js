@@ -6,7 +6,10 @@ const nextConfig = {
 }
 
 module.exports = nextConfig,
-{async rewrites() {
+
+{
+  basePath:'/api',
+  async rewrites() {
   return [
     {
       source: 'http://192.168.0.33/api/:path*',
@@ -14,4 +17,17 @@ module.exports = nextConfig,
     },
   ]
 },
+// async headers() {
+//   return [
+//     {
+//       source: '*',
+//       headers: [
+//         {
+//           key:'x-api-key',
+//           value:`${process.env.API_ROUTE_SECRET}`
+//         }
+//       ]
+//     }
+//   ]
+// }
 };

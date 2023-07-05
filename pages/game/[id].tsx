@@ -37,9 +37,9 @@ function App({floormapdata, interiordata}) {
    if(isLoaded === true){
     
     
-     setTimeout(() => sendMessage('PlaymodeManager','SetFloormap', `${floormapdata}`),5000);
-     setTimeout(() => sendMessage('PlaymodeManager','SetInterior',`${interiordata}`), 5000);
-     setTimeout(() => sendMessage('PlaymodeManager','LoadMap'), 5000);
+     setTimeout(() => sendMessage('PlaymodeManager','SetFloormap', `${floormapdata}`),500);
+     setTimeout(() => sendMessage('PlaymodeManager','SetInterior',`${interiordata}`), 500);
+     setTimeout(() => sendMessage('PlaymodeManager','LoadMap'), 500);
    }
 
   return (
