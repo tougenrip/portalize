@@ -13,6 +13,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
   // This object will contain the user's data if the user is signed in
   const session = await getServerSession(req, res, authOptions);
+  const owner = session.user._id
 
   // Error handling
   if (!session?.user?.stripeCustomerId) {
@@ -35,14 +36,14 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       },
     ],
     // {CHECKOUT_SESSION_ID} is a string literal which the Stripe SDK will replace; do not manually change it or replace it with a variable!
-    success_url: `${process.env.NEXT_PUBLIC_WEBSITE_URL}?session_id={CHECKOUT_SESSION_ID}`,
+    success_url: `${process.env.NEXT_PUBLIC_WEBSITE_URL}/bannercreate/?session_id={CHECKOUT_SESSION_ID}&userid=${owner}`,
     cancel_url: `${process.env.NEXT_PUBLIC_WEBSITE_URL}?cancelledPayment=true`,
     payment_intent_data:{
         metadata:{
             payingUserId: session.user.id,
         }
     }
-  });
+});
 
   if (!checkoutSession.url) {
     return res
@@ -51,5 +52,5 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
   }
 
   // Return the newly-created checkoutSession URL and let the frontend render it
-  return res.status(200).json({ redirectUrl: checkoutSession.url });
+  return res.status(200).json({ redirectUrl: checkoutSession.url});
 };

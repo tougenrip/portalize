@@ -10,6 +10,7 @@ const userSchema = new Schema({
     stripeCustomerId:{type:String,default:''},
     isActive:{type:Boolean, default:false},
     skyEnabled:{type:Boolean, default:false},
+    bannerEnabled:{type:Boolean, default:false},
     image:{type:String},
     maps:{
         owned:{type:Array},

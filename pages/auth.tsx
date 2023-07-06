@@ -80,6 +80,8 @@ const Auth: NextPage = ({ providers }: any) => {
   const stripeCustomerId = '';
   const isActive = false;
   const image = '';
+  const skyEnabled = false;
+  const bannerEnabled = false;
   const ProvidersButtons = ({ providers }: any) => (
     <Flex direction="column" w="100%">
       {Object.values(providers).map(
@@ -118,7 +120,7 @@ const Auth: NextPage = ({ providers }: any) => {
     const res = await axios
       .post(
         "/api/register",
-        { username, email, password, stripeCustomerId, isActive,image },
+        { username, email, password, stripeCustomerId, isActive,image,skyEnabled,bannerEnabled },
         {
           headers: {
             Accept: "application/json",

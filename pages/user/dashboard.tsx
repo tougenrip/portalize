@@ -33,6 +33,22 @@ const Dashboard = () => {
       console.log("Error creating checkout session");
     }
   };
+  const goToBannerCheckout = async () => {
+    setIsCheckoutLoading(true);
+    const res = await fetch(`/api/stripe/bannerad-checkout-session?quantity=${minutes}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    const { redirectUrl } = await res.json();
+    if (redirectUrl) {
+      window.location.assign(redirectUrl);
+    } else {
+      setIsCheckoutLoading(false);
+      console.log("Error creating checkout session");
+    }
+  };
 
   const convertToBase64 = (file) => {
     return new Promise((resolve, reject) => {
@@ -113,7 +129,7 @@ const Dashboard = () => {
                   
               </div>
             </div>
-            <div id="adverts" className='relative !visible !block h-screen'><h2 className='absolute top-[20%] left-14 text-3xl md:text-5xl font-bold'>Advertisement Panel</h2>
+            <div id="edvertsec" className='relative !visible !block h-screen'><h2 className='absolute top-[20%] left-14 text-3xl md:text-5xl font-bold'>Advertisement Panel</h2>
               <div className='absolute flex flex-col gap-5 top-[30%] bg-transparent left-0 max-h-[75%] overflow-x-hidden overflow-hidden h-[75%] w-[100%] rounded-l-3xl'>
               <div className='relative grid grid-rows-4 grid-cols-4 grid-flow-col gap-4 justify-between px-6 top-5 left-5 min-h-[40%] rounded-3xl w-[96%]'>
                   <div className='row-span-2 col-span-2 flex py-8 px-5 w-full rounded-3xl bg-[#191919]  text-center text-4xl place-items-center'><FaSolarPanel className='h-24 w-24 col-span-1'></FaSolarPanel>Banner Advertisement<form> </form><Button color='purple' size='lg' className='bg-gradient-to-br from-purple-500 to-purple-800 text-xl'>Buy</Button></div>
