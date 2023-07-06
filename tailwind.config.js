@@ -11,14 +11,14 @@ export default mt({
   theme: {
     extend: {
       backgroundColor: {
-        'paffbg': '#202020',
+        'paffbg': '#151515',
         'inputBg': '#282828',
       },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
         'gradient-conic':
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
-        'Hero': 'url(/img/landing-page/herobg_comp.webp)'
+        'Hero': 'url(/img/landing-page/herobg.webm)'
       },
       fontFamily: { 
         'valorant' : ['valorant', 'sans-serif'],

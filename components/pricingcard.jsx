@@ -41,7 +41,7 @@ export default function PricingCard() {
 
 
   return (
-    <Card color="purple" variant="gradient" className="w-full max-w-[20rem] p-8">
+    <Card color="transparent" variant="gradient" className="w-full max-w-[26rem] p-8" style={{boxShadow:'none'}}>
       <CardHeader
         floated={false}
         shadow={false}
@@ -101,8 +101,8 @@ export default function PricingCard() {
       <CardFooter className="mt-12 p-0">
         {isLogged ? (<Button
           size="lg"
-          color="white"
-          className="text-blue-500 hover:scale-[1.02] focus:scale-[1.02] active:scale-100"
+          color="purple"
+          className="text-white !bg-gradient-to-br !from-purple-500 !to-purple-900 hover:shadow-lg hover:shadow-purple-500 hover:scale-[1.02] focus:scale-[1.02] active:scale-100"
           ripple={false}
           fullWidth={true}
           onClick={() => {
@@ -113,8 +113,8 @@ export default function PricingCard() {
           Buy Now
         </Button>) : (<Link href={'/auth'}><Button
           size="lg"
-          color="white"
-          className="text-blue-500 hover:scale-[1.02] focus:scale-[1.02] active:scale-100"
+          
+          className="text-white !bg-gradient-to-br !from-purple-500 !to-purple-900 hover:scale-[1.02] focus:scale-[1.02] active:scale-100"
           ripple={false}
           fullWidth={true}
           

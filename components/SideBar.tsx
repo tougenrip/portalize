@@ -119,7 +119,7 @@ const SideBar = (req,res) => {
         </div>
         <div className='mt-5 text-center'><p className='flex flex-row gap-1 text-center justify-center place-items-center'>{userName} {isActive ? (<Tooltip content="Premium"><CheckBadgeIcon className={`relative w-6 h-6 ${isActive ? (''): ('hidden')}`}></CheckBadgeIcon></Tooltip>) : ('')}</p><p className='text-sm flex flex-row gap-2 text-[#666666]'>{userEmail}</p></div>
         <div className='w-[80%] flex flex-col gap-4 mt-20'>
-       <Link href={''}> <Button variant='outlined' size='sm' color='purple' className='border-transparent hover:border-purple-500 rounded-xl group-hover:shadow-lg hover:shadow-md' fullWidth >My Avatar</Button></Link>
+       <Link href={''}><Tooltip content="Coming Soon"><Button variant='outlined' size='sm' color='purple' className='border-transparent hover:border-purple-500 rounded-xl group-hover:shadow-lg hover:shadow-md ' fullWidth >My Avatar</Button></Tooltip></Link>
        <Link href={'#myspaces'}> <Button variant='outlined' size='sm' color='purple' className='border-transparent hover:border-purple-500 rounded-xl group-hover:shadow-lg hover:shadow-md' fullWidth >My Spaces</Button></Link>
         <Link href={'#analytics'}><Button variant='outlined' size='sm' color='purple' className='border-transparent hover:border-purple-500  rounded-xl group-hover:shadow-lg hover:shadow-md' fullWidth >Analytics</Button></Link>
        <Link href={'#adverts'}> <Button variant='outlined' size='sm' color='purple' className='border-transparent hover:border-purple-500 rounded-xl group-hover:shadow-lg hover:shadow-md' fullWidth >Advertisement Panel</Button></Link>

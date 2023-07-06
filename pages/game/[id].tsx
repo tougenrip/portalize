@@ -10,19 +10,24 @@ import fetch from 'node-fetch'
 import { CircularProgressbar } from 'react-circular-progressbar';
 
 
-
 export const getServerSideProps = async(req) => {
-    const {id} = req.query
-  const [floormapRes, interiorRes] = await Promise.all([fetch(`${process.env.NEXT_PUBLIC_WEBSITE_URL}api/worlds/floormap/${id}`), fetch(`${process.env.NEXT_PUBLIC_WEBSITE_URL}api/worlds/interior/${id}`)]);
-  const [floormap, interior] = await Promise.all([floormapRes.json(), interiorRes.json()])
-  const [floormapdata, interiordata] = await Promise.all([JSON.parse(JSON.stringify(floormap)),JSON.parse(JSON.stringify(interior))])
+  const {id} = req.query
+  const [floormapurl,interiorurl] = [`${process.env.NEXT_PUBLIC_WEBSITE_URL}api/worlds/floormap/${id}`,`${process.env.NEXT_PUBLIC_WEBSITE_URL}api/worlds/interior/${id}`]
+    const options = {
+      method: 'GET',
+      headers: {
+        'x-api-key': `${process.env.API_ROUTE_SECRET}`
+      }
+    };
+const [floormapRes, interiorRes] = await Promise.all([fetch(floormapurl, options), fetch(interiorurl, options)]);
+const [floormap, interior] = await Promise.all([floormapRes.json(), interiorRes.json()])
+const [floormapdata, interiordata] = await Promise.all([JSON.parse(JSON.stringify(floormap)),JSON.parse(JSON.stringify(interior))])
+
+return{
   
-  return{
-    
-    props:{floormapdata, interiordata}
-    
-  };
+  props:{floormapdata, interiordata}
   
+};
 }
 function App({floormapdata, interiordata}) {
  

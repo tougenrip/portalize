@@ -27,7 +27,7 @@ const UserMaps = () => {
       const {data: games, error, isLoading} = useFetch('api/user/maps')
 
 
-  return (<>{games?.map((game) => <div key={game.id} style={{background:` url(${game.img})`}} className={`relative -right-5 bg-opacity-50 !bg-cover !bg-center rounded-3xl min-h-[300px]`}><h3 className='absolute bottom-5 left-16 text-5xl'>{game.title}</h3><Link href={`${process.env.NEXT_PUBLIC_WEBSITE_URL}editor?mapid=${game._id}`}><Button className='!absolute !bottom-5 !right-16'>Open Project</Button></Link> </div>)}</>)
+  return (<>{games?.map((game) => <div key={game.id} style={{background:` url(${game.img})`}} className={`relative -right-5 bg-opacity-50 !bg-cover !bg-center rounded-3xl min-h-[300px]`}><h3 className='absolute bottom-5 left-16 text-5xl'>{game.title}</h3><Link href={`${process.env.NEXT_PUBLIC_WEBSITE_URL}editor`}><Button className='!absolute !bottom-5 !right-16'>Open Project</Button></Link> </div>)}</>)
   
 }
 

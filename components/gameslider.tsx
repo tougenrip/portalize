@@ -32,7 +32,7 @@ const GameSlider = ({ repo }) => {
       ]
     );
     return (
-      <div ref={sliderRef} className="keen-slider overflow-x-hidden ">
+      <div ref={sliderRef} className="keen-slider overflow-x-hidden">
         <div className="keen-slider__slide"><ExpandCard/></div>
         <div className="keen-slider__slide"><ExpandCard/></div>
         <div className="keen-slider__slide"><ExpandCard/></div>

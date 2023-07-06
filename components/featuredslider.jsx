@@ -35,7 +35,7 @@ const FeaturedSlider = () => {
    
     
   return (
-    <div className="grid grid-cols-3 grid-flow-row !h-screen place-items-center overflow-x-hidden p-[32px]">
+    <div className="flex gap-4 !h-min place-items-center overflow-x-hidden my-3 p-[32px]">
       {games?.map((game) => (
         <GameCard key={game.id} game={game} />
       ))}

@@ -7,6 +7,8 @@ import useSWR from 'swr'
 import Link from 'next/link'
 import UserMaps from '../../components/UserMaps'
 import axios from 'axios'
+import { BiGlobeAlt, BiCubeAlt, BiPyramid } from 'react-icons/bi'
+import { FaSolarPanel } from 'react-icons/fa'
 
 const Dashboard = () => {
 
@@ -47,7 +49,7 @@ const Dashboard = () => {
   const handleFileUpload = async (e) => {
     const file = e.target.files[0];
     const base64 = await convertToBase64(file);
-    setUserimg(base64);
+    setUserimg(base64 as unknown as string);
   };
 
  
@@ -112,23 +114,24 @@ const Dashboard = () => {
               </div>
             </div>
             <div id="adverts" className='relative h-screen'><h2 className='absolute top-[20%] left-14 text-3xl md:text-5xl font-bold'>Advertisement Panel</h2>
-              <div className='absolute flex flex-col gap-5 top-[30%] bg-gray-900 left-0 max-h-[75%] overflow-x-hidden overflow-hidden h-[75%] w-full rounded-l-3xl'>
-              <div className='relative flex flex-row gap-5 justify-between px-6 top-5 left-5 min-h-[40%] rounded-3xl w-[96%]'>
-                  <div className='flex flex-col justify-between py-8 px-5 w-72 rounded-3xl border text-center text-4xl'>Banner Advertisement<form> </form><Button>Buy</Button></div>
-                  <div className='flex flex-col justify-between py-8 px-5 w-72 rounded-3xl border text-center text-4xl'>Sky Advertisement<form className='text-xl flex flex-row gap-2 place-self-center' >For <input type="number" placeholder='x' onChange={(e) => setMinutes(e.target.value)} className='text-center w-10'/> minutes</form><Button onClick={() => {
+              <div className='absolute flex flex-col gap-5 top-[30%] bg-transparent left-0 max-h-[75%] overflow-x-hidden overflow-hidden h-[75%] w-[100%] rounded-l-3xl'>
+              <div className='relative grid grid-rows-4 grid-cols-4 grid-flow-col gap-4 justify-between px-6 top-5 left-5 min-h-[40%] rounded-3xl w-[96%]'>
+                  <div className='row-span-2 col-span-2 flex py-8 px-5 w-full rounded-3xl bg-[#191919]  text-center text-4xl place-items-center'><FaSolarPanel className='h-24 w-24 col-span-1'></FaSolarPanel>Banner Advertisement<form> </form><Button color='purple' size='lg' className='bg-gradient-to-br from-purple-500 to-purple-800 text-xl'>Buy</Button></div>
+                  <div className='row-span-2 col-span-2 flex py-8 px-5 w-full rounded-3xl bg-[#191919] text-center text-4xl place-items-center'><BiCubeAlt className='h-24 w-24'></BiCubeAlt>Product Advertisement<Button color='purple' size='lg' className='relative left-2 bg-gradient-to-br from-purple-500 to-purple-800 text-xl'>Buy</Button></div>
+                  <div className='row-span-4 col-span-2 justify-between py-8 px-5 w-full rounded-3xl bg-[#191919]  text-center text-4xl place-items-center'><BiGlobeAlt className=' h-48 my-5 w-full place-self-center'></BiGlobeAlt>Sky Advertisement<form className='text-xl text-center flex place-content-center my-4 gap-3 place-self-center' >For <input type="number" placeholder='x' onChange={(e) => setMinutes(e.target.value)} className='text-center w-10'/> minutes</form><Button color='purple' size='lg' className='bg-gradient-to-br from-purple-500 to-purple-800 text-xl' onClick={() => {
             if (isCheckoutLoading) return;
             else goToSkyCheckout();
           }}>Buy</Button></div>
-                  <div className='flex flex-col justify-between py-8 px-5 w-72 rounded-3xl border text-center text-4xl'>Product Advertisement<Button>Buy</Button></div>
               </div>
-                    
+              <div className=' w-[92%] mt-4 justify-between py-8 px-5 place-self-center rounded-3xl bg-[#191919] text-center text-4xl place-items-center'><BiPyramid className='h-24 w-full'></BiPyramid>Start Futuring</div>
+
                 </div>
             </div>
             <div id="accsettings" className='relative h-screen'><h2 className='absolute top-[20%] left-14 text-3xl md:text-5xl font-bold'>Account Settings</h2>
-            <div className='absolute p-5 gap-10 top-[28%] bg-gray-900 left-0 max-h-[75%] overflow-x-hidden overflow-hidden h-[75%] w-full rounded-l-3xl'>
-              <form onSubmit={() => updateUser()} className='flex flex-col gap-4' encType='multipart/form-data'>
-              <Input label='Change Nickname' onChange={(e) => {setUsername(e.target.value); console.log(e.target.value)}}></Input>
-              <Input label='Change Email*' onChange={(e) => setUseremail(e.target.value)}></Input>
+            <div className='absolute p-5 gap-10 top-[28%] bg-transparent left-0 max-h-[75%] overflow-x-hidden overflow-hidden h-[75%] w-full rounded-l-3xl'>
+              <form onSubmit={() => updateUser()} className='relative flex flex-col gap-4 top-5 scale-110 left-12' encType='multipart/form-data'>
+              <Input label='Change Nickname' color="purple" size='lg' className='border-2 border-white' style={{backgroundColor:'#282828',}} onChange={(e) => {setUsername(e.target.value); console.log(e.target.value)}}></Input>
+              <Input label='Change Email*' color="purple" className='border-2 border-white' style={{backgroundColor:'#282828'}} onChange={(e) => setUseremail(e.target.value)}></Input>
               <Avatar
                 variant="circular"
                 size='xxl'
@@ -136,8 +139,8 @@ const Dashboard = () => {
                 className={`cursor-pointer mt-5 place-self-center`}
                 src={userImage || '/img/pp_comp.webp'}
               />
-              <Input type="file" onChange={(e) => handleFileUpload(e)} label='Change profile picture'></Input>
-              <Button type='submit' > Save </Button>
+              <Input type="file" color="purple"  className='border-2 border-white' onChange={(e) => handleFileUpload(e)} style={{backgroundColor:'#282828'}} label='Change profile picture'></Input>
+              <Button type='submit' color='purple' > Save </Button>
               <p className='text-center text-xs text-red-500'>*Your stripe customer mail will not change</p>
               </form>
                   

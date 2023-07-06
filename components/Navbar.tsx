@@ -40,7 +40,7 @@ const ProfileMenu = () => {
   const stickNavbar = () => {
     if (window !== undefined) {
       let windowHeight = window.scrollY;
-      windowHeight > 500 ? setStickyClass('fixed bg-[#282828] top-0 w-[100%] left-0 z-50 gap-20 justify-between') : setStickyClass('relative !z-50');
+      windowHeight > 500 ? setStickyClass('fixed bg-[#151515] top-0 w-[100%] left-0 z-50 gap-20 justify-between') : setStickyClass('relative !z-50');
       stickyClass ? setMobileSticky('fixed top-20 left-0 z-50 gap-20') : setMobileSticky('')
     }
   };
