@@ -1,11 +1,13 @@
 import React from 'react'
 import { NextApiRequest, NextApiResponse } from 'next'
-import { getSession } from 'next-auth/react'
+import { getSession, useSession } from 'next-auth/react'
 import { useState } from 'react'
-import { Input } from '@material-tailwind/react'
+import { Button, Input } from '@material-tailwind/react'
+import Image from 'next/image'
+import axios from 'axios'
 
-const BannerCreate = async (req:NextApiRequest,res:NextApiResponse) => {
-
+const BannerCreate = (req:NextApiRequest,res:NextApiResponse) => {
+  const {data:session} = useSession();
 
   const convertToBase64 = (file) => {
     return new Promise((resolve, reject) => {
@@ -25,18 +27,43 @@ const BannerCreate = async (req:NextApiRequest,res:NextApiResponse) => {
     setBannerImg(base64 as unknown as string);
   };
 
+  const uploadBanner = async () => {
+
+    const res = await axios.post(
+        "/api/database/createbanner",
+        { title, website, bannerImg },
+        {
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          },
+        }
+      )
+      .then(async () => {
+        window.alert('Uploaded Banner Ad successfully')
+        
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+    console.log(res);
+  };
 
 
-    const [tltle,setTitle] = useState('')
+
+    const [title,setTitle] = useState('')
     const [website, setWebsite] = useState('')
     const [bannerImg, setBannerImg] = useState('')
-    const session = await getSession({req})
+    
     const owner = session?.user?.id
 
   return (
-    <form method='POST' action='/api/database/createBanner'>
-      <Input type='text' color='purple' onChange={(e) => setBannerImg(e.target.value)}/>
-                      <Input type="file" color="purple"  className='border-2 border-white' onChange={(e) => handleFileUpload(e)} style={{backgroundColor:'#282828'}} label='Change profile picture'></Input>
+    <form method='POST' onSubmit={uploadBanner} className='relative h-screen'>
+      <Input type='text' name='website' color='purple' onChange={(e) => setWebsite(e.target.value)}/>
+      <Image alt='bannerimg' src={`${bannerImg}`} fill className='absolute top-1/2 -z-50 h-24 '></Image>
+      <Input type="file" name='img' color="purple"  className='border-2 border-white' onChange={(e) => handleFileUpload(e)} style={{backgroundColor:'#282828'}} label='Change profile picture'/>
+      <Input type='text' name='title' color='purple' onChange={(e) => setTitle(e.target.value)}/>
+      <Button type='submit' color='purple'>Test</Button>
     </form>
   )
 }

@@ -45,10 +45,10 @@ function OpenEmpty() {
   
  
     const { unityProvider, loadingProgression, isLoaded, sendMessage } =  useUnityContext({
-      loaderUrl: "http://192.168.0.33:3000/build/editor/editor.loader.js",
-      dataUrl: "http://192.168.0.33:3000/build/editor/editor.data.unityweb",
-      frameworkUrl: "http://192.168.0.33:3000/build/editor/editor.framework.js.unityweb",
-      codeUrl: "http://192.168.0.33:3000/build/editor/editor.wasm.unityweb",
+      loaderUrl: "https://cdn.portalize.io/build/editor/editor.loader.js",
+      dataUrl: "https://cdn.portalize.io/build/editor/editor.data",
+      frameworkUrl: "https://cdn.portalize.io/build/editor/editor.framework.js",
+      codeUrl: "https://cdn.portalize.io/build/editor/editor.wasm",
     });
   
   

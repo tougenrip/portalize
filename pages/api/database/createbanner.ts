@@ -15,23 +15,24 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     if (req.method === 'POST') {
       try {
         // extract the map data and session from the request body
-        const {title,website,img } = req.query
+        const {title, website, bannerImg } = req.body
   
         const session = await getServerSession(req,res,authOptions)
         const owner = session?.user?.id
   
         // create a new document in the Worlds collection
         const newBanner = new BannerS({
-            title: title,
-            owner: owner,
-            img: img,
-            website: website,
-          });
+            title,
+            owner,
+            img:bannerImg,
+            website,
+            createdAt: { type: Date, expires: '2m', default: Date.now }
+          } );
     
           await newBanner.save()
         // save the new document to the database
         // send a success response back to the client with the CSRF token
-        res.status(201).json({ message: 'Map data saved successfully.' });
+        res.status(201).json({ message: 'Banner saved successfully.' });
       } catch (e) {
         // send an error response back to the client
         res.status(500).json({ error: e.message });
