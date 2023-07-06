@@ -65,7 +65,9 @@ const authOptions:NextAuthOptions = {
               email: user.email,
               image:user.image,
               stripeCustomerId: user.stripeCustomerId,
-              isActive: user.isActive
+              isActive: user.isActive,
+              skyEnabled: user.skyEnabled,
+              bannerEnabled: user.bannerEnabled
           }
         if(trigger === "update"&& session?.name){
           token.name = session
