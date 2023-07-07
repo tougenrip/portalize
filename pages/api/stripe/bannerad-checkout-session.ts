@@ -6,7 +6,6 @@ import { getServerSession } from "next-auth/next"
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
 
-    const {quantity} = req.query
   const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string, {
     apiVersion: '2022-11-15',
   });
@@ -31,12 +30,12 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     customer: session.user.stripeCustomerId,
     line_items: [
       {
-        price: 'price_1NPpZqCzLG9nZPU4goySZL7N',
+        price: 'price_1NR46rCzLG9nZPU4ImI57UKw',
         quantity: quantity as unknown as number,
       },
     ],
     // {CHECKOUT_SESSION_ID} is a string literal which the Stripe SDK will replace; do not manually change it or replace it with a variable!
-    success_url: `${process.env.NEXT_PUBLIC_WEBSITE_URL}/bannercreate/?session_id={CHECKOUT_SESSION_ID}&userid=${owner}`,
+    success_url: `${process.env.NEXT_PUBLIC_WEBSITE_URL}/bannercreate`,
     cancel_url: `${process.env.NEXT_PUBLIC_WEBSITE_URL}?cancelledPayment=true`,
     payment_intent_data:{
         metadata:{
