@@ -72,5 +72,5 @@ const BannerCreate = (req:NextApiRequest,res:NextApiResponse) => {
   )
   
 }
-
+ 
 export default BannerCreate

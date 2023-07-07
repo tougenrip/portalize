@@ -35,7 +35,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       },
     ],
     // {CHECKOUT_SESSION_ID} is a string literal which the Stripe SDK will replace; do not manually change it or replace it with a variable!
-    success_url: `${process.env.NEXT_PUBLIC_WEBSITE_URL}/bannercreate`,
+    success_url: `${process.env.NEXT_PUBLIC_WEBSITE_URL}/bannerCreate`,
     cancel_url: `${process.env.NEXT_PUBLIC_WEBSITE_URL}?cancelledPayment=true`,
     payment_intent_data:{
         metadata:{
