@@ -62,13 +62,13 @@ const BannerCreate = (req:NextApiRequest,res:NextApiResponse) => {
     const isBanner = session?.user?.bannerEnabled
 
   return (
-    <>{isBanner ? (<form method='POST' onSubmit={uploadBanner} className='relative h-screen'>
+    <><form method='POST' onSubmit={uploadBanner} className='relative h-screen'>
     <Input type='text' name='website' color='purple' onChange={(e) => setWebsite(e.target.value)}/>
     <Image alt='bannerimg' src={`${bannerImg}`} fill className='absolute top-1/2 -z-50 h-24 '></Image>
     <Input type="file" name='img' color="purple"  className='border-2 border-white' onChange={(e) => handleFileUpload(e)} style={{backgroundColor:'#282828'}} label='Change profile picture'/>
     <Input type='text' name='title' color='purple' onChange={(e) => setTitle(e.target.value)}/>
     <Button type='submit' color='purple'>Test</Button>
-  </form>) : ('You`re not eligible to upload a banner ad')}</>
+  </form></>
   )
   
 }
