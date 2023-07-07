@@ -15,19 +15,23 @@ module.exports = nextConfig,
       source: 'http://192.168.0.33/api/:path*',
       destination: 'http://localhost:3000/api/:path*',
     },
+    {
+      source:"https://www.portalize.io/api/:path*",
+      destination:"https://portalize.io/api/:path*",
+    }
   ]
 },
-// async headers() {
-//   return [
-//     {
-//       source: '*',
-//       headers: [
-//         {
-//           key:'x-api-key',
-//           value:`${process.env.API_ROUTE_SECRET}`
-//         }
-//       ]
-//     }
-//   ]
-// }
+async headers() {
+  return [
+    {
+      source: 'api/*',
+      headers: [
+        {
+          key:'Access-Control-Cross-Origin',
+          value:`*`
+        }
+      ]
+    }
+  ]
+}
 };
