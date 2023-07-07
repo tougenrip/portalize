@@ -46,9 +46,9 @@ function OpenEmpty() {
  
     const { unityProvider, loadingProgression, isLoaded, sendMessage } =  useUnityContext({
       loaderUrl: "https://cdn.portalize.io/build/editor/editor.loader.js",
-      dataUrl: "https://cdn.portalize.io/build/editor/editor.data",
-      frameworkUrl: "https://cdn.portalize.io/build/editor/editor.framework.js",
-      codeUrl: "https://cdn.portalize.io/build/editor/editor.wasm",
+      dataUrl: "https://cdn.portalize.io/build/editor/editor.data.unityweb",
+      frameworkUrl: "https://cdn.portalize.io/build/editor/editor.framework.js.unityweb",
+      codeUrl: "https://cdn.portalize.io/build/editor/editor.wasm.unityweb",
     });
   
   
