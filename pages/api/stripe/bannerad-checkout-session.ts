@@ -31,7 +31,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     line_items: [
       {
         price: 'price_1NR46rCzLG9nZPU4ImI57UKw',
-        quantity: quantity as unknown as number,
+        quantity: 1,
       },
     ],
     // {CHECKOUT_SESSION_ID} is a string literal which the Stripe SDK will replace; do not manually change it or replace it with a variable!
