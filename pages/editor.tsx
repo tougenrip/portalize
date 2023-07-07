@@ -1,4 +1,4 @@
-'use client'
+
 import { Button, ButtonGroup, Textarea } from "@material-tailwind/react";
 import React, { Fragment,useRef,useState } from "react";
 import { Unity, useUnityContext } from "react-unity-webgl";
