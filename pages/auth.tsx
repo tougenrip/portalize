@@ -6,11 +6,11 @@ import {
   Flex,
   FormControl,
   FormLabel,
-  Input,
   Box,
   Heading,
   Text,
 } from "@chakra-ui/react";
+import { Input } from "@material-tailwind/react";
 import { Field, Form, Formik } from "formik";
 import axios from "axios";
 import Router from "next/router";
@@ -159,18 +159,19 @@ const Auth: NextPage = ({ providers }: any) => {
   return (
     <>
     <div className='absolute  top-2 left-[4%]'>
-         <Link href={'/'}><Image src='/img/logo.png' className="relative scale-75 -left-7 md:left-0 md:scale-100 my-5" width={218} height={38} alt="Logo"/></Link>
+         <Link href={'/'}><Image src='/img/logo.png' className="relative scale-75 -left-7 md:left-0 md:scale-100 my-5 !z-50" width={218} height={38} alt="Logo"/></Link>
           </div>
     <Background>
       <Box
         w="500px"
         h="100vh"
         rounded="md"
-        alignItems={"flex-start"}
+        alignItems={"flex-end"}
         bgColor="#282828"
+        position={"absolute"}
         p={12}
       >
-        <Flex direction="column" justifyContent="center" alignItems="center" mt={10}>
+        <Flex direction="column" justifyContent="center" w={"80%"} position={"absolute"} bottom={"15%"} alignItems="center" >
           <Heading size="xl">{authType}</Heading>
           <Text fontSize="sm" mb={6}>
             {authType === "Login"
@@ -203,12 +204,12 @@ const Auth: NextPage = ({ providers }: any) => {
                     <Field name="username">
                       {() => (
                         <FormControl isRequired mb={6}>
-                          <FormLabel htmlFor="username">Username:</FormLabel>
                           <Input
                             value={username}
                             onChange={(e) => setUsername(e.target.value)}
-                            placeholder="Username"
-                            background={"#2f2f2f"}
+                            label="Username"
+                            color="purple"
+                            className="text-white"
                           />
                         </FormControl>
                       )}
@@ -217,12 +218,12 @@ const Auth: NextPage = ({ providers }: any) => {
                   <Field name="email">
                     {() => (
                       <FormControl isRequired mb={6}>
-                        <FormLabel htmlFor="email">Email:</FormLabel>
                         <Input
                           value={email}
                           onChange={(e) => setEmail(e.target.value)}
-                          placeholder="Email Address"
-                          background={"#2f2f2f"}
+                          label="Email Address"
+                          color="purple"
+                          className="text-white"
                         />
                       </FormControl>
                     )}
@@ -230,22 +231,20 @@ const Auth: NextPage = ({ providers }: any) => {
                   <Field name="password">
                     {() => (
                       <FormControl isRequired mb={3}>
-                        <FormLabel htmlFor="password">Password</FormLabel>
                         <Input
                           value={password}
                           onChange={(e) => setPassword(e.target.value)}
                           type="password"
-                          placeholder="Password"
-                          background={"#2f2f2f"}
-                          _hover={{borderWidth:"0px"}}
+                          label="Password"
+                          color="purple"
+                          className="text-white"
                         />
                       </FormControl>
                     )}
                   </Field>
                   <Button
                     mt={6}
-                    bg="purple.400"
-                    _hover={{ bg: "purple.200" }}
+                    className="!bg-gradient-to-br !from-purple-500 !to-purple-900 hover:!from-purple-300 hover:!to-purple-600 transition-all trasfu"
                     isLoading={props.isSubmitting}
                     type="submit"
                   >

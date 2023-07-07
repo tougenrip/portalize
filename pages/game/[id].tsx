@@ -32,10 +32,10 @@ return{
 function App({floormapdata, interiordata}) {
  
   const { unityProvider, loadingProgression, isLoaded, sendMessage } = useUnityContext({
-    loaderUrl: "https://app.portalize.io/build/game/game.loader.js",
-    dataUrl: "https://app.portalize.io/build/game/game.data",
-    frameworkUrl: "https://app.portalize.io/build/game/game.framework.js",
-    codeUrl: "https://app.portalize.io/build/game/game.wasm",
+    loaderUrl: "https://cdn.portalize.io/build/game/game.loader.js",
+    dataUrl: "https://cdn.portalize.io/build/game/game.data.unityweb",
+    frameworkUrl: "https://cdn.portalize.io/build/game/game.framework.js.unityweb",
+    codeUrl: "https://cdn.portalize.io/build/game/game.wasm.unityweb",
     
   });
 

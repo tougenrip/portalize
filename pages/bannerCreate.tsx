@@ -6,6 +6,7 @@ import { Button, Input } from '@material-tailwind/react'
 import Image from 'next/image'
 import axios from 'axios'
 import Link from 'next/link'
+import Navbar from '@components/components/Navbar'
 
 const BannerCreate = (req:NextApiRequest,res:NextApiResponse) => {
   
@@ -63,7 +64,9 @@ const BannerCreate = (req:NextApiRequest,res:NextApiResponse) => {
     const isBanner = session?.user?.bannerEnabled
 
   return (
-    <><form method='POST' onSubmit={uploadBanner} className='absolute top-1/2 translate-y-1/2 left-1/2 -translate-x-1/2 flex flex-col gap-4 w-[80vw] md:w-[50vw]'>
+    <>
+    <Navbar/>
+    <form method='POST' onSubmit={uploadBanner} className='absolute top-1/2 translate-y-1/2 left-1/2 -translate-x-1/2 flex flex-col gap-4 w-[80vw] md:w-[50vw]'>
     <h1 className='text-5xl font-bold relative bottom-10 text-center'>Please add your banner img</h1>
     <Input type='text' label='Set Banner Title' name='title' color='purple' onChange={(e) => setTitle(e.target.value)}/>
     <Input type='text' label='Set Link to Redirect' name='website' color='purple' onChange={(e) => setWebsite(e.target.value)}/>
