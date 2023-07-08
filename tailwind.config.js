@@ -13,6 +13,8 @@ export default mt({
       backgroundColor: {
         'paffbg': '#151515',
         'inputBg': '#282828',
+        'paffGraA': '#3b29ff',
+        'paffGraB': '#9c4fff'
       },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
@@ -22,7 +24,7 @@ export default mt({
       },
       fontFamily: { 
         'valorant' : ['valorant', 'sans-serif'],
-        body: ["Gilroy", "sans-serif", defaultTheme.fontFamily.sans],
+        'sans': ['Gilroy', 'sans-serif', defaultTheme.fontFamily.sans],
       },
       animation: {
         'InfScroll': 'scroll 10s linear infinite',

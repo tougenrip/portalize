@@ -10,6 +10,7 @@ import {
   BookmarkIcon, Bars3Icon, XMarkIcon, PencilSquareIcon,
   UserCircleIcon,Cog6ToothIcon,PowerIcon,InboxArrowDownIcon,LifebuoyIcon
 } from "@heroicons/react/24/outline";
+
 import { useSession, signIn, signOut } from "next-auth/react";
 import ButtonWSignUp from './buttonwSignin'
 const ProfileMenu = () => {
@@ -40,7 +41,7 @@ const ProfileMenu = () => {
   const stickNavbar = () => {
     if (window !== undefined) {
       let windowHeight = window.scrollY;
-      windowHeight > 500 ? setStickyClass('fixed bg-[#151515] top-0 w-screen left-0 z-50 gap-20 justify-between') : setStickyClass('relative !z-50');
+      windowHeight > 500 ? setStickyClass('fixed bg-[#151515] top-0 w-[100%] left-0 !z-50 gap-20 justify-between') : setStickyClass(' bg-transparent !z-50');
       stickyClass ? setMobileSticky('fixed top-20 left-0 z-50 gap-20') : setMobileSticky('')
     }
   };
@@ -96,7 +97,13 @@ const ProfileMenu = () => {
           </Tooltip>
           </li>
           <li>
-          <Menu>
+            {isLogged ? (
+            
+            <Link href={`/auth`}><Button variant="gradient" color="purple" className="!bg-gradient-to-br rounded-full from-[#3b29ff] to-[#9c4fff]">Create Virtual Space</Button></Link>
+
+
+            ) : (
+              <Menu>
             <MenuHandler>
               <Avatar
                 variant="circular"
@@ -106,55 +113,22 @@ const ProfileMenu = () => {
               />
             </MenuHandler>
             <MenuList>
-              {isLogged ? (<><MenuItem className="flex items-center gap-2">
+            <Link href={'/user/dashboard'}>
+               <MenuItem className="flex items-center gap-2">
                 <UserCircleIcon strokeWidth={2} className="h-4 w-4" />
                 <Typography  variant="small" className="font-normal">
-                  <Link href={'/user/dashboard'}>My Profile</Link>
+                  My Profile
                 </Typography>
               </MenuItem>
+              </Link>
+              <Link href={'/user/dashboard#accsettings'}>
               <MenuItem className="flex items-center gap-2">
                 <Cog6ToothIcon strokeWidth={2} className="h-4 w-4" />
                 <Typography variant="small" className="font-normal">
-                  <Link href={'/user/dashboard#accsettings'}> Edit Profile</Link>
+                   Edit Profile
                 </Typography>
               </MenuItem>
-              <MenuItem className="flex items-center gap-2">
-                <LifebuoyIcon strokeWidth={2} className="h-4 w-4" />
-                <Typography variant="small" className="font-normal">
-                  <Link href={"https://portalize.gitbook.io/portalize/introduction/welcome-to-portalize"}>Help</Link>
-                </Typography>
-              </MenuItem>
-              <hr className="my-2 border-blue-gray-50" />
-              <MenuItem className="flex items-center gap-2 ">
-                <PowerIcon strokeWidth={2} className="h-4 w-4" />
-                <Typography variant="small" className="font-normal">
-                  <Link onClick={() => signOut()} href={'/api/auth/signout'}> Sign Out</Link>
-                </Typography>
-              </MenuItem></>) : (<><MenuItem className="flex items-center gap-2">
-                <UserCircleIcon strokeWidth={2} className="h-4 w-4" />
-                <Typography  variant="small" className="font-normal">
-                  <Link onClick={() => signIn()} href={''}>Sign In</Link>
-                </Typography>
-              </MenuItem>
-              <hr className="my-2 border-blue-gray-50" />
-              <MenuItem className="flex items-center gap-2">
-                <LifebuoyIcon strokeWidth={2} className="h-4 w-4" />
-                <Typography variant="small" className="font-normal">
-                  <Link href={"https://portalize.gitbook.io/portalize/introduction/welcome-to-portalize"}>Help</Link>
-                </Typography>
-              </MenuItem></>)}
-              {/* <MenuItem className="flex items-center gap-2">
-                <UserCircleIcon strokeWidth={2} className="h-4 w-4" />
-                <Typography  variant="small" className="font-normal">
-                  <Link href={'/user/dashboard'}>My Profile</Link>
-                </Typography>
-              </MenuItem>
-              <MenuItem className="flex items-center gap-2">
-                <Cog6ToothIcon strokeWidth={2} className="h-4 w-4" />
-                <Typography variant="small" className="font-normal">
-                  <Link href={'/user/dashboard#accsettings'}> Edit Profile</Link>
-                </Typography>
-              </MenuItem>
+              </Link>
               <MenuItem className="flex items-center gap-2">
                 <LifebuoyIcon strokeWidth={2} className="h-4 w-4" />
                 <Typography variant="small" className="font-normal">
@@ -167,10 +141,20 @@ const ProfileMenu = () => {
                 <Typography variant="small" className="font-normal">
                   <Link onClick={() => signOut()} href={''}> Sign Out</Link>
                 </Typography>
-              </MenuItem> */}
+              </MenuItem> 
             </MenuList>
-          </Menu>
+          </Menu> 
+
+            ) }
+            
+
+
+            
+          
           </li>
+
+
+
         </ul>
         
       </div>)}
@@ -179,30 +163,29 @@ const ProfileMenu = () => {
     
         {isMobile ?(
           <>
-        <MobileNav open={navOpen} className={`inline-block ${mobileSticky} z-50`}>
-          <ul className="text-sm mt-5 mx-4 grid gap-6 align-middle text-center">
-            <li>
-              <Link href="/">Home</Link>
-            </li>
-            <li>
-              <Link href="/serverbrowser">Portals</Link>
-            </li>
-            <li>
-              <Link href="https://portalize.gitbook.io/portalize/introduction/welcome-to-portalize">Docs</Link>
-            </li>
-            <li>
-            <Tooltip content="Coming Soon">
-              <Link href="" className="op">Community</Link>
-            </Tooltip>
-            </li>
-            <li>
-              <Button variant="gradient" color="purple" className="inline-flex px-20"><a href="/about" >Register for Free</a></Button>
-            </li>
-          </ul>
-          
-        </MobileNav>
-        
-        </>
+            <MobileNav open={navOpen} className={`inline-block ${mobileSticky} z-50 bg-paffbg p-9`}>
+              <ul className="text-sm mt-5 mx-4 grid gap-6 align-middle text-center">
+                <li>
+                  <Link href="/">Home</Link>
+                </li>
+                <li>
+                  <Link href="/serverbrowser">Portals</Link>
+                </li>
+                <li>
+                  <Link href="https://portalize.gitbook.io/portalize/introduction/welcome-to-portalize">Docs</Link>
+                </li>
+                <li>
+                <Tooltip content="Coming Soon">
+                  <Link href="" className="op">Community</Link>
+                </Tooltip>
+                </li>
+                <li>
+                  <Button variant="gradient" color="purple" className="inline-flex px-20"><a href="/about" >Register for Free</a></Button>
+                </li>
+              </ul>
+              
+            </MobileNav>
+          </>
         ):("")}
         </div>
     </>

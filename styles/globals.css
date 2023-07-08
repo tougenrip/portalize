@@ -2,7 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 @import url("https://fonts.cdnfonts.com/css/valorant");
+@import url('https://gistcdn.githack.com/mfd/09b70eb47474836f25a21660282ce0fd/raw/e06a670afcb2b861ed2ac4a1ef752d062ef6b46b/Gilroy.css');
 @font-face{font-family:valorant;font-style:normal;font-weight:400;src:local('VALORANT'),url('https://fonts.cdnfonts.com/s/37505/Valorant Font.woff') format('woff')}
+
 
 :root {
   --foreground-rgb: 0, 0, 0;
@@ -17,6 +19,7 @@
     --background-end-rgb: 0, 0, 0;
   }
 }
+
 
 body {
   color: rgb(var(--foreground-rgb));

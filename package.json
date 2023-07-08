@@ -57,6 +57,7 @@
     "react-icons": "^4.9.0",
     "react-native-svg": "https://github.com/pratyushok/react-native-svg/releases/download/v12.1.1/react-native-svg-12.1.1.tgz",
     "react-player": "^2.12.0",
+    "react-type-animation": "^3.1.0",
     "react-unity-webgl": "^9.4.0",
     "smooth-scrollbar": "^8.8.4",
     "stripe": "^12.10.0",

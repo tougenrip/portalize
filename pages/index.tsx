@@ -19,6 +19,7 @@ import community from "../assets/icon-community.png";
 import friendly from "../assets/icon-friendly.png";
 import marketplaceI from "../assets/icon-marketplace.png";
 import Background from "../assets/background.png"
+import {TypeAnimation} from 'react-type-animation';
 
 
 
@@ -40,18 +41,45 @@ export default function Home() {
         <title>Portalize - Next thing</title>
      
     </Head>
-     <Navbar/>
-      <main className="w-[100vw] font-body">
+     
+      <main className="w-[100vw] font-body ">
+      <div className='absolute top-1/4 -left-14 h-96 w-96 -z-50 bg-purple-500 bg-opacity-60 blur-[170px]'></div>
+      <div className='absolute top-[72%] right-0 h-96 w-96 -z-50 bg-purple-500 bg-opacity-60 blur-[170px]'></div>
+      <div className='absolute top-[36%] right-0 4 h-96 -z-50 w-96 bg-purple-500 bg-opacity-60 blur-[170px]'></div>
+      
+      <div className='absolute top-[56%] left-0 4 h-96 -z-50 w-96 bg-purple-500 bg-opacity-60 blur-[170px]'></div>
+      <div className='absolute top-[90%] right-1/2 translate-x-1/2 4 h-96 -z-50 w-96 bg-purple-500 bg-opacity-60 blur-[170px]'></div>
+
+      <Navbar/>
         <div className="hero-section">
         
-          <div className="relative w-[100vw] h-[100vh] bg-Hero bg-cover bg-no-repeat">
-          <video className="absolute -top-20 opacity-50 left-0 w-full scale-[500%]  md:scale-125 h-full overflow-hidden" autoPlay muted loop>
+          <div className="relative w-[100vw] h-[100vh] bg-Hero bg-cover bg-no-repeat overflow-hidden ">
+            <div className="absolute bg-black opacity-60 -z-20 h-full w-full"></div>
+          <video className="relative  left-1/2 -translate-x-1/2 scale-[1.50] w-[100vw] h-full overflow-hidden -z-30" autoPlay muted loop>
+          
          <source src="/img/landing-page/herobg.webm" type="video/webm"/>
-        </video>
-            <p className="absolute bottom-[35%] w-[85%] left-1/2 md:translate-x-0 -translate-x-1/2 md:left-24 text-5xl xl:text-6xl font-light text-center md:text-start text-white">Create your 3D Space<br /><span className="font-bold text-2xl xl:text-2xl">With No-Code System</span><br /><span className="text-lg xl:text-3xl">Create 3D spaces without code knowledge and share your own domain. <br /> Explore Many Experiance and Communitys</span></p>
-            <span className="absolute left-1/2 -translate-x-1/2 md:translate-x-0 md:left-24 bottom-[14%] md:bottom-[14%]">{isLogged ? (<Link href={`${process.env.NEXT_PUBLIC_WEBSITE_URL}editor`}><Button>LAUNCH EDITOR</Button></Link>) : (<Link href={'/auth'}><Button>JOIN NOW</Button></Link>)}</span>
+          </video>
+          <p className="absolute top-[30%] w-[85%] left-1/2 md:translate-x-0 -translate-x-1/2 md:left-24 text-5xl xl:text-6xl  text-center md:text-start text-white">Portalize Your <span className="text-transparent bg-gradient-to-br from-[#3b29ff] to-[#9c4fff] !bg-clip-text">
+                    <TypeAnimation
+                sequence={[
+                  "Community",
+                  1000,
+                  "Game",
+                  1000,
+                  "Business",
+                  1000,
+                  "Idea",
+                  1000,
+                ]}
+                style={{scale:`0.5`}}
+                speed={40}
+                repeat={Infinity}
+              />
+            </span><br /><span className="font-bold text-2xl xl:text-2xl">Influence New Way</span><br /></p>
           </div>
-        </div>
+            
+            {/* <span className="absolute left-1/2 -translate-x-1/2 md:translate-x-0 md:left-24 bottom-[14%] md:bottom-[14%]">{isLogged ? (<Link href={`${process.env.NEXT_PUBLIC_WEBSITE_URL}editor`}><Button>LAUNCH EDITOR</Button></Link>) : (<Link href={'/auth'}><Button>JOIN NOW</Button></Link>)}</span> */}
+          </div>
         <div className="cta-section">
           
           <div className="relative w-[100vw] h-[700px] text-center">
@@ -103,62 +131,57 @@ export default function Home() {
           </div>
         </div> */}
 
-        <div className="room-section">
-          <div className="relative w-[100vw] h-[100vh] md:h-[80vh] md:grid md:grid-cols-2">
-            <div className="block md:relative relative w-[40vw] h-[80vh]"> 
-              <p className="absolute align-middle top-52 md:top-24 w-screen  md:left-24 z-10 text-xl font-light md:text-6xl text-center md:text-start md:w-full">
-                <span 
-                className="font-bold text-5xl md:text-6xl">Analytics
-                </span>
-                  <br/>
-                  <br/>
-                  <div className="flex justify-end opacity-50 border border-white  "></div>
-                  <br/>
-                <span className="text-xl md:text-4xl" style={{fontWeight:"lighter", lineHeight: "46px"}}>
-                Create 3D Spaces without code knowledge and share your own domain. Explore Many Experiance and Communitys
-                  </span> 
-                </p>
-            </div>
-            <div className=" sm:relative h-[90vh]">
-              <Image src={side2} className="relative bottom-52 md:bottom-16 z-0 md:-right-[18vw]" alt="roombg1"></Image>
-            </div>
-          </div>
-        </div>       
-        
-        <div className="room-section flex flex-col justify-center items-center">
-          <div className="relative w-full h-screen">
-            <p className="absolute left-1/2 transform -translate-x-1/2 top-[60%] -translate-y-1/2 text-5xl xl:text-7xl font-bold text-center text-white">
-              <span>MARKETPLACE</span><br />
-              <span className="font-light text-2xl xl:text-5xl">ACCESS MILLIONS OF ASSETS</span>
-            </p>
-          </div>
-          <div className="relative w-full h-4/5">
-            <div className="h-full flex justify-center items-center">
-              <div className="max-h-full">
-                <Image src={marketplace} className="relative bottom-64 object-cover max-w-full max-h-full" alt="roombg1" style={{ borderRadius: '33px',  }}/>
-              </div>
-            </div>
+          <div className="invisible md:visible absolute -z-40  text-start text-[25rem] overflow-x-hidden opacity-10 max-w-[100vw]">
+          <div className="overflow-hidden break-normal">
+          EXPRESS <br/>AUDIANCE
           </div>
         </div>
 
-        <div className="room-section" >
-          <div className="relative w-full h-[100vh] md:h-[80vh] flex flex-col-reverse gap-0 md:grid md:grid-cols-2">
-            <div className="flex items-center justify-center md:relative md:w-[40vw] md:h-[80vh]">
-              <div className="md:absolute md:inset-0 flex flex-col justify-center md:left-24 z-10 text-2xl font-light md:text-6xl text-center md:text-start">
-                <span className="font-bold">Ready To Use Templates</span>
-                <br />        
-                <div className="flex justify-end opacity-50 border border-white "></div>
-                <br />
-                <span className="sm:text-xl" style={{ fontWeight: "lighter", lineHeight: "46px" }}>
-                  Create 3D Spaces without code knowledge and share your own domain. Explore Many Experiences and Communities
-                </span>
-              </div>
-            </div>
-            <div className="relative">
-              <Image src={side1} className="md:absolute top-1/2 transform -translate-y-4 md:-translate-y-1/2 z-0 right-0" alt="roombg1" />
-            </div>
+
+        <div className="relative flex flex-col-reverse gap-10 md:gap-0 md:grid md:grid-cols-2 w-[100vw] h-screen my-[200px] md:my-24">
+        <div className="flex flex-col gap-2 md:gap-9 text-start md:place-self-center md:w-[70%] -mb-10 md:mb-0">
+            <h2 className="text-4xl sm:text-3xl lg:text-7xl ">Analytics</h2>
+            <span className="w-[70%] place-self-start h-1 bg-white font-light text-blue-gray-600"></span>
+            <p className="text-xl lg:text-3xl">Keep a Pulse on Your World. Gain insights into the pulse of your virtual space with Portalize’s analytics. Track visitor numbers, engagement, and time spent in your world effortlessly. Use these data-driven insights to evolve and optimize your virtual experience.</p>
+          </div>
+          <div className="md:relative">
+            <Image alt="side2" className="absolute right-0 top-1/2 -translate-y-1/2" width={656} height={754} quality={65} src={side2}/>
           </div>
         </div>
+
+        <div className="flex flex-col place-items-center gap-28 h-screen text-center">
+          <div className="md:w-[70%]">
+            <h2 className="text-5xl sm:text-7xl mb-4">MARKETPLACE</h2>
+            <h4 className="text-2xl sm:text-3xl">A Wealth of Assets at Your Fingertips</h4>
+            <p className="text-xl lg:text-3xl ">Ignite your creativity with Portalize's Marketplace, your gateway to a vast array of assets. From buildings to 3D props, the Marketplace has everything you need to design unique worlds. Browse, pick, and start creating!
+</p>
+
+          </div>
+          <div>
+            <Image src={marketplace} alt="marketplace"/>
+          </div>
+        </div>
+
+        <div className="invisible md:visible absolute -z-40  text-start text-[25rem] overflow-x-hidden opacity-10 max-w-[100vw]">
+          <div className="overflow-hidden break-normal">
+          EASY <br/>TEMPLATES
+          </div>
+        </div>
+
+
+
+        <div className="relative flex flex-col-reverse gap-10 md:gap-0 md:grid md:grid-cols-2 w-[100vw] h-screen my-[200px] md:my-24">
+        <div className=" flex flex-col gap-2 md:gap-9 text-start md:place-self-center md:w-[70%] -mb-10 md:mb-0">
+            <h2 className="text-4xl sm:text-3xl lg:text-7xl ">Analytics</h2>
+            <span className="w-[70%] place-self-start h-1 bg-white font-light text-blue-gray-600"></span>
+            <p className="text-xl  left-1/2 lg:text-3xl">Keep a Pulse on Your World. Gain insights into the pulse of your virtual space with Portalize’s analytics. Track visitor numbers, engagement, and time spent in your world effortlessly. Use these data-driven insights to evolve and optimize your virtual experience.</p>
+          </div>
+          <div className="md:relative">
+            <Image alt="side2" className="absolute right-0 top-1/2 -translate-y-1/2" width={656} height={754} quality={65} src={side1}/>
+          </div>
+        </div>
+
+      
 
 
         <div className="pricing-section">
