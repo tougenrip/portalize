@@ -40,7 +40,7 @@ const ProfileMenu = () => {
   const stickNavbar = () => {
     if (window !== undefined) {
       let windowHeight = window.scrollY;
-      windowHeight > 500 ? setStickyClass('fixed bg-[#151515] top-0 w-[100%] left-0 z-50 gap-20 justify-between') : setStickyClass('relative !z-50');
+      windowHeight > 500 ? setStickyClass('fixed bg-[#151515] top-0 w-screen left-0 z-50 gap-20 justify-between') : setStickyClass('relative !z-50');
       stickyClass ? setMobileSticky('fixed top-20 left-0 z-50 gap-20') : setMobileSticky('')
     }
   };
@@ -68,7 +68,7 @@ const ProfileMenu = () => {
   return (
     <>
     <div className=" w-screen !z-50">
-    <div className={` ${stickyClass} bg-base-100 flex flex-row-reverse  justify-end md:flex-row pt-8 pb-4 px-4 gap-0 md:gap-10 md:justify-between md:px-20`}>
+    <div className={` ${stickyClass} bg-base-100 flex flex-row-reverse  justify-end md:flex-row pt-8 pb-4 px-4 gap-0 md:gap-10 md:w-screen md:justify-between md:px-20`}>
       <div className=" self-center">
         <a className="btn btn-ghost normal-case"><Image src='/img/logo_comp.webp' className=" scale-75 md:scale-100" width={218} height={38} alt="Logo"></Image></a>
       </div>

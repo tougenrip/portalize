@@ -9,7 +9,7 @@ export default async function handler(req:NextApiRequest, res:NextApiResponse) {
       const session = await getServerSession(req, res, authOptions);
 
       // Error handling
-      if (!session?.user?._id) {
+      if (!session?.user?.id) {
         return res.status(401).json({
           error: {
             code: 'no-access',
