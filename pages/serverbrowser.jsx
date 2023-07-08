@@ -1,11 +1,7 @@
 import Navbar from '../components/Navbar'
-import React , {Fragment, useState} from 'react'
-import SideBar from '../components/SideBar'
-import ExpandCard from '../components/expandcard';
+import React , {Fragment} from 'react'
 import GameSlider from '../components/gameslider';
-import GameCard from '../components/gamecard';
 import FeaturedSlider from '../components/featuredslider';
-import loadMaps from '../lib/loadMaps'
 
 
 

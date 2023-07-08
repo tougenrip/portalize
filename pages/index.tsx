@@ -1,24 +1,13 @@
 import React, { useState } from "react";
 import Image from 'next/image';
-import Button from "../components/button"
 import PricingCard from "../components/pricingcard"
 import PricingCardFree from '../components/pricingcard-free'
-import GameCard from "../components/gamecard"
 import Navbar  from "../components/Navbar";
-import Link from "next/link";
 import { useSession } from "next-auth/react";
 import Head from "next/head";
-import img from "../assets/img.jpg";
-import first from "../assets/1.png";
-import second from "../assets/2.png";
-import third from "../assets/3.png";
 import side1 from "../assets/side1.png";
 import side2 from "../assets/side2.png";
 import marketplace from "../assets/marketplace.png";
-import community from "../assets/icon-community.png";
-import friendly from "../assets/icon-friendly.png";
-import marketplaceI from "../assets/icon-marketplace.png";
-import Background from "../assets/background.png"
 import {TypeAnimation} from 'react-type-animation';
 
 

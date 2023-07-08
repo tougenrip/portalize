@@ -1,5 +1,5 @@
 import clientPromise from '../../../../lib/mongodb';
-import { MongoClient, ObjectId } from "mongodb";
+import { ObjectId } from "mongodb";
 
 export default async function handler(req, res) {
   if(req.headers['x-api-key'] !== process.env.API_ROUTE_SECRET){return res.status(401).send('Unauthorized Access2')}
