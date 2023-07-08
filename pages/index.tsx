@@ -153,7 +153,7 @@ export default function Home() {
           <div className="md:w-[70%]">
             <h2 className="text-5xl sm:text-7xl mb-4">MARKETPLACE</h2>
             <h4 className="text-2xl sm:text-3xl">A Wealth of Assets at Your Fingertips</h4>
-            <p className="text-xl lg:text-3xl ">Ignite your creativity with Portalize's Marketplace, your gateway to a vast array of assets. From buildings to 3D props, the Marketplace has everything you need to design unique worlds. Browse, pick, and start creating!
+            <p className="text-xl lg:text-3xl ">Ignite your creativity with Portalize`s Marketplace, your gateway to a vast array of assets. From buildings to 3D props, the Marketplace has everything you need to design unique worlds. Browse, pick, and start creating!
 </p>
 
           </div>
@@ -174,7 +174,7 @@ export default function Home() {
         <div className=" flex flex-col gap-2 md:gap-9 text-start md:place-self-center md:w-[70%] -mb-10 md:mb-0">
             <h2 className="text-4xl sm:text-3xl lg:text-7xl ">Analytics</h2>
             <span className="w-[70%] place-self-start h-1 bg-white font-light text-blue-gray-600"></span>
-            <p className="text-xl  left-1/2 lg:text-3xl">Keep a Pulse on Your World. Gain insights into the pulse of your virtual space with Portalize’s analytics. Track visitor numbers, engagement, and time spent in your world effortlessly. Use these data-driven insights to evolve and optimize your virtual experience.</p>
+            <p className="text-xl  left-1/2 lg:text-3xl">Keep a Pulse on Your World. Gain insights into the pulse of your virtual space with Portalize`s analytics. Track visitor numbers, engagement, and time spent in your world effortlessly. Use these data-driven insights to evolve and optimize your virtual experience.</p>
           </div>
           <div className="md:relative">
             <Image alt="side2" className="absolute right-0 top-1/2 -translate-y-1/2" width={656} height={754} quality={65} src={side1}/>
