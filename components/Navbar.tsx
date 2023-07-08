@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { Svg } from "@react-three/drei";
+import { Svg, Tube } from "@react-three/drei";
 import { Button, IconButton, MobileNav,MenuHandler,MenuList,MenuItem,Menu, Tooltip,Typography,Avatar  } from "@material-tailwind/react";
 import {
   CloudArrowUpIcon,
@@ -23,7 +23,6 @@ const ProfileMenu = () => {
   const userEmail = session?.user?.email;
   const userImage = session?.user?.image;
   const userName = session?.user?.name;
-
 
   const [navOpen, setNavOpen] = useState(false)
   const [windowDimension, setWindowDimension] = useState(null);
@@ -64,7 +63,7 @@ const ProfileMenu = () => {
   
 
   const isMobile = windowDimension <= 768;
-  const isLogged = status == 'authenticated';
+  const isLogged = true;
 
   return (
     <>
@@ -184,7 +183,20 @@ const ProfileMenu = () => {
                 </Tooltip>
                 </li>
                 <li>
-                  <Button variant="gradient" color="purple" className="inline-flex px-20"><a href="/about" >Register for Free</a></Button>
+                  {isLogged ? (
+                    <Link href={`/user/dashboard`}>
+                    <div className="grid grid-cols-4 grid-rows-2">
+                      <Avatar
+                      variant="circular"
+                      alt="candice wu"
+                      className="cursor-pointer max-w-[80px] col-span-1 row-span-2"
+                      src={userImage || '/img/pp_comp.webp'}
+                      />
+                      <p className=" col-span-2 row-span-1">Tougen</p>
+                      <p className="col-span-2 row-span-1 break-normal text-blue-gray-300">batuhan.hincal.1903@gmail.com</p>
+                    </div>
+                    </Link>
+                  ) :(<Link href={`/auth`}><Button variant="gradient" color="purple" className="inline-flex px-20">Register for Free</Button></Link>)}
                 </li>
               </ul>
               
