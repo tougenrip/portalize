@@ -113,16 +113,6 @@ const Dashboard = () => {
         
         <div className='w-full md:w-2/3'>
 
-
-        <div id="myavatar" className='relative h-screen'>
-              <h2 className='absolute top-[10%] left-14 text-3xl md:text-5xl font-bold'>My Spaces</h2>
-              <div className='absolute flex flex-col gap-5 top-[20%] left-0 max-h-[75%] overflow-x-hidden overflow-scroll scrollbar-none h-[75%] w-full'>
-              <div>
-                </div>
-              
-              </div>
-            </div>
-            
             
             <div id="myspaces" className='relative h-screen'>
               <h2 className='absolute top-[10%] left-14 text-3xl md:text-5xl font-bold'>My Spaces</h2>
