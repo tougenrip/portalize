@@ -63,7 +63,7 @@ const ProfileMenu = () => {
   
 
   const isMobile = windowDimension <= 768;
-  const isLogged = true;
+  const isLogged = status === 'authenticated';
 
   return (
     <>
@@ -97,11 +97,6 @@ const ProfileMenu = () => {
           </li>
           <li>
             {isLogged ? (
-            
-            <Link href={`/auth`}><Button variant="gradient" color="purple" className="!bg-gradient-to-br rounded-full from-[#3b29ff] to-[#9c4fff]">Create Virtual Space</Button></Link>
-
-
-            ) : (
               <Menu>
             <MenuHandler>
               <Avatar
@@ -148,7 +143,12 @@ const ProfileMenu = () => {
             </MenuList>
           </Menu> 
 
-            ) }
+            ) :(
+            
+              <Link href={`/auth`}><Button variant="gradient" color="purple" className="!bg-gradient-to-br rounded-full from-[#3b29ff] to-[#9c4fff]">Create Virtual Space</Button></Link>
+  
+  
+              )  }
             
 
 
