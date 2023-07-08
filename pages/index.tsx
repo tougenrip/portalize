@@ -43,19 +43,19 @@ export default function Home() {
     </Head>
      
       <main className="w-[100vw] font-body ">
-      <div className='absolute top-1/4 -left-14 h-96 w-96 -z-50 bg-purple-500 bg-opacity-60 blur-[170px]'></div>
-      <div className='absolute top-[72%] right-0 h-96 w-96 -z-50 bg-purple-500 bg-opacity-60 blur-[170px]'></div>
-      <div className='absolute top-[36%] right-0 4 h-96 -z-50 w-96 bg-purple-500 bg-opacity-60 blur-[170px]'></div>
+      <div className='invisible md:visible absolute top-1/4 -left-14 h-96 w-96 md:scale-100 scale-50 -z-50 bg-purple-500 bg-opacity-60 blur-[170px]'></div>
+      <div className='invisible md:visible absolute top-[72%] right-[25px] md:scale-100 scale-50 h-96 w-96 -z-50 bg-purple-500 bg-opacity-60 blur-[170px]'></div>
+      <div className='invisible md:visible absolute top-[36%] right-[25px] md:scale-100 scale-50 4 h-96 -z-50 w-96 bg-purple-500 bg-opacity-60 blur-[170px]'></div>
       
-      <div className='absolute top-[56%] left-0 4 h-96 -z-50 w-96 bg-purple-500 bg-opacity-60 blur-[170px]'></div>
-      <div className='absolute top-[90%] right-1/2 translate-x-1/2 4 h-96 -z-50 w-96 bg-purple-500 bg-opacity-60 blur-[170px]'></div>
+      <div className='invisible md:visible absolute top-[56%] left-0 4 h-96 md:scale-100 scale-50 -z-50 w-96 bg-purple-500 bg-opacity-60 blur-[170px]'></div>
+      <div className='invisible md:visible absolute top-[90%] right-1/2 translate-x-1/2 4 h-96 -z-50 w-96 bg-purple-500 bg-opacity-60 blur-[170px]'></div>
 
       <Navbar/>
         <div className="hero-section">
         
           <div className="relative w-[100vw] h-[100vh] bg-Hero bg-cover bg-no-repeat overflow-hidden ">
             <div className="absolute bg-black opacity-60 -z-20 h-full w-full"></div>
-          <video className="relative  left-1/2 -translate-x-1/2 scale-[1.50] w-[100vw] h-full overflow-hidden -z-30" autoPlay muted loop>
+          <video className="relative  left-1/2 -translate-x-1/2 scale-[5] md:scale-[2] xl:scale-[1.50] w-[100vw] h-full overflow-hidden -z-30" autoPlay muted loop>
           
          <source src="/img/landing-page/herobg.webm" type="video/webm"/>
           </video>
@@ -149,7 +149,7 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="flex flex-col place-items-center gap-28 h-screen text-center">
+        <div className="flex flex-col place-items-center gap-28 h-screen text-center max-w-[100vw]">
           <div className="md:w-[70%]">
             <h2 className="text-5xl sm:text-7xl mb-4">MARKETPLACE</h2>
             <h4 className="text-2xl sm:text-3xl">A Wealth of Assets at Your Fingertips</h4>

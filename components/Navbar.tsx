@@ -129,19 +129,23 @@ const ProfileMenu = () => {
                 </Typography>
               </MenuItem>
               </Link>
+              <Link href={"https://portalize.gitbook.io/portalize/introduction/welcome-to-portalize"}>
               <MenuItem className="flex items-center gap-2">
                 <LifebuoyIcon strokeWidth={2} className="h-4 w-4" />
                 <Typography variant="small" className="font-normal">
-                  <Link href={"https://portalize.gitbook.io/portalize/introduction/welcome-to-portalize"}>Help</Link>
+                  Help
                 </Typography>
               </MenuItem>
+              </Link>
               <hr className="my-2 border-blue-gray-50" />
+              <Link onClick={() => signOut()} href={''}>
               <MenuItem className="flex items-center gap-2 ">
                 <PowerIcon strokeWidth={2} className="h-4 w-4" />
                 <Typography variant="small" className="font-normal">
-                  <Link onClick={() => signOut()} href={''}> Sign Out</Link>
+                   Sign Out
                 </Typography>
-              </MenuItem> 
+              </MenuItem>
+              </Link> 
             </MenuList>
           </Menu> 
 
