@@ -1,12 +1,14 @@
 import React, { useState } from 'react'
 import SideBar from '../../components/SideBar'
 import Navbar from '../../components/Navbar'
-import { Avatar, Button, Input, } from '@material-tailwind/react'
+import { Avatar, Button, IconButton, Input, Option, Select } from '@material-tailwind/react'
 import { useSession } from 'next-auth/react'
+import useSWR from 'swr'
+import Link from 'next/link'
 import UserMaps from '../../components/UserMaps'
 import axios from 'axios'
 import { BiGlobeAlt, BiCubeAlt, BiPyramid, BiListUl } from 'react-icons/bi'
-import {  FaSolarPanel } from 'react-icons/fa'
+import { FaCross, FaSolarPanel } from 'react-icons/fa'
 import AdvPanel from '@components/components/AdvPanel'
 import { AvatarCreatorViewer, EditorConfig } from "@readyplayerme/rpm-react-sdk";
 
@@ -99,18 +101,6 @@ const Dashboard = () => {
   const [advpanelOpen, setAdvPanelOpen] = useState(false)
   const [minutes ,setMinutes] = useState(null)
 
-
-  const handleOnAvatarExported = (url: string) => {
-    console.log(`Avatar URL is: ${url}`)
-  }
-  
-  const config: EditorConfig  = {
-    clearCache: false,
-    bodyType: 'halfbody',
-    quickStart: false,
-    language: 'en',
-  };
-
   return (
     <>
     <Navbar/>
@@ -128,11 +118,6 @@ const Dashboard = () => {
               <h2 className='absolute top-[10%] left-14 text-3xl md:text-5xl font-bold'>My Spaces</h2>
               <div className='absolute flex flex-col gap-5 top-[20%] left-0 max-h-[75%] overflow-x-hidden overflow-scroll scrollbar-none h-[75%] w-full'>
               <div>
-                  <AvatarCreatorViewer 
-                    subdomain="your_subdomain" 
-                    editorConfig={config} 
-                    onAvatarExported={handleOnAvatarExported}
-                    />
                 </div>
               
               </div>
