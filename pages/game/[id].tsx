@@ -1,14 +1,7 @@
 
-import { Button, ButtonGroup, Textarea } from "@material-tailwind/react";
-import React, { Fragment,useRef,useState } from "react";
+import React, { Fragment} from "react";
 import { Unity, useUnityContext } from "react-unity-webgl";
-import UnityInstance from "react-unity-webgl/declarations/unity-instance";
-import {
-  Input
-} from "@material-tailwind/react";
 import fetch from 'node-fetch'
-import { CircularProgressbar } from 'react-circular-progressbar';
-
 
 export const getServerSideProps = async(req) => {
   const {id} = req.query

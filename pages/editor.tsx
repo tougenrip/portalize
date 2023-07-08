@@ -1,14 +1,7 @@
 
-import { Button, ButtonGroup, Textarea } from "@material-tailwind/react";
+
 import React, { Fragment,useRef,useState } from "react";
 import { Unity, useUnityContext } from "react-unity-webgl";
-import UnityInstance from "react-unity-webgl/declarations/unity-instance";
-import { NextApiRequest, NextApiResponse } from "next";
-import {
-  Input
-} from "@material-tailwind/react";
-import fetch from 'node-fetch'
-import {Headers} from 'node-fetch';
 
 
 
@@ -65,16 +58,6 @@ function OpenEmpty() {
         />
         <>
         </>
-        {/*<ButtonGroup className="fixed top-5 left-5">
-        <Input type="number" value={unityNumber} onChange={(e) => {setUnityNumber(e.target.valueAsNumber)}}/>
-        <Input type="text" onChange={(e) => {e.preventDefault(); setUnityString(e.target.value)}}/>
-        <Button onClick={() => sendMessage('JavascriptHook','TintRed')}>Red</Button>
-        <Button onClick={() => sendMessage('JavascriptHook','TintGreen')}>Green</Button>
-        <Button onClick={() => sendMessage('JavascriptHook', 'SetNumber', unityNumber)}>number</Button>
-        <Button onClick={() => sendMessage('JavascriptHook','SetString', unityString)}>text</Button>
-         <Button onClick={() => sendMessage('JavascriptHook','SetString', floormapdata)}>floormapdata</Button>
-        <Button onClick={() => sendMessage('JavascriptHook','SetString', interiordata)}>interiordata</Button> 
-      </ButtonGroup>*/}
       </Fragment>
     );
   }

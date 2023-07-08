@@ -1,7 +1,6 @@
 
 import '@components/styles/globals.css'
 import type { AppProps } from 'next/app'
-import { ThemeProvider } from "@material-tailwind/react";
 import { SessionProvider, useSession } from "next-auth/react"
 import { ChakraProvider,extendTheme } from "@chakra-ui/react";
 

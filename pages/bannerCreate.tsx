@@ -1,11 +1,10 @@
 import React from 'react'
 import { NextApiRequest, NextApiResponse } from 'next'
-import { getSession, useSession } from 'next-auth/react'
+import {  useSession } from 'next-auth/react'
 import { useState } from 'react'
 import { Button, Input } from '@material-tailwind/react'
 import Image from 'next/image'
 import axios from 'axios'
-import Link from 'next/link'
 import Navbar from '@components/components/Navbar'
 
 const BannerCreate = (req:NextApiRequest,res:NextApiResponse) => {
