@@ -28,6 +28,7 @@ export default function Home() {
     <Head>
     
         <title>Portalize - Next thing</title>
+        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
      
     </Head>
      

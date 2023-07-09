@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Svg, Tube } from "@react-three/drei";
-import { Button, IconButton, MobileNav,MenuHandler,MenuList,MenuItem,Menu, Tooltip,Typography,Avatar  } from "@material-tailwind/react";
+import { Button, IconButton, MobileNav,MenuHandler,MenuList,MenuItem,Menu, Tooltip,Typography,Avatar, Collapse  } from "@material-tailwind/react";
 import {
   CloudArrowUpIcon,
   ArrowLongRightIcon,
@@ -70,12 +70,12 @@ const ProfileMenu = () => {
     <div className=" w-screen !z-50">
     <div className={` ${stickyClass} bg-base-100 flex flex-row-reverse  justify-end md:flex-row pt-8 pb-4 px-4 gap-0 md:gap-10 md:w-screen md:justify-between md:px-20`}>
       <div className=" self-center">
-        <a className="btn btn-ghost normal-case"><Image src='/img/logo_comp.webp' className=" scale-75 md:scale-100" width={218} height={38} alt="Logo"></Image></a>
+        <Link href={`/`}><Image src='/img/logo_comp.webp' className=" scale-75 md:scale-100" width={218} height={38} alt="Logo"></Image></Link>
       </div>
 
       {isMobile ? (<div>
          
-        <Button color="purple" onClick={() => setNavOpen(current => !current)} ripple={false} variant="outlined" className="border-none flex items-center gap-0 p-3">
+        <Button name="mobile-menu-button" color="purple" onClick={() => setNavOpen(current => !current)} ripple={false} variant="outlined" className="border-none flex items-center gap-0 p-3">
         {navOpen ? (<XMarkIcon color="purple" strokeWidth={2} className="h-5 w-5" />) : (<Bars3Icon color="purple" strokeWidth={2} className="h-5 w-5" />)}
       </Button>
       
@@ -166,7 +166,7 @@ const ProfileMenu = () => {
     
         {isMobile ?(
           <>
-            <MobileNav open={navOpen} className={`inline-block ${mobileSticky} z-50 bg-paffbg p-9`}>
+            <Collapse open={navOpen} className={`inline-block ${mobileSticky} z-50 bg-paffbg p-9`}>
               <ul className="text-sm mt-5 mx-4 grid gap-6 align-middle text-center">
                 <li>
                   <Link href="/">Home</Link>
@@ -200,7 +200,7 @@ const ProfileMenu = () => {
                 </li>
               </ul>
               
-            </MobileNav>
+            </Collapse>
           </>
         ):("")}
         </div>

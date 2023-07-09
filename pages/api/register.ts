@@ -21,6 +21,7 @@ const validateForm = async (
 ) => {
   if (username.length < 3) {
     return { error: "Username must have 3 or more characters" };
+
   }
   if (!validateEmail(email)) {
     return { error: "Email is invalid" };
@@ -30,7 +31,8 @@ const validateForm = async (
   const emailUser = await User.findOne({ email: email });
 
   if (emailUser) {
-    return { error: "Email already exists" };
+    
+    return { error: "Email already exists"  };
   }
 
   if (password.length < 5) {

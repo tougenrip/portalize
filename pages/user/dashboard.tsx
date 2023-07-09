@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { Suspense, useState } from 'react'
 import SideBar from '../../components/SideBar'
 import Navbar from '../../components/Navbar'
 import { Avatar, Button, IconButton, Input, Option, Select } from '@material-tailwind/react'
@@ -117,8 +117,9 @@ const Dashboard = () => {
             <div id="myspaces" className='relative h-screen'>
               <h2 className='absolute top-[10%] left-14 text-3xl md:text-5xl font-bold'>My Spaces</h2>
               <div className='absolute flex flex-col gap-5 top-[20%] left-0 max-h-[75%] overflow-x-hidden overflow-scroll scrollbar-none h-[75%] w-full'>
+              <Suspense fallback={<p>Loading feed...</p>}>
                 <UserMaps/>
-              
+              </Suspense>
               </div>
             </div>
             <div id="analytics" className='relative h-screen'><h2 className='absolute top-[20%] left-14 text-3xl md:text-5xl font-bold'>Analytics</h2>
