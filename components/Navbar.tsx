@@ -75,7 +75,7 @@ const ProfileMenu = () => {
 
       {isMobile ? (<div>
          
-        <Button name="mobile-menu-button" color="purple" onClick={() => setNavOpen(current => !current)} ripple={false} variant="outlined" className="border-none flex items-center gap-0 p-3">
+        <Button name="mobile-menu-button" aria-label="mobile-menu" color="purple" onClick={() => setNavOpen(current => !current)} ripple={false} variant="outlined" className="border-none flex items-center gap-0 p-3">
         {navOpen ? (<XMarkIcon color="purple" strokeWidth={2} className="h-5 w-5" />) : (<Bars3Icon color="purple" strokeWidth={2} className="h-5 w-5" />)}
       </Button>
       
