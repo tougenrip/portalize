@@ -166,8 +166,8 @@ const ProfileMenu = () => {
     
         {isMobile ?(
           <>
-            <Collapse open={navOpen} className={`inline-block ${mobileSticky} z-50 bg-paffbg p-9`}>
-              <ul className="text-sm mt-5 mx-4 grid gap-6 align-middle text-center">
+            <Collapse open={navOpen} className={`inline-block ${mobileSticky} z-50 bg-paffbg`}>
+              <ul className="text-sm mt-5 mx-4 grid gap-6 align-middle text-center  pb-9">
                 <li>
                   <Link href="/">Home</Link>
                 </li>
@@ -192,8 +192,8 @@ const ProfileMenu = () => {
                       className="cursor-pointer max-w-[80px] col-span-1 row-span-2"
                       src={userImage || '/img/pp_comp.webp'}
                       />
-                      <p className=" col-span-2 row-span-1">Tougen</p>
-                      <p className="col-span-2 row-span-1 break-normal text-blue-gray-300">batuhan.hincal.1903@gmail.com</p>
+                      <p className=" col-span-2 row-span-1">{userName}</p>
+                      <p className="col-span-2 row-span-1 break-normal text-blue-gray-300">{userEmail}</p>
                     </div>
                     </Link>
                   ) :(<Link href={`/auth`}><Button variant="gradient" color="purple" className="inline-flex px-20">Register for Free</Button></Link>)}
