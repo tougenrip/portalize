@@ -95,9 +95,10 @@ const ProfileMenu = () => {
             <Link href="">Community</Link>
           </Tooltip>
           </li>
-          <li className="self-center ">
+        {isLogged ? (<li className="self-center ">
             <Link href="/editor"><Button  variant="gradient" color="purple" className="!bg-gradient-to-br rounded-full from-[#3b29ff] to-[#9c4fff]">Launch Editor</Button></Link>
-          </li>
+          </li>):('')}
+          
           <li>
             {isLogged ? (
               <Menu>
