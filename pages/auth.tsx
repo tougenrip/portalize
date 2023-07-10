@@ -40,35 +40,37 @@ interface IDivicerProps {
   word?: string;
 }
 
-const Divider = ({ word }: IDivicerProps) => {
-  return (
-    <>
-      {word ? (
-        <Flex
-          w="100%"
-          alignItems="center"
-          justifyContent="center"
-          gap={2}
-          mb={4}
-        >
-          <Box w="100%" border="solid" borderBottom={2} rounded="full"></Box>
-          <Text>Or</Text>
-          <Box w="100%" border="solid" borderBottom={2} rounded="full"></Box>
-        </Flex>
-      ) : (
-        <Box
-          w="100%"
-          border="solid"
-          borderBottom={2}
-          rounded="full"
-          mb={4}
-        ></Box>
-      )}
-    </>
-  );
-};
+// const Divider = ({ word }: IDivicerProps) => {
+//   return (
+//     <>
+//       {word ? (
+//         <Flex
+//           w="100%"
+//           alignItems="center"
+//           justifyContent="center"
+//           gap={2}
+//           mb={4}
+//         >
+//           <Box w="100%" border="solid" borderBottom={2} rounded="full"></Box>
+//           <Text>Or</Text>
+//           <Box w="100%" border="solid" borderBottom={2} rounded="full"></Box>
+//         </Flex>
+//       ) : (
+//         <Box
+//           w="100%"
+//           border="solid"
+//           borderBottom={2}
+//           rounded="full"
+//           mb={4}
+//         ></Box>
+//       )}
+//     </>
+//   );
+// };
 
-const Auth: NextPage = ({ providers }: any) => {
+// { providers }: any
+
+const Auth: NextPage = () => {
   const [authType, setAuthType] = useState("Login");
   const oppAuthType: { [key: string]: string } = {
     Login: "Register",
@@ -82,30 +84,30 @@ const Auth: NextPage = ({ providers }: any) => {
   const image = '';
   const skyEnabled = false;
   const bannerEnabled = false;
-  const ProvidersButtons = ({ providers }: any) => (
-    <Flex direction="column" w="100%">
-      {Object.values(providers).map(
-        (provider: any) =>
-          provider.name !== "Credentials" && (
-            <Button
-              key={provider.name}
-              mb={4}
-              bg={"#24292E"}
-              color={"white"}
-              _hover={{ bg: "#24292E90" }}
-              type="submit"
-              onClick={() => {
-                signIn(provider.id, {
-                  callbackUrl: process.env.URL_DEV as string,
-                });
-              }}
-            >
-              <Box>Sign in with {provider.name}</Box>
-            </Button>
-          )
-      )}
-    </Flex>
-  );
+  // const ProvidersButtons = ({ providers }: any) => (
+  //   <Flex direction="column" w="100%">
+  //     {Object.values(providers).map(
+  //       (provider: any) =>
+  //         provider.name !== "Credentials" && (
+  //           <Button
+  //             key={provider.name}
+  //             mb={4}
+  //             bg={"#24292E"}
+  //             color={"white"}
+  //             _hover={{ bg: "#24292E90" }}
+  //             type="submit"
+  //             onClick={() => {
+  //               signIn(provider.id, {
+  //                 callbackUrl: process.env.URL_DEV as string,
+  //               });
+  //             }}
+  //           >
+  //             <Box>Sign in with {provider.name}</Box>
+  //           </Button>
+  //         )
+  //     )}
+  //   </Flex>
+  // );
 
   const redirectToHome = () => {
     const { pathname } = Router;
