@@ -11,7 +11,7 @@ const ExpandCard = () => {
      <main>
         <div className='h-[70vh] flex align-middle place-content-center items-center'>
         <motion.div
-            className='relative bg-gray-500 rounded-xl w-[95%] h-[90%] text-center '
+            className={`relative bg-[url(/img/biggamebg.png)] bg-cover bg-no-repeat rounded-xl w-[95%] h-[90%] text-center `}
             transition={{layout:{duration:1, type:'spring'}}}
             onClick={()=>setIsOpen(!isOpen)}
         >
