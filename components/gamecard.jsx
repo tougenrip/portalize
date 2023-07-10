@@ -8,6 +8,7 @@ import {
   } from "@material-tailwind/react";
   import items from './data';
   import Link from "next/link";
+  import { BiUser } from "react-icons/bi";
    
   export default function GameCard( {game} ) {
     return (
@@ -22,8 +23,8 @@ import {
           <Typography>
             {game.desc}
           </Typography>
-          <Typography>
-            {game.owner}
+          <Typography className="inline-flex gap-1">
+            <BiUser className="relative top-[3px] h-5 w-5"/>{game.owner || "unknown"}
           </Typography>
         </CardBody>
         <CardFooter className="pt-0">

@@ -41,7 +41,7 @@ export default function PricingCard() {
 
 
   return (
-    <Card color="transparent" variant="gradient" className="w-full max-w-[26rem] p-8" style={{boxShadow:'none'}}>
+    <Card color="transparent" variant="gradient" className="w-full max-w-[26rem] bg-[#282828] p-8" style={{boxShadow:'none'}}>
       <CardHeader
         floated={false}
         shadow={false}
@@ -67,34 +67,34 @@ export default function PricingCard() {
       <CardBody className="p-0">
         <ul className="flex flex-col gap-4">
           <li className="flex items-center gap-4">
-            <span className="rounded-full border border-white/20 bg-white/20 p-1">
-              <CheckIcon strokeWidth={2} className="h-3 w-3" />
+            <span className="rounded-full border border-white/20 bg-[#9C4FFF] p-1">
+              <CheckIcon strokeWidth={2} className="h-3 w-3 text-white" />
             </span>
-            <Typography className="font-normal">5 team members</Typography>
+            <Typography className="font-normal text-white">5 team members</Typography>
           </li>
           <li className="flex items-center gap-4">
-            <span className="rounded-full border border-white/20 bg-white/20 p-1">
-              <CheckIcon strokeWidth={2} className="h-3 w-3" />
+            <span className="rounded-full border border-white/20 bg-[#9C4FFF] p-1">
+              <CheckIcon strokeWidth={2} className="h-3 w-3 text-white" />
             </span>
-            <Typography className="font-normal">200+ components</Typography>
+            <Typography className="font-normal text-white">200+ components</Typography>
           </li>
           <li className="flex items-center gap-4">
-            <span className="rounded-full border border-white/20 bg-white/20 p-1">
-              <CheckIcon strokeWidth={2} className="h-3 w-3" />
+            <span className="rounded-full border border-white/20 bg-[#9C4FFF] p-1">
+              <CheckIcon strokeWidth={2} className="h-3 w-3 text-white" />
             </span>
-            <Typography className="font-normal">40+ built-in pages</Typography>
+            <Typography className="font-normal text-white">40+ built-in pages</Typography>
           </li>
           <li className="flex items-center gap-4">
-            <span className="rounded-full border border-white/20 bg-white/20 p-1">
-              <CheckIcon strokeWidth={2} className="h-3 w-3" />
+            <span className="rounded-full border border-white/20 bg-[#9C4FFF] p-1">
+              <CheckIcon strokeWidth={2} className="h-3 w-3 text-white" />
             </span>
-            <Typography className="font-normal">1 year free updates</Typography>
+            <Typography className="font-normal text-white">1 year free updates</Typography>
           </li>
           <li className="flex items-center gap-4">
-            <span className="rounded-full border border-white/20 bg-white/20 p-1">
-              <CheckIcon strokeWidth={2} className="h-3 w-3" />
+            <span className="rounded-full border border-white/20 bg-[#9C4FFF] p-1">
+              <CheckIcon strokeWidth={2} className="h-3 w-3 text-white" />
             </span>
-            <Typography className="font-normal">Life time technical support</Typography>
+            <Typography className="font-normal text-white">Life time technical support</Typography>
           </li>
         </ul>
       </CardBody>

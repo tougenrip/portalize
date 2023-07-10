@@ -93,7 +93,7 @@ async function UploadMap(){
       const { title, desc, privite,likes,userLimit, floormap, interior,img } = req.body;
 
       const session = await getServerSession(req,res,authOptions)
-      const owner = session?.user?.id
+      const owner = session?.user?.name
       const ownerEmail = session?.user?.email
 
       // create a new document in the Worlds collection

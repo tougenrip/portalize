@@ -11,7 +11,7 @@ import Link from "next/link";
  
 export default function PricingCardFree() {
   return (
-    <Card color="transparent" variant="gradient" className="w-full max-w-[20rem] p-8">
+    <Card  variant="gradient" className="w-full max-w-[20rem] bg-[#282828] p-8">
       <CardHeader
         floated={false}
         shadow={false}
