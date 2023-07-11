@@ -2,6 +2,7 @@
 const nextConfig = {
   reactStrictMode: false,
   pageExtensions: ['mdx', 'md', 'jsx', 'js', 'tsx', 'ts'],
+  transpilePackages: ['gsap'],
   
 }
 

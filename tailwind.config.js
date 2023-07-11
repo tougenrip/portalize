@@ -24,7 +24,7 @@ export default mt({
       },
       fontFamily: { 
         'valorant' : ['valorant', 'sans-serif'],
-        'sans': ['Gilroy', 'sans-serif', defaultTheme.fontFamily.sans],
+        'sans' :['Gilroy', 'sans-serif', ...defaultTheme.fontFamily.sans]
       },
       animation: {
         'InfScroll': 'scroll 10s linear infinite',

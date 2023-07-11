@@ -26,7 +26,7 @@ export default function Home() {
      
     </Head>
      
-      <main className="w-[100vw] font-body ">
+      <main className="w-[100vw] ">
       <div className='invisible md:visible absolute top-1/4 -left-14 h-96 w-96 md:scale-100 scale-50 -z-50 bg-purple-500 bg-opacity-60 blur-[170px]'></div>
       <div className='invisible md:visible absolute top-[72%] right-[25px] md:scale-100 scale-50 h-96 w-96 -z-50 bg-purple-500 bg-opacity-60 blur-[170px]'></div>
       <div className='invisible md:visible absolute top-[36%] right-[25px] md:scale-100 scale-50 4 h-96 -z-50 w-96 bg-purple-500 bg-opacity-60 blur-[170px]'></div>
@@ -42,7 +42,11 @@ export default function Home() {
           <video className="relative  left-1/2 -translate-x-1/2 scale-[5] md:scale-[2] xl:scale-[1.50] w-[100vw] h-full overflow-hidden -z-30" autoPlay muted loop>
             <source src="/img/landing-page/herobg.webm" type="video/webm"/>
           </video>
-          <div className="absolute top-[30%] w-[85%] left-1/2 md:translate-x-0 -translate-x-1/2 md:left-24 text-5xl xl:text-6xl  text-center md:text-start text-white">Portalize Your <span className="text-transparent bg-gradient-to-br from-[#3b29ff] to-[#9c4fff] !bg-clip-text">
+          <motion.div
+          initial={{opacity:0}}
+            whileInView={{y:20, opacity:1,}}
+            transition={{ delay: 1 }} 
+            className="absolute top-[30%] w-[85%] left-1/2 md:translate-x-0 -translate-x-1/2 md:left-24 text-5xl xl:text-6xl  text-center md:text-start text-white">Portalize Your <span className="text-transparent bg-gradient-to-br from-[#3b29ff] to-[#9c4fff] !bg-clip-text">
                     <TypeAnimation
                 sequence={[
                   "Community",
@@ -61,9 +65,10 @@ export default function Home() {
             </span>
             <motion.p 
             initial={{opacity:0}}
-            animate={{y:20, opacity:1}}
+            whileInView={{y:20, opacity:1,}}
+            transition={{ delay: 1.2 }}
             className="font-bold text-2xl xl:text-2xl">Influence New Way</motion.p>
-            </div>
+            </motion.div>
             
             
           </div>
@@ -77,37 +82,37 @@ export default function Home() {
             </div>
             <p className="absolute bottom-[50%] translate-y-1/2  md:left-1/2 md:-translate-x-1/2 text-5xl font-light">Get Start Creating Your New Space</p>
             <ul className="absolute w-full md:flex grid grid-rows-4 justify-center bottom-[10%] md:bottom-[28%]  md:left-1/2 md:-translate-x-1/2 font-bold gap-2 md:gap-6 text-3xl md:text-4xl uppercase place-items-center">
-              <li>Domain Based</li>
-              <li>Blockchain</li>
-              <li>No-Code</li>
-              <li>1000+ Assets</li>
+              <motion.li initial={{y:10, opacity:0}} whileInView={{y:0, opacity:1}} transition={{delay:0.05}}>Domain Based</motion.li>
+              <motion.li initial={{y:10, opacity:0}} whileInView={{y:0, opacity:1}} transition={{delay:0.08}}>Blockchain</motion.li>
+              <motion.li initial={{y:10, opacity:0}} whileInView={{y:0, opacity:1}} transition={{delay:0.11}}>No-Code</motion.li>
+              <motion.li initial={{y:10, opacity:0}} whileInView={{y:0, opacity:1}} transition={{delay:0.14}}>1000+ Assets</motion.li>
             </ul>
           </div>
         </div>
 
           <div className="invisible md:visible absolute -z-40  text-start text-[25rem] overflow-x-hidden opacity-10 max-w-[100vw]">
-          <div className="overflow-hidden break-normal">
+          <motion.div initial={{x:-1500, opacity:0}} whileInView={{x:0, opacity:1}} transition={{delay:0.05}} className="overflow-hidden break-normal">
           EXPRESS <br/>AUDIANCE
-          </div>
+          </motion.div>
         </div>
 
 
         <div className="relative flex flex-col-reverse gap-10 md:gap-0 md:grid md:grid-cols-2 w-[100vw] h-screen my-[200px] md:my-24">
         <div className="flex flex-col gap-2 md:gap-9 text-start md:place-self-center md:w-[70%] -mb-10 md:mb-0">
-            <h2 className="text-4xl sm:text-3xl lg:text-7xl ">Analytics</h2>
-            <span className="w-[70%] place-self-start h-1 bg-white font-light text-blue-gray-600"></span>
-            <p className="text-xl lg:text-3xl">Keep a Pulse on Your World. Gain insights into the pulse of your virtual space with Portalize’s analytics. Track visitor numbers, engagement, and time spent in your world effortlessly. Use these data-driven insights to evolve and optimize your virtual experience.</p>
+            <motion.h2 initial={{y:25,opacity:0}} whileInView={{y:0,opacity:1}} transition={{delay:0.2}} className="text-4xl sm:text-3xl lg:text-7xl ">Analytics</motion.h2>
+            <motion.span initial={{x:-100,opacity:0}} whileInView={{x:0,opacity:1}} transition={{delay:0.3}} className="w-[70%] place-self-start h-1 bg-white font-light text-blue-gray-600"></motion.span>
+            <motion.p initial={{y:25,opacity:0}} whileInView={{y:0,opacity:1}} transition={{delay:0.4}} className="text-xl lg:text-3xl">Keep a Pulse on Your World. Gain insights into the pulse of your virtual space with Portalize’s analytics. Track visitor numbers, engagement, and time spent in your world effortlessly. Use these data-driven insights to evolve and optimize your virtual experience.</motion.p>
           </div>
-          <div className="md:relative">
+          <motion.div initial={{x:500}} whileInView={{x:0}} transition={{delay:0.05}} className="md:relative">
             <Image alt="side2" className="absolute right-0 top-1/2 -translate-y-1/2" width={656} height={754} quality={65} src={side2}/>
-          </div>
+          </motion.div>
         </div>
 
         <div className="flex flex-col place-items-center gap-28 h-screen text-center max-w-[100vw]">
           <div className="md:w-[70%]">
-            <h2 className="text-5xl sm:text-7xl mb-4">MARKETPLACE</h2>
-            <h4 className="text-2xl sm:text-3xl">A Wealth of Assets at Your Fingertips</h4>
-            <p className="text-xl lg:text-3xl ">Ignite your creativity with Portalize`s Marketplace, your gateway to a vast array of assets. From buildings to 3D props, the Marketplace has everything you need to design unique worlds. Browse, pick, and start creating!</p>
+            <motion.h2 initial={{opacity:0, y:50}} whileInView={{opacity:1, y:0}}  transition={{delay:0.05}}  className="text-5xl sm:text-7xl mb-4">MARKETPLACE</motion.h2>
+            <motion.h4 initial={{opacity:0, y:50}} whileInView={{opacity:1, y:0}}  transition={{delay:0.08}} className="text-2xl sm:text-3xl">A Wealth of Assets at Your Fingertips</motion.h4>
+            <motion.p initial={{opacity:0, y:50}} whileInView={{opacity:1, y:0}}  transition={{delay:0.11}} className="text-xl lg:text-3xl ">Ignite your creativity with Portalize`s Marketplace, your gateway to a vast array of assets. From buildings to 3D props, the Marketplace has everything you need to design unique worlds. Browse, pick, and start creating!</motion.p>
 
           </div>
           <div>
@@ -116,22 +121,23 @@ export default function Home() {
         </div>
 
         <div className="invisible md:visible absolute -z-40  text-start text-[25rem] overflow-x-hidden opacity-10 max-w-[100vw]">
-          <div className="overflow-hidden break-normal">
+          <motion.div initial={{x:-1500, opacity:0}} whileInView={{x:0, opacity:1}} transition={{delay:0.05}} className="overflow-hidden break-normal">
           EASY <br/>TEMPLATES
-          </div>
+          </motion.div>
         </div>
 
 
 
+
         <div className="relative flex flex-col-reverse gap-10 md:gap-0 md:grid md:grid-cols-2 w-[100vw] h-screen my-[200px] md:my-24">
-        <div className=" flex flex-col gap-2 md:gap-9 text-start md:place-self-center md:w-[70%] -mb-10 md:mb-0">
-            <h2 className="text-4xl sm:text-3xl lg:text-7xl ">Analytics</h2>
-            <span className="w-[70%] place-self-start h-1 bg-white font-light text-blue-gray-600"></span>
-            <p className="text-xl  left-1/2 lg:text-3xl">Keep a Pulse on Your World. Gain insights into the pulse of your virtual space with Portalize`s analytics. Track visitor numbers, engagement, and time spent in your world effortlessly. Use these data-driven insights to evolve and optimize your virtual experience.</p>
+        <div className="flex flex-col gap-2 md:gap-9 text-start md:place-self-center md:w-[70%] -mb-10 md:mb-0">
+            <motion.h2 initial={{y:25,opacity:0}} whileInView={{y:0,opacity:1}} transition={{delay:0.2}} className="text-4xl sm:text-3xl lg:text-7xl ">Ready-to-Use Templates</motion.h2>
+            <motion.span initial={{x:-100,opacity:0}} whileInView={{x:0,opacity:1}} transition={{delay:0.3}} className="w-[70%] place-self-start h-1 bg-white font-light text-blue-gray-600"></motion.span>
+            <motion.p initial={{y:25,opacity:0}} whileInView={{y:0,opacity:1}} transition={{delay:0.4}} className="text-xl lg:text-3xl">Embark with a Head Start Get started swiftly with Portalize's ready-to-use templates. Choose from a plethora of themes ranging from industrial to fantastical. Select, customize, and you're ready to step into your own corner of the Metaverse.</motion.p>
           </div>
-          <div className="md:relative">
+          <motion.div initial={{x:500}} whileInView={{x:0}} transition={{delay:0.05}} className="md:relative">
             <Image alt="side2" className="absolute right-0 top-1/2 -translate-y-1/2" width={656} height={754} quality={65} src={side1}/>
-          </div>
+          </motion.div>
         </div>
 
       
@@ -140,7 +146,7 @@ export default function Home() {
         <div className="pricing-section">
           <div className="relative w-[100vw] h-[2400px] md:h-[100vh]">
             <div className="absolute top-[10%] left-1/2 -translate-x-1/2 md:-translate-x-0 md:left-20 text-7xl font-light"><p>Join <span className="font-bold">Today</span></p></div>
-            <div className="absolute grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-3 bottom-0 top-[15%] md:top-[50%] md:-translate-y-1/2 left-1/2 -translate-x-1/2 scale-90 w-[100vw] justify-center place-items-center">
+            <div className="absolute grid grid-cols-1 items-start md:grid-cols-2 gap-5 md:gap-3 bottom-0 top-[15%] md:top-[50%] md:-translate-y-1/2 left-1/2 -translate-x-1/2 scale-90 w-[100vw] justify-center place-items-center">
                 <PricingCardFree/>
                 <PricingCard/>
             </div>

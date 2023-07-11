@@ -1,4 +1,4 @@
-import React, { Suspense, useState } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import SideBar from '../../components/SideBar'
 import Navbar from '../../components/Navbar'
 import { Avatar, Button, IconButton, Input, Option, Select } from '@material-tailwind/react'
@@ -10,11 +10,18 @@ import axios from 'axios'
 import { BiGlobeAlt, BiCubeAlt, BiPyramid, BiListUl } from 'react-icons/bi'
 import { FaCross, FaSolarPanel } from 'react-icons/fa'
 import AdvPanel from '@components/components/AdvPanel'
-import { AvatarCreatorViewer, EditorConfig } from "@readyplayerme/rpm-react-sdk";
-
+import { AvatarCreator, EditorConfig } from "@readyplayerme/rpm-react-sdk";
+import { motion } from 'framer-motion'
+import  AvatarCreate  from '../../components/AvatCreator.js'
 const Dashboard = () => {
 
-  
+  const config: EditorConfig  = {
+    clearCache: true,
+    bodyType: "fullbody",
+    quickStart: false,
+    language:"tr"
+  }
+
 
 
   const [isCheckoutLoading, setIsCheckoutLoading] = useState(false);
@@ -70,6 +77,7 @@ const Dashboard = () => {
     setUserimg(base64 as unknown as string);
   };
 
+  
  
 
   const updateUser = async () => {
@@ -113,6 +121,15 @@ const Dashboard = () => {
         
         <div className='w-full md:w-2/3'>
 
+
+        <div id="myspaces" className='relative h-screen'>
+              <h2 className='absolute top-[10%] left-14 text-3xl md:text-5xl font-bold'>My Avatar</h2>
+              <div className='absolute flex flex-col gap-5 top-[20%] left-0 max-h-[75%] overflow-x-hidden overflow-scroll rounded-l-xl scrollbar-none h-[75%] w-full'>
+              
+              <AvatarCreate/>
+              </div>
+            </div>
+
             
             <div id="myspaces" className='relative h-screen'>
               <h2 className='absolute top-[10%] left-14 text-3xl md:text-5xl font-bold'>My Spaces</h2>
@@ -121,6 +138,10 @@ const Dashboard = () => {
                 <UserMaps/>
               </div>
             </div>
+
+
+
+
             <div id="analytics" className='relative h-screen'><h2 className='absolute top-[20%] left-14 text-3xl md:text-5xl font-bold'>Analytics</h2>
             <div className='absolute flex flex-col gap-5 top-[30%] bg-gray-900 left-0 max-h-[75%] overflow-x-hidden overflow-hidden h-[75%] w-full rounded-l-3xl'>
                   

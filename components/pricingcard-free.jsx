@@ -8,8 +8,16 @@ import {
 } from "@material-tailwind/react";
 import { CheckIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
+import { useSession } from 'next-auth/react'
  
 export default function PricingCardFree() {
+
+  const { data: session, status } = useSession();
+  const userEmail = session?.user?.email;
+  const userImage = session?.user?.image;
+  const userName = session?.user?.name;
+  const isLogged = status == 'authenticated';
+
   return (
     <Card  variant="gradient" className="w-full max-w-[20rem] bg-[#282828] p-8">
       <CardHeader
@@ -52,7 +60,22 @@ export default function PricingCardFree() {
       </CardBody>
       <CardFooter className="mt-12 p-0">
         <Link href={`${process.env.NEXT_PUBLIC_WEBSITE_URL}editor`}>
-        <Button
+          {isLogged ? (
+            <Link href={`/editor`}>
+            <Button
+            size="lg"
+            color="white"
+            className="bg-gradient-to-br from-indigo-600 to-purple-500 rounded-md px-4 py-2 text-white"
+            ripple={false}
+            fullWidth={true}
+            
+          >
+            Launch Editor
+          </Button>
+          </Link>
+          ):(
+          <Link href={`/auth`}>  
+            <Button
           size="lg"
           color="white"
           className="bg-gradient-to-br from-indigo-600 to-purple-500 rounded-md px-4 py-2 text-white"
@@ -60,8 +83,10 @@ export default function PricingCardFree() {
           fullWidth={true}
           
         >
-          Launch Editor
+          Register
         </Button>
+        </Link>
+            )}
         </Link>
       </CardFooter>
     </Card>

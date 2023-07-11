@@ -115,6 +115,7 @@ const SideBar = (req,res) => {
                 className={`cursor-pointer mt-5`}
                 src={userImage || '/img/pp_comp.webp'}
               />
+        
 
         </div>
         <div className='mt-5 text-center'><p className='flex flex-row gap-1 text-center justify-center place-items-center'>{userName} {isActive ? (<Tooltip content="Premium"><CheckBadgeIcon className={`relative w-6 h-6 ${isActive ? (''): ('hidden')}`}></CheckBadgeIcon></Tooltip>) : ('')}</p><p className='text-sm flex flex-row gap-2 text-[#666666]'>{userEmail}</p></div>
