@@ -10,9 +10,9 @@ import axios from 'axios'
 import { BiGlobeAlt, BiCubeAlt, BiPyramid, BiListUl } from 'react-icons/bi'
 import { FaCross, FaSolarPanel } from 'react-icons/fa'
 import AdvPanel from '@components/components/AdvPanel'
-import { AvatarCreator, EditorConfig } from "@readyplayerme/rpm-react-sdk";
-import { motion } from 'framer-motion'
-import  AvatarCreate  from '../../components/AvatCreator.js'
+// import { AvatarCreator, EditorConfig } from "@readyplayerme/rpm-react-sdk";
+// import { motion } from 'framer-motion'
+// import  AvatarCreate  from '../../components/AvatCreator.js'
 const Dashboard = () => {
 
 
@@ -119,7 +119,6 @@ const Dashboard = () => {
               <h2 className='absolute top-[10%] left-14 text-3xl md:text-5xl font-bold'>My Avatar</h2>
               <div className='absolute flex flex-col gap-5 top-[20%] left-0 max-h-[75%] overflow-x-hidden overflow-scroll rounded-l-xl scrollbar-none h-[75%] w-full'>
               
-              <AvatarCreate/>
               </div>
             </div>
 
