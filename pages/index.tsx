@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import Image from 'next/image';
 import Navbar  from "../components/Navbar";
 import Head from "next/head";
@@ -16,6 +16,31 @@ import PricingCard from '../components/pricingcard'
 
 export default function Home() {
 
+
+  const [windowDimension, setWindowDimension] = useState(null);
+
+  useEffect(() => {
+    
+  });
+  
+
+  useEffect(() => {
+    setWindowDimension(window.innerWidth);
+  }, []);
+
+  useEffect(() => {
+    function handleResize() {
+      setWindowDimension(window.innerWidth);
+    }
+  
+  
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+  
+
+  const isMobile = windowDimension <= 1140;
+  const isSmall = windowDimension <= 960;
 
   return (
     <>
@@ -46,7 +71,7 @@ export default function Home() {
           initial={{opacity:0}}
             whileInView={{y:20, opacity:1,}}
             transition={{ delay: 1 }} 
-            className="absolute top-[30%] w-[85%] left-1/2 md:translate-x-0 -translate-x-1/2 md:left-24 text-5xl xl:text-6xl  text-center md:text-start text-white">Portalize Your <span className="text-transparent bg-gradient-to-br from-[#3b29ff] to-[#9c4fff] !bg-clip-text">
+            className="absolute top-[30%] w-[85%] left-1/2 md:translate-x-0 !-translate-x-1/2 md:left-24 text-5xl xl:text-6xl  text-center md:text-start text-white">Portalize Your <span className="text-transparent bg-gradient-to-br from-[#3b29ff] to-[#9c4fff] !bg-clip-text">
                     <TypeAnimation
                 sequence={[
                   "Community",
@@ -103,9 +128,14 @@ export default function Home() {
             <motion.span initial={{x:-100,opacity:0}} whileInView={{x:0,opacity:1}} transition={{delay:0.3}} className="w-[70%] place-self-start h-1 bg-white font-light text-blue-gray-600"></motion.span>
             <motion.p initial={{y:25,opacity:0}} whileInView={{y:0,opacity:1}} transition={{delay:0.4}} className="text-xl lg:text-3xl">Keep a Pulse on Your World. Gain insights into the pulse of your virtual space with Portalize’s analytics. Track visitor numbers, engagement, and time spent in your world effortlessly. Use these data-driven insights to evolve and optimize your virtual experience.</motion.p>
           </div>
-          <motion.div initial={{x:500}} whileInView={{x:0}} transition={{delay:0.05}} className="md:relative">
+          {isMobile ? (<div className="md:relative">
+            <Image alt="side2" className="absolute right-0 top-1/2 -translate-y-1/2" width={656} height={754} quality={65} src={side2}/>
+          </div>):(
+            <motion.div initial={{x:500}} whileInView={{x:0}} transition={{delay:0.05}} className="md:relative">
             <Image alt="side2" className="absolute right-0 top-1/2 -translate-y-1/2" width={656} height={754} quality={65} src={side2}/>
           </motion.div>
+          )}
+          
         </div>
 
         <div className="flex flex-col place-items-center gap-28 h-screen text-center max-w-[100vw]">
@@ -135,9 +165,12 @@ export default function Home() {
             <motion.span initial={{x:-100,opacity:0}} whileInView={{x:0,opacity:1}} transition={{delay:0.3}} className="w-[70%] place-self-start h-1 bg-white font-light text-blue-gray-600"></motion.span>
             <motion.p initial={{y:25,opacity:0}} whileInView={{y:0,opacity:1}} transition={{delay:0.4}} className="text-xl lg:text-3xl">Embark with a Head Start Get started swiftly with Portalize`s ready-to-use templates. Choose from a plethora of themes ranging from industrial to fantastical. Select, customize, and you`re ready to step into your own corner of the Metaverse.</motion.p>
           </div>
-          <motion.div initial={{x:500}} whileInView={{x:0}} transition={{delay:0.05}} className="md:relative">
-            <Image alt="side2" className="absolute right-0 top-1/2 -translate-y-1/2" width={656} height={754} quality={65} src={side1}/>
-          </motion.div>
+          {isMobile ? (<div className="md:relative">
+            <Image alt="side1" className="absolute right-0 top-1/2 -translate-y-1/2" width={656} height={754} quality={65} src={side1}/>
+          </div>):(
+            <motion.div initial={{x:500}} whileInView={{x:0}} transition={{delay:0.05}} className="md:relative">
+            <Image alt="side1" className="absolute right-0 top-1/2 -translate-y-1/2" width={656} height={754} quality={65} src={side1}/>
+          </motion.div>)}
         </div>
 
       
