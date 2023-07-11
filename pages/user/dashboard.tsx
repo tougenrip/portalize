@@ -15,13 +15,6 @@ import { motion } from 'framer-motion'
 import  AvatarCreate  from '../../components/AvatCreator.js'
 const Dashboard = () => {
 
-  const config: EditorConfig  = {
-    clearCache: true,
-    bodyType: "fullbody",
-    quickStart: false,
-    language:"tr"
-  }
-
 
 
   const [isCheckoutLoading, setIsCheckoutLoading] = useState(false);
