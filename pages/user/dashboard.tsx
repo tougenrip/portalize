@@ -112,36 +112,39 @@ const Dashboard = () => {
             <SideBar/>
         </div>
         
-        <div className='w-full md:w-2/3'>   
+        <div className='w-full xl:w-'>   
 
             
             <div id="myspaces" className='relative h-screen'>
-              <h2 className='absolute top-[10%] text-5xl md:text-5xl font-bold'>My Spaces</h2>
-              <div className='absolute flex flex-col gap-10 top-[20%] left-0 max-h-[100%] overflow-x-hidden overflow-scroll scrollbar-none h-[100%] w-full'>        
+              <h2 className='absolute top-[10%] pl-5 text-5xl md:text-5xl font-bold '>My Spaces</h2>
+              <div className='absolute flex flex-col gap-10 top-[20%] left-0 max-h-[100%]    h-[100%] w-full'>        
+                
                 <div className="relative flex flex-col justify-end w-full items-end pt-56 pb-8 ">
-                  <div className="w-[1300px] h-[267px] bg-[url(https://file.rendit.io/n/7jt0cW1x0RbNYTM6FIq1.png)] bg-cover rounded-lg absolute top-0 left-0 flex flex-row justify-between items-end pb-4 pl-12 pr-16">
-                    <div className="whitespace-nowrap text-5xl font-['Gilroy'] font-bold text-white w-[314px] shrink-0">
-                      Tedy’s Gallery
-                    </div>
-                    <button className="bg-[#151515]  shrink-0 py-2 px-1 rounded justify-middle align-middle flex">
-                      <p className="font-['Gilroy'] font-light text-white w-40">Open Project</p>
-                    </button>                                   
-                  </div>
-                </div>
-
-                <div className="relative flex flex-col justify-end w-full items-end pt-56 pb-6 ">
-                  <div className="w-[1300px] h-[267px] bg-[url(https://file.rendit.io/n/Y8tFOMghkDREZJG9KyPw.png)] bg-cover rounded-lg absolute top-0 left-0 flex flex-col pb-1 pr-12">
-                    <div className="bg-cover bg-50%_50% bg-blend-normal flex flex-row justify-between h-64 shrink-0 items-end pb-3 pl-12 pr-4">
-                      <div className="whitespace-nowrap text-5xl font-['Gilroy'] font-bold text-white mb-px w-[300px] shrink-0">
-                        Fashion Shop
+                  <div className="w-full h-[267px]  bg-[url(https://file.rendit.io/n/7jt0cW1x0RbNYTM6FIq1.png)] bg-cover rounded-lg absolute top-0 left-0 flex flex-col pb-1 pr-12">
+                    <div className="bg-cover  bg-blend-normal flex flex-row justify-between h-64 shrink-0 items-end pb-3 pl-12 pr-4">
+                      <div className="whitespace-nowrap text-3xl font-['Gilroy'] font-bold text-white w-[314px] sm:text-5xl shrink-0">
+                        Tedy’s Gallery
                       </div>
                       <button className="bg-[#151515]  shrink-0 py-2 px-1 rounded justify-middle align-middle flex">
-                      <p className="font-['Gilroy'] font-light text-white w-40">Open Project</p>
-                    </button>   
+                        <p className="font-['Gilroy'] font-light text-white w-40">Open Project</p>
+                      </button>                                   
+                    </div>
+                  </div>                  
+                </div>
+
+                <div className="relative flex flex-col justify-end w-full items-end pt-56 pb-6">
+                  <div className="xl:w-full lg:w-full h-[267px] md:w-full sm:w-full bg-[url(https://file.rendit.io/n/Y8tFOMghkDREZJG9KyPw.png)] bg-cover rounded-lg absolute top-0 left-0 flex flex-col pb-1 pr-12">
+                    <div className="bg-cover bg-blend-normal flex flex-row justify-between h-64 shrink-0 items-end pb-3 pl-12 pr-4">
+                    <div className="whitespace-nowrap text-3xl font-['Gilroy'] font-bold text-white w-[314px] sm:text-5xl shrink-0">
+                        Fashion Shop
+                      </div>
+                      <button className="bg-[#151515] shrink-0 py-2 px-1 rounded justify-middle align-middle flex">
+                        <p className="font-['Gilroy'] font-light text-white w-40">Open Project</p>
+                      </button>
                     </div>
                   </div>
-        
-                </div>
+              </div>
+
                 {/*<UserMaps/>*/}
               </div>
             </div>
