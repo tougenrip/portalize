@@ -131,15 +131,68 @@ const Dashboard = () => {
               </div>
             </div>
 
-
-
-
-            <div id="analytics" className='relative h-screen'><h2 className='absolute top-[20%] left-14 text-3xl md:text-5xl font-bold'>Analytics</h2>
-            <div className='absolute flex flex-col gap-5 top-[30%] bg-gray-900 left-0 max-h-[75%] overflow-x-hidden overflow-hidden h-[75%] w-full rounded-l-3xl'>
-                  
-                  
+            <div id="analytics" className='relative h-screen'><h2 className='absolute top-[20%] left-14 text-3xl md:text-5xl font-bold' >Analytics</h2>
+              <div className="contents">
+                <br />
               </div>
             </div>
+            <div className="w-1/2 h-[528px] bg-[#262626] absolute top-[294px] left-[702px] flex flex-col justify-end gap-6 px-6 py-8 rounded-[32px]">
+            <div className="whitespace-nowrap text-4xl font-['Gilroy'] font-light text-white self-start w-56">
+              Tedy’s Gallery
+            </div>
+      </div>
+            {/*<div className='absolute flex flex-col gap-5 top-[30%] bg-gray-900 left-0 max-h-[75%] overflow-x-hidden overflow-hidden h-[75%] w-full rounded-l-3xl'>
+            <div className="flex flex-col items-center">
+              <div className="w-full max-w-3xl">
+                <img
+                  src="path/to/your/image.jpg"
+                  alt="Image"
+                  className="w-full h-auto"
+                />
+              </div>
+
+              <div className="my-8 text-center">
+                <h1 className="text-3xl font-bold">Your Title</h1>
+                <p className="mt-4">Your text content goes here...</p>
+              </div>
+              <div className='h-[30%] w-[50%] bg-white'>
+
+              </div> 
+              <div className="border-2 border-white p-4 rounded-lg w-[95%] h-[60%] ">
+                <div className="flex col-4 justify-between px-6 ">
+                  <div className="my-8 text-center">
+                  <h1 className="text-2xl">Engagement</h1>
+                  <p className="mt-4 text-4xl">68.000</p>
+                </div>
+                <div className='w-1 h-auto bg-white'/>
+                <div className="my-8 text-center align">
+                <h1 className="text-2xl">Active User</h1>
+                  <p className="mt-4 text-4xl">68</p>
+                </div>
+                <div className='w-1 h-auto bg-white'/>
+                <div className="my-8 text-center">
+                <h1 className="text-2xl">Ads Click</h1>
+                  <p className="mt-4 text-4xl">220</p>
+                </div>
+                <div className='w-1 h-auto bg-white'/>
+                <div className="my-8 text-center">
+                <h1 className="text-2xl">CPM</h1>
+                  <p className="mt-4 text-4xl">15.800</p>
+                </div>                
+              </div>
+              </div>
+
+              <div className="flex justify-center w-full p-4 gap-6">
+                <button className="bg-#262626 text-white font-semibold text-xl py-2 px-4 rounded-xl border-2 border-white w-[65%] hover:border-purple-500 ">
+                  Promote Space
+                </button>
+                <button className="bg-#262626 text-white font-semibold text-xl py-2 px-4 rounded-xl border-solid border-2 border-white w-[30%] hover:border-purple-500">
+                  Space Settings
+                </button>
+              </div>
+            </div>
+            </div>
+          </div>*/}
 
            
 
@@ -154,23 +207,26 @@ const Dashboard = () => {
               <div className=' w-[92%] mt-4 justify-between py-8 px-5 place-self-center rounded-3xl bg-[#191919] text-center text-4xl place-items-center'><BiPyramid className='h-24 w-full'></BiPyramid>Start Futuring</div>
               </div>
             </div>
-            <div id="accsettings" className='relative h-screen'><h2 className='absolute top-[20%] left-14 text-3xl md:text-5xl font-bold'>Account Settings</h2>
-            <div className='absolute p-5 gap-10 top-[28%] bg-transparent left-0 max-h-[75%] overflow-x-hidden overflow-hidden h-[75%] w-full rounded-l-3xl'>
-              <form onSubmit={() => updateUser()} className='relative flex flex-col gap-4 top-5 scale-110 md:left-12' encType='multipart/form-data'>
-              <Input label='Change Nickname' color="purple" size='lg' className='border-2 border-white' style={{backgroundColor:'#282828',}} onChange={(e) => {setUsername(e.target.value); console.log(e.target.value)}}></Input>
-              <Input label='Change Email*' color="purple" className='border-2 border-white' style={{backgroundColor:'#282828'}} onChange={(e) => setUseremail(e.target.value)}></Input>
-              <Avatar
-                variant="circular"
-                size='xxl'
-                alt="UserLogo"
-                className={`cursor-pointer mt-5 place-self-center`}
-                src={userImage || '/img/pp_comp.webp'}
-              />
-              <Input type="file" color="purple"  className='border-2 border-white' onChange={(e) => handleFileUpload(e)} style={{backgroundColor:'#282828'}} label='Change profile picture'></Input>
-              <Button type='submit' color='purple' > Save </Button>
-              <p className='text-center text-xs text-red-500'>*Your stripe customer mail will not change</p>
-              </form>
-                  
+            <div className='container w-auto'>
+              <div id="accsettings" className='relative h-screen'><h2 className='absolute top-[20%] left-14 text-3xl md:text-5xl font-bold'>Account Settings</h2>
+                <div className='absolute p-5 gap-10 top-[28%] bg-transparent left-0 max-h-[75%] overflow-x-hidden overflow-hidden h-[75%] w-full rounded-l-3xl'>
+                
+                <form onSubmit={() => updateUser()} className='relative flex flex-col gap-4 top-5 scale-110 md:left-12' encType='multipart/form-data'>
+                <Input label='Change Nickname' color="purple" size='lg' className='border-2 border-white' style={{backgroundColor:'#282828',}} onChange={(e) => {setUsername(e.target.value); console.log(e.target.value)}}></Input>
+                <Input label='Change Email*' color="purple" className='border-2 border-white' style={{backgroundColor:'#282828'}} onChange={(e) => setUseremail(e.target.value)}></Input>
+                <Avatar
+                  variant="circular"
+                  size='xxl'
+                  alt="UserLogo"
+                  className={`cursor-pointer mt-5 place-self-center`}
+                  src={userImage || '/img/pp_comp.webp'}
+                />
+                <Input type="file" color="purple"  className='border-2 border-white' onChange={(e) => handleFileUpload(e)} style={{backgroundColor:'#282828'}} label='Change profile picture'></Input>
+                <Button type='submit' color='purple' > Save </Button>
+                <p className='text-center text-xs text-red-500'>*Your stripe customer mail will not change</p>
+                </form>
+                    
+                </div>
               </div>
             </div>
         </div>

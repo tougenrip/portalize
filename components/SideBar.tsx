@@ -105,7 +105,74 @@ const SideBar = (req,res) => {
     animate={"animate"}  
     transition={{ damping:0}}
     >
-    <div className="fixed z-50 w-60 lg:w-80 xl:bottom-0 left-0 xl:left-20 rounded-t-xl max-w-md backdrop-blur-lg flex flex-col items-center bg-paffbg h-screen xl:h-[80vh]">
+
+<div className="fixed w-60 lg:w-80 xl:w-[400px] xl:bottom-0 left-0 xl:left-20 xl:top-44 rounded-t-xl max-w-md backdrop-blur-lg flex flex-col items-center bg-[#202020] gap-3 h-[840px] px-10 py-12 rounded-[33px]">  
+  <div className='flex justify-center'>
+        <Avatar
+                variant="circular"
+                size='xxl'
+                alt="UserLogo"
+                className={`cursor-pointer mt-5`}
+                src={userImage || '/img/pp_comp.webp'}
+              />
+        
+
+        </div>
+        <div className='mt-5 text-center'>
+          <p className='flex flex-row gap-1 text-center justify-center place-items-center'>
+            {userName} {isActive ? (<Tooltip content="Premium">
+              <CheckBadgeIcon className={`relative w-6 h-6 ${isActive ? (''): ('hidden')}`}>
+                </CheckBadgeIcon></Tooltip>) : ('')}</p>
+                <p className='text-sm flex flex-row gap-2 text-[#666666]'>{userEmail}</p>
+        </div>
+        <div className='flex flex-col w-full gap-4 mt-20 '>
+  <Link href={''}><Tooltip content="Coming Soon"> 
+  <div className="bg-[#282828] flex flex-col ml-1 shrink-0 items-end py-2 rounded-lg">
+    <div className="font-['Gilroy'] font-light text-white self-center">Avatar</div>
+  </div>
+</Tooltip></Link>
+<Link href={'#myspaces'}>
+   <button className="bg-[#282828] flex flex-col shrink-0 items-end w-full py-2 rounded-lg">
+    <div className="font-['Gilroy'] font-light text-white self-center">
+      My Spaces
+    </div>
+  </button>
+</Link> 
+<Link href={'#analytics'}>
+  <button className=" bg-[#282828] flex flex-col shrink-0 w-full items-center py-2 h-auto rounded-lg">
+    <div className="font-['Gilroy'] font-light text-white ">
+      Analitycs
+    </div>
+  </button>
+</Link> 
+<Link href={'#adverts'}>
+  <button className="bg-[#282828] flex flex-col shrink-0 items-end w-full py-2 rounded-lg">
+    <div className="font-['Gilroy'] font-light text-white self-center">
+      Advertisement Panel
+    </div>
+  </button>
+</Link> <Link href={'#accsettings'}>
+  <button className="bg-[#282828] flex flex-col shrink-0 items-end w-full py-2 rounded-lg">
+    <div className="font-['Gilroy'] font-light text-white self-center">
+      Account Settings
+    </div>
+  </button>
+</Link> 
+        </div>
+  
+  
+  {isActive ? (''):(<button className='bg-[linear-gradient(180deg,_#9a4eff_0%,#3b2aff_100%)] bg-cover bg-50%_50% bg-blend-normal flex flex-col justify-center h-16 shrink-0 items-center mx-px w-full rounded-lg my-20' onClick={() => {if (isCheckoutLoading) return;else goToCheckout();}}>
+  <div className="text-2xl font-['Gilroy'] font-bold text-white self-center">
+      Upgrade
+    </div>
+        </button>)}
+        
+        {isMobile ? (<div className='absolute -right-10 top-1/4 z-50'>
+          <IconButton onClick={() => setSideOpen(current => !current)} variant='gradient' color={'gray'}><Bars3Icon className='h-6 w-6' strokeWidth={2}/></IconButton>
+        </div>) : ('')}
+</div> 
+
+   {/* <div className="fixed z-50 w-60 lg:w-80 xl:bottom-0 left-0 xl:left-20 rounded-t-xl max-w-md backdrop-blur-lg flex flex-col items-center bg-paffbg h-screen xl:h-[80vh]">
         
         <div className='flex'>
         <Avatar
@@ -135,7 +202,7 @@ const SideBar = (req,res) => {
           <IconButton onClick={() => setSideOpen(current => !current)} variant='gradient' color={'gray'}><Bars3Icon className='h-6 w-6' strokeWidth={2}/></IconButton>
         </div>) : ('')}
         
-    </div>
+  </div>*/}
     </motion.div>
     </>
   )
