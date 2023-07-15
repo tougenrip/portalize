@@ -112,9 +112,8 @@ const Dashboard = () => {
             <SideBar/>
         </div>
         
-        <div className='w-full '>   
+        <div className='w-full h-auto'> 
 
-            
             <div id="myspaces" className='relative h-screen'>
               <h2 className='absolute top-[10%] text-5xl md:text-5xl font-bold '>My Spaces</h2>
               <div className='absolute flex flex-col gap-10 top-[20%] left-0 max-h-[100%]    h-[100%] w-full'>        
@@ -148,7 +147,7 @@ const Dashboard = () => {
                 {/*<UserMaps/>*/}
               </div>
             </div>
-            <div id="analytics" className='relative h-screen md:top-0 top-20 my-16 '>
+            <div id="analytics" className='relative h-screen md:top-0  my-16 '>
               <div className="text-5xl font-['Gilroy'] font-bold text-white w-full ">
                 Analitycs
                 <br />
@@ -166,7 +165,7 @@ const Dashboard = () => {
                     className="min-h-0 min-w-0 mt-6 w-6 shrink-0"
                   />
                 </div>
-                <div className="bg-[#262626] flex flex-col md:gap-10 gap-6 w-full h-full md:px-16 md:py-12 py-4 px-4 rounded-[32px]">
+                <div className="bg-[#262626] flex flex-col md:gap-10 gap-6 w-full h-full md:px-16 md:py-12 py-4 px-4 rounded-bl-[32px]">
                   <div className="whitespace-nowrap text-5xl font-['Gilroy'] font-light text-white self-start ">
                     Tedy’s Gallery
                   </div>
@@ -233,20 +232,103 @@ const Dashboard = () => {
                       </div>
                     </div>
                   </div>
-                  <div className="relative flex flex-col md:flex-row justify-between items-start py-3 gap-5">
-                      <div className="border-solid border-white bg-[#202020] w-2/3  border-4 rounded-lg text-center py-2">
+                  <div className="relative flex flex-col md:flex-row justify-between sm:items-start itemns-center py-3 gap-5">
+                      <button className="border-solid border-white bg-[#202020] w-2/3  border-4 rounded-lg text-center py-2">
                         <span className="text-xl font-['Gilroy'] font-bold text-white ">
                           Space Settings
                         </span>
-                        </div>
-                      <div className="border-solid border-[#9c4fff] w-full md:w-1/3  bg-[#202020] md:top-0 flex flex-col items-end  border-4 rounded-lg text-center py-2">
+                        </button>
+                      <button className="border-solid border-[#9c4fff] w-full md:w-1/3  bg-[#202020] md:top-0 flex flex-col items-end  border-4 rounded-lg text-center py-2">
                         <span className="text-xl font-['Gilroy'] font-bold text-white w-full">
                           Promote Space
                         </span>
-                    </div>
+                    </button>
                   </div>
                 </div>
               </div>
+            </div>
+
+            <div id="accsettings" className='relative h-screen my-16'>
+          <div  className="whitespace-nowrap text-4xl font-['Gilroy'] font-bold text-[#6b3cff] w-full">
+            Account Settings
+          </div>
+          <div className="bg-[rgba(32,_32,_32,_0.54)] flex flex-col w-full h-[738px] items-start pt-24 pb-20 px-[116px] rounded-[48px]">
+          <div className="flex flex-row gap-8 w-3/5 items-center mb-6 ml-1">
+            <div className="whitespace-nowrap text-xl font-['Gilroy'] font-light text-[#c7c4c4]  shrink-0">
+              Profile Picture
+            </div>
+            <img
+              src="https://file.rendit.io/n/WqnFbSbsKNeKmmpgeWWB.png"
+              className="min-h-0 min-w-0 w-12 shrink-0"
+            />
+            <div className="flex flex-col mt-px items-start">
+              <div className="whitespace-nowrap text-xl font-['Gilroy'] font-light text-white self-stretch">
+                Uplod New Picture
+              </div>
+              <div className="text-xl font-['Gilroy'] font-light text-[#f10707] ">
+                Remove
+              </div>
+            </div>
+          </div>
+          <div className="bg-[linear-gradient(90deg,_#8847ff_42%,#5a35ff_398%)] bg-cover bg-50%_50% bg-blend-normal self-stretch h-px shrink-0 mb-5 mr-5 rounded-[26px]" />
+          <div className="flex flex-row justify-between w-3/5 items-center mb-5 ml-1">
+            <div className="text-xl font-['Gilroy'] font-light text-[#c7c4c4]  ">
+              Name
+            </div>
+            <div className="text-xl font-['Gilroy'] font-light text-white w-40 ">
+              Ciscowmacarow
+            </div>
+          </div>
+          <div className="bg-[linear-gradient(90deg,_#8847ff_42%,#5a35ff_398%)] bg-cover bg-50%_50% bg-blend-normal self-stretch h-px shrink-0 mb-5 mr-5 rounded-[26px]" />
+          <div className="flex flex-row justify-between w-3/5 items-center mb-5 ml-1">
+            <div className="whitespace-nowrap text-xl font-['Gilroy'] font-light text-[#c7c4c4] mb-px  shrink-0">
+              Date of Birth
+            </div>
+            <div className="text-xl font-['Gilroy'] font-light text-white">
+              December / 01 / 01
+            </div>
+          </div>
+          <div className="bg-[linear-gradient(90deg,_#8847ff_42%,#5a35ff_398%)] bg-cover bg-50%_50% bg-blend-normal self-stretch h-px shrink-0 mb-5 mr-5 rounded-[26px]" />
+          <div className="flex flex-row justify-between gap-64 items-center mb-5 ml-1">
+            <div className="text-xl font-['Gilroy'] font-light text-[#c7c4c4] mb-px shrink-0">
+              Gender
+            </div>
+            <div className="text-xl font-['Gilroy'] font-light text-white ">
+              Male
+            </div>
+          </div>
+          <div className="bg-[linear-gradient(90deg,_#8847ff_42%,#5a35ff_398%)] bg-cover bg-50%_50% bg-blend-normal self-stretch h-px shrink-0 mb-10 mr-5 rounded-[26px]" />
+          <div className="whitespace-nowrap text-2xl font-['Gilroy'] font-bold text-white w-[141px] mb-6 ml-1">
+            Account Info
+          </div>
+          <div className="flex flex-row justify-between w-3/5 items-center mb-5 ml-1">
+            <div className="text-xl font-['Gilroy'] font-light text-[#c7c4c4] shrink-0">
+              Email
+            </div>
+            <div className="text-xl font-['Gilroy'] font-light text-white">
+              example@gmail.com
+            </div>
+          </div>
+          <div className="bg-[linear-gradient(90deg,_#8847ff_42%,#5a35ff_398%)] bg-cover bg-50%_50% bg-blend-normal self-stretch  h-px shrink-0 rounded-[26px]" />
+          <div className="flex flex-row justify-around w-full items-center mb-5 ml-1">
+            <div className="text-xl font-['Gilroy'] font-light text-[#c7c4c4] self-end shrink-0">
+              Password
+            </div>
+            <div className="text-4xl font-['Gilroy'] font-light text-white ">
+              .........
+            </div>
+          </div>
+          <div className="bg-[linear-gradient(90deg,_#8847ff_42%,#5a35ff_398%)] bg-cover bg-50%_50% bg-blend-normal self-stretch h-px shrink-0 mb-5 mr-5 rounded-[26px]" />
+          <div className="flex flex-row justify-around w-full mb-5 ml-1">
+            <div className="whitespace-nowrap text-xl font-['Gilroy'] font-light text-[#c7c4c4]  shrink-0 ">
+              Wallet ID
+            </div>
+            <div className="text-xl font-['Gilroy'] font-light text-white self-center">
+              Connect Wallet
+            </div>
+          </div>
+          <div className="bg-[linear-gradient(90deg,_#8847ff_42%,#5a35ff_398%)] bg-cover bg-50%_50% bg-blend-normal self-stretch mr-5 h-px shrink-0 rounded-[26px]" />
+        </div>
             </div>
 
 
@@ -314,7 +396,7 @@ const Dashboard = () => {
 
            
 
-            <div id="edvertsec" className='relative my-80 !visible !block h-[1300px] md:h-[1100px]'><h2 className='absolute top-[20%] left-5  md:left-14 text-3xl md:text-5xl font-bold'>Advertisement Panel</h2><BiListUl className='absolute top-[22%] z-40 right-5 md:right-20 h-5 w-5' onClick={() => setAdvPanelOpen(current => !current)}></BiListUl>
+            {/*<div id="edvertsec" className='relative my-80 !visible !block h-[1300px] md:h-[1100px]'><h2 className='absolute top-[20%] left-5  md:left-14 text-3xl md:text-5xl font-bold'>Advertisement Panel</h2><BiListUl className='absolute top-[22%] z-40 right-5 md:right-20 h-5 w-5' onClick={() => setAdvPanelOpen(current => !current)}></BiListUl>
             <div className={advpanelOpen ? ('absolute z-40 top-[31.5%]  !max-w-screen md:left-10 md:w-[95%]'):('hidden')}><AdvPanel/></div>
               <div className='absolute flex flex-col gap-5 top-[30%] bg-transparent left-0 max-h-[75%] overflow-x-hidden overflow-hidden h-min w-[100%] rounded-l-3xl'>
               <div className='relative !min-h-min flex flex-col md:grid md:grid-rows-4 md:grid-cols-4 md:grid-flow-col gap-4 justify-between px-6 top-5 md:left-5 rounded-3xl md:w-[96%]'>
@@ -324,8 +406,8 @@ const Dashboard = () => {
               </div>
               <div className=' w-[92%] mt-4 justify-between py-8 px-5 place-self-center rounded-3xl bg-[#191919] text-center text-4xl place-items-center'><BiPyramid className='h-24 w-full'></BiPyramid>Start Futuring</div>
               </div>
-            </div>
-            <div className='container w-auto'>
+        </div>*/}
+            {/*<div className='container w-auto'>
               <div id="accsettings" className='relative h-screen'><h2 className='absolute top-[20%] left-14 text-3xl md:text-5xl font-bold'>Account Settings</h2>
                 <div className='absolute p-5 gap-10 top-[28%] bg-transparent left-0 max-h-[75%] overflow-x-hidden overflow-hidden h-[75%] w-full rounded-l-3xl'>
                 
@@ -346,7 +428,7 @@ const Dashboard = () => {
                     
                 </div>
               </div>
-            </div>
+        </div>*/}
         </div>
     </main>
     </>
