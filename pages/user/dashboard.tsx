@@ -112,11 +112,11 @@ const Dashboard = () => {
             <SideBar/>
         </div>
         
-        <div className='w-full xl:w-'>   
+        <div className='w-full '>   
 
             
             <div id="myspaces" className='relative h-screen'>
-              <h2 className='absolute top-[10%] pl-5 text-5xl md:text-5xl font-bold '>My Spaces</h2>
+              <h2 className='absolute top-[10%] text-5xl md:text-5xl font-bold '>My Spaces</h2>
               <div className='absolute flex flex-col gap-10 top-[20%] left-0 max-h-[100%]    h-[100%] w-full'>        
                 
                 <div className="relative flex flex-col justify-end w-full items-end pt-56 pb-8 ">
@@ -148,12 +148,113 @@ const Dashboard = () => {
                 {/*<UserMaps/>*/}
               </div>
             </div>
+            <div id="analytics" className='relative h-screen md:top-0 top-20 my-16 '>
+              <div className="text-5xl font-['Gilroy'] font-bold text-white w-full ">
+                Analitycs
+                <br />
+                <div className="contents">
+                  <br />
+                </div>
+              </div>
+              <div className=''>
+                <div className="bg-[url(https://file.rendit.io/n/ZTZoKEjYnjI6OgGA3RSP.png)] bg-cover bg-50%_50% bg-blend-normal flex flex-row w-full h-[295px] items-start pt-3 px-6">
+                  <div className="text-4xl font-['Gilroy'] font-bold text-white w-5 shrink-0">
+                    7
+                  </div>
+                  <img
+                    src="https://file.rendit.io/n/rmN5xRJU6fKUaqyXw6Is.svg"
+                    className="min-h-0 min-w-0 mt-6 w-6 shrink-0"
+                  />
+                </div>
+                <div className="bg-[#262626] flex flex-col md:gap-10 gap-6 w-full h-full md:px-16 md:py-12 py-4 px-4 rounded-[32px]">
+                  <div className="whitespace-nowrap text-5xl font-['Gilroy'] font-light text-white self-start ">
+                    Tedy’s Gallery
+                  </div>
+                  <div className="flex md:flex-row flex-col justify-start gap-4  items-center">
+                    <div className="border-solid border-[#9c4fff] bg-[#202020] flex flex-col justify-center gap-4 py-3  items-center border rounded-lg px-12">
+                      <div className="whitespace-nowrap font-['Gilroy'] font-light text-white">
+                        Daily Users
+                      </div>
+                      <div className="text-4xl font-['Gilroy'] font-light text-whit">
+                        60
+                      </div>
+                    </div>
+                    <div className="border-solid border-[#9c4fff] bg-[#202020] flex flex-col justify-center gap-4 py-3 items-center border rounded-lg px-12">
+                      <div className="whitespace-nowrap font-['Gilroy'] font-light text-white">
+                        Monthly Users
+                      </div>
+                      <div className="text-4xl font-['Gilroy'] font-light text-white">
+                        880
+                      </div>
+                    </div>
+                    <div className="border-solid border-[#9c4fff] bg-[#202020] flex flex-col justify-center gap-4 w-auto py-3  items-center border rounded-lg px-16">
+                      <div className="whitespace-nowrap font-['Gilroy'] font-light text-white ">
+                        Total User Rate
+                      </div>
+                      <div className="whitespace-nowrap text-4xl font-['Gilroy'] font-light text-white text-center">
+                        885 Minutes
+                      </div>
+                    </div>
+                  </div>
+                  <div className="border-solid border-white bg-[#202020] flex gap-4 md:gap-20 items-center justify-around px-20 py-4 border rounded md:flex-row flex-col">
+                    <div className="flex flex-col gap-4 items-center">
+                      <div className="text-xl font-['Gilroy'] font-light text-white mx-1">
+                        Engagement
+                      </div>
+                      <div className="text-4xl font-['Gilroy'] font-light text-white">
+                        68.000
+                      </div>
+                    </div>
+                    <div className="bg-[#d9d9d9] w-px shrink-0 md:h-24 h-none" />
+                    <div className="flex flex-col gap-4 items-center">
+                      <div className="whitespace-nowrap text-xl font-['Gilroy'] font-light text-white self-stretch">
+                        Active User
+                      </div>
+                      <div className="text-4xl font-['Gilroy'] font-light text-white ">
+                        68
+                      </div>
+                    </div>
+                    <div className="bg-[#d9d9d9] w-px shrink-0 md:h-24 h-none " />
+                    <div className="flex flex-col items-center gap-4 w-24 shrink-0 " >
+                      <div className="whitespace-nowrap text-xl font-['Gilroy'] font-light text-white">
+                        Ads Clicks
+                      </div>
+                      <div className="text-4xl font-['Gilroy'] font-light text-white mx-3">
+                        220
+                      </div>
+                    </div>
+                    <div className="bg-[#d9d9d9] w-px shrink-0 md:h-24 h-none " />
+                    <div className="flex flex-col gap-4 items-center">
+                      <div className="text-xl font-['Gilroy'] font-light text-white ">
+                        CPM
+                      </div>
+                      <div className="text-4xl font-['Gilroy'] font-light text-white self-stretch">
+                        15.800
+                      </div>
+                    </div>
+                  </div>
+                  <div className="relative flex flex-col md:flex-row justify-between items-start py-3 gap-5">
+                      <div className="border-solid border-white bg-[#202020] w-2/3  border-4 rounded-lg text-center py-2">
+                        <span className="text-xl font-['Gilroy'] font-bold text-white ">
+                          Space Settings
+                        </span>
+                        </div>
+                      <div className="border-solid border-[#9c4fff] w-full md:w-1/3  bg-[#202020] md:top-0 flex flex-col items-end  border-4 rounded-lg text-center py-2">
+                        <span className="text-xl font-['Gilroy'] font-bold text-white w-full">
+                          Promote Space
+                        </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
 
-            <div id="analytics" className='relative h-screen'><h2 className='absolute top-[20%] left-14 text-3xl md:text-5xl font-bold' >Analytics</h2>
+
+            {/*<div id="analytics" className='relative h-screen'><h2 className='absolute top-[20%] left-14 text-3xl md:text-5xl font-bold' >Analytics</h2>
               <div className="contents">
                 <br />
               </div>
-            </div>
+  </div>*/}
 
 
            {/* <div className="w-1/2 h-[528px] bg-[#262626] absolute top-[294px] left-[702px] flex flex-col justify-end gap-6 px-6 py-8 rounded-[32px]">            
@@ -213,7 +314,7 @@ const Dashboard = () => {
 
            
 
-            <div id="edvertsec" className='relative !visible !block h-[1300px] md:h-[1100px]'><h2 className='absolute top-[20%] left-5  md:left-14 text-3xl md:text-5xl font-bold'>Advertisement Panel</h2><BiListUl className='absolute top-[22%] z-40 right-5 md:right-20 h-5 w-5' onClick={() => setAdvPanelOpen(current => !current)}></BiListUl>
+            <div id="edvertsec" className='relative my-80 !visible !block h-[1300px] md:h-[1100px]'><h2 className='absolute top-[20%] left-5  md:left-14 text-3xl md:text-5xl font-bold'>Advertisement Panel</h2><BiListUl className='absolute top-[22%] z-40 right-5 md:right-20 h-5 w-5' onClick={() => setAdvPanelOpen(current => !current)}></BiListUl>
             <div className={advpanelOpen ? ('absolute z-40 top-[31.5%]  !max-w-screen md:left-10 md:w-[95%]'):('hidden')}><AdvPanel/></div>
               <div className='absolute flex flex-col gap-5 top-[30%] bg-transparent left-0 max-h-[75%] overflow-x-hidden overflow-hidden h-min w-[100%] rounded-l-3xl'>
               <div className='relative !min-h-min flex flex-col md:grid md:grid-rows-4 md:grid-cols-4 md:grid-flow-col gap-4 justify-between px-6 top-5 md:left-5 rounded-3xl md:w-[96%]'>
