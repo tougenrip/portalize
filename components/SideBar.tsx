@@ -127,32 +127,32 @@ const SideBar = (req,res) => {
         </div>
         <div className='flex flex-col w-full gap-4 mt-20 '>
   <Link href={''}><Tooltip content="Coming Soon"> 
-  <div className="bg-[#282828] flex flex-col ml-1 shrink-0 items-end py-2 rounded-lg">
+  <div className="bg-[#282828] flex flex-col ml-1 shrink-0 items-end py-2 rounded-lg border border-transparent hover:border-3 hover:border-solid hover:border-[#7F44FF] hover:bg-[#282828] focus:border-3 focus:border-solid focus:border-[#7F44FF] focus:bg-[#202020]">
     <div className="font-['Gilroy'] font-light text-white self-center">Avatar</div>
   </div>
 </Tooltip></Link>
 <Link href={'#myspaces'}>
-   <button className="bg-[#282828] flex flex-col shrink-0 items-end w-full py-2 rounded-lg">
+   <button className="bg-[#282828] flex flex-col shrink-0 items-end w-full py-2 rounded-lg border border-transparent hover:border-3 hover:border-solid hover:border-[#7F44FF] hover:bg-[#282828] focus:border-3 focus:border-solid focus:border-[#7F44FF] focus:bg-[#202020]">
     <div className="font-['Gilroy'] font-light text-white self-center">
       My Spaces
     </div>
   </button>
 </Link> 
 <Link href={'#analytics'}>
-  <button className=" bg-[#282828] flex flex-col shrink-0 w-full items-center py-2 h-auto rounded-lg">
+  <button className=" bg-[#282828] flex flex-col shrink-0 w-full items-center py-2 h-auto rounded-lg border border-transparent hover:border-3 hover:border-solid hover:border-[#7F44FF] hover:bg-[#282828] focus:border-3 focus:border-solid focus:border-[#7F44FF] focus:bg-[#202020]">
     <div className="font-['Gilroy'] font-light text-white ">
       Analitycs
     </div>
   </button>
 </Link> 
 <Link href={'#adverts'}>
-  <button className="bg-[#282828] flex flex-col shrink-0 items-end w-full py-2 rounded-lg">
+  <button className="bg-[#282828] flex flex-col shrink-0 items-end w-full py-2 rounded-lg border border-transparent hover:border-3 hover:border-solid hover:border-[#7F44FF] hover:bg-[#282828] focus:border-3 focus:border-solid focus:border-[#7F44FF] focus:bg-[#202020]">
     <div className="font-['Gilroy'] font-light text-white self-center">
       Advertisement Panel
     </div>
   </button>
 </Link> <Link href={'#accsettings'}>
-  <button className="bg-[#282828] flex flex-col shrink-0 items-end w-full py-2 rounded-lg">
+  <button className="bg-[#282828] flex flex-col shrink-0 items-end w-full py-2 rounded-lg border border-transparent hover:border-3 hover:border-solid hover:border-[#7F44FF] hover:bg-[#282828] focus:border-3 focus:border-solid focus:border-[#7F44FF] focus:bg-[#202020]">
     <div className="font-['Gilroy'] font-light text-white self-center">
       Account Settings
     </div>
