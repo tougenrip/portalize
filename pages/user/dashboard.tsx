@@ -112,7 +112,7 @@ const Dashboard = () => {
             <SideBar/>
         </div>
         
-        <div className='w-full h-auto'> 
+        <div className='w-full'> 
 
             <div id="myspaces" className='relative h-screen'>
               <h2 className='absolute top-[10%] text-5xl md:text-5xl font-bold '>My Spaces</h2>
@@ -147,7 +147,7 @@ const Dashboard = () => {
                 {/*<UserMaps/>*/}
               </div>
             </div>
-            <div id="analytics" className='relative h-screen md:top-0  my-16 '>
+            <div id="analytics" className='relative h-screen md:top-20  '>
               <div className="text-5xl font-['Gilroy'] font-bold text-white w-full ">
                 Analitycs
                 <br />
@@ -248,12 +248,24 @@ const Dashboard = () => {
               </div>
             </div>
 
-            <div id="accsettings" className='relative h-screen my-16'>
-          <div  className="whitespace-nowrap text-4xl font-['Gilroy'] font-bold text-[#6b3cff] w-full">
+            <div id="adverts" className='relative my-80 top-[450px]  md:top-[0px] !visible !block h-screen md:h-[1100px]'><h2 className='absolute top-[20%] left-5  md:left-14 text-3xl md:text-5xl font-bold'>Advertisement Panel</h2><BiListUl className='absolute top-[22%] z-40 right-5 md:right-20 h-5 w-5' onClick={() => setAdvPanelOpen(current => !current)}></BiListUl>
+            <div className={advpanelOpen ? ('absolute z-40 top-[31.5%]  !max-w-screen md:left-10 md:w-[95%]'):('hidden')}><AdvPanel/></div>
+              <div className='absolute flex flex-col gap-5 top-[30%] bg-transparent left-0 max-h-[75%] overflow-x-hidden overflow-hidden h-min w-[100%] rounded-l-3xl'>
+              <div className='relative !min-h-min flex flex-col md:grid md:grid-rows-4 md:grid-cols-4 md:grid-flow-col gap-4 justify-between px-6 top-5 md:left-5 rounded-3xl md:w-[96%]'>
+                  <div className='row-span-2 col-span-2 flex justify-between py-8 px-5 w-auto rounded-3xl bg-[#191919]  text-center md:text-4xl place-items-center'><FaSolarPanel className='w-12 h-12 md:h-24 md:w-24 md:col-span-1 text'></FaSolarPanel>Banner Advertisement<Button color='purple' size='lg' className='bg-gradient-to-br from-purple-500 to-purple-800 text-xl' onClick={() => {if (isCheckoutLoading) return;else goToBannerCheckout();}}>Buy</Button></div>
+                  <div className='row-span-2 col-span-2 flex justify-between py-8 px-5 w-auto rounded-3xl bg-[#191919]  text-center md:text-4xl place-items-center'><BiCubeAlt className='w-12 h-12 md:h-24 md:w-24 md:col-span-1 text'></BiCubeAlt>Product Advertisement<Button color='purple' size='lg' className='relative left-2 bg-gradient-to-br from-purple-500 to-purple-800 text-xl' >Buy</Button></div>
+                  <div className='md:row-span-4 col-span-2  justify-between py-8 px-5 w-full rounded-3xl bg-[#191919] h-min text-center text-xl md:text-4xl place-items-center'><BiGlobeAlt className=' h-48 my-5 w-full place-self-center'></BiGlobeAlt>Sky Advertisement<form className='text-xl text-center flex place-content-center my-4 gap-3 place-self-center' >For <input type="number" placeholder='x' onChange={(e) => setMinutes(e.target.value)} className='text-center w-10'/> minutes</form><Button color='purple' size='lg' className='bg-gradient-to-br from-purple-500 to-purple-800 text-xl' onClick={() => {if (isCheckoutLoading) return;else goToSkyCheckout();}}>Buy</Button></div>
+              </div>
+              <div className=' w-[92%] mt-4 justify-between py-8 px-5 place-self-center rounded-3xl bg-[#191919] text-center text-4xl place-items-center'><BiPyramid className='h-24 w-full'></BiPyramid>Start Event</div>
+              </div>
+        </div>
+
+            <div id="accsettings" className='relative h-screen md:gap-10'>
+          <div  className="whitespace-nowrap text-5xl font-['Gilroy'] font-bold text-[#6b3cff] w-full py-10">
             Account Settings
           </div>
           <div className="bg-[rgba(32,_32,_32,_0.54)] flex flex-col w-full h-[738px] items-start pt-24 pb-20 px-[116px] rounded-[48px]">
-          <div className="flex flex-row gap-8 w-3/5 items-center mb-6 ml-1">
+          <div className="flex flex-row gap-8 w-full items-center justify-around mb-6 ml-1">
             <div className="whitespace-nowrap text-xl font-['Gilroy'] font-light text-[#c7c4c4]  shrink-0">
               Profile Picture
             </div>
@@ -271,7 +283,7 @@ const Dashboard = () => {
             </div>
           </div>
           <div className="bg-[linear-gradient(90deg,_#8847ff_42%,#5a35ff_398%)] bg-cover bg-50%_50% bg-blend-normal self-stretch h-px shrink-0 mb-5 mr-5 rounded-[26px]" />
-          <div className="flex flex-row justify-between w-3/5 items-center mb-5 ml-1">
+          <div className="flex flex-row justify-between w-full items-center pr-96 mb-5 ml-1">
             <div className="text-xl font-['Gilroy'] font-light text-[#c7c4c4]  ">
               Name
             </div>
@@ -280,7 +292,7 @@ const Dashboard = () => {
             </div>
           </div>
           <div className="bg-[linear-gradient(90deg,_#8847ff_42%,#5a35ff_398%)] bg-cover bg-50%_50% bg-blend-normal self-stretch h-px shrink-0 mb-5 mr-5 rounded-[26px]" />
-          <div className="flex flex-row justify-between w-3/5 items-center mb-5 ml-1">
+          <div className="flex flex-row justify-between  w-2/4 items-center mb-5 ml-1">
             <div className="whitespace-nowrap text-xl font-['Gilroy'] font-light text-[#c7c4c4] mb-px  shrink-0">
               Date of Birth
             </div>
@@ -289,7 +301,7 @@ const Dashboard = () => {
             </div>
           </div>
           <div className="bg-[linear-gradient(90deg,_#8847ff_42%,#5a35ff_398%)] bg-cover bg-50%_50% bg-blend-normal self-stretch h-px shrink-0 mb-5 mr-5 rounded-[26px]" />
-          <div className="flex flex-row justify-between gap-64 items-center mb-5 ml-1">
+          <div className="flex flex-row justify-between gap-64 w-2/4 items-center mb-5 ml-1">
             <div className="text-xl font-['Gilroy'] font-light text-[#c7c4c4] mb-px shrink-0">
               Gender
             </div>
