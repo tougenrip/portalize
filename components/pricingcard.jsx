@@ -7,7 +7,6 @@ import {
   Button,
 } from "@material-tailwind/react";
 import { CheckIcon } from "@heroicons/react/24/outline";
-import {checkout} from "../checkout"
 import { useSession } from "next-auth/react";
 import Link from "next/link";
 import { useState } from "react";
