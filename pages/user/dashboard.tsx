@@ -1,15 +1,14 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState } from 'react'
 import SideBar from '../../components/SideBar'
 import Navbar from '../../components/Navbar'
-import { Avatar, Button, IconButton, Input, Option, Select } from '@material-tailwind/react'
+import { Avatar, Button, Input } from '@material-tailwind/react'
 import { useSession } from 'next-auth/react'
-import useSWR from 'swr'
-import Link from 'next/link'
 import UserMaps from '../../components/UserMaps'
 import axios from 'axios'
 import { BiGlobeAlt, BiCubeAlt, BiPyramid, BiListUl } from 'react-icons/bi'
-import { FaCross, FaSolarPanel } from 'react-icons/fa'
+import { FaSolarPanel } from 'react-icons/fa'
 import AdvPanel from '@components/components/AdvPanel'
+import Image from 'next/image'
 // import { AvatarCreator, EditorConfig } from "@readyplayerme/rpm-react-sdk";
 // import { motion } from 'framer-motion'
 // import  AvatarCreate  from '../../components/AvatCreator.js'
@@ -141,7 +140,8 @@ const Dashboard = () => {
                   <div className="text-4xl font-['Gilroy'] font-bold text-white w-5 shrink-0">
                     7
                   </div>
-                  <img
+                  <Image
+                    alt=""
                     src="https://file.rendit.io/n/rmN5xRJU6fKUaqyXw6Is.svg"
                     className="min-h-0 min-w-0 mt-6 w-6 shrink-0"
                   />

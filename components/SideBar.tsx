@@ -1,19 +1,12 @@
 import React , { useState, useEffect } from 'react'
-import Image from 'next/image'
-import { Button,MenuHandler,MenuList,MenuItem,Avatar, IconButton, Tooltip } from '@material-tailwind/react'
+import {  Avatar, IconButton, Tooltip } from '@material-tailwind/react'
 import Link from 'next/link'
-import axios from 'axios'
-import { useSession, signIn, signOut, getSession } from "next-auth/react";
+import { useSession, getSession } from "next-auth/react";
 import {
-  CloudArrowUpIcon,
-  ArrowLongRightIcon,
-  ArrowPathIcon,
-  BookmarkIcon, Bars3Icon, XMarkIcon, PencilSquareIcon,
-  UserCircleIcon,Cog6ToothIcon,PowerIcon,InboxArrowDownIcon,LifebuoyIcon,CheckBadgeIcon
+  Bars3Icon,
+  CheckBadgeIcon
 } from "@heroicons/react/24/outline";
-import {animate, motion} from 'framer-motion'
-import { getServerSession } from 'next-auth'
-import { NextApiRequest, NextApiResponse } from 'next'
+import { motion} from 'framer-motion'
 
 const SideBar = (req,res) => {
 
