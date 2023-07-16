@@ -5,12 +5,11 @@ import {
   Button,
   Flex,
   FormControl,
-  FormLabel,
   Box,
   Heading,
   Text,
 } from "@chakra-ui/react";
-import { Input } from "@material-tailwind/react";
+import { Input } from "@material-tailwind/react/components/Input/index";
 import { Field, Form, Formik } from "formik";
 import axios from "axios";
 import Router from "next/router";
@@ -40,35 +39,6 @@ interface IDivicerProps {
   word?: string;
 }
 
-// const Divider = ({ word }: IDivicerProps) => {
-//   return (
-//     <>
-//       {word ? (
-//         <Flex
-//           w="100%"
-//           alignItems="center"
-//           justifyContent="center"
-//           gap={2}
-//           mb={4}
-//         >
-//           <Box w="100%" border="solid" borderBottom={2} rounded="full"></Box>
-//           <Text>Or</Text>
-//           <Box w="100%" border="solid" borderBottom={2} rounded="full"></Box>
-//         </Flex>
-//       ) : (
-//         <Box
-//           w="100%"
-//           border="solid"
-//           borderBottom={2}
-//           rounded="full"
-//           mb={4}
-//         ></Box>
-//       )}
-//     </>
-//   );
-// };
-
-// { providers }: any
 
 const Auth: NextPage = () => {
   const [authType, setAuthType] = useState("Login");
@@ -84,30 +54,6 @@ const Auth: NextPage = () => {
   const image = '';
   const skyEnabled = false;
   const bannerEnabled = false;
-  // const ProvidersButtons = ({ providers }: any) => (
-  //   <Flex direction="column" w="100%">
-  //     {Object.values(providers).map(
-  //       (provider: any) =>
-  //         provider.name !== "Credentials" && (
-  //           <Button
-  //             key={provider.name}
-  //             mb={4}
-  //             bg={"#24292E"}
-  //             color={"white"}
-  //             _hover={{ bg: "#24292E90" }}
-  //             type="submit"
-  //             onClick={() => {
-  //               signIn(provider.id, {
-  //                 callbackUrl: process.env.URL_DEV as string,
-  //               });
-  //             }}
-  //           >
-  //             <Box>Sign in with {provider.name}</Box>
-  //           </Button>
-  //         )
-  //     )}
-  //   </Flex>
-  // );
 
   const redirectToHome = () => {
     const { pathname } = Router;
@@ -133,7 +79,6 @@ const Auth: NextPage = () => {
       .then(async () => {
         await loginUser();
         redirectToHome();
-        window.alert('You are successfully registered')
       })
       .catch((error) => {
         console.log(error);
@@ -183,12 +128,6 @@ const Auth: NextPage = () => {
               <Text as="u">{oppAuthType[authType]}</Text>
             </button>
           </Text>
-{/* 
-          <Divider />
-
-          <ProvidersButtons providers={providers} />
-
-          <Divider word="Or" /> */}
 
           <Formik
             initialValues={{}} // { email: "", password: "" }
