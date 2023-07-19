@@ -142,6 +142,8 @@ const Dashboard = () => {
                   </div>
                   <Image
                     alt=""
+                    width={18}
+                    height={16}
                     src="https://file.rendit.io/n/rmN5xRJU6fKUaqyXw6Is.svg"
                     className="min-h-0 min-w-0 mt-6 w-6 shrink-0"
                   />

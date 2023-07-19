@@ -1,69 +1,86 @@
 export const items = [
-    // Photo by ivan Torres on Unsplash
-    {
-      id: "c",
-      category: "Pizza",
-      title: "5 Food Apps Delivering the Best of Your City",
-      pointOfInterest: 80,
-      backgroundColor: "#814A0E"
-    },
-    // Photo by Dennis Brendel on Unsplash
-    {
-      id: "f",
-      category: "How to",
-      title: "Arrange Your Apple Devices for the Gram",
-      pointOfInterest: 120,
-      backgroundColor: "#959684"
-    },
-    // Photo by Alessandra Caretto on Unsplash
-    {
-      id: "a",
-      category: "Pedal Power",
-      title: "Map Apps for the Superior Mode of Transport",
-      pointOfInterest: 260,
-      backgroundColor: "#5DBCD2"
-    },
-    // Photo by Taneli Lahtinen on Unsplash
-    {
-      id: "g",
-      category: "Holidays",
-      title: "Our Pick of Apps to Help You Escape From Apps",
-      pointOfInterest: 200,
-      backgroundColor: "#8F986D"
-    },
-    // Photo by Simone Hutsch on Unsplash
-    {
-      id: "d",
-      category: "Photography",
-      title: "The Latest Ultra-Specific Photography Editing Apps",
-      pointOfInterest: 150,
-      backgroundColor: "#FA6779"
-    },
-    // Photo by Siora Photography on Unsplash
-    {
-      id: "h",
-      category: "They're all the same",
-      title: "100 Cupcake Apps for the Cupcake Connoisseur",
-      pointOfInterest: 60,
-      backgroundColor: "#282F49"
-    },
-    // Photo by Yerlin Matu on Unsplash
-    {
-      id: "e",
-      category: "Cats",
-      title: "Yes, They Are Sociopaths",
-      pointOfInterest: 200,
-      backgroundColor: "#AC7441"
-    },
-    // Photo by Ali Abdul Rahman on Unsplash
-    {
-      id: "b",
-      category: "Holidays",
-      title: "Seriously the Only Escape is the Stratosphere",
-      pointOfInterest: 260,
-      backgroundColor: "#CC555B"
-    }
-  ];
-  
-  export const openSpring = { type: "spring", stiffness: 200, damping: 30 };
-  
+  {
+    id: 1,
+    url: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80",
+    title: "Lorem ipsum",
+    description: "Lorem ipsum dolor",
+    tags: ["Mountains", "Aesthetic", "Pretty", "Scenic", "Rugged"],
+  },
+  {
+    id: 2,
+    url: "https://images.unsplash.com/photo-1570641963303-92ce4845ed4c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80",
+    title: "Lorem ipsum",
+    description: "Lorem ipsum dolor",
+    tags: ["Mountains", "Aesthetic", "Pretty", "Scenic", "Rugged"],
+  },
+  {
+    id: 3,
+    url: "https://images.unsplash.com/photo-1477346611705-65d1883cee1e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80",
+    title: "Lorem ipsum",
+    description: "Lorem ipsum dolor",
+    tags: ["Mountains", "Aesthetic", "Pretty", "Scenic", "Rugged"],
+  },
+  {
+    id: 4,
+    url: "https://images.unsplash.com/photo-1614597396930-cd6760b99f7c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80",
+    title: "Lorem ipsum",
+    description: "Lorem ipsum dolor",
+    tags: ["Mountains", "Aesthetic", "Pretty", "Scenic", "Rugged"],
+  },
+  {
+    id: 5,
+    url: "https://images.unsplash.com/34/BA1yLjNnQCI1yisIZGEi_2013-07-16_1922_IMG_9873.jpg?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1742&q=80",
+    title: "Lorem ipsum",
+    description: "Lorem ipsum dolor",
+    tags: ["Mountains", "Aesthetic", "Pretty", "Scenic", "Rugged"],
+  },
+  {
+    id: 6,
+    url: "https://images.unsplash.com/photo-1507629221898-576a56b530bb?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=688&q=80",
+    title: "Lorem ipsum",
+    description: "Lorem ipsum dolor",
+    tags: ["Mountains", "Aesthetic", "Pretty", "Scenic", "Rugged"],
+  },
+  {
+    id: 7,
+    url: "https://images.unsplash.com/photo-1662541109467-a80473ab73e4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80",
+    title: "Lorem ipsum",
+    description: "Lorem ipsum dolor",
+    tags: ["Mountains", "Aesthetic", "Pretty", "Scenic", "Rugged"],
+  },
+  {
+    id: 8,
+    url: "https://images.unsplash.com/photo-1662544954782-4c137c9b34a7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=735&q=80",
+    title: "Lorem ipsum",
+    description: "Lorem ipsum dolor",
+    tags: ["Mountains", "Aesthetic", "Pretty", "Scenic", "Rugged"],
+  },
+  {
+    id: 9,
+    url: "https://images.unsplash.com/photo-1659536009108-ebe9053222d4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80",
+    title: "Lorem ipsum",
+    description: "Lorem ipsum dolor",
+    tags: ["Mountains", "Aesthetic", "Pretty", "Scenic", "Rugged"],
+  },
+  {
+    id: 10,
+    url: "https://images.unsplash.com/photo-1662532577856-e8ee8b138a8b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1456&q=80",
+    title: "Lorem ipsum",
+    description: "Lorem ipsum dolor",
+    tags: ["Mountains", "Aesthetic", "Pretty", "Scenic", "Rugged"],
+  },
+  {
+    id: 11,
+    url: "https://images.unsplash.com/photo-1662436267874-4ab1145ade4a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1886&q=80",
+    title: "Lorem ipsum",
+    description: "Lorem ipsum dolor",
+    tags: ["Mountains", "Aesthetic", "Pretty", "Scenic", "Rugged"],
+  },
+  {
+    id: 12,
+    url: "https://images.unsplash.com/photo-1662514282655-438b87b04995?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80",
+    title: "Lorem ipsum",
+    description: "Lorem ipsum dolor",
+    tags: ["Mountains", "Aesthetic", "Pretty", "Scenic", "Rugged"],
+  },
+];
