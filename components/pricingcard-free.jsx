@@ -13,9 +13,6 @@ import { useSession } from 'next-auth/react'
 export default function PricingCardFree() {
 
   const { data: session, status } = useSession();
-  const userEmail = session?.user?.email;
-  const userImage = session?.user?.image;
-  const userName = session?.user?.name;
   const isLogged = status == 'authenticated';
 
   return (
@@ -38,8 +35,7 @@ export default function PricingCardFree() {
           color="white"
           className="mt-6 flex justify-center gap-1 text-7xl font-normal"
         >
-          <span className="font-gilroy font-light text-6xl leading-none tracking-wider text-white">$</span>0{" "}
-          <span className="self-end font-gilroy font-light text-6xl leading-none tracking-wider text-white">/mo</span>
+          <span className="font-gilroy font-light text-6xl leading-none tracking-wider text-white">$</span>0{" "}<span className="self-end font-gilroy font-light text-6xl leading-none tracking-wider text-white">/mo</span>
         </Typography>
       </CardHeader>
       <CardBody className="p-0">
@@ -59,35 +55,21 @@ export default function PricingCardFree() {
         </ul>
       </CardBody>
       <CardFooter className="mt-12 p-0">
-        <Link href={`${process.env.NEXT_PUBLIC_WEBSITE_URL}editor`}>
-          {isLogged ? (
-            <Link href={`/editor`}>
+        
+          
+            <Link href={isLogged ? (`/editor`):(`/auth`)}>
             <Button
             size="lg"
             color="white"
             className="bg-gradient-to-br from-indigo-600 to-purple-500 rounded-md px-4 py-2 text-white"
             ripple={false}
             fullWidth={true}
-            
           >
-            Launch Editor
+           {isLogged ? ('Launch Editor'):('Register')} 
           </Button>
           </Link>
-          ):(
-          <Link href={`/auth`}>  
-            <Button
-          size="lg"
-          color="white"
-          className="bg-gradient-to-br from-indigo-600 to-purple-500 rounded-md px-4 py-2 text-white"
-          ripple={false}
-          fullWidth={true}
-          
-        >
-          Register
-        </Button>
-        </Link>
-            )}
-        </Link>
+            
+        
       </CardFooter>
     </Card>
   );
