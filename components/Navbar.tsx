@@ -12,10 +12,6 @@ import {
 } from "@heroicons/react/24/outline";
 
 import { useSession, signIn, signOut } from "next-auth/react";
-import ButtonWSignUp from './buttonwSignin'
-const ProfileMenu = () => {
-}
-
 
  const Navbar = () => {
 
@@ -68,14 +64,14 @@ const ProfileMenu = () => {
   return (
     <>
     <div id="header" className=" w-screen !z-50">
-    <div className={` ${stickyClass} bg-base-100 flex flex-row-reverse  justify-end md:flex-row pt-8 pb-4 px-4 gap-0 md:gap-10 md:w-screen md:justify-between md:px-20`}>
+    <div className={` ${stickyClass} bg-base-100 flex flex-row-reverse  justify-end md:flex-row pt-8 pb-4 px-4 space-x-0 md:space-x-10 md:w-screen md:justify-between md:px-20`}>
       <div className=" self-center">
         <Link href={`/`}><Image src='/img/logo_comp.webp' className=" scale-75 md:scale-100" width={218} height={38} alt="Logo"></Image></Link>
       </div>
 
       {isMobile ? (<div>
          
-        <Button name="mobile-menu-button" aria-label="mobile-menu" color="purple" onClick={() => setNavOpen(current => !current)} ripple={false} variant="outlined" className="border-none flex items-center gap-0 p-3">
+        <Button name="mobile-menu-button" aria-label="mobile-menu" color="purple" onClick={() => setNavOpen(current => !current)} ripple={false} variant="outlined" className="border-none flex items-center space-x-0 p-3">
         {navOpen ? (<XMarkIcon color="purple" strokeWidth={2} className="h-5 w-5" />) : (<Bars3Icon color="purple" strokeWidth={2} className="h-5 w-5" />)}
       </Button>
       

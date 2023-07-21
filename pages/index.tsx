@@ -71,7 +71,7 @@ export default function Home() {
           initial={{opacity:0}}
             whileInView={{y:20, opacity:1,}}
             transition={{ delay: 1 }} 
-            className="absolute top-[30%] w-[85%] left-1/2 md:translate-x-0 !-translate-x-1/2 md:left-24 text-5xl xl:text-6xl  text-center md:text-start text-white">Portalize Your <span className="text-transparent bg-gradient-to-br from-[#3b29ff] to-[#9c4fff] !bg-clip-text">
+            className="absolute top-[30%] w-[85%] left-1/2  md:translate-x-0 -translate-x-1/2 md:left-16 text-5xl xl:text-6xl  text-center md:text-start text-white">Portalize Your <span className="text-transparent bg-gradient-to-br from-[#3b29ff] font-bold to-[#9c4fff] !bg-clip-text">
                     <TypeAnimation
                 sequence={[
                   "Community",
@@ -90,7 +90,7 @@ export default function Home() {
             </span>
             <motion.p 
             initial={{opacity:0}}
-            whileInView={{y:20, opacity:1,}}
+            animate={{y:20, opacity:1,}}
             transition={{ delay: 1.2 }}
             className="font-bold text-2xl xl:text-2xl">Influence New Way</motion.p>
             </motion.div>
