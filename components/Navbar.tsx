@@ -36,7 +36,7 @@ import { useSession, signIn, signOut } from "next-auth/react";
   const stickNavbar = () => {
     if (window !== undefined) {
       let windowHeight = window.scrollY;
-      windowHeight > 500 ? setStickyClass('fixed bg-[#151515] top-0 w-[100%] left-0 !z-50 gap-20 justify-between') : setStickyClass(' bg-transparent !z-50');
+      windowHeight > 500 ? setStickyClass('fixed bg-[#151515] top-0 w-[100%] left-0 ') : setStickyClass(' bg-transparent');
       stickyClass ? setMobileSticky('fixed top-20 left-0 z-50 gap-20') : setMobileSticky('')
     }
   };
@@ -64,7 +64,7 @@ import { useSession, signIn, signOut } from "next-auth/react";
   return (
     <>
     <div id="header" className=" w-screen !z-50">
-    <div className={` ${stickyClass} bg-base-100 flex flex-row-reverse  justify-end md:flex-row pt-8 pb-4 px-4 space-x-0 md:space-x-10 md:w-screen md:justify-between md:px-20`}>
+    <div className={` ${stickyClass} bg-base-100 flex flex-row-reverse z-50  justify-end md:flex-row pt-8 pb-4 px-4 space-x-0 md:space-x-10 md:w-screen md:justify-between md:px-20`}>
       <div className=" self-center">
         <Link href={`/`}><Image src='/img/logo_comp.webp' className=" scale-75 md:scale-100" width={218} height={38} alt="Logo"></Image></Link>
       </div>

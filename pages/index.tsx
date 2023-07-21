@@ -62,16 +62,16 @@ export default function Home() {
       <Navbar/>
         <div className="hero-section">
         
-          <div className="relative w-[100vw] h-[100vh] bg-Hero bg-cover bg-no-repeat overflow-hidden ">
-            <div className="absolute bg-black opacity-60 -z-20 h-full w-full"></div>
-          <video className="relative  left-1/2 -translate-x-1/2 scale-[5] md:scale-[2] xl:scale-[1.50] w-[100vw] h-full overflow-hidden -z-30" autoPlay muted loop>
+          <div className="relative -top-24 scale-105 -z-40 w-[100vw] h-[100vh] bg-transparent bg-cover bg-no-repeat overflow-hidden ">
+            <div className="absolute top-0 w-screen h-screen bg-black"></div>
+          <video className="w-full h-full opacity-20" autoPlay muted loop>
             <source src="/img/landing-page/herobg.webm" type="video/webm"/>
           </video>
           <motion.div
           initial={{opacity:0}}
             whileInView={{y:20, opacity:1,}}
             transition={{ delay: 1 }} 
-            className="absolute top-[30%] w-[85%] left-1/2  md:translate-x-0 -translate-x-1/2 md:left-16 text-5xl xl:text-6xl  text-center md:text-start text-white">Portalize Your <span className="text-transparent bg-gradient-to-br from-[#3b29ff] font-bold to-[#9c4fff] !bg-clip-text">
+            className="absolute top-[40%] w-[85%] left-1/2  md:translate-x-0 -translate-x-1/2 md:left-24 text-5xl xl:text-6xl  text-center md:text-start text-white">Portalize Your <span className="text-transparent bg-gradient-to-br from-[#3b29ff] font-bold to-[#9c4fff] !bg-clip-text">
                     <TypeAnimation
                 sequence={[
                   "Community",

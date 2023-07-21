@@ -47,7 +47,7 @@ const FeaGameBanner = () => {
                 
                 <motion.h2 className='font-bold'>Restaurant</motion.h2>
                 <motion.p className='font-light text-xl'>Indulge in a culinary adventure at our restaurant, where every bite is a masterpiece. From farm-fresh ingredients to innovative flavors, our talented chefs craft unforgettable dishes that ignite your senses. Experience unparalleled hospitality and ambiance that make every visit a celebration.</motion.p>
-                <Link href={`/pbspace/1`}><Button color='purple' variant='gradient' className='px-14 py-4 absolute bottom-5 right-5'>Join</Button></Link>
+                <Link href={`/pbspace/1`}><Button color='purple' variant='gradient' className='px-14 py-4 !absolute bottom-5 right-5'>Join</Button></Link>
             </motion.div>
             
 
@@ -55,7 +55,7 @@ const FeaGameBanner = () => {
                 
                 <motion.h2 className='font-bold'>Labyrinth</motion.h2>
                 <motion.p className='text-xl'>Embark on an exhilarating journey through our Labyrinth Shooter Game Park, where adrenaline and excitement await at every twist and turn. Unleash your inner hero as you navigate intricate mazes, dodging obstacles, and conquering challenging targets. Immerse yourself in a world of pulse-pounding action, dazzling visuals, and heart-pumping sound effects. Get ready for an unforgettable adventure at the Labyrinth Shooter Game Park, where thrill-seekers become legends.</motion.p>
-                <Link href={`/pbspace/2`}><Button color='purple' variant='gradient' className='px-14 py-4 absolute bottom-5 right-5'>Join</Button></Link>
+                <Link href={`/pbspace/2`}><Button color='purple' variant='gradient' className='px-14 py-4 !absolute bottom-5 right-5'>Join</Button></Link>
             </motion.div>
         
 

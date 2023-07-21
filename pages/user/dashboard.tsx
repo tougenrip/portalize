@@ -246,18 +246,18 @@ const Dashboard = () => {
             </div>
             <div id="accsettings" className='relative h-screen'><h2 className='absolute top-[20%] left-0 md:left-14 text-3xl md:text-5xl font-bold'>Account Settings</h2>
             <div className='absolute p-5 gap-10 top-[28%] bg-transparent left-0 max-h-[75%] overflow-x-hidden overflow-hidden h-[75%] w-full rounded-l-3xl'>
-              <form onSubmit={() => updateUser()} className='relative flex flex-col gap-4 top-5 scale-110 md:left-12' encType='multipart/form-data'>
+              <form onSubmit={() => updateUser()} className='relative flex flex-col space-y-7 top-5 scale-110 md:left-12' encType='multipart/form-data'>
               <Avatar
                 variant="circular"
-                size='xxl'
+                size="xxl"
                 alt="UserLogo"
-                className={`cursor-pointer mt-5 place-self-center`}
+                className={`cursor-pointer mt-5 h-24 w-24 place-self-center`}
                 src={userImage || '/img/pp_comp.webp'}
               />
-              <Input type="file" color="purple"  className='border-2 border-white' onChange={(e) => handleFileUpload(e)} style={{backgroundColor:'#282828'}} label='Change profile picture'></Input>
+              <Input type="file" color="purple"  className='border-2 !h-[46px]' onChange={(e) => handleFileUpload(e)} style={{backgroundColor:'transparent'}} label='Change profile picture'></Input>
 
-              <Input label='Change Nickname' color="purple" size='lg' className='border-2 border-white' style={{backgroundColor:'#282828',}} onChange={(e) => {setUsername(e.target.value); console.log(e.target.value)}}></Input>
-              <Input label='Change Email*' color="purple" className='border-2 border-white' style={{backgroundColor:'#282828'}} onChange={(e) => setUseremail(e.target.value)}></Input>
+              <Input label='Change Nickname' color="purple" size='lg' className='border-2 border-white' style={{backgroundColor:'transparent',}} onChange={(e) => {setUsername(e.target.value); console.log(e.target.value)}}></Input>
+              <Input label='Change Email*' color="purple" className='border-2 border-white' style={{backgroundColor:'transparent'}} onChange={(e) => setUseremail(e.target.value)}></Input>
               <Button type='submit' color='purple' > Save </Button>
               <p className='text-center text-xs text-red-500'>*Your stripe customer mail will not change</p>
               </form>
