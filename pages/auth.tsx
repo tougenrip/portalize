@@ -52,6 +52,8 @@ const Auth: NextPage = () => {
   const stripeCustomerId = '';
   const isActive = false;
   const image = '';
+  const rpmId = '';
+  const avatarUrl = '';
   const skyEnabled = false;
   const bannerEnabled = false;
 
@@ -68,7 +70,7 @@ const Auth: NextPage = () => {
     const res = await axios
       .post(
         "/api/register",
-        { username, email, password, stripeCustomerId, isActive,image,skyEnabled,bannerEnabled },
+        { username, email, password, stripeCustomerId, isActive,image,skyEnabled,bannerEnabled, avatarUrl, rpmId },
         {
           headers: {
             Accept: "application/json",

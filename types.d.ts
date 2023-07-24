@@ -2,7 +2,7 @@ import { DefaultUser } from 'next-auth';
 
 declare module 'next-auth' {
     interface Session {
-        user?: DefaultUser & {_id:string; id:string; stripeCustomerId: string; isActive:boolean;skyEnabled:boolean;bannerEnabled:boolean;};
+        user?: DefaultUser & {_id:string; id:string; stripeCustomerId: string; isActive:boolean;skyEnabled:boolean;bannerEnabled:boolean;isDev:boolean;rpmId:string;avatarUrl:string;};
     }
     interface User extends DefaultUser {
         _id:string;
@@ -11,5 +11,8 @@ declare module 'next-auth' {
         isActive:boolean;
         skyEnabled:boolean;
         bannerEnabled:boolean;
+        isDev:boolean;
+        rpmId:string;
+        avatarUrl:string;
     }
 }

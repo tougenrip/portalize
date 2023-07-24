@@ -11,6 +11,8 @@ const userSchema = new Schema({
     isActive:{type:Boolean, default:false},
     skyEnabled:{type:Boolean, default:false},
     bannerEnabled:{type:Boolean, default:false},
+    rpmId:{type:String},
+    avatarUrl:{type:String},
     image:{type:String},
     maps:{
         owned:{type:Array},

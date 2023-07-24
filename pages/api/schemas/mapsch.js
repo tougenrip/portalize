@@ -30,7 +30,7 @@ export const mapSchema = new mongoose.Schema({
     type: String,
   },
   likes: {
-    type: String,
+    type: Number, default: 0
   },
   userLimit:{
     type: String,

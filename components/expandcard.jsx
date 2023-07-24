@@ -9,14 +9,14 @@ const ExpandCard = () => {
   return (
     <>
      <main>
-        <div className='h-[70vh] flex align-middle place-content-center items-center'>
+        <div className='h-[70vh] flex align-middle place-content-center items-center tracking-wider'>
         <motion.div
             className={`relative bg-[url(/img/biggamebg.png)] bg-cover bg-no-repeat rounded-xl w-[95%] h-[90%] text-center `}
             transition={{layout:{duration:1, type:'spring'}}}
             onClick={()=>setIsOpen(!isOpen)}
         >
             <motion.h2
-                className='absolute bottom-5 left-5 md:text-4xl'
+                className='absolute bottom-5 left-5 md:text-4xl '
                 initial={{opacity:0, x:-300,}}
                 animate={{opacity:1,x:0,}}
                 transition={{duration:.5,}}
@@ -25,9 +25,9 @@ const ExpandCard = () => {
             </motion.h2>
 
             <motion.div
-                className='absolute bottom-5 right-9 w-24'
+                className='absolute bottom-5 right-9 w-24 '
             >
-                <IconButton className='px-14 '>Join </IconButton>
+                <IconButton className='px-14 tracking-wide'>Join </IconButton>
             </motion.div>
             <div
                 className='absolute flex gap-1 top-10 scale-125 right-0 w-24'

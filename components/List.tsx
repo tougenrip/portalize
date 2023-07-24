@@ -5,9 +5,11 @@ import useSWR from "swr";
 import { Card ,Button, CardHeader, CardFooter, CardBody, Typography } from "@material-tailwind/react";
 import { BiUser } from "react-icons/bi";
 import Link from "next/link";
+import {HeartIcon} from "@heroicons/react/24/outline";
+import AbbreviateNumber from '../utils/abbrevitateNumber'
 
 
-const FeaCard = ({ setSelected, item }) => {
+const FeaCard = ({ setSelected, item }, isliked) => {
 
 
     
@@ -32,8 +34,13 @@ const FeaCard = ({ setSelected, item }) => {
             <BiUser className="relative top-[3px] h-5 w-5"/>{item.owner || "unknown"}
           </Typography>
         </CardBody>
-        <CardFooter className="pt-0">
-        <Link href={`${process.env.NEXT_PUBLIC_WEBSITE_URL}game/${item._id}`}><Button color="purple" className="bg-gradient-to-br from-purple-500 to-purple-800">Join</Button></Link>
+        <CardFooter className="pt-0 flex justify-between">
+          <div className="flex flex-col items-center">
+          <HeartIcon className={`h-6 w-6 fill-[${isliked ? ('purple-500'): ('none')}]`}></HeartIcon>
+          <p>{AbbreviateNumber(item.likes)}</p>
+          </div>
+        
+        <Link href={`${process.env.NEXT_PUBLIC_WEBSITE_URL}game/${item._id}`}><Button color="purple" className="bg-gradient-to-br from-purple-500 to-purple-800 tracking-wider">Join</Button></Link>
         </CardFooter>
       </Card>
     // <div className="inline-block w-full mb-4">

@@ -9,12 +9,17 @@ import { BiGlobeAlt, BiCubeAlt, BiPyramid, BiListUl } from 'react-icons/bi'
 import { FaSolarPanel } from 'react-icons/fa'
 import AdvPanel from '@components/components/AdvPanel'
 import Image from 'next/image'
-// import { AvatarCreator, EditorConfig } from "@readyplayerme/rpm-react-sdk";
-// import { motion } from 'framer-motion'
-// import  AvatarCreate  from '../../components/AvatCreator.js'
+import { AvatarCreator, EditorConfig } from "@readyplayerme/rpm-react-sdk";
+import  AvatarCreate  from '../../components/AvatCreator.js'
 const Dashboard = () => {
 
-
+  const config: EditorConfig  = {
+    clearCache: true,
+    bodyType: 'fullbody',
+    quickStart: false,
+    language: 'en',
+  };
+  
 
   const [isCheckoutLoading, setIsCheckoutLoading] = useState(false);
   
@@ -69,7 +74,39 @@ const Dashboard = () => {
     setUserimg(base64 as unknown as string);
   };
 
-  
+  const handleOnAvatarExported = async (url: string) => {
+    
+
+    setAvatarUrl(url)
+
+    await axios.put(
+      "/api/user/updateRpm?function=updateUrl",
+      { avatarUrl:url },
+      {
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+      }
+    )
+    console.log(`Avatar URL is: ${avatarUrl}`)
+  };
+
+  const handleUserSet = async (userId: string) =>{
+    
+    setRpmId(userId)
+    await axios.put(
+      "/api/user/updateRpm?function=updateId",
+      { rpmId:userId },
+      {
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+      }
+    )
+    console.log(`User ID is: ${rpmId}`)
+  }
  
 
   const updateUser = async () => {
@@ -98,6 +135,8 @@ const Dashboard = () => {
   const [userName, setUsername] = useState(session?.user?.name)
   const [userEmail, setUseremail] = useState(session?.user?.email)
   const [userImage, setUserimg] = useState(session?.user?.image)
+  const [rpmId, setRpmId] = useState('')
+  const [avatarUrl, setAvatarUrl] = useState('')
   const [advpanelOpen, setAdvPanelOpen] = useState(false)
   const [minutes ,setMinutes] = useState(null)
 
@@ -115,7 +154,21 @@ const Dashboard = () => {
 
 
 
+        <div id="myavatar" className='relative h-screen'>
+              <h2 className='absolute top-[10%] left-14 text-3xl md:text-5xl font-bold'>My Avatar</h2>
+              <div className='absolute flex flex-col gap-5 top-[20%] left-0 max-h-[75%] rounded-3xl overflow-x-hidden overflow-scroll scrollbar-none h-[75%] w-full'>
+              
+                <AvatarCreator 
+                subdomain='portalize'
+                onUserSet={handleUserSet}
+                onAvatarExported={handleOnAvatarExported}
+                editorConfig={config}
+                />
+              </div>
+            </div>
             
+
+
             <div id="myspaces" className='relative h-screen'>
               <h2 className='absolute top-[10%] left-14 text-3xl md:text-5xl font-bold'>My Spaces</h2>
               <div className='absolute flex flex-col gap-5 top-[20%] left-0 max-h-[75%] overflow-x-hidden overflow-scroll scrollbar-none h-[75%] w-full'>
@@ -123,6 +176,8 @@ const Dashboard = () => {
                 <UserMaps/>
               </div>
             </div>
+            
+            
 
 
 

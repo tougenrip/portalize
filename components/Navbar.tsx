@@ -36,7 +36,7 @@ import { useSession, signIn, signOut } from "next-auth/react";
   const stickNavbar = () => {
     if (window !== undefined) {
       let windowHeight = window.scrollY;
-      windowHeight > 500 ? setStickyClass('fixed bg-[#151515] top-0 w-[100%] left-0 ') : setStickyClass(' bg-transparent');
+      windowHeight > 20 ? setStickyClass('fixed bg-[#151515] top-0 w-[100%] left-0 ') : setStickyClass(' bg-transparent');
       stickyClass ? setMobileSticky('fixed top-20 left-0 z-50 gap-20') : setMobileSticky('')
     }
   };
@@ -92,7 +92,7 @@ import { useSession, signIn, signOut } from "next-auth/react";
           </Tooltip>
           </li>
         {isLogged ? (<li className="self-center ">
-            <Link href="/editor"><Button  variant="gradient" color="purple" className="!bg-gradient-to-br rounded-full from-[#3b29ff] to-[#9c4fff]">Launch Editor</Button></Link>
+            <Link href="/editor"><Button  variant="gradient" color="purple" className="!bg-gradient-to-br rounded-full tracking-wider from-[#3b29ff] to-[#9c4fff]">Launch Editor</Button></Link>
           </li>):('')}
           
           <li>

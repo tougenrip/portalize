@@ -92,6 +92,10 @@ async function UploadMap(){
       // extract the map data and session from the request body
       const { title, desc, privite,likes,userLimit, floormap, interior,img } = req.body;
 
+      if(!desc){
+        window.alert('Please enter a description');
+      }
+
       const session = await getServerSession(req,res,authOptions)
       const owner = session?.user?.name
       const ownerEmail = session?.user?.email
