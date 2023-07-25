@@ -224,7 +224,7 @@ export function Home() {
         <div className="absolute md:relative flex flex-col space-y-2 md:space-y-9 text-start md:place-self-center md:w-[70%] bottom-16 md:mb-0">
             <motion.h2 initial={{y:25,opacity:0}} whileInView={{y:0,opacity:1}} transition={{delay:0.2}} className="text-4xl sm:text-3xl lg:text-7xl ">Ready-to-Use Templates</motion.h2>
             <motion.span initial={{x:-100,opacity:0}} whileInView={{x:0,opacity:1}} transition={{delay:0.3}} className="w-[70%] place-self-start h-1 bg-white font-light text-blue-gray-600"></motion.span>
-            <motion.p initial={{y:25,opacity:0}} whileInView={{y:0,opacity:1}} transition={{delay:0.4}} className="text-xl lg:text-3xl">Embark with a Head Start. Get started swiftly with Portalize`s ready-to-use templates. Choose from a plethora of themes ranging from industrial to fantastical. Select, customize, and you're ready to step into your own corner of the Metaverse.</motion.p>
+            <motion.p initial={{y:25,opacity:0}} whileInView={{y:0,opacity:1}} transition={{delay:0.4}} className="text-xl lg:text-3xl">Embark with a Head Start. Get started swiftly with Portalize`s ready-to-use templates. Choose from a plethora of themes ranging from industrial to fantastical. Select, customize, and you`re ready to step into your own corner of the Metaverse.</motion.p>
           </div>
           {isMobile ? (<div className="md:relative">
             <Image alt="side2" className="absolute right-0 bottom-1/2" width={656} height={754} quality={65} src={side1}/>
