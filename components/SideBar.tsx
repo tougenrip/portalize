@@ -1,5 +1,5 @@
 import React , { useState, useEffect } from 'react'
-import {  IconButton, Tooltip, Button } from '@material-tailwind/react'
+import {  IconButton, Tooltip, Button, Avatar as AvatarM } from '@material-tailwind/react'
 import Link from 'next/link'
 import { useSession, getSession } from "next-auth/react";
 import {
@@ -9,7 +9,7 @@ import {
 } from "@heroicons/react/24/outline";
 import { motion} from 'framer-motion'
 import AiFillCode from 'react-icons/ai'
-import { Avatar } from '@readyplayerme/visage';
+import { Avatar } from '@readyplayerme/visage'
 
 
 const SideBar = (req,res) => {
@@ -175,7 +175,15 @@ const SideBar = (req,res) => {
    <div className="fixed z-50 w-60 lg:w-80 xl:bottom-0 left-0 xl:left-20 rounded-t-xl max-w-md backdrop-blur-lg flex flex-col items-center bg-paffbg h-screen xl:h-[80vh]">
         
         <div className='flex'>
-        <Avatar modelSrc={avatarUrl}/>
+         <Avatar modelSrc={avatarUrl} className='!rounded-full self-end !w-12 !h-12' />
+        
+        <AvatarM
+                variant="circular"
+                size="xxl"
+                alt="UserLogo"
+                className={`cursor-pointer mt-5 h-24 w-24 place-self-center`}
+                src={userImage || '/img/pp_comp.webp'}
+              />
 
         
         </div>

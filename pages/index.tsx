@@ -11,10 +11,71 @@ import PricingCardFree from "../components/pricingcard-free"
 import PricingCard from '../components/pricingcard'
 
 
+export default function Maintenance() {
+  const [windowDimension, setWindowDimension] = useState(null);
+
+  useEffect(() => {
+    
+  });
+  
+
+  useEffect(() => {
+    setWindowDimension(window.innerWidth);
+  }, []);
+
+  useEffect(() => {
+    function handleResize() {
+      setWindowDimension(window.innerWidth);
+    }
+  
+  
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+  
+
+  const isMobile = windowDimension <= 1140;
+  const isSmall = windowDimension <= 960;
 
 
+  return(
+    <>
+      <Head>
+      
+          <title>Portalize - Next thing</title>
+          <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+      
+      </Head>
 
-export default function Home() {
+      
+
+      <main className="h-screen w-screen">
+      <div className="hero-section">
+        
+        <div className="relative  scale-105 -z-40 w-[100vw] h-[100vh] bg-transparent bg-cover bg-no-repeat overflow-hidden ">
+          <div className="absolute top-0 w-screen h-screen bg-black !overflow-hidden"></div>
+        <video className="  md:w-full md:h-full opacity-20 scale-[400%]  sm:scale-[230%] md:scale-150" autoPlay muted loop >
+          <source src="/img/landing-page/herobg.webm" type="video/webm"/>
+        </video>
+        <motion.div
+        initial={{opacity:0}}
+          whileInView={{y:20, opacity:1,}}
+          transition={{ delay: 1 }} 
+          className="absolute top-[40%] w-[85%] left-1/2 max-w-screen  md:!translate-x-0 !-translate-x-1/2 md:left-24 text-5xl xl:text-6xl  text-center md:text-start text-white">Coming soon
+          
+          </motion.div>
+          
+          
+        </div>
+          
+        </div>
+      </main>
+    </>
+  )
+}
+
+
+export function Home() {
 
 
   const [windowDimension, setWindowDimension] = useState(null);
@@ -63,15 +124,15 @@ export default function Home() {
         <div className="hero-section">
         
           <div className="relative -top-24 scale-105 -z-40 w-[100vw] h-[100vh] bg-transparent bg-cover bg-no-repeat overflow-hidden ">
-            <div className="absolute top-0 w-screen h-screen bg-black"></div>
-          <video className="w-full h-full opacity-20" autoPlay muted loop>
+            <div className="absolute top-0 w-screen h-screen bg-black !overflow-hidden"></div>
+          <video className="  md:w-full md:h-full opacity-20 scale-[400%]  sm:scale-[230%] md:scale-150" autoPlay muted loop >
             <source src="/img/landing-page/herobg.webm" type="video/webm"/>
           </video>
           <motion.div
           initial={{opacity:0}}
             whileInView={{y:20, opacity:1,}}
             transition={{ delay: 1 }} 
-            className="absolute top-[40%] w-[85%] left-1/2  md:translate-x-0 -translate-x-1/2 md:left-24 text-5xl xl:text-6xl  text-center md:text-start text-white">Portalize Your <span className="text-transparent bg-gradient-to-br from-[#3b29ff] font-bold to-[#9c4fff] !bg-clip-text">
+            className="absolute top-[40%] w-[85%] left-1/2 max-w-screen  md:!translate-x-0 !-translate-x-1/2 md:left-24 text-5xl xl:text-6xl  text-center md:text-start text-white">Portalize Your <span className="text-transparent bg-gradient-to-br from-[#3b29ff] font-bold to-[#9c4fff] !bg-clip-text">
                     <TypeAnimation
                 sequence={[
                   "Community",
@@ -123,13 +184,13 @@ export default function Home() {
 
 
         <div className="relative flex flex-col-reverse gap-10 md:gap-0 md:grid md:grid-cols-2 w-[100vw] h-screen my-[200px] md:my-24">
-        <div className="flex flex-col gap-2 md:gap-9 text-start md:place-self-center md:w-[70%] -mb-10 md:mb-0">
+        <div className="absolute md:relative flex flex-col space-y-2 md:space-y-9 text-start md:place-self-center md:w-[70%] bottom-16 md:mb-0">
             <motion.h2 initial={{y:25,opacity:0}} whileInView={{y:0,opacity:1}} transition={{delay:0.2}} className="text-4xl sm:text-3xl lg:text-7xl ">Analytics</motion.h2>
             <motion.span initial={{x:-100,opacity:0}} whileInView={{x:0,opacity:1}} transition={{delay:0.3}} className="w-[70%] place-self-start h-1 bg-white font-light text-blue-gray-600"></motion.span>
-            <motion.p initial={{y:25,opacity:0}} whileInView={{y:0,opacity:1}} transition={{delay:0.4}} className="text-xl lg:text-3xl">Keep a Pulse on Your World. Gain insights into the pulse of your virtual space with Portalize’s analytics. Track visitor numbers, engagement, and time spent in your world effortlessly. Use these data-driven insights to evolve and optimize your virtual experience.</motion.p>
+            <motion.p initial={{y:25,opacity:0}} whileInView={{y:0,opacity:1}} transition={{delay:0.4}} className="text-xl lg:text-3xl">Keep a Pulse on Your World. Gain insights into the pulse of your virtual space with Portalize`s analytics. Track visitor numbers, engagement, and time spent in your world effortlessly. Use these data-driven insights to evolve and optimize your virtual experience.</motion.p>
           </div>
           {isMobile ? (<div className="md:relative">
-            <Image alt="side2" className="absolute right-0 top-1/2 -translate-y-1/2" width={656} height={754} quality={65} src={side2}/>
+            <Image alt="side2" className="absolute right-0 bottom-1/2" width={656} height={754} quality={65} src={side2}/>
           </div>):(
             <motion.div initial={{x:500}} whileInView={{x:0}} transition={{delay:0.05}} className="md:relative">
             <Image alt="side2" className="absolute right-0 top-1/2 -translate-y-1/2" width={656} height={754} quality={65} src={side2}/>
@@ -138,15 +199,15 @@ export default function Home() {
           
         </div>
 
-        <div className="flex flex-col place-items-center gap-28 h-screen text-center max-w-[100vw]">
-          <div className="md:w-[70%]">
-            <motion.h2 initial={{opacity:0, y:50}} whileInView={{opacity:1, y:0}}  transition={{delay:0.05}}  className="text-5xl sm:text-7xl mb-4">MARKETPLACE</motion.h2>
+        <div className="flex flex-col place-items-center space-y-28 h-screen text-center max-w-[100vw] overflow-clip">
+          <div className="md:w-[70%] space-y-2">
+            <motion.h2 initial={{opacity:0, y:50}} whileInView={{opacity:1, y:0}}  transition={{delay:0.05}}  className="text-4xl sm:text-7xl mb-4">MARKETPLACE</motion.h2>
             <motion.h4 initial={{opacity:0, y:50}} whileInView={{opacity:1, y:0}}  transition={{delay:0.08}} className="text-2xl sm:text-3xl">A Wealth of Assets at Your Fingertips</motion.h4>
             <motion.p initial={{opacity:0, y:50}} whileInView={{opacity:1, y:0}}  transition={{delay:0.11}} className="text-xl lg:text-3xl ">Ignite your creativity with Portalize`s Marketplace, your gateway to a vast array of assets. From buildings to 3D props, the Marketplace has everything you need to design unique worlds. Browse, pick, and start creating!</motion.p>
-
+            
           </div>
           <div>
-            <Image src={marketplace} alt="marketplace"/>
+          <Image src={marketplace} alt="marketplace"  />
           </div>
         </div>
 
@@ -160,17 +221,19 @@ export default function Home() {
 
 
         <div className="relative flex flex-col-reverse gap-10 md:gap-0 md:grid md:grid-cols-2 w-[100vw] h-screen my-[200px] md:my-24">
-        <div className="flex flex-col gap-2 md:gap-9 text-start md:place-self-center md:w-[70%] -mb-10 md:mb-0">
+        <div className="absolute md:relative flex flex-col space-y-2 md:space-y-9 text-start md:place-self-center md:w-[70%] bottom-16 md:mb-0">
             <motion.h2 initial={{y:25,opacity:0}} whileInView={{y:0,opacity:1}} transition={{delay:0.2}} className="text-4xl sm:text-3xl lg:text-7xl ">Ready-to-Use Templates</motion.h2>
             <motion.span initial={{x:-100,opacity:0}} whileInView={{x:0,opacity:1}} transition={{delay:0.3}} className="w-[70%] place-self-start h-1 bg-white font-light text-blue-gray-600"></motion.span>
-            <motion.p initial={{y:25,opacity:0}} whileInView={{y:0,opacity:1}} transition={{delay:0.4}} className="text-xl lg:text-3xl">Embark with a Head Start Get started swiftly with Portalize`s ready-to-use templates. Choose from a plethora of themes ranging from industrial to fantastical. Select, customize, and you`re ready to step into your own corner of the Metaverse.</motion.p>
+            <motion.p initial={{y:25,opacity:0}} whileInView={{y:0,opacity:1}} transition={{delay:0.4}} className="text-xl lg:text-3xl">Embark with a Head Start. Get started swiftly with Portalize`s ready-to-use templates. Choose from a plethora of themes ranging from industrial to fantastical. Select, customize, and you're ready to step into your own corner of the Metaverse.</motion.p>
           </div>
           {isMobile ? (<div className="md:relative">
-            <Image alt="side1" className="absolute right-0 top-1/2 -translate-y-1/2" width={656} height={754} quality={65} src={side1}/>
+            <Image alt="side2" className="absolute right-0 bottom-1/2" width={656} height={754} quality={65} src={side1}/>
           </div>):(
             <motion.div initial={{x:500}} whileInView={{x:0}} transition={{delay:0.05}} className="md:relative">
-            <Image alt="side1" className="absolute right-0 top-1/2 -translate-y-1/2" width={656} height={754} quality={65} src={side1}/>
-          </motion.div>)}
+            <Image alt="side2" className="absolute right-0 top-1/2 -translate-y-1/2" width={656} height={754} quality={65} src={side1}/>
+          </motion.div>
+          )}
+          
         </div>
 
       

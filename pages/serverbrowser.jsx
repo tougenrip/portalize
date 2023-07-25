@@ -50,7 +50,7 @@ const PortalizeSB = ({data}) => {
                 <GameSlider/>
             </div>
             <div className=' h-fit mr-0 overflow-visible'>
-              <h2 className='relative text-5xl left-14 w-18 mb-7'>Featured Games</h2>
+              <h2 className='relative text-4xl left-14 w-18 mb-7'>Featured Games</h2>
               <List setSelected={setSelected} />
               
               {isMobile ?(null):(<Modal selected={selected} setSelected={setSelected} />)}
