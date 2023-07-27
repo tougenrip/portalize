@@ -10,7 +10,6 @@ import { FaSolarPanel } from 'react-icons/fa'
 import AdvPanel from '@components/components/AdvPanel'
 import Image from 'next/image'
 import { AvatarCreator, EditorConfig } from "@readyplayerme/rpm-react-sdk";
-import  AvatarCreate  from '../../components/AvatCreator.js'
 const Dashboard = () => {
 
   const config: EditorConfig  = {

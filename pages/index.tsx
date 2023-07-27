@@ -6,12 +6,12 @@ import side1 from "../assets/side1.png";
 import side2 from "../assets/side2.png";
 import marketplace from "../assets/marketplace.png";
 import {TypeAnimation} from 'react-type-animation';
-import { motion, useScroll } from "framer-motion";
+import { motion } from "framer-motion";
 import PricingCardFree from "../components/pricingcard-free"
 import PricingCard from '../components/pricingcard'
 
 
-export default function Maintenance() {
+function Maintenance() {
   const [windowDimension, setWindowDimension] = useState(null);
 
   useEffect(() => {
@@ -75,7 +75,7 @@ export default function Maintenance() {
 }
 
 
-export function Home() {
+export default function Home() {
 
 
   const [windowDimension, setWindowDimension] = useState(null);

@@ -8,7 +8,6 @@ import {
   CodeBracketSquareIcon
 } from "@heroicons/react/24/outline";
 import { motion} from 'framer-motion'
-import AiFillCode from 'react-icons/ai'
 import { Avatar } from '@readyplayerme/visage'
 
 
