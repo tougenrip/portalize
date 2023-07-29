@@ -184,6 +184,8 @@ import { useSession, signIn, signOut } from "next-auth/react";
                 </li>
                 <li>
                   {isLogged ? (
+                    <>
+                    <li>
                     <Link href={`/user/dashboard`}>
                     <div className="grid grid-cols-4 grid-rows-2">
                       <Avatar
@@ -194,8 +196,21 @@ import { useSession, signIn, signOut } from "next-auth/react";
                       />
                       <p className=" col-span-2 row-span-1">{userName}</p>
                       <p className="col-span-2 row-span-1 break-normal text-blue-gray-300">{userEmail}</p>
+                      
+                      
                     </div>
                     </Link>
+                    </li>
+                    <li>
+                    <Link onClick={() => signOut()} href={''}>
+                        <MenuItem className="flex place-content-center place-items-center mt-4 ">
+                          <Typography variant="small" className="font-normal">
+                            Sign Out
+                          </Typography>
+                        </MenuItem>
+                        </Link>
+                        </li>
+                        </>
                   ) :(<Link href={`/auth`}><Button variant="gradient" color="purple" className="inline-flex px-20">Register for Free</Button></Link>)}
                 </li>
               </ul>

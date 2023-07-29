@@ -19,7 +19,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
 if (req.method === 'PUT'){
     try{
-        const { userEmail,userName, userImage } = req.body;
+        const { userEmail,userName, userImage, userAge } = req.body;
 
       const session = await getServerSession(req,res,authOptions)
       const owner = session?.user?.id
@@ -27,7 +27,8 @@ if (req.method === 'PUT'){
       await User.findByIdAndUpdate(owner, {
         name:userName,
         email:userEmail,
-        image:userImage
+        image:userImage,
+        userAge:userAge
       })
 
       await Mapsi.updateMany(owner as any, {owner:userName,ownerEmail:userEmail})

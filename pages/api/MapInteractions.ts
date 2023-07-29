@@ -1,38 +1,37 @@
-import clientPromise from '../../lib/mongodb';
 import mongoose from 'mongoose';
 import User from './schemas/usersch';
 import { getServerSession } from 'next-auth';
 import authOptions from './auth/authOptions';
 import Mapsi from './schemas/mapsch';
-import { ObjectId } from 'mongodb';
 
 mongoose.connect(process.env.MONGODB_URI);
 
-export default  async function handler(req, res, mapId) {
+export default  async function handler(req, res) {
+
+    
 
     switch(req.query.function) {
       case 'likeMap':
-      await LikeMap(req, res, mapId);
+      await LikeMap(req, res);
       break
       case 'unlikeMap':
-      await UnlikeMap(req, res, mapId);
+      await UnlikeMap(req, res);
       break
     }
 
   
 }
 
-async function UnlikeMap(req, res, mapId) {
+async function UnlikeMap(req, res) {
 
   if (req.method === 'PUT'){
     try{
-      const mapId = req.query
+      const mapId = req.params
       const session = await getServerSession(req,res,authOptions)
       const owner = session?.user?.id
 
-      const user = await User.findByIdAndUpdate(owner, { 'maps.liked' : { $push : `${mapId}`} });
+      await User.findByIdAndUpdate(owner, { 'maps.liked' : { $push : `${mapId}`} });
         
-        await user.save()
 
       await Mapsi.findByIdAndUpdate(mapId, {$inc: {likes:-1}})
 
@@ -51,18 +50,18 @@ async function UnlikeMap(req, res, mapId) {
 
 }
 
-async function LikeMap(req, res, mapId) {
+async function LikeMap(req, res) {
   
 
     if (req.method === 'PUT'){
         try{
-          const mapId = req.query
+          const {mapId} = req.body
           const session = await getServerSession(req,res,authOptions)
           const owner = session?.user?.id
     
-          await User.findByIdAndUpdate(owner, { 'maps.liked' : { $push : `${mapId}`} })
+          await User.findByIdAndUpdate(owner, { 'maps.liked' : [{ $push : mapId as string }] })
           await Mapsi.findOneAndUpdate(mapId, {$inc: {likes:1}})
-
+          
      
     
           res.status(201).json({ message: `Liked the map with ID: ${mapId}.` });

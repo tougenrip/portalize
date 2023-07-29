@@ -7,9 +7,26 @@ import { BiUser } from "react-icons/bi";
 import Link from "next/link";
 import {HeartIcon} from "@heroicons/react/24/outline";
 import AbbreviateNumber from '../utils/abbrevitateNumber'
+import axios from "axios";
 
 
 const FeaCard = ({ setSelected, item }, isliked) => {
+
+  const likeMap = async () => await axios
+  .put(
+    "/api/MapInteractions?function=likeMap",
+    { mapId:item._id as string },
+    {
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+    }
+  )
+
+    const unlikeMap = () => {axios.put
+      (`api/MapInteractions?function=unlikeMap`,
+        {mapId:item._id} )}
 
 
     
@@ -36,7 +53,7 @@ const FeaCard = ({ setSelected, item }, isliked) => {
         </CardBody>
         <CardFooter className="pt-0 flex justify-between">
           <div className="flex flex-col items-center">
-          <HeartIcon className={`h-6 w-6 fill-[${isliked ? ('purple-500'): ('none')}]`}></HeartIcon>
+          <HeartIcon onClick={isliked ? (likeMap):(unlikeMap)} className={`h-6 w-6 fill-[${isliked ? ('purple-500'): ('none')}]`}></HeartIcon>
           <p>{AbbreviateNumber(item.likes)}</p>
           </div>
         

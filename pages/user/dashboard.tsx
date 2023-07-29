@@ -112,7 +112,7 @@ const Dashboard = () => {
 
     const res = await axios.put(
         "/api/user/updateuser",
-        { userName, userEmail,userImage },
+        { userName, userEmail,userImage, userAge },
         {
           headers: {
             Accept: "application/json",
@@ -135,6 +135,7 @@ const Dashboard = () => {
   const [userName, setUsername] = useState(session?.user?.name)
   const [userEmail, setUseremail] = useState(session?.user?.email)
   const [userImage, setUserimg] = useState(session?.user?.image)
+  const [userAge, setAge] = useState(null)
   const [rpmId, setRpmId] = useState('')
   const [avatarUrl, setAvatarUrl] = useState('')
   const [advpanelOpen, setAdvPanelOpen] = useState(false)
@@ -156,7 +157,7 @@ const Dashboard = () => {
 
         <div id="myavatar" className='relative h-screen'>
               <h2 className='absolute top-[10%] left-14 text-3xl md:text-5xl font-bold'>My Avatar</h2>
-              <div className='absolute flex flex-col gap-5 top-[20%] left-0 max-h-[75%] rounded-3xl overflow-x-hidden overflow-scroll scrollbar-none h-[75%] w-full'>
+              <div className='absolute flex flex-col gap-5 top-[20%] left-0 max-h-[75%] rounded-l-3xl overflow-x-hidden overflow-scroll scrollbar-none h-[75%] w-full'>
               
                 <AvatarCreator 
                 subdomain='portalize'
@@ -313,6 +314,7 @@ const Dashboard = () => {
 
               <Input label='Change Nickname' color="purple" size='lg' className='border-2 border-white' style={{backgroundColor:'transparent',}} onChange={(e) => {setUsername(e.target.value); console.log(e.target.value)}}></Input>
               <Input label='Change Email*' color="purple" className='border-2 border-white' style={{backgroundColor:'transparent'}} onChange={(e) => setUseremail(e.target.value)}></Input>
+              <Input type="number" max={85} min={18} label='Set Age' color="purple" size='lg' className='border-2 border-white' style={{backgroundColor:'transparent',}} onChange={(e) => {setAge(e.target.value); console.log(e.target.value)}}></Input>
               <Button type='submit' color='purple' > Save </Button>
               <p className='text-center text-xs text-red-500'>*Your stripe customer mail will not change</p>
               </form>

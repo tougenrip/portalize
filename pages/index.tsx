@@ -125,7 +125,7 @@ export default function Home() {
         
           <div className="relative -top-24 scale-105 -z-40 w-[100vw] h-[100vh] bg-transparent bg-cover bg-no-repeat overflow-hidden ">
             <div className="absolute top-0 w-screen h-screen bg-black !overflow-hidden"></div>
-          <video className="  md:w-full md:h-full opacity-20 scale-[400%]  sm:scale-[230%] md:scale-150" autoPlay muted loop >
+          <video className="top-1/2 md:!top-0  md:w-full md:h-full opacity-20 scale-[400%]  sm:scale-[230%] md:scale-150" autoPlay muted loop >
             <source src="/img/landing-page/herobg.webm" type="video/webm"/>
           </video>
           <motion.div
