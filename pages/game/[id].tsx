@@ -2,8 +2,15 @@
 import React, { Fragment} from "react";
 import { Unity, useUnityContext } from "react-unity-webgl";
 import fetch from 'node-fetch'
+import { useSession } from "next-auth/react";
+import authOptions from "../api/auth/authOptions";
 
-export const getServerSideProps = async(req) => {
+
+
+export const getServerSideProps = async(req,res,ctx) => {
+  
+  
+  
   const {id} = req.query
   const [floormapurl,interiorurl] = [`${process.env.NEXT_PUBLIC_WEBSITE_URL}api/worlds/floormap/${id}`,`${process.env.NEXT_PUBLIC_WEBSITE_URL}api/worlds/interior/${id}`]
     const options = {
@@ -16,13 +23,24 @@ const [floormapRes, interiorRes] = await Promise.all([fetch(floormapurl, options
 const [floormap, interior] = await Promise.all([floormapRes.json(), interiorRes.json()])
 const [floormapdata, interiordata] = await Promise.all([JSON.parse(JSON.stringify(floormap)),JSON.parse(JSON.stringify(interior))])
 
+
 return{
   
   props:{floormapdata, interiordata}
   
+  
 };
 }
 function App({floormapdata, interiordata}) {
+  const {data: session} = useSession()
+  const userId = session?.user?.id
+  const userName = session?.user?.name
+  const userAvatar = session?.user?.avatarUrl
+
+  const fulldata = {floormapdata,interiordata,userName,userAvatar,userId} as unknown as string
+
+  console.log(fulldata as string)
+
  
   const { unityProvider, loadingProgression, isLoaded, sendMessage } = useUnityContext({
     loaderUrl: "https://cdn.portalize.io/build/game/game.loader.js",
