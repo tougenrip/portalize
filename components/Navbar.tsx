@@ -58,7 +58,7 @@ import { useSession, signIn, signOut } from "next-auth/react";
   }, []);
   
 
-  const isMobile = windowDimension <= 768;
+  const isMobile = windowDimension <= 900;
   const isLogged = status === 'authenticated';
 
   return (
