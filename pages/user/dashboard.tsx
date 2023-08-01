@@ -13,6 +13,7 @@ import { AvatarCreator, EditorConfig } from "@readyplayerme/rpm-react-sdk";
 import Script from 'next/script'
 import BannerCreate from '@components/components/bannerCreate'
 import SkyCreate from '@components/components/skyCreate'
+import EventCreate from '@components/components/eventCreate'
 const Dashboard = () => {
 
   const config: EditorConfig  = {
@@ -308,6 +309,9 @@ const Dashboard = () => {
             </div>
             <div className='!z-40'>
             <SkyCreate />
+            </div>
+            <div className='!z-40'>
+            <EventCreate />
             </div>
 
             <div id="edvertsec" className='relative !visible !block h-[1300px] md:h-[1100px]'><h2 className='absolute top-[20%] left-5  md:left-14 text-3xl md:text-5xl font-bold'>Advertisement Panel</h2><BiListUl className='absolute top-[22%] z-40 right-5 md:right-20 h-5 w-5' onClick={() => setAdvPanelOpen(current => !current)}></BiListUl>

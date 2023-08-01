@@ -110,61 +110,6 @@ const BannerCreate = () => {
     </svg>
        <p className='absolute bottom-1/2 translate-y-1/2 left-1/2 -translate-x-1/2'> Upload a file</p>
       </Button>
-      <List className="flex flex-col md:flex-row flex-wrap w-full">
-        <h1 className='text-white text-3xl w-full'>Tags</h1>
-        <ListItem className="p-0 w-max hover:bg-transparent">
-          <label
-            htmlFor="horizontal-list-react"
-            className="flex w-full cursor-pointer items-center px-3 py-2"
-          >
-            <ListItemPrefix className="mr-3">
-            <Checkbox
-              id='horizontal-list-react'
-              color='purple'
-              ripple={false}
-              className="h-8 w-8 rounded-full border-purple-500/50 bg-purple-500/25 transition-all hover:scale-105 hover:before:opacity-0"
-            />            </ListItemPrefix>
-            <Typography color="white" className="font-medium">
-              Art
-            </Typography>
-          </label>
-        </ListItem>
-        <ListItem className="p-0 w-max hover:bg-transparent">
-          <label
-            htmlFor="horizontal-list-vue"
-            className="flex w-full cursor-pointer items-center px-3 py-2"
-          >
-            <ListItemPrefix className="mr-3">
-            <Checkbox
-              id='horizontal-list-vue'
-              color='purple'
-              ripple={false}
-              className="h-8 w-8 rounded-full border-purple-500/50 bg-purple-500/25 transition-all hover:scale-105 hover:before:opacity-0"
-            />            </ListItemPrefix>
-            <Typography color="white" className="font-medium">
-              Technology
-            </Typography>
-          </label>
-        </ListItem>
-        <ListItem className="p-0 w-max hover:bg-transparent">
-          <label
-            htmlFor="horizontal-list-svelte"
-            className="flex w-full cursor-pointer items-center px-3 py-2"
-          >
-            <ListItemPrefix className="mr-3">
-            <Checkbox
-              id='horizontal-list-svelte'
-              color='purple'
-              ripple={false}
-              className="h-8 w-8 rounded-full border-purple-500/50 bg-purple-500/25 transition-all hover:scale-105 hover:before:opacity-0"
-            />
-            </ListItemPrefix>
-            <Typography color="white" className="font-medium">
-              Cars
-            </Typography>
-          </label>
-        </ListItem>
-      </List>
       <input
         type="file"
         ref={hiddenFileInput}
