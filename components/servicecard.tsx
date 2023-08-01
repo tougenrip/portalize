@@ -5,7 +5,7 @@ import {
     Typography,
     Button,
   } from "@material-tailwind/react";
-import { BiUser, BiFace, bi } from "react-icons/bi";
+import { BiUser, BiFace} from "react-icons/bi";
    
   export function ServiceCard({title, content}) {
     return (
