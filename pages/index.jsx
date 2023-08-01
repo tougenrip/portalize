@@ -6,6 +6,7 @@ import Modal from "../components/Model";
 import FeaturedSlider from '../components/featuredslider';
 import FeaGameBanner from '../components/feagamebanner';
 import PortalNav from '../components/portalNav';
+import Script from 'next/script';
 import useSWR from 'swr';
 
 
@@ -42,6 +43,18 @@ const PortalizeSB = ({data}) => {
     
     <Fragment>
       <Navbar/>
+      <div className="container">
+        <Script src="https://www.googletagmanager.com/gtag/js?id=HXHGJ64EP8" />
+        <Script id="google-analytics">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+  
+            gtag('config', 'HXHGJ64EP8');
+          `}
+        </Script>
+      </div>
         <main className='overflow-hidden'>
         <div>
             <PortalNav/>
@@ -50,14 +63,14 @@ const PortalizeSB = ({data}) => {
                 <GameSlider/>
             </div>
             <div className=' h-fit mr-0 overflow-visible'>
-              <h2 className='relative text-4xl left-14 w-18 mb-7'>Featured Games</h2>
+              <h2 className='relative font-extrabold text-4xl left-14 w-18 mb-7'>Featured Servers</h2>
               <List setSelected={setSelected} />
               
               {isMobile ?(null):(<Modal selected={selected} setSelected={setSelected} />)}
             </div>
-            <div>
+            {/* <div>
             <FeaGameBanner/>
-            </div>
+            </div> */}
         </main>
     </Fragment>
   )

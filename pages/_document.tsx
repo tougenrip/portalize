@@ -5,7 +5,7 @@ export default function Document() {
     <Html lang="en">
       <Head>
 </Head>
-      <body className='  font-sans'>
+      <body className=' !scroll-smooth  font-sans'>
         
         <Main />
         <NextScript />

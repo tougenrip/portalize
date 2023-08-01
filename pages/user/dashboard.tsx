@@ -10,6 +10,9 @@ import { FaSolarPanel } from 'react-icons/fa'
 import AdvPanel from '@components/components/AdvPanel'
 import Image from 'next/image'
 import { AvatarCreator, EditorConfig } from "@readyplayerme/rpm-react-sdk";
+import Script from 'next/script'
+import BannerCreate from '@components/components/bannerCreate'
+import SkyCreate from '@components/components/skyCreate'
 const Dashboard = () => {
 
   const config: EditorConfig  = {
@@ -141,13 +144,27 @@ const Dashboard = () => {
   const [advpanelOpen, setAdvPanelOpen] = useState(false)
   const [minutes ,setMinutes] = useState(null)
 
+
   return (
     <>
     <Navbar/>
+    <div className="container">
+        <Script src="https://www.googletagmanager.com/gtag/js?id=HXHGJ64EP8" />
+        <Script id="google-analytics">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+  
+            gtag('config', 'HXHGJ64EP8');
+          `}
+        </Script>
+      </div>
     <main className='relative flex min-h-screen overflow-hidden' >
-    <div className='fixed top-1/4 -left-14 h-96 w-96 bg-purple-500 bg-opacity-60 blur-[170px]'></div>
-        <div className='fixed top-[7%] -right-14 h-96 w-96 bg-purple-500 bg-opacity-60 blur-[170px]'></div>
-        <div className='fixed xl:relative w-0 xl:w-1/3 z-50'>
+    
+        <div className='fixed top-1/4 !-z-50 -left-14 h-96 w-96 bg-purple-500 bg-opacity-60 blur-[170px]'></div>
+        <div className='fixed top-[7%] !-z-50  -right-14 h-96 w-96 bg-purple-500 bg-opacity-60 blur-[170px]'></div>
+        <div className={`fixed  xl:relative w-0 xl:w-1/3 z-50`}>
             <SideBar/>
         </div>
         
@@ -206,7 +223,7 @@ const Dashboard = () => {
                 </div>
                 <div className="bg-[#262626] flex flex-col md:gap-10 gap-6 w-full h-full md:px-16 md:py-12 py-4 px-4 rounded-bl-[32px]">
                   <div className="whitespace-nowrap text-5xl font-['Gilroy'] font-light text-white self-start ">
-                    Tedy’s Gallery
+                    Tedy`s Gallery
                   </div>
                   <div className="flex md:flex-row flex-col justify-start gap-4  items-center">
                     <div className="border-solid border-[#9c4fff] bg-[#202020] flex flex-col justify-center gap-4 py-3  items-center border rounded-lg px-12">
@@ -286,14 +303,22 @@ const Dashboard = () => {
                 </div>
               </div>
             </div>
-
-           
+            <div className='!z-40'>
+            <BannerCreate/>
+            </div>
+            <div className='!z-40'>
+            <SkyCreate />
+            </div>
 
             <div id="edvertsec" className='relative !visible !block h-[1300px] md:h-[1100px]'><h2 className='absolute top-[20%] left-5  md:left-14 text-3xl md:text-5xl font-bold'>Advertisement Panel</h2><BiListUl className='absolute top-[22%] z-40 right-5 md:right-20 h-5 w-5' onClick={() => setAdvPanelOpen(current => !current)}></BiListUl>
             <div className={advpanelOpen ? ('absolute z-40 top-[31.5%]  !max-w-screen md:left-10 md:w-[95%]'):('hidden')}><AdvPanel/></div>
               <div className='absolute flex flex-col gap-5 top-[30%] bg-transparent left-0 max-h-[75%] overflow-x-hidden overflow-hidden h-min w-[100%] rounded-l-3xl'>
               <div className='relative !min-h-min flex flex-col md:grid md:grid-rows-4 md:grid-cols-4 md:grid-flow-col gap-4 justify-between px-6 top-5 md:left-5 rounded-3xl md:w-[96%]'>
-                  <div className='row-span-2 col-span-2 flex justify-between py-8 px-5 w-auto rounded-3xl bg-[#191919]  text-center md:text-4xl place-items-center'><FaSolarPanel className='w-12 h-12 md:h-24 md:w-24 md:col-span-1 text'></FaSolarPanel>Banner Advertisement<Button color='purple' size='lg' className='bg-gradient-to-br from-purple-500 to-purple-800 text-xl' onClick={() => {if (isCheckoutLoading) return;else goToBannerCheckout();}}>Buy</Button></div>
+                  <div className='row-span-2 col-span-2 flex justify-between py-8 px-5 w-auto rounded-3xl bg-[#191919]  text-center md:text-4xl place-items-center'>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="62" height="62" viewBox="0 0 62 62" fill="none">
+        <path d="M54.25 7.75H7.75C6.72229 7.75 5.73666 8.15826 5.00996 8.88496C4.28326 9.61166 3.875 10.5973 3.875 11.625V42.625C3.875 43.6527 4.28326 44.6383 5.00996 45.365C5.73666 46.0917 6.72229 46.5 7.75 46.5H23.25V54.25H15.5V58.125H46.5V54.25H38.75V46.5H54.25C55.2777 46.5 56.2633 46.0917 56.99 45.365C57.7167 44.6383 58.125 43.6527 58.125 42.625V11.625C58.125 10.5973 57.7167 9.61166 56.99 8.88496C56.2633 8.15826 55.2777 7.75 54.25 7.75ZM34.875 54.25H27.125V46.5H34.875V54.25ZM54.25 42.625H7.75V11.625H54.25V42.625Z" fill="white"/>
+      </svg>
+                    Banner Advertisement<Button color='purple' size='lg' className='bg-gradient-to-br from-purple-500 to-purple-800 text-xl' onClick={() => {if (isCheckoutLoading) return;else goToBannerCheckout();}}>Buy</Button></div>
                   <div className='row-span-2 col-span-2 flex justify-between py-8 px-5 w-auto rounded-3xl bg-[#191919]  text-center md:text-4xl place-items-center'><BiCubeAlt className='w-12 h-12 md:h-24 md:w-24 md:col-span-1 text'></BiCubeAlt>Product Advertisement<Button color='purple' size='lg' className='relative left-2 bg-gradient-to-br from-purple-500 to-purple-800 text-xl' >Buy</Button></div>
                   <div className='md:row-span-4 col-span-2  justify-between py-8 px-5 w-full rounded-3xl bg-[#191919] h-min text-center text-xl md:text-4xl place-items-center'><BiGlobeAlt className=' h-48 my-5 w-full place-self-center'></BiGlobeAlt>Sky Advertisement<form className='text-xl text-center flex place-content-center my-4 gap-3 place-self-center' >For <input type="number" placeholder='x' onChange={(e) => setMinutes(e.target.value)} className='text-center w-10'/> minutes</form><Button color='purple' size='lg' className='bg-gradient-to-br from-purple-500 to-purple-800 text-xl' onClick={() => {if (isCheckoutLoading) return;else goToSkyCheckout();}}>Buy</Button></div>
               </div>

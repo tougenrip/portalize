@@ -13,6 +13,7 @@ import { ServiceCard } from "@components/components/servicecard";
 import List from "@components/components/List";
 import FeaturedSlider from "@components/components/featuredslider";
 import ScrollingDiv from "@components/components/Scrollingdivs";
+import Script from "next/script";
 
 
 function Maintenance() {
@@ -117,6 +118,18 @@ export default function Home() {
     </Head>
      
       <main className="w-[100vw] ">
+      <div className="container">
+        <Script src="https://www.googletagmanager.com/gtag/js?id=HXHGJ64EP8" />
+        <Script id="google-analytics">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+  
+            gtag('config', 'HXHGJ64EP8');
+          `}
+        </Script>
+      </div>
       <div className='invisible md:visible absolute top-1/4 -left-14 h-96 w-96 md:scale-100 scale-50 -z-50 bg-purple-500 bg-opacity-60 blur-[170px]'></div>
       <div className='invisible md:visible absolute top-[72%] right-[25px] md:scale-100 scale-50 h-96 w-96 -z-50 bg-purple-500 bg-opacity-60 blur-[170px]'></div>
       <div className='invisible md:visible absolute top-[36%] right-[25px] md:scale-100 scale-50 4 h-96 -z-50 w-96 bg-purple-500 bg-opacity-60 blur-[170px]'></div>

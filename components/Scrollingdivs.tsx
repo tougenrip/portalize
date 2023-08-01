@@ -65,14 +65,16 @@ function ParallaxText({ baseVelocity = 100 }: ParallaxProps) {
     <div className=" tracking-tighter flex-nowrap whitespace-nowrap ce flex">
 
       <motion.div className="space-x-4  font-bold uppercase flex whitespace-nowrap flex-nowrap mx-auto" style={{ x }}>
-      <span className="h-auto w-96 brightness-50 bg-gamebg bg-cover rounded-3xl aspect-video"></span>
-      <span className="h-auto w-96 brightness-50 bg-gamebg bg-cover rounded-3xl aspect-video"></span>
-      <span className="h-auto w-96 brightness-50 bg-gamebg bg-cover rounded-3xl aspect-video"></span>
-      <span className="h-auto w-96 brightness-50 bg-gamebg bg-cover rounded-3xl aspect-video"></span>
-      <span className="h-auto w-96 brightness-50 bg-gamebg bg-cover rounded-3xl aspect-video"></span>
-      <span className="h-auto w-96 brightness-50 bg-gamebg bg-cover rounded-3xl aspect-video"></span>
-      <span className="h-auto w-96 brightness-50 bg-gamebg bg-cover rounded-3xl aspect-video"></span>
-      <span className="h-auto w-96 brightness-50 bg-gamebg bg-cover rounded-3xl aspect-video"></span>
+      <span className="h-auto w-96 brightness-50 bg-[url(/img/aseetpre1.png)] bg-cover rounded-3xl aspect-video"></span>
+      <span className="h-auto w-96 brightness-50 bg-assetpre2 bg-cover rounded-3xl aspect-video"></span>
+      <span className="h-auto w-96 brightness-50 bg-assetpre3 bg-cover rounded-3xl aspect-video"></span>
+      <span className="h-auto w-96 brightness-50 bg-assetpre4 bg-cover rounded-3xl aspect-video"></span>
+      <span className="h-auto w-96 brightness-50 bg-assetpre5 bg-cover rounded-3xl aspect-video"></span>
+      <span className="h-auto w-96 brightness-50 bg-assetpre6 bg-cover rounded-3xl aspect-video"></span>
+      <span className="h-auto w-96 brightness-50 bg-assetpre7 bg-cover rounded-3xl aspect-video"></span>
+      <span className="h-auto w-96 brightness-50 bg-assetpre8 bg-cover rounded-3xl aspect-video"></span>
+      <span className="h-auto w-96 brightness-50 bg-assetpre9 bg-cover rounded-3xl aspect-video"></span>
+      <span className="h-auto w-96 brightness-50 bg-assetpre10 bg-cover rounded-3xl aspect-video"></span>
       
       </motion.div>
     </div>

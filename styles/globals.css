@@ -4,7 +4,11 @@
 @tailwind utilities;
 @import url("https://fonts.cdnfonts.com/css/valorant");
 @font-face{font-family:valorant;font-style:normal;font-weight:400;src:local('VALORANT'),url('https://fonts.cdnfonts.com/s/37505/Valorant Font.woff') format('woff')}
-
+@layer base {
+  html {
+    @apply scroll-smooth;
+  }
+}
   
 *{
   font: 'Gilroy', sans-serif;
