@@ -36,7 +36,7 @@ import { useSession, signIn, signOut } from "next-auth/react";
   const stickNavbar = () => {
     if (window !== undefined) {
       let windowHeight = window.scrollY;
-      windowHeight > 20 ? setStickyClass('fixed bg-[#151515] top-0 w-[100%] left-0 ') : setStickyClass(' bg-transparent');
+      windowHeight > 200 ? setStickyClass('fixed bg-[#151515] top-0 w-[100%] left-0 ') : setStickyClass(' bg-transparent z-50');
       stickyClass ? setMobileSticky('fixed top-20 left-0 z-50 gap-20') : setMobileSticky('')
     }
   };
@@ -81,7 +81,7 @@ import { useSession, signIn, signOut } from "next-auth/react";
             <Link href="/">Home</Link>
           </li>
           <li className="self-center hover:text-purple-600">
-            <Link href="/serverbrowser">Portals</Link>
+            <Link href="/about">Editor</Link>
           </li>
           <li className="self-center hover:text-purple-600">
             <Link href="https://portalize.gitbook.io/portalize/introduction/welcome-to-portalize">Docs</Link>
@@ -172,7 +172,7 @@ import { useSession, signIn, signOut } from "next-auth/react";
                   <Link href="/">Home</Link>
                 </li>
                 <li>
-                  <Link href="/serverbrowser">Portals</Link>
+                  <Link href="/about">Editor</Link>
                 </li>
                 <li>
                   <Link href="https://portalize.gitbook.io/portalize/introduction/welcome-to-portalize">Docs</Link>

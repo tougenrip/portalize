@@ -10,47 +10,54 @@ import { CheckIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
 import { useSession } from 'next-auth/react'
  
-export default function PricingCardFree() {
+export default function PricingCardFree({className}) {
 
   const { data: session, status } = useSession();
   const isLogged = status == 'authenticated';
 
   return (
-    <Card  variant="gradient" className="w-full max-w-[20rem] bg-[#282828] p-8">
+    <Card  variant="gradient" className={className}>
       <CardHeader
         floated={false}
         shadow={false}
         color="transparent"
-        className="m-0 mb-8 rounded-none border-b border-white/10 pb-8 text-start"
+        className="m-0 mb-8 rounded-none pb-8 text-start space-y-5"
       >
         <Typography
           variant="small"
           color="white"
-          className="font-gilroy font-light text-2xl leading-6 tracking-wider uppercase text-white mix-blend-hard-light opacity-60 px-4 py-2 rounded"
+          className="font-gilroy font-extrabold text-2xl leading-6 tracking-[0.2rem] uppercase text-white mix-blend-hard-light px-0 py-2 rounded"
         >
-          FREE
+          EXPLORE PORTALS
         </Typography>
         <Typography
-          variant="h1"
+          variant="small"
           color="white"
-          className="mt-6 flex justify-center gap-1 text-7xl font-normal"
+          className="font-gilroy font-light text-5xl leading-6 tracking-wider text-white mix-blend-hard-light px-0 py-2 rounded"
         >
-          <span className="font-gilroy font-light text-6xl leading-none tracking-wider text-white">$</span>0{" "}<span className="self-end font-gilroy font-light text-6xl leading-none tracking-wider text-white">/mo</span>
+          Free
         </Typography>
       </CardHeader>
       <CardBody className="p-0">
-        <ul className="flex flex-col gap-4">
-          <li className="flex items-center gap-4">
-            <span className="rounded-full border border-white/20 bg-white/20 p-1">
-              <CheckIcon  strokeWidth={2} className="h-3 w-3" />
+          
+        <ul className="flex flex-col space-y-6">
+          <li className="flex items-center space-x-2">
+            <span className="rounded-full p-0">
+              <CheckIcon  strokeWidth={4} className="h-5 w-5 stroke-[#773fff]" />
             </span>
-            <Typography className="font-gilroy font-bold text-white text-2xl leading-6 tracking-tighter">Up to 10 User Join</Typography>
+            <Typography className="font-gilroy font-bold text-white text-2xl leading-6 tracking-tighter">Unlimited Access Worlds</Typography>
           </li>
-          <li className="flex items-center gap-4">
-            <span className="rounded-full border border-white/20 bg-white/20 p-1">
-              <CheckIcon strokeWidth={2} className="h-3 w-3" />
+          <li className="flex items-center space-x-2">
+            <span className="rounded-full p-0">
+              <CheckIcon  strokeWidth={4} className="h-5 w-5 stroke-[#773fff]" />
             </span>
-            <Typography className="font-gilroy font-bold text-white text-2xl leading-6 tracking-tighter">20 Assets</Typography>
+            <Typography className="font-gilroy font-bold text-white text-2xl leading-6 tracking-tighter">Character Creator Access</Typography>
+          </li>
+          <li className="flex items-center space-x-2">
+            <span className="rounded-full p-0">
+              <CheckIcon  strokeWidth={4} className="h-5 w-5 stroke-[#773fff]" />
+            </span>
+            <Typography className="font-gilroy font-bold text-white text-2xl leading-6 tracking-tighter">Editor Access</Typography>
           </li>          
         </ul>
       </CardBody>
@@ -65,7 +72,7 @@ export default function PricingCardFree() {
             ripple={false}
             fullWidth={true}
           >
-           {isLogged ? ('Launch Editor'):('Register')} 
+           {isLogged ? ('Launch Editor'):('Create Account')} 
           </Button>
           </Link>
             
