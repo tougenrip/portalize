@@ -1,0 +1,72 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("MONGODB_URI")
+}
+model banners {
+  id      String  @id @default(auto()) @map("_id") @db.ObjectId
+  owner   String
+  img     String
+  title   String
+  website String
+}
+
+
+
+model skyads {
+  id      String  @id @default(auto()) @map("_id") @db.ObjectId
+  owner   String
+  img     String
+  title   String
+  website String
+}
+
+model events {
+  id      String  @id @default(auto()) @map("_id") @db.ObjectId
+  owner   String
+  img     String
+  title   String
+  website String
+}
+
+model maps {
+  id         String   @id @default(auto()) @map("_id") @db.ObjectId
+  created    DateTime @db.Date
+  desc       String
+  floormap   String
+  img        String
+  interior   String
+  likes      Int?
+  owner      String?
+  ownerEmail String?
+  title      String
+  userLimit  String
+}
+
+model user {
+  id               String    @id @default(auto()) @map("_id") @db.ObjectId
+  name             String    @unique(map: "name_1")
+  email            String    @unique(map: "email_1")
+  hashedPassword   String
+  image            String?
+  rpmId            String?
+  avatarUrl        String?
+  stripeCustomerId String
+  active           Boolean  @default(false)
+  bannerEnabled    Boolean?
+  skyEnabled       Boolean?
+  isActive         Boolean
+  likedMaps        String[]
+  ownedMaps        String[]
+  created          DateTime?  @db.Date @default(now())
+}
+
+model session {
+  id              String    @id @default(auto()) @map("_id") @db.ObjectId
+  sessionToken    String
+  userId          String
+  expires   DateTime
+}

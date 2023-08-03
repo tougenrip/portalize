@@ -2,6 +2,7 @@ import mongoose from 'mongoose';
 import User from './schemas/usersch';
 import { getServerSession } from 'next-auth';
 import authOptions from './auth/authOptions';
+import { authOptionsWrapper } from "../api/auth/[...nextauth]";
 import Mapsi from './schemas/mapsch';
 
 mongoose.connect(process.env.MONGODB_URI);
@@ -27,7 +28,7 @@ async function UnlikeMap(req, res) {
   if (req.method === 'PUT'){
     try{
       const mapId = req.params
-      const session = await getServerSession(req,res,authOptions)
+      const session = await getServerSession(...authOptionsWrapper(req,res))
       const owner = session?.user?.id
 
       await User.findByIdAndUpdate(owner, { 'maps.liked' : { $push : `${mapId}`} });

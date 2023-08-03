@@ -21,7 +21,7 @@ if (req.method === 'PUT'){
     try{
         const { userEmail,userName, userImage, userAge } = req.body;
 
-      const session = await getServerSession(req,res,authOptions)
+      const session = await getServerSession(...authOptionsWrapper(req,res))
       const owner = session?.user?.id
 
       await User.findByIdAndUpdate(owner, {
@@ -44,3 +44,4 @@ if (req.method === 'PUT'){
         res.status(405).json({ error: 'Only PUT requests allowed.' });
       }
 }
+,
