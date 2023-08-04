@@ -304,7 +304,7 @@ const Dashboard = () => {
                 </div>
               </div>
             </div>
-            <div className='!z-40'>
+            {/* <div className='!z-40'>
             <BannerCreate/>
             </div>
             <div className='!z-40'>
@@ -312,7 +312,7 @@ const Dashboard = () => {
             </div>
             <div className='!z-40'>
             <EventCreate />
-            </div>
+            </div> */}
 
             <div id="edvertsec" className='relative !visible !block h-[1300px] md:h-[1100px]'><h2 className='absolute top-[20%] left-5  md:left-14 text-3xl md:text-5xl font-bold'>Advertisement Panel</h2><BiListUl className='absolute top-[22%] z-40 right-5 md:right-20 h-5 w-5' onClick={() => setAdvPanelOpen(current => !current)}></BiListUl>
             <div className={advpanelOpen ? ('absolute z-40 top-[31.5%]  !max-w-screen md:left-10 md:w-[95%]'):('hidden')}><AdvPanel/></div>

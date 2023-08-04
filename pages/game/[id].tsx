@@ -65,12 +65,12 @@ function App({floormapdata, interiordata}) {
       
 
       {!isLoaded && (
-        <p className="w-[100vh] h-[100vh] text-center">Loading Application... {Math.round(loadingProgression * 100)}%</p>
+        <p className="w-[100vh] h-[100vh] text-center tra">Loading Application... {Math.round(loadingProgression * 100)}%</p>
       )}
       <Unity
         className="-z-10"
         unityProvider={unityProvider}
-        style={{ visibility: isLoaded ? "visible" : "hidden", "width": "100%", "height": "100vh" }}
+        style={{transitionDelay:'5s', visibility: isLoaded ? "visible" : "hidden", "width": "100%", "height": "100vh" }}
       />
       <>
       </>

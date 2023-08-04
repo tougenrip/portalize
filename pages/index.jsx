@@ -68,6 +68,25 @@ const PortalizeSB = ({data}) => {
               
               {isMobile ?(null):(<Modal selected={selected} setSelected={setSelected} />)}
             </div>
+            <div className=' h-fit mr-0 overflow-visible'>
+              <h2 className='relative font-extrabold text-4xl left-14 w-18 mb-7'>Recommended</h2>
+              <List setSelected={setSelected} />
+              
+              {isMobile ?(null):(<Modal selected={selected} setSelected={setSelected} />)}
+            </div>
+            <div className=' h-fit mr-0 overflow-visible'>
+              <h2 className='relative font-extrabold text-4xl left-14 w-18 mb-7'>Popular</h2>
+              <List setSelected={setSelected} />
+              
+              {isMobile ?(null):(<Modal selected={selected} setSelected={setSelected} />)}
+            </div>
+            <div className=' h-fit mr-0 overflow-visible'>
+              <h2 className='relative font-extrabold text-4xl left-14 w-18 mb-7'>Editor`s Choice</h2>
+              <List setSelected={setSelected} />
+              
+              {isMobile ?(null):(<Modal selected={selected} setSelected={setSelected} />)}
+            </div>
+
             {/* <div>
             <FeaGameBanner/>
             </div> */}
