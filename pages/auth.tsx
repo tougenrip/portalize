@@ -50,11 +50,11 @@ const Auth: NextPage = () => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [confirm, setConfirm] = useState("");
   const stripeCustomerId = '';
   const isActive = false;
   const image = '';
   const rpmId = '';
-  const active = true;
   const avatarUrl = '';
   const skyEnabled = false;
   const bannerEnabled = false;
@@ -72,7 +72,7 @@ const Auth: NextPage = () => {
     const res = await axios
       .post(
         "/api/register",
-        { username, email, password, stripeCustomerId, isActive,image,skyEnabled,bannerEnabled, avatarUrl, rpmId,active },
+        { username, email, password, confirm, stripeCustomerId, isActive,image,skyEnabled,bannerEnabled, avatarUrl, rpmId },
         {
           headers: {
             Accept: "application/json",
@@ -154,7 +154,7 @@ const Auth: NextPage = () => {
               <Form style={{ width: "100%", zIndex:"40" }}>
                 <Box display="flex" flexDirection="column" w="100%" mb={4}>
                   {authType === "Register" && (
-                    
+                    <>
                     <Field name="username">
                       {() => (
                         <FormControl isRequired mb={6}>
@@ -168,6 +168,22 @@ const Auth: NextPage = () => {
                         </FormControl>
                       )}
                     </Field>
+
+                    <Field name="confirm">
+                    {() => (
+                      <FormControl isRequired mb={6} style={{order:4}}>
+                        <Input
+                          value={confirm}
+                          onChange={(e) => setConfirm(e.target.value)}
+                          label="Confirm"
+                          type="password"
+                          color="purple"
+                          className="!border-0 !bg-inputBg !ring-0"
+                        />
+                      </FormControl>
+                    )}
+                    </Field>
+                    </>
                   )}
                   <Field name="email">
                     {() => (
@@ -184,7 +200,7 @@ const Auth: NextPage = () => {
                   </Field>
                   <Field name="password">
                     {() => (
-                      <FormControl isRequired mb={3}>
+                      <FormControl isRequired mb={6}>
                         <Input
                           value={password}
                           onChange={(e) => setPassword(e.target.value)}
@@ -198,6 +214,7 @@ const Auth: NextPage = () => {
                   </Field>
                   <Button
                     mt={6}
+                    order={99}
                     className="!bg-gradient-to-br w-max !rounded-full tracking-wide !from-purple-500 !to-purple-900 hover:!from-purple-300 hover:!to-purple-600 transition-all trasfu"
                     isLoading={props.isSubmitting}
                     type="submit"

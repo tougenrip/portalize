@@ -1,5 +1,4 @@
 import Stripe from "stripe";
-import User from "../api/schemas/usersch";
 import { NextRequest, NextResponse } from "next/server";
 import { useSession } from "next-auth/react";
 
@@ -57,7 +56,7 @@ const webhookHandler = async (req: NextRequest) => {
             }})
         break;
       case "customer.subscription.deleted":
-        await User.updateOne({stripeCustomerId:subscription.customer as string},{isActive:true},function (err, docs) {
+        await User.updateOne({stripeCustomerId:subscription.customer as string},{isActive:false},function (err, docs) {
             if (err){
                 console.log(err)
             }

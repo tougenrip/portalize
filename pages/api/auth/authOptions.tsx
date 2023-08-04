@@ -72,7 +72,7 @@ const authOptions:NextAuthOptions = {
               rpmId: user.rpmId,
               avatarUrl: user.avatarUrl
           }
-        if(trigger === "update"&& session?.name){
+        if(trigger === "update" && session?.name){
           token.name = session
         }
           
@@ -116,7 +116,7 @@ const authOptions:NextAuthOptions = {
       ;
   }},
   session:{strategy:'jwt'},
-  secret:process.env.NEXTAUTH_JWT_SECRETd
+  secret:process.env.NEXTAUTH_JWT_SECRET
 };
 
 
