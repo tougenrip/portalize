@@ -5,6 +5,7 @@ import authOptions from "../auth/authOptions";
 import { NextApiRequest, NextApiResponse } from "next";
 import User from "../schemas/usersch";
 import Mapsi from '../schemas/mapsch';
+import { getServerAuthSession } from '../auth/[...nextauth]';
 // Replace the uri string with your MongoDB deployment's connection string.
 
 
@@ -21,7 +22,7 @@ if (req.method === 'PUT'){
     try{
         const { userEmail,userName, userImage, userAge } = req.body;
 
-      const session = await getServerSession(...authOptionsWrapper(req,res))
+      const session = await getServerAuthSession(res,req);
       const owner = session?.user?.id
 
       await User.findByIdAndUpdate(owner, {
@@ -44,4 +45,3 @@ if (req.method === 'PUT'){
         res.status(405).json({ error: 'Only PUT requests allowed.' });
       }
 }
-,
