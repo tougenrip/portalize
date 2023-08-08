@@ -69,9 +69,9 @@ export default async function handler(req, res) {
     },
     async register(username, email, password) {
       try {
-        await prisma.User.create({
+        await prisma.user.create({
           data: {
-            username: username,
+            name: username,
             email: email,
             password: password,
           },
@@ -191,7 +191,7 @@ export default async function handler(req, res) {
         },
         async authorize(credentials) {
           try {
-            const user = await prisma.User.findUnique({
+            const user = await prisma.user.findUnique({
               where: {
                 email: credentials.email,
               },
@@ -244,4 +244,4 @@ export default async function handler(req, res) {
 
 export const getServerAuthSession = async(req,res) => {
   return await getServerSession(req,res,optionsnew);
-};
+}
