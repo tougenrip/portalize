@@ -1,6 +1,8 @@
 import Stripe from "stripe";
 import { NextRequest, NextResponse } from "next/server";
 import { useSession } from "next-auth/react";
+import User from "./schemas/usersch";
+
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
   // https://github.com/stripe/stripe-node#configuration
