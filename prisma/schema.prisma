@@ -99,23 +99,23 @@ model Session {
 }
 
 model User {
-  id              String    @id @default(auto()) @map("_id") @db.ObjectId
+  id            String    @id @default(auto()) @map("_id") @db.ObjectId
   name          String?
   email         String?   @unique
-  password  String?
+  password      String?
   image         String?
   stripeCustomerId  String?
-  isActive  Boolean?
-  skyEnabled  Boolean?
+  isActive      Boolean?
+  skyEnabled    Boolean?
   bannerEnabled Boolean?
-  rpmId  String?
-  avatarUrl  String?
+  rpmId         String?
+  avatarUrl     String?
   accounts      Account[]
   sessions      Session[]
 }
 
 model VerificationToken {
-  id              String    @id @default(auto()) @map("_id") @db.ObjectId
+  id         String    @id @default(auto()) @map("_id") @db.ObjectId
   identifier String
   token      String   @unique
   expires    DateTime

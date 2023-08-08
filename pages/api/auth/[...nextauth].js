@@ -1,4 +1,4 @@
-import NextAuth from "next-auth";
+import NextAuth, { getServerSession } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 // import GithubProvider from "next-auth/providers/github";
 // import GoogleProvider from "next-auth/providers/google";
@@ -9,6 +9,7 @@ import { randomUUID } from "crypto";
 import { getCookie, setCookie } from "cookies-next";
 import { encode, decode } from "next-auth/jwt";
 import { PrismaClient } from "@prisma/client";
+import { optionsnew } from "./authOptNew";
 
 export default async function handler(req, res) {
   let userAccount = null;
@@ -236,6 +237,11 @@ export default async function handler(req, res) {
     ],
     callbacks: callbacks,
   };
-
+  
+  
   return await NextAuth(req, res, options);
 }
+
+export const getServerAuthSession = async(req,res) => {
+  return await getServerSession(req,res,optionsnew);
+};

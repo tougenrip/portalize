@@ -285,7 +285,7 @@ export default function Home() {
         <div className="pricing-section">
           <div className="relative w-[100vw] h-[2400px] md:h-[100vh]">
             <div className="absolute top-[10%] left-1/2 -translate-x-1/2 md:-translate-x-0 md:left-20 text-7xl font-light"><p>Join <span className="font-bold">Today</span></p></div>
-            <div className="absolute flex flex-col-reverse md:flex-row items-start md:grid-cols-2 gap-5 md:gap-3 bottom-0 top-[0%] md:top-[50%] md:-translate-y-1/2 left-1/2 -translate-x-1/2 scale-90 w-[100vw] justify-center place-items-center">
+            <div className="absolute flex flex-col-reverse md:flex-row items-start md:grid-cols-2 space-x-5 md:gap-3 bottom-0 top-[0%] md:top-[50%] md:-translate-y-1/2 left-1/2 -translate-x-1/2 scale-90 w-[100vw] justify-center place-items-center">
                 <PricingCardFree className={`w-full max-w-[32rem] bg-[#282828] p-8`}/>
                 <PricingCard/>
             </div>

@@ -3,10 +3,12 @@ import clientPromise from '../../../../lib/mongodb';
 import { ObjectId } from "mongodb";
 import authOptions from '../../auth/authOptions';
 import { NextApiRequest, NextApiResponse } from 'next';
+import { resolve } from 'path';
+import { getServerAuthSession } from '../../auth/[...nextauth]';
 
 export default async function handler(req:NextApiRequest, res:NextApiResponse) {
 
-      const session = await getServerSession(req, res, authOptions);
+      const session = await getServerAuthSession(req,res);
 
       // Error handling
       if (!session?.user?.id) {

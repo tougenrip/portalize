@@ -105,7 +105,7 @@ export default function List({ setSelected }) {
 
   return (
     <div className="p-4">
-      <div className="flex gap-4 !h-min place-items-center overflow-x-scroll scrollbar-none  my-3 p-[32px]">
+      <div className="flex space-x-4 !h-min place-items-center overflow-x-scroll scrollbar-none  my-3 p-[32px]">
         {games?.map((item) => (
           <FeaCard key={item._id} setSelected={setSelected} item={item} />
         ))}

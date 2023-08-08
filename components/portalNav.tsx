@@ -79,8 +79,8 @@ const PortalNav = () => {
               <div></div>
             ) : (
               <div className="flex-row flex items-center w-screen">
-                <ul className="text-2xl font-['Gilroy'] font-light text-white w-full px-1 flex flex-row justify-between gap-10">
-                  <div className="flex flex-row gap-16">
+                <ul className="text-2xl font-['Gilroy'] font-light text-white w-full px-1 flex flex-row justify-between space-x-10">
+                  <div className="flex flex-row space-x-16">
                     <li className="self-center hover:text-purple-600">
                       <Link href="/serverbrowser">Overview</Link>
                     </li>

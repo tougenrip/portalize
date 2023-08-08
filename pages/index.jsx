@@ -10,11 +10,6 @@ import Script from 'next/script';
 import useSWR from 'swr';
 
 
-
-
-
-
-
 const PortalizeSB = ({data}) => {
 
   const [selected, setSelected] = useState(null);
