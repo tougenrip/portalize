@@ -1,6 +1,7 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import mongoose from 'mongoose';
 import { getServerSession } from 'next-auth';
+import { getServerAuthSession } from '../auth/[...nextauth]';
 import authOptions from '../auth/authOptions';
 import Mapsi from '../schemas/mapsch';
 import User from '../schemas/usersch';
@@ -37,7 +38,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         // extract the map data and session from the request body
         const {state, } = req.query
   
-        const session = await getServerSession(req,res,authOptions)
+        const session = await getServerAuthSession(req,res);
         const owner = session?.user?.id
   
         // create a new document in the Worlds collection
@@ -64,7 +65,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         // extract the map data and session from the request body
         const {state } = req.query
   
-        const session = await getServerSession(req,res,authOptions)
+        const session = await getServerAuthSession(req,res);
         const owner = session?.user?.id
   
         // create a new document in the Worlds collection
@@ -96,7 +97,7 @@ async function UploadMap(){
         window.alert('Please enter a description');
       }
 
-      const session = await getServerSession(req,res,authOptions)
+      const session = await getServerAuthSession(req,res);
       const owner = session?.user?.name
       const ownerEmail = session?.user?.email
 
