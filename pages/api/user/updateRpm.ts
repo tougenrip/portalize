@@ -5,6 +5,7 @@ import authOptions from "../auth/authOptions";
 import { NextApiRequest, NextApiResponse } from "next";
 import User from "../schemas/usersch";
 import Mapsi from '../schemas/mapsch';
+import { getServerAuthSession } from '../auth/[...nextauth]';
 // Replace the uri string with your MongoDB deployment's connection string.
 
 
@@ -28,7 +29,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         try{
             const { rpmId } = req.body;
     
-          const session = await getServerSession(req,res,authOptions)
+          const session = await getServerAuthSession(req,res)
           const owner = session?.user?.id
     
           await User.findByIdAndUpdate(owner, {
@@ -52,7 +53,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         try{
             const { avatarUrl } = req.body;
     
-          const session = await getServerSession(req,res,authOptions)
+          const session = await getServerAuthSession(req,res)
           const owner = session?.user?.id
     
           await User.findByIdAndUpdate(owner, {
