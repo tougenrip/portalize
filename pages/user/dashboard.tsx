@@ -6,14 +6,10 @@ import { useSession } from 'next-auth/react'
 import UserMaps from '../../components/UserMaps'
 import axios from 'axios'
 import { BiGlobeAlt, BiCubeAlt, BiPyramid, BiListUl } from 'react-icons/bi'
-import { FaSolarPanel } from 'react-icons/fa'
 import AdvPanel from '@components/components/AdvPanel'
 import Image from 'next/image'
 import { AvatarCreator, EditorConfig } from "@readyplayerme/rpm-react-sdk";
 import Script from 'next/script'
-import BannerCreate from '@components/components/bannerCreate'
-import SkyCreate from '@components/components/skyCreate'
-import EventCreate from '@components/components/eventCreate'
 const Dashboard = () => {
 
   const config: EditorConfig  = {

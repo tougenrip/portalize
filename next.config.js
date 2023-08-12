@@ -30,6 +30,10 @@ async headers() {
         {
           key:'Access-Control-Cross-Origin',
           value:`*`
+        },
+        {
+          key:'x-api-key',
+          value:process.env.API_ROUTE_SECRET
         }
       ]
     }

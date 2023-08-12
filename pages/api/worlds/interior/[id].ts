@@ -2,7 +2,6 @@ import clientPromise from '../../../../lib/mongodb';
 import { ObjectId } from "mongodb";
 
 export default async function handler(req, res) {
-  if(req.headers['x-api-key'] !== process.env.API_ROUTE_SECRET){return res.status(401).send('Unauthorized Access2')}
   const { id } = req.query
   const client = await clientPromise;
         const db = client.db("test");
