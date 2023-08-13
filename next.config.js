@@ -9,34 +9,18 @@ const nextConfig = {
 module.exports = nextConfig,
 
 {
-  basePath:'/api',
-  async rewrites() {
-  return [
-    {
-      source: 'http://192.168.0.33/api/:path*',
-      destination: 'http://localhost:3000/api/:path*',
-    },
-    {
-      source:"https://www.portalize.io/api/:path*",
-      destination:"https://portalize.io/api/:path*",
-    }
-  ]
-},
 async headers() {
   return [
     {
-      source: 'api/*',
+      source: 'api/(.*)',
       headers: [
-        {
-          key:'Access-Control-Cross-Origin',
-          value:`*`
-        },
-        {
-          key:'x-api-key',
-          value:process.env.API_ROUTE_SECRET
+        {key:'Access-Control-Cross-Origin',value:`*`},
+        {key:"Access-Control-Allow-Credentials",value:"true"},
+        {key:'x-api-key',value:process.env.API_ROUTE_SECRET},
+        {key: "Access-Control-Allow-Methods",value: "GET,OPTIONS,PATCH,DELETE,POST,PUT"},
+        {key: "Access-Control-Allow-Headers",value: "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version"}
+          ]
         }
       ]
     }
-  ]
-}
 };
