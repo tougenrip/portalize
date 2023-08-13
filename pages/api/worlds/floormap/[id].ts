@@ -5,7 +5,7 @@ export default async function handler(req, res) {
     const { id } = req.query;
     let fmbyid = prisma.maps.findUnique({
       where: {
-        id:id as string
+        id:`${id}`
       },
       select: {
         floormap:true,
