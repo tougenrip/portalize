@@ -1,5 +1,7 @@
 ## Website Github Repository
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/84414f86-c06c-4df2-95ad-0eb690fcba14/deploy-status)](https://app.netlify.com/sites/unique-profiterole-18b792/deploys)
+
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
 You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
