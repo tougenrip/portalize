@@ -1,11 +1,8 @@
-import mongoose from 'mongoose';
-import User from './schemas/usersch';
-import { getServerSession } from 'next-auth';
-import authOptions from './auth/authOptions';
-import Mapsi from './schemas/mapsch';
-import { getServerAuthSession } from './auth/[...nextauth]';
 
-mongoose.connect(process.env.MONGODB_URI);
+import { getServerAuthSession } from './auth/[...nextauth]';
+import { PrismaClient } from '@prisma/client';
+const prisma = new PrismaClient();
+
 
 export default  async function handler(req, res) {
 
@@ -27,16 +24,11 @@ async function UnlikeMap(req, res) {
 
   if (req.method === 'PUT'){
     try{
-      const mapId = req.params
-      const session = await getServerAuthSession(req,res)
-      const owner = session?.user?.id
-
-      await User.findByIdAndUpdate(owner, { 'maps.liked' : { $push : `${mapId}`} });
-        
-
-      await Mapsi.findByIdAndUpdate(mapId, {$inc: {likes:-1}})
-
-
+      const {mapId} = req.body
+          const session = await getServerAuthSession(req,res)
+          const owner = session?.user?.id
+    
+           
 
       res.status(201).json({ message: `Unliked the map with ID: ${mapId}.` });
     } catch (e) {
@@ -60,8 +52,13 @@ async function LikeMap(req, res) {
           const session = await getServerAuthSession(req,res)
           const owner = session?.user?.id
     
-          await User.findByIdAndUpdate(owner, { 'maps.liked' : [{ $push : mapId as string }] })
-          await Mapsi.findOneAndUpdate(mapId, {$inc: {likes:1}})
+          const user = await prisma.user.findUnique({where:{id:owner}})
+          user.likedMaps.push(mapId)
+          await prisma.map.update({
+            where: { id: mapId },
+            data: { likes: { increment: 1 } }
+          })
+                    
           
      
     

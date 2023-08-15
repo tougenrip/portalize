@@ -245,3 +245,10 @@ export default async function handler(req, res) {
 export const getServerAuthSession = async(req,res) => {
   return await getServerSession(req,res,optionsnew);
 }
+export const config = {
+  api: {
+    bodyParser: {
+      sizeLimit: "10mb",
+    },
+  },
+}

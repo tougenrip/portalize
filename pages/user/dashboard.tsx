@@ -108,11 +108,11 @@ const Dashboard = () => {
   }
  
 
-  const updateUser = async () => {
+  const updateUser = async (req,res) => {
 
-    const res = await axios.put(
-        "/api/user/updateuser",
-        { userName, userEmail,userImage, userAge },
+    const user = await axios.put(
+        "/api/user/updateUser",
+        { userName, userEmail, userImage},
         {
           headers: {
             Accept: "application/json",
@@ -123,11 +123,11 @@ const Dashboard = () => {
       .then(async () => {
         window.alert('Updated User Details successfully')
         
-      }).finally(async() => {update({name:`${userName}`,email:`${userEmail}`,image:`${userImage}`})})
+      }).finally(async() => {update({name:userName,email:userEmail,image:userImage})})
       .catch((error) => {
         console.log(error);
       });
-    console.log(res);
+    console.log(user);
   };
   
 
@@ -327,7 +327,7 @@ const Dashboard = () => {
             </div>
             <div id="accsettings" className='relative h-screen'><h2 className='absolute top-[20%] left-0 md:left-14 text-3xl md:text-5xl font-bold'>Account Settings</h2>
             <div className='absolute p-5 gap-10 top-[28%] bg-transparent left-0 max-h-[75%] overflow-x-hidden overflow-hidden h-[75%] w-full rounded-l-3xl'>
-              <form onSubmit={() => updateUser()} className='relative flex flex-col space-y-7 top-5 scale-110 md:left-12' encType='multipart/form-data'>
+              <form className='relative flex flex-col space-y-7 top-5 scale-110 md:left-12' encType='multipart/form-data'>
               <Avatar
                 variant="circular"
                 size="xxl"
@@ -340,7 +340,7 @@ const Dashboard = () => {
               <Input label='Change Nickname' color="purple" size='lg' className='border-2 border-white' style={{backgroundColor:'transparent',}} onChange={(e) => {setUsername(e.target.value); console.log(e.target.value)}}></Input>
               <Input label='Change Email*' color="purple" className='border-2 border-white' style={{backgroundColor:'transparent'}} onChange={(e) => setUseremail(e.target.value)}></Input>
               <Input type="number" max={85} min={18} label='Set Age' color="purple" size='lg' className='border-2 border-white' style={{backgroundColor:'transparent',}} onChange={(e) => {setAge(e.target.value); console.log(e.target.value)}}></Input>
-              <Button type='submit' color='purple' > Save </Button>
+              <Button type='button' onClick={() => updateUser()} color='purple' > Save </Button>
               <p className='text-center text-xs text-red-500'>*Your stripe customer mail will not change</p>
               </form>
                   

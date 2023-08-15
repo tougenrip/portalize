@@ -3,7 +3,7 @@ const prisma = new PrismaClient();
 
 export default async function handler(req, res) {
   const { id } = req.query
-        let fmbyid = prisma.maps.findUnique({
+        let fmbyid = prisma.map.findUnique({
           where: {
             id:`${id}`
           },

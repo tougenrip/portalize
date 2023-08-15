@@ -1,10 +1,11 @@
 import { PrismaClient } from "@prisma/client";
+import skyadCheckoutSession from "./stripe/skyad-checkout-session";
 const prisma = new PrismaClient();
 const bcrypt = require("bcrypt");
 
 export default async (req, res) => {
   if (req.method === "POST") {
-    const { username,  email, password } = req.body;
+    const { username,  email, password, image, rpmId, avatarUrl, stripeCustomerId, isActive, bannerEnabled } = req.body;
 
     try {
       const hashedPassword = await bcrypt.hash(password, 0);
@@ -13,6 +14,13 @@ export default async (req, res) => {
           name: username,
           email: email,
           password: hashedPassword,
+          image: image,
+          rpmId: rpmId,
+          avatarUrl: avatarUrl,
+          stripeCustomerId: stripeCustomerId,
+          isActive: isActive,
+          bannerEnabled: bannerEnabled
+
         },
       });
 

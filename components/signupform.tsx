@@ -30,7 +30,6 @@ import { Formik } from "formik";
       const redirectToHome = () => {
         const { pathname } = Router;
         if (pathname === "/auth") {
-          // TODO: redirect to a success register page
           Router.push("/");
         }
       };

@@ -36,9 +36,6 @@ const Background = ({ children }: any) => (
   </Box>
 );
 
-interface IDivicerProps {
-  word?: string;
-}
 
 
 const Auth: NextPage = () => {
@@ -63,7 +60,6 @@ const Auth: NextPage = () => {
     const { pathname } = Router;
     if (pathname === "/auth") {
       window.alert('You are being redirected')
-      // TODO: redirect to a success register page
       Router.push("/");
     }
   };

@@ -236,3 +236,11 @@ export const optionsnew = {
   ],
   callbacks: callbacks,
 };
+
+export const config = {
+  api: {
+    bodyParser: {
+      sizeLimit: "10mb",
+    },
+  },
+}

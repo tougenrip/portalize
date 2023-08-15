@@ -6,7 +6,7 @@ datasource db {
   provider = "mongodb"
   url      = env("MONGODB_URI")
 }
-model banners {
+model Banner {
   id      String  @id @default(auto()) @map("_id") @db.ObjectId
   owner   String
   img     String
@@ -16,7 +16,7 @@ model banners {
 
 
 
-model skyads {
+model Skyad {
   id      String  @id @default(auto()) @map("_id") @db.ObjectId
   owner   String
   img     String
@@ -24,7 +24,7 @@ model skyads {
   website String
 }
 
-model events {
+model Event {
   id      String  @id @default(auto()) @map("_id") @db.ObjectId
   owner   String
   img     String
@@ -32,18 +32,18 @@ model events {
   website String
 }
 
-model maps {
+model Map {
   id         String   @id @default(auto()) @map("_id") @db.ObjectId
-  created    DateTime @db.Date
-  desc       String
-  floormap   String
-  img        String
-  interior   String
-  likes      Int?
+  created    DateTime @db.Date @default(now())
+  desc       String?
+  floormap   String?
+  img        String?
+  interior   String?
+  likes      Int  @default(0)
   owner      String?
   ownerEmail String?
-  title      String
-  userLimit  String
+  title      String?
+  userLimit  Int  @default(10)
 }
 
 // model users {
@@ -100,7 +100,7 @@ model Session {
 
 model User {
   id            String    @id @default(auto()) @map("_id") @db.ObjectId
-  name          String?
+  name          String?   @unique
   email         String?   @unique
   password      String?
   image         String?
@@ -109,6 +109,8 @@ model User {
   skyEnabled    Boolean?
   bannerEnabled Boolean?
   rpmId         String?
+  likedMaps     String[]
+  ownedMaps     String[]
   avatarUrl     String?
   accounts      Account[]
   sessions      Session[]

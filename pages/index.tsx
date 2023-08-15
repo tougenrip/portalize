@@ -55,7 +55,7 @@ const PortalizeSB = ({data}) => {
             <PortalNav/>
           </div>
             <div className=''>
-                <GameSlider/>
+                <GameSlider repo={undefined}/>
             </div>
             <div className=' h-fit mr-0 overflow-visible'>
               <h2 className='relative font-extrabold text-4xl left-14 w-18 mb-7'>Featured Servers</h2>
@@ -79,7 +79,7 @@ const PortalizeSB = ({data}) => {
               <h2 className='relative font-extrabold text-4xl left-14 w-18 mb-7'>Editor`s Choice</h2>
               <List setSelected={setSelected} />
               
-              {isMobile ?(null):(<Modal selected={selected} setSelected={setSelected} />)}
+              {isMobile ?(<Modal selected={selected} setSelected={setSelected} />):(null)}
             </div>
 
             {/* <div>

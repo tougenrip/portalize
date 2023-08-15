@@ -6,6 +6,8 @@ import { NextApiRequest, NextApiResponse } from "next";
 import User from "../schemas/usersch";
 import Mapsi from '../schemas/mapsch';
 import { getServerAuthSession } from '../auth/[...nextauth]';
+import { PrismaClient } from '@prisma/client';
+const prisma = new PrismaClient();
 // Replace the uri string with your MongoDB deployment's connection string.
 
 
@@ -32,9 +34,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
           const session = await getServerAuthSession(req,res)
           const owner = session?.user?.id
     
-          await User.findByIdAndUpdate(owner, {
-            rpmId: rpmId,
-          })
+          await prisma.user.update({where:{ id: owner }, data:{ rpmId: rpmId }})
     
           res.status(201).json({ message: 'Map data saved successfully.' });
         } catch (e) {
@@ -56,9 +56,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
           const session = await getServerAuthSession(req,res)
           const owner = session?.user?.id
     
-          await User.findByIdAndUpdate(owner, {
-            avatarUrl: avatarUrl,
-          })
+          await prisma.user.update({where:{ id: owner }, data:{ avatarUrl: avatarUrl }})
+
     
           res.status(201).json({ message: 'Map data saved successfully.' });
         } catch (e) {

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Mapsi from "@components/pages/api/schemas/mapsch";
+import Image from "next/image";
 
 
 interface SearchBarProps {
@@ -25,9 +25,12 @@ const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
         className="text-xl font-Gilroy font-light text-white/35 w-full bg-transparent outline-none py-3"
       />
       <button onClick={handleSearch} className="min-h-0 min-w-0 w-6">
-        <img
+    
+        <Image
           src="https://file.rendit.io/n/GcJTinFkXKSA8dPj5vAl.svg"
           alt="Search Icon"
+          width={9}
+          height={8}
         />
       </button>
     </div>
