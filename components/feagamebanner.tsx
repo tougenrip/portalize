@@ -7,6 +7,7 @@ import useSWR from 'swr'
 const FeaGameBanner = () => {
     const [selectedId, setSelectedId] = useState(null)
     const [isOpen, setOpen] = useState(false)
+    const desc = ['Indulge in a culinary adventure at our restaurant, where every bite is a masterpiece. From farm-fresh ingredients to innovative flavors, our talented chefs craft unforgettable dishes that ignite your senses. Experience unparalleled hospitality and ambiance that make every visit a celebration.','Embark on an exhilarating journey through our Labyrinth Shooter Game Park, where adrenaline and excitement await at every twist and turn. Unleash your inner hero as you navigate intricate mazes, dodging obstacles, and conquering challenging targets. Immerse yourself in a world of pulse-pounding action, dazzling visuals, and heart-pumping sound effects. Get ready for an unforgettable adventure at the Labyrinth Shooter Game Park, where thrill-seekers become legends.']
 
 
     const fetcher = async (url) => {
@@ -31,7 +32,7 @@ const FeaGameBanner = () => {
 
   return (
     <div className='relative w-[100%] h-min flex flex-col text-3xl my-4'>
-      <h1 className='relative top-0 left-14 text-6xl'>Public Spaces</h1>
+      <h1 className='relative top-0 left-14 text-4xl'>Public Spaces</h1>
         <div className='w-[95%] place-self-center'>
         {/* {games?.map(item => (
             <>
@@ -46,16 +47,16 @@ const FeaGameBanner = () => {
           <motion.div layout  className='flex flex-col gap-2 h-[400px] relative rounded-3xl bg-[url(/img/res.png)] bg-no-repeat bg-center bg-cover my-5 p-5' >
                 
                 <motion.h2 className='font-bold'>Restaurant</motion.h2>
-                <motion.p className='font-light text-xl'>Indulge in a culinary adventure at our restaurant, where every bite is a masterpiece. From farm-fresh ingredients to innovative flavors, our talented chefs craft unforgettable dishes that ignite your senses. Experience unparalleled hospitality and ambiance that make every visit a celebration.</motion.p>
-                <Link href={`/pbspace/1`}><Button color='purple' variant='gradient' className='px-14 py-4 absolute bottom-5 right-5'>Join</Button></Link>
+                <motion.p className='text-sm md:text-xl'>{desc[1]}</motion.p>
+                <Link href={`/pbspace/1`}><Button color='purple' variant='gradient' className='px-14 py-4 !absolute bottom-5 right-5'>Join</Button></Link>
             </motion.div>
             
 
             <motion.div layout  className='flex flex-col gap-2 h-[400px] relative rounded-3xl bg-[url(/img/lab.png)] bg-no-repeat bg-center bg-cover my-5 p-5' >
                 
                 <motion.h2 className='font-bold'>Labyrinth</motion.h2>
-                <motion.p className='text-xl'>Embark on an exhilarating journey through our Labyrinth Shooter Game Park, where adrenaline and excitement await at every twist and turn. Unleash your inner hero as you navigate intricate mazes, dodging obstacles, and conquering challenging targets. Immerse yourself in a world of pulse-pounding action, dazzling visuals, and heart-pumping sound effects. Get ready for an unforgettable adventure at the Labyrinth Shooter Game Park, where thrill-seekers become legends.</motion.p>
-                <Link href={`/pbspace/2`}><Button color='purple' variant='gradient' className='px-14 py-4 absolute bottom-5 right-5'>Join</Button></Link>
+                <motion.p className='text-sm md:text-xl'>{desc[0]}</motion.p>
+                <Link href={`/pbspace/2`}><Button color='purple' variant='gradient' className='px-14 py-4 !absolute bottom-5 right-5'>Join</Button></Link>
             </motion.div>
         
 

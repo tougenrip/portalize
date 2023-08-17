@@ -12,10 +12,6 @@ import {
 } from "@heroicons/react/24/outline";
 
 import { useSession, signIn, signOut } from "next-auth/react";
-import ButtonWSignUp from './buttonwSignin'
-const ProfileMenu = () => {
-}
-
 
  const Navbar = () => {
 
@@ -40,7 +36,7 @@ const ProfileMenu = () => {
   const stickNavbar = () => {
     if (window !== undefined) {
       let windowHeight = window.scrollY;
-      windowHeight > 500 ? setStickyClass('fixed bg-[#151515] top-0 w-[100%] left-0 !z-50 gap-20 justify-between') : setStickyClass(' bg-transparent !z-50');
+      windowHeight > 200 ? setStickyClass('fixed bg-[#151515] top-0 w-[100%] left-0 ') : setStickyClass(' bg-transparent z-50');
       stickyClass ? setMobileSticky('fixed top-20 left-0 z-50 gap-20') : setMobileSticky('')
     }
   };
@@ -62,30 +58,30 @@ const ProfileMenu = () => {
   }, []);
   
 
-  const isMobile = windowDimension <= 768;
+  const isMobile = windowDimension <= 900;
   const isLogged = status === 'authenticated';
 
   return (
     <>
     <div id="header" className=" w-screen !z-50">
-    <div className={` ${stickyClass} bg-base-100 flex flex-row-reverse  justify-end md:flex-row pt-8 pb-4 px-4 gap-0 md:gap-10 md:w-screen md:justify-between md:px-20`}>
+    <div className={` ${stickyClass} bg-base-100 flex flex-row-reverse z-50  justify-end md:flex-row pt-8 pb-4 px-4 space-x-0 md:!space-x-10 md:w-screen md:justify-between md:px-20`}>
       <div className=" self-center">
         <Link href={`/`}><Image src='/img/logo_comp.webp' className=" scale-75 md:scale-100" width={218} height={38} alt="Logo"></Image></Link>
       </div>
 
       {isMobile ? (<div>
          
-        <Button name="mobile-menu-button" aria-label="mobile-menu" color="purple" onClick={() => setNavOpen(current => !current)} ripple={false} variant="outlined" className="border-none flex items-center gap-0 p-3">
+        <Button name="mobile-menu-button" aria-label="mobile-menu" color="purple" onClick={() => setNavOpen(current => !current)} ripple={false} variant="outlined" className="border-none flex items-center space-x-0 p-3">
         {navOpen ? (<XMarkIcon color="purple" strokeWidth={2} className="h-5 w-5" />) : (<Bars3Icon color="purple" strokeWidth={2} className="h-5 w-5" />)}
       </Button>
       
       </div>) : (<div className="flex-row">
-        <ul className="menu menu-horizontal  text-sm px-1 flex-row inline-flex gap-6">
+        <ul className="menu menu-horizontal  text-sm px-1 flex-row inline-flex space-x-6">
           <li className="self-center hover:text-purple-600">
             <Link href="/">Home</Link>
           </li>
           <li className="self-center hover:text-purple-600">
-            <Link href="/serverbrowser">Portals</Link>
+            <Link href="/about">Editor</Link>
           </li>
           <li className="self-center hover:text-purple-600">
             <Link href="https://portalize.gitbook.io/portalize/introduction/welcome-to-portalize">Docs</Link>
@@ -96,7 +92,7 @@ const ProfileMenu = () => {
           </Tooltip>
           </li>
         {isLogged ? (<li className="self-center ">
-            <Link href="/editor"><Button  variant="gradient" color="purple" className="!bg-gradient-to-br rounded-full from-[#3b29ff] to-[#9c4fff]">Launch Editor</Button></Link>
+            <Link href="/editor"><Button  variant="gradient" color="purple" className="!bg-gradient-to-br rounded-full tracking-wider from-[#3b29ff] to-[#9c4fff]">Launch Editor</Button></Link>
           </li>):('')}
           
           <li>
@@ -176,7 +172,7 @@ const ProfileMenu = () => {
                   <Link href="/">Home</Link>
                 </li>
                 <li>
-                  <Link href="/serverbrowser">Portals</Link>
+                  <Link href="/about">Editor</Link>
                 </li>
                 <li>
                   <Link href="https://portalize.gitbook.io/portalize/introduction/welcome-to-portalize">Docs</Link>
@@ -188,6 +184,8 @@ const ProfileMenu = () => {
                 </li>
                 <li>
                   {isLogged ? (
+                    <>
+                    <li>
                     <Link href={`/user/dashboard`}>
                     <div className="grid grid-cols-4 grid-rows-2">
                       <Avatar
@@ -198,8 +196,21 @@ const ProfileMenu = () => {
                       />
                       <p className=" col-span-2 row-span-1">{userName}</p>
                       <p className="col-span-2 row-span-1 break-normal text-blue-gray-300">{userEmail}</p>
+                      
+                      
                     </div>
                     </Link>
+                    </li>
+                    <li>
+                    <Link onClick={() => signOut()} href={''}>
+                        <MenuItem className="flex place-content-center place-items-center mt-4 ">
+                          <Typography variant="small" className="font-normal">
+                            Sign Out
+                          </Typography>
+                        </MenuItem>
+                        </Link>
+                        </li>
+                        </>
                   ) :(<Link href={`/auth`}><Button variant="gradient" color="purple" className="inline-flex px-20">Register for Free</Button></Link>)}
                 </li>
               </ul>

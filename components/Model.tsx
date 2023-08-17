@@ -1,8 +1,9 @@
 import React from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { Button } from "@material-tailwind/react";
+import { Button, Chip, IconButton } from "@material-tailwind/react";
 import Link from "next/link";
+import { FaPlayCircle } from "react-icons/fa";
 
 export default function Modal({ selected, setSelected }) {
   if (!selected) {
@@ -14,33 +15,54 @@ export default function Modal({ selected, setSelected }) {
       onClick={() => setSelected(null)}
       className="fixed inset-0 bg-black/70 z-50 cursor-pointer overflow-y-scroll"
     >
-      <div
+      <motion.div
+        initial={{
+          y:1500
+        }}
+        animate={{
+          y:0,
+        }}
+        transition={{
+          duration:0.5,
+          stiffness:2,
+          damping:0.5
+        }}
         onClick={(e) => e.stopPropagation()}
-        className="w-full max-w-[60%] h-screen mx-auto my-8 px-8 cursor-default"
+        className="w-full max-w-[70%] h-screen mx-auto my-8 px-0 cursor-default "
       >
-        <motion.div layoutId={`card-${selected.id}`} className="w-full h-2/4">
-          <Image alt=''  src={selected.img || '/img/map.png'} fill className="!relative" />
+      <motion.div layout layoutId={`card-${selected.id}`} className={`w-full bg-cover bg-center relative h-2/4 rounded-t-3xl`} style={{backgroundImage: `url(${selected.img || '/img/map.png'})`}}>
+          {/* <Image alt=''  src={selected.img || '/img/map.png'} fill sizes="100%" /> */}
         </motion.div>
         <motion.div
-          initial={{
-            opacity: 0,
-            y: 50,
-          }}
-          animate={{
-            opacity: 1,
-            y: 0,
-          }}
-          transition={{
-            duration: 0.5,
-          }}
-          className="bg-paffbg p-4"
+          className="bg-paffbg h-[85%] p-4 grid grid-cols-2 rounded-b-3xl" 
         >
-          <h3 className="text-2xl font-bold mb-2 ">{selected.title}</h3>
+          <div className="flex flex-col relative left-5 tracking-wide">
+
+          <h3 className="text-6xl font-bold mb-2">{selected.title}</h3>
+          <p className="my-4 text-2xl ">{selected.desc}</p>
+
+          </div>
+
+
+          <div className="relative h-1">
+
           
-          <p className="my-4 ">{selected.description}</p>
-          <Link href={`${process.env.NEXT_PUBLIC_WEBSITE_URL}game/${selected._id}`}><Button className="btn btn-primary btn-block text-black">Join</Button></Link>
+          <Link href={`${process.env.NEXT_PUBLIC_WEBSITE_URL}game/${selected._id}`}><Button color="purple" className="flex gap-3 w-56 text-center rounded-3xl h-20 relative bottom-12 right-5 text-5xl font-extrabold float-right"><FaPlayCircle className="h-full w-auto"/>Join</Button></Link>
+          <div className="col-start-2 absolute top-14 right-6 flex flex-row space-x-1 tracking-wider">
+          <Chip value="test1" color="purple" variant="outlined"/>
+            <Chip value="test2" color="purple" variant="outlined"/>
+            <Chip value="test3" color="purple" variant="outlined"/>
+            <Chip value="test4" color="purple" variant="outlined"/>
+          </div>
+          
+
+          </div>
+          
+          
+
+          
         </motion.div>
-      </div>
+      </motion.div>
     </div>
   );
 }

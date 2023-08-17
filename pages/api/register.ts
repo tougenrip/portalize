@@ -1,106 +1,36 @@
-import type { NextApiRequest, NextApiResponse } from "next";
-import dbConnect from "../../lib/dbConnect";
-import User from "../api/schemas/usersch";
-import bcrypt from "bcrypt";
-import Stripe from "stripe";
+import { PrismaClient } from "@prisma/client";
+import skyadCheckoutSession from "./stripe/skyad-checkout-session";
+const prisma = new PrismaClient();
+const bcrypt = require("bcrypt");
 
-interface ResponseData {
-  error?: string;
-  msg?: string;
-}
+export default async (req, res) => {
+  if (req.method === "POST") {
+    const { username,  email, password, image, rpmId, avatarUrl, stripeCustomerId, isActive, bannerEnabled } = req.body;
 
-const validateEmail = (email: string): boolean => {
-  const regEx = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
-  return regEx.test(email);
-};
+    try {
+      const hashedPassword = await bcrypt.hash(password, 0);
+      await prisma.user.create({
+        data: {
+          name: username,
+          email: email,
+          password: hashedPassword,
+          image: image,
+          rpmId: rpmId,
+          avatarUrl: avatarUrl,
+          stripeCustomerId: stripeCustomerId,
+          isActive: isActive,
+          bannerEnabled: bannerEnabled
 
-const validateForm = async (
-  username: string,
-  email: string,
-  password: string,
-) => {
-  if (username.length < 3) {
-    return { error: "Username must have 3 or more characters" };
+        },
+      });
 
-  }
-  if (!validateEmail(email)) {
-    return { error: "Email is invalid" };
-  }
-
-  await dbConnect();
-  const emailUser = await User.findOne({ email: email });
-
-  if (emailUser) {
-    
-    return { error: "Email already exists"  };
-  }
-
-  if (password.length < 5) {
-    return { error: "Password must have 5 or more characters" };
-  }
-
-  return null;
-};
-
-export default async function handler(
-  req: NextApiRequest,
-  res: NextApiResponse<ResponseData>
-) {
-  // validate if it is a POST
-  if (req.method !== "POST") {
-    return res
-      .status(200)
-      .json({ error: "This API call only accepts POST methods" });
-  }
-
-  
-
-
-
-  // get and validate body variables
-  const { username, email, password, stripeCustomerId, image, isActive, skyEnabled, bannerEnabled } = req.body;
-
-  const errorMessage = await validateForm(username, email, password);
-  if (errorMessage) {
-    return res.status(400).json(errorMessage as ResponseData);
-  }
-
-  // hash password
-  const hashedPassword = await bcrypt.hash(password, 12);
-
-  // create new User on MongoDB
-  const newUser = new User({
-    name: username,
-    email,
-    hashedPassword,
-    image,
-    stripeCustomerId,
-    isActive,
-    skyEnabled,
-    bannerEnabled
-  });
-  
-  const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
-    apiVersion: "2022-11-15",
-  });
-
-
-  newUser
-    .save()
-    .then(async() => {
-      await stripe.customers
-      .create({
-        email: email!,
-        name: username!,
-      }).then(async (customer) => {
-           return User.updateOne({email:email},{stripeCustomerId:customer.id})
-           
-          
-          }).finally(() => res.status(200).json({ msg: "Successfuly created new User: " + newUser }))
+      return res.status(200).end();
+    } catch (err) {
+      return res.status(503).json({ err: err.toString() });
     }
-      // res.status(200).json({ msg: "Successfuly created new User: " + newUser })
-    )
-    .catch((err: string) =>
-      res.status(400).json({ error: "Error on '/api/register': " + err })
-    );
-}
+  } else {
+    return res
+      .status(405)
+      .json({ error: "This request only supports POST requests" });
+  }
+};

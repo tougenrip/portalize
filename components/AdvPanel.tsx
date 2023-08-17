@@ -136,7 +136,7 @@ export default function AdvPanel() {
                       </Typography>
                     </td>
                     <td className={classes}>
-                      <Typography variant="small" color="" className="font-normal">
+                      <Typography variant="small" color="white" className="font-normal">
                         {date}
                       </Typography>
                     </td>

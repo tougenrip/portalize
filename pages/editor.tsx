@@ -54,7 +54,7 @@ function OpenEmpty() {
         <Unity
           className="-z-10"
           unityProvider={unityProvider}
-          style={{ visibility: isLoaded ? "visible" : "hidden", "width": "100%", "height": "100vh" }}
+          style={{transitionDelay:'5s', visibility: isLoaded ? "visible" : "hidden", "width": "100%", "height": "100vh" }}
         />
         <>
         </>

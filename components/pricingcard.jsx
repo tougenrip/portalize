@@ -45,63 +45,75 @@ export default function PricingCard() {
         floated={false}
         shadow={false}
         color="transparent"
-        className="m-0 mb-8 rounded-none border-b border-white/10 pb-8 text-center"
+        className="m-0 mb-8 rounded-none  text-start"
       >
         <Typography
           variant="small"
           color="white"
-          className="font-normal uppercase"
+          className="font-gilroy font-extrabold text-2xl leading-6 tracking-[0.2rem] uppercase text-white mix-blend-hard-light px-0 py-2 rounded"
         >
-          Premium
+        BE PRO
         </Typography>
         <Typography
           variant="h1"
           color="white"
-          className="mt-6 flex justify-center gap-1 text-7xl font-normal"
+          className="mt-6 flex justify-start gap-1 text-7xl font-normal"
         >
-          <span className="mt-2 text-4xl">$</span>2.99{" "}
+          <span className="mt-2 text-4xl">$</span>9.99{" "}
           <span className="self-end text-4xl">/mo</span>
         </Typography>
       </CardHeader>
       <CardBody className="p-0">
-        <ul className="flex flex-col gap-4">
-          <li className="flex items-center gap-4">
-            <span className="rounded-full border border-white/20 bg-[#9C4FFF] p-1">
-              <CheckIcon strokeWidth={2} className="h-3 w-3 text-white" />
+      <ul className="flex flex-col space-y-6">
+          <li className="flex items-center space-x-2">
+            <span className="rounded-full p-0">
+              <CheckIcon  strokeWidth={4} className="h-5 w-5 stroke-[#773fff]" />
             </span>
-            <Typography className="font-normal text-white">5 team members</Typography>
+            <Typography className="font-gilroy font-bold text-white text-2xl leading-6 tracking-tighter">Up to 20 Sub-Servers</Typography>
           </li>
-          <li className="flex items-center gap-4">
-            <span className="rounded-full border border-white/20 bg-[#9C4FFF] p-1">
-              <CheckIcon strokeWidth={2} className="h-3 w-3 text-white" />
+          <li className="flex items-center space-x-2">
+            <span className="rounded-full p-0">
+              <CheckIcon  strokeWidth={4} className="h-5 w-5 stroke-[#773fff]" />
             </span>
-            <Typography className="font-normal text-white">200+ components</Typography>
+            <Typography className="font-gilroy font-bold text-white text-2xl leading-6 tracking-tighter">10000+ Assets</Typography>
           </li>
-          <li className="flex items-center gap-4">
-            <span className="rounded-full border border-white/20 bg-[#9C4FFF] p-1">
-              <CheckIcon strokeWidth={2} className="h-3 w-3 text-white" />
+          <li className="flex items-center space-x-2">
+            <span className="rounded-full p-0">
+              <CheckIcon  strokeWidth={4} className="h-5 w-5 stroke-[#773fff]" />
             </span>
-            <Typography className="font-normal text-white">40+ built-in pages</Typography>
+            <Typography className="font-gilroy font-bold text-white text-2xl leading-6 tracking-tighter">Unlimited Portals</Typography>
           </li>
-          <li className="flex items-center gap-4">
-            <span className="rounded-full border border-white/20 bg-[#9C4FFF] p-1">
-              <CheckIcon strokeWidth={2} className="h-3 w-3 text-white" />
+          <li className="flex items-center space-x-2">
+            <span className="rounded-full p-0">
+              <CheckIcon  strokeWidth={4} className="h-5 w-5 stroke-[#773fff]" />
             </span>
-            <Typography className="font-normal text-white">1 year free updates</Typography>
+            <Typography className="font-gilroy font-bold text-white text-2xl leading-6 tracking-tighter">Ads Integration</Typography>
           </li>
-          <li className="flex items-center gap-4">
-            <span className="rounded-full border border-white/20 bg-[#9C4FFF] p-1">
-              <CheckIcon strokeWidth={2} className="h-3 w-3 text-white" />
+          <li className="flex items-center space-x-2">
+            <span className="rounded-full p-0">
+              <CheckIcon  strokeWidth={4} className="h-5 w-5 stroke-[#773fff]" />
             </span>
-            <Typography className="font-normal text-white">Life time technical support</Typography>
+            <Typography className="font-gilroy font-bold text-white text-2xl leading-6 tracking-tighter">Shop Integration</Typography>
           </li>
+          <li className="flex items-center space-x-2">
+            <span className="rounded-full p-0">
+              <CheckIcon  strokeWidth={4} className="h-5 w-5 stroke-[#773fff]" />
+            </span>
+            <Typography className="font-gilroy font-bold text-white text-2xl leading-6 tracking-tighter">Workspace Integration</Typography>
+          </li>
+          <li className="flex items-center space-x-2">
+            <span className="rounded-full p-0">
+              <CheckIcon  strokeWidth={4} className="h-5 w-5 stroke-[#773fff]" />
+            </span>
+            <Typography className="font-gilroy font-bold text-white text-2xl leading-6 tracking-tighter">Developer Access</Typography>
+          </li>          
         </ul>
       </CardBody>
       <CardFooter className="mt-12 p-0">
         {isLogged ? (<Button
           size="lg"
           color="purple"
-          className="text-white !bg-gradient-to-br !from-purple-500 !to-purple-900 hover:shadow-lg hover:shadow-purple-500 hover:scale-[1.02] focus:scale-[1.02] active:scale-100"
+          className="text-white !bg-gradient-to-br !from-purple-500 !to-purple-900 hover:shadow-lg  shadow-purple-700 hover:shadow-purple-500 hover:scale-[1.02] focus:scale-[1.02] active:scale-100"
           ripple={false}
           fullWidth={true}
           onClick={() => {
@@ -109,7 +121,7 @@ export default function PricingCard() {
             else goToCheckout();
           }}
         >
-          Buy Now
+          Be PRO
         </Button>) : (<Link href={'/auth'}><Button
           size="lg"
           

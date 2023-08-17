@@ -1,14 +1,18 @@
 import React , { useState, useEffect } from 'react'
-import {  Avatar, IconButton, Tooltip } from '@material-tailwind/react'
+import {  IconButton, Tooltip, Button, Avatar as AvatarM } from '@material-tailwind/react'
 import Link from 'next/link'
 import { useSession, getSession } from "next-auth/react";
 import {
   Bars3Icon,
-  CheckBadgeIcon
+  CheckBadgeIcon,
+  CodeBracketSquareIcon
 } from "@heroicons/react/24/outline";
 import { motion} from 'framer-motion'
+import { Avatar } from '@readyplayerme/visage'
+
 
 const SideBar = (req,res) => {
+  
 
   const [isCheckoutLoading, setIsCheckoutLoading] = useState(false);
   
@@ -35,6 +39,9 @@ const SideBar = (req,res) => {
   const userImage = session?.user?.image;
   const userEmail = session?.user?.email;
   const isActive = session?.user.isActive;
+  const isDev= session?.user?.isDev;
+  const rpmId= session?.user?.rpmId;
+  const avatarUrl= session?.user?.avatarUrl;
   const [x,setX] = useState(0);
   const [checked, setChecked] = useState(false);
 
@@ -99,7 +106,7 @@ const SideBar = (req,res) => {
     transition={{ damping:0}}
     >
 
-<div className="fixed w-60 lg:w-80 xl:w-[400px] xl:bottom-0 left-0 xl:left-20 xl:top-44 rounded-t-xl max-w-md backdrop-blur-lg flex flex-col items-center bg-[#202020] gap-3 h-[840px] px-10 py-12 rounded-[33px]">  
+{/* <div className="fixed w-60 lg:w-80 xl:w-[400px] xl:bottom-0 left-0 xl:left-20 xl:top-44 rounded-t-xl max-w-md backdrop-blur-lg flex flex-col items-center bg-[#202020] gap-3 h-[840px] px-10 py-12 rounded-[33px]">  
   <div className='flex justify-center'>
         <Avatar
                 variant="circular"
@@ -163,28 +170,30 @@ const SideBar = (req,res) => {
         {isMobile ? (<div className='absolute -right-10 top-1/4 z-50'>
           <IconButton onClick={() => setSideOpen(current => !current)} variant='gradient' color={'gray'}><Bars3Icon className='h-6 w-6' strokeWidth={2}/></IconButton>
         </div>) : ('')}
-</div> 
+</div>  */}
 
-   {/* <div className="fixed z-50 w-60 lg:w-80 xl:bottom-0 left-0 xl:left-20 rounded-t-xl max-w-md backdrop-blur-lg flex flex-col items-center bg-paffbg h-screen xl:h-[80vh]">
+   <div className="fixed z-50 w-60 lg:w-80 xl:bottom-0 left-0 xl:left-20 rounded-t-xl max-w-md backdrop-blur-lg flex flex-col items-center bg-paffbg h-screen xl:h-[80vh]">
         
         <div className='flex'>
-        <Avatar
+         <Avatar modelSrc={avatarUrl} className='!rounded-full self-end !w-12 !h-12' />
+        
+        <AvatarM
                 variant="circular"
-                size='xxl'
+                size="xxl"
                 alt="UserLogo"
-                className={`cursor-pointer mt-5`}
+                className={`cursor-pointer mt-5 h-24 w-24 place-self-center`}
                 src={userImage || '/img/pp_comp.webp'}
               />
-        
 
+        
         </div>
-        <div className='mt-5 text-center'><p className='flex flex-row gap-1 text-center justify-center place-items-center'>{userName} {isActive ? (<Tooltip content="Premium"><CheckBadgeIcon className={`relative w-6 h-6 ${isActive ? (''): ('hidden')}`}></CheckBadgeIcon></Tooltip>) : ('')}</p><p className='text-sm flex flex-row gap-2 text-[#666666]'>{userEmail}</p></div>
-        <div className='w-[80%] flex flex-col gap-4 mt-20'>
-       <Link href={''}><Tooltip content="Coming Soon"><Button variant='outlined' size='sm' color='purple' className='border-transparent hover:border-purple-500 rounded-xl group-hover:shadow-lg hover:shadow-md ' fullWidth >My Avatar</Button></Tooltip></Link>
-       <Link href={'#myspaces'}> <Button variant='outlined' size='sm' color='purple' className='border-transparent hover:border-purple-500 rounded-xl group-hover:shadow-lg hover:shadow-md' fullWidth >My Spaces</Button></Link>
-        <Link href={'#analytics'}><Button variant='outlined' size='sm' color='purple' className='border-transparent hover:border-purple-500  rounded-xl group-hover:shadow-lg hover:shadow-md' fullWidth >Analytics</Button></Link>
-       <Link href={'#adverts'}> <Button variant='outlined' size='sm' color='purple' className='border-transparent hover:border-purple-500 rounded-xl group-hover:shadow-lg hover:shadow-md' fullWidth >Advertisement Panel</Button></Link>
-       <Link href={'#accsettings'}> <Button variant='outlined' size='sm' color='purple' className='border-transparent hover:border-purple-500 rounded-xl group-hover:shadow-lg hover:shadow-md' fullWidth >Account Settings</Button></Link>
+        <div className='mt-5 text-center'><p className='flex flex-row gap-1 text-center justify-center place-items-center'>{userName} {isDev ? (<Tooltip content="Portalize Developer"><CodeBracketSquareIcon className={`relative w-6 h-6 ${isDev ? (''): ('hidden')}`}></CodeBracketSquareIcon></Tooltip>):('')} {isActive ? (<Tooltip content="Premium"><CheckBadgeIcon className={`relative w-6 h-6 ${isActive ? (''): ('hidden')}`}></CheckBadgeIcon></Tooltip>) : ('')}</p><p className='text-sm flex flex-row gap-2 text-[#666666]'>{userEmail}</p></div>
+        <div className='w-[80%] flex flex-col space-y-4 mt-20 '>
+       <Link href={''}><Tooltip content="Coming Soon"><Button variant='outlined' size='sm' color='purple' className='border-transparent hover:border-purple-500 rounded-xl group-hover:shadow-lg hover:shadow-md tracking-wider' fullWidth >My Avatar</Button></Tooltip></Link>
+       <Link href={'#myspaces'}> <Button variant='outlined' size='sm' color='purple' className='border-transparent hover:border-purple-500 rounded-xl group-hover:shadow-lg hover:shadow-md tracking-wider' fullWidth >My Spaces</Button></Link>
+        <Link href={'#analytics'}><Button variant='outlined' size='sm' color='purple' className='border-transparent hover:border-purple-500  rounded-xl group-hover:shadow-lg hover:shadow-md tracking-wider' fullWidth >Analytics</Button></Link>
+       <Link href={'#edvertsec'}> <Button variant='outlined' size='sm' color='purple' className='border-transparent hover:border-purple-500 rounded-xl group-hover:shadow-lg hover:shadow-md tracking-wider' fullWidth >Advertisement Panel</Button></Link>
+       <Link href={'#accsettings'}> <Button variant='outlined' size='sm' color='purple' className='border-transparent hover:border-purple-500 rounded-xl group-hover:shadow-lg hover:shadow-md tracking-wider' fullWidth >Account Settings</Button></Link>
 
         </div>
         {isActive ? (''):(<div className='absolute rounded-2xl bottom-[15%] w-[70%] bg-gradient-to-t h-14 from-purple-700 to-purple-300 text-center' onClick={() => {if (isCheckoutLoading) return;else goToCheckout();}}>
@@ -195,7 +204,7 @@ const SideBar = (req,res) => {
           <IconButton onClick={() => setSideOpen(current => !current)} variant='gradient' color={'gray'}><Bars3Icon className='h-6 w-6' strokeWidth={2}/></IconButton>
         </div>) : ('')}
         
-  </div>*/}
+  </div>
     </motion.div>
     </>
   )

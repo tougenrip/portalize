@@ -15,6 +15,7 @@ import axios from "axios";
 import Router from "next/router";
 import Image from "next/image";
 import Link from "next/link";
+import Script from "next/script";
 
 const Background = ({ children }: any) => (
   <Box
@@ -35,9 +36,6 @@ const Background = ({ children }: any) => (
   </Box>
 );
 
-interface IDivicerProps {
-  word?: string;
-}
 
 
 const Auth: NextPage = () => {
@@ -49,9 +47,12 @@ const Auth: NextPage = () => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [confirm, setConfirm] = useState("");
   const stripeCustomerId = '';
   const isActive = false;
   const image = '';
+  const rpmId = '';
+  const avatarUrl = '';
   const skyEnabled = false;
   const bannerEnabled = false;
 
@@ -59,7 +60,6 @@ const Auth: NextPage = () => {
     const { pathname } = Router;
     if (pathname === "/auth") {
       window.alert('You are being redirected')
-      // TODO: redirect to a success register page
       Router.push("/");
     }
   };
@@ -68,7 +68,7 @@ const Auth: NextPage = () => {
     const res = await axios
       .post(
         "/api/register",
-        { username, email, password, stripeCustomerId, isActive,image,skyEnabled,bannerEnabled },
+        { username, email, password, confirm, stripeCustomerId, isActive,image,skyEnabled,bannerEnabled, avatarUrl, rpmId },
         {
           headers: {
             Accept: "application/json",
@@ -105,21 +105,26 @@ const Auth: NextPage = () => {
 
   return (
     <>
-    <div className='absolute  top-2 left-[4%]'>
+    <div className="container">
+        <Script src="https://www.googletagmanager.com/gtag/js?id=HXHGJ64EP8" />
+        <Script id="google-analytics">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+  
+            gtag('config', 'HXHGJ64EP8');
+          `}
+        </Script>
+      </div>
+    
+    <Background>
+      <div className="absolute w-full md:w-[600px] h-screen rounded-md items-center bg-[#151515]">
+      <div className='absolute top-2 left-[9%] w-max'>
          <Link href={'/'}><Image src='/img/logo.png' className="relative scale-75 -left-7 md:left-0 md:scale-100 my-5 !z-50" width={218} height={38} alt="Logo"/></Link>
           </div>
-    <Background>
-      <Box
-        w="500px"
-        h="100vh"
-        rounded="md"
-        alignItems={"flex-end"}
-        bgColor="#282828"
-        position={"absolute"}
-        p={12}
-      >
-        <Flex direction="column" justifyContent="center" w={"80%"} position={"absolute"} bottom={"15%"} alignItems="center" >
-          <Heading size="xl">{authType}</Heading>
+        <div className="absolute top-[9%] left-[9%]">
+        <Heading size="xl" >{authType}</Heading>
           <Text fontSize="sm" mb={6}>
             {authType === "Login"
               ? "Not registered yet? "
@@ -128,6 +133,10 @@ const Auth: NextPage = () => {
               <Text as="u">{oppAuthType[authType]}</Text>
             </button>
           </Text>
+        </div>
+        
+        <Flex direction="column" justifyContent="center" w={"80%"} position={"absolute"} bottom={"20%"} left={'9%'} alignItems="start" >
+          
 
           <Formik
             initialValues={{}} // { email: "", password: "" }
@@ -138,10 +147,10 @@ const Auth: NextPage = () => {
             }}
           >
             {(props) => (
-              <Form style={{ width: "100%" }}>
+              <Form style={{ width: "100%", zIndex:"40" }}>
                 <Box display="flex" flexDirection="column" w="100%" mb={4}>
                   {authType === "Register" && (
-                    
+                    <>
                     <Field name="username">
                       {() => (
                         <FormControl isRequired mb={6}>
@@ -150,11 +159,27 @@ const Auth: NextPage = () => {
                             onChange={(e) => setUsername(e.target.value)}
                             label="Username"
                             color="purple"
-                            className="text-white"
+                            className="!border-0 !bg-inputBg !ring-0"
                           />
                         </FormControl>
                       )}
                     </Field>
+
+                    <Field name="confirm">
+                    {() => (
+                      <FormControl isRequired mb={6} style={{order:4}}>
+                        <Input
+                          value={confirm}
+                          onChange={(e) => setConfirm(e.target.value)}
+                          label="Confirm"
+                          type="password"
+                          color="purple"
+                          className="!border-0 !bg-inputBg !ring-0"
+                        />
+                      </FormControl>
+                    )}
+                    </Field>
+                    </>
                   )}
                   <Field name="email">
                     {() => (
@@ -164,28 +189,29 @@ const Auth: NextPage = () => {
                           onChange={(e) => setEmail(e.target.value)}
                           label="Email Address"
                           color="purple"
-                          className="text-white"
+                          className="!border-0 !bg-inputBg !ring-0"
                         />
                       </FormControl>
                     )}
                   </Field>
                   <Field name="password">
                     {() => (
-                      <FormControl isRequired mb={3}>
+                      <FormControl isRequired mb={6}>
                         <Input
                           value={password}
                           onChange={(e) => setPassword(e.target.value)}
                           type="password"
                           label="Password"
                           color="purple"
-                          className="text-white"
+                          className="!border-0 !bg-inputBg !ring-0"
                         />
                       </FormControl>
                     )}
                   </Field>
                   <Button
                     mt={6}
-                    className="!bg-gradient-to-br !from-purple-500 !to-purple-900 hover:!from-purple-300 hover:!to-purple-600 transition-all trasfu"
+                    order={99}
+                    className="!bg-gradient-to-br w-max !rounded-full tracking-wide !from-purple-500 !to-purple-900 hover:!from-purple-300 hover:!to-purple-600 transition-all trasfu"
                     isLoading={props.isSubmitting}
                     type="submit"
                   >
@@ -196,8 +222,9 @@ const Auth: NextPage = () => {
             )}
           </Formik>
         </Flex>
-      </Box>
+      </div>
     </Background>
+    <div className='bg-purple-500 opacity-60 absolute bottom-6 left-4 w-[320px] h-[168px] blur-3xl !z-10'></div>
     </>
   );
 };

@@ -1,38 +1,20 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  reactStrictMode: false,
-  pageExtensions: ['mdx', 'md', 'jsx', 'js', 'tsx', 'ts'],
-  transpilePackages: ['gsap', '@readyplayerme/rpm-react-sdk'],
+  reactStrictMode: true,
+  transpilePackages: [ '@readyplayerme/rpm-react-sdk'],
   
 }
 
-module.exports = nextConfig,
-
-{
-  basePath:'/api',
-  async rewrites() {
-  return [
-    {
-      source: 'http://192.168.0.33/api/:path*',
-      destination: 'http://localhost:3000/api/:path*',
-    },
-    {
-      source:"https://www.portalize.io/api/:path*",
-      destination:"https://portalize.io/api/:path*",
-    }
-  ]
-},
+module.exports = nextConfig,{
 async headers() {
   return [
     {
-      source: 'api/*',
+      source: 'api/(.*)',
       headers: [
-        {
-          key:'Access-Control-Cross-Origin',
-          value:`*`
+        {key:'Access-Control-Cross-Origin',value:`*`},
+        {key:"Access-Control-Allow-Credentials",value:"true"},
+          ]
         }
       ]
     }
-  ]
-}
 };
