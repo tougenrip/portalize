@@ -21,19 +21,19 @@ export default mt({
         'gradient-conic':
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
         'Hero': 'url(/img/landing-page/herobg.webm)',
-        'gamebg': 'url(/img/biggamebg.png)',
-        'assetpre1': 'url(/img/aseetpre1.png)',
-        'assetpre2': 'url(/img/aseetpre2.png)',
-        'assetpre3': 'url(/img/aseetpre3.png)',
-        'assetpre4': 'url(/img/aseetpre4.png)',
-        'assetpre5': 'url(/img/aseetpre5.png)',
-        'assetpre6': 'url(/img/aseetpre6.png)',
-        'assetpre7': 'url(/img/aseetpre7.png)',
-        'assetpre8': 'url(/img/aseetpre8.png)',
-        'assetpre9': 'url(/img/aseetpre9.png)',
-        'assetpre10': 'url(/img/aseetpre10.png)',
-        'assetpre11': 'url(/img/aseetpre11.png)',
-        'assetpre12': 'url(/img/aseetpre12.png)'
+        'gamebg': 'url(/img/biggamebgcomp.webp)',
+        'assetpre1': 'url(/img/aseetpre1comp.webp)',
+        'assetpre2': 'url(/img/aseetpre2comp.webp)',
+        'assetpre3': 'url(/img/aseetpre3comp.webp)',
+        'assetpre4': 'url(/img/aseetpre4comp.webp)',
+        'assetpre5': 'url(/img/aseetpre5comp.webp)',
+        'assetpre6': 'url(/img/aseetpre6comp.webp)',
+        'assetpre7': 'url(/img/aseetpre7comp.webp)',
+        'assetpre8': 'url(/img/aseetpre8comp.webp)',
+        'assetpre9': 'url(/img/aseetpre9comp.webp)',
+        'assetpre10': 'url(/img/aseetpre10comp.webp)',
+        'assetpre11': 'url(/img/aseetpre11comp.webp)',
+        'assetpre12': 'url(/img/aseetpre12comp.webp)'
       },
       fontFamily: { 
         'valorant' : ['valorant', 'sans-serif'],
@@ -55,7 +55,7 @@ export default mt({
     },
   },
   plugins: [
-    require('tailwind-scrollbar'),
+    require('tailwind-scrollbar')({nocompatible:true}),
   ],
   safelist: ['animate-[fade-in_1s_ease-in-out]', 'animate-[fade-in-down_1s_ease-in-out]']
 });

@@ -58,9 +58,9 @@ const GameSlider = ({ repo }) => {
   )
     return (
       <div ref={sliderRef} className="keen-slider overflow-x-hidden">
-        <div className="keen-slider__slide"><div className='h-[70vh] flex align-middle place-content-center items-center tracking-wider'>
+        <div className="keen-slider__slide"><div className='h-[50vh] flex align-middle place-content-center items-center tracking-wider'>
         <motion.div
-            className={`relative bg-[url(/img/biggamebg.png)] bg-cover bg-no-repeat rounded-xl w-[95%] h-[90%] text-center `}
+            className={`relative bg-[url(/img/biggamebgcomp.webp)] bg-cover bg-center bg-no-repeat rounded-3xl w-[95%] h-[90%] text-center `}
             transition={{layout:{duration:1, type:'spring'}}}
             
         >
@@ -89,9 +89,9 @@ const GameSlider = ({ repo }) => {
             
         </motion.div>
         </div></div>
-        <div className="keen-slider__slide"><div className='h-[70vh] flex align-middle place-content-center items-center tracking-wider'>
+        <div className="keen-slider__slide"><div className='h-[50vh] flex align-middle place-content-center items-center tracking-wider'>
         <motion.div
-            className={`relative bg-[url(/img/biggamebg1.png)] bg-cover bg-no-repeat rounded-xl w-[95%] h-[90%] text-center `}
+            className={`relative bg-[url(/img/biggamebg1comp.webp)] bg-cover bg-no-repeat rounded-3xl w-[95%] h-[90%] text-center `}
             transition={{layout:{duration:1, type:'spring'}}}
            
         >
@@ -120,9 +120,9 @@ const GameSlider = ({ repo }) => {
             
         </motion.div>
         </div></div>
-        <div className="keen-slider__slide"><div className='h-[70vh] flex align-middle place-content-center items-center tracking-wider'>
+        <div className="keen-slider__slide"><div className='h-[50vh] flex align-middle place-content-center items-center tracking-wider'>
         <motion.div
-            className={`relative bg-[url(/img/biggamebg2.png)] bg-cover bg-no-repeat rounded-xl w-[95%] h-[90%] text-center `}
+            className={`relative bg-[url(/img/biggamebg2comp.webp)] bg-cover bg-no-repeat rounded-3xl w-[95%] h-[90%] text-center `}
             transition={{layout:{duration:1, type:'spring'}}}
             
         >

@@ -81,17 +81,11 @@ const PortalNav = () => {
               <div className="flex-row flex items-center w-screen">
                 <ul className="text-2xl font-['Gilroy'] font-light text-white w-full px-1 flex flex-row justify-between space-x-10">
                   <div className="flex flex-row space-x-16">
-                    <li className="self-center hover:text-purple-600">
-                      <Link href="/serverbrowser">Overview</Link>
-                    </li>
-                    <li className="self-center hover:text-purple-600 whitespace-nowrap text-2xl font-['Gilroy'] font-light text-white w-full">
-                      <Link href="/events">Events</Link>
+                    <li className="self-center whitespace-nowrap hover:text-purple-600">
+                      <Link href="/all-places">Most Popular</Link>
                     </li>
                     <li className="self-center hover:text-purple-600 whitespace-nowrap text-2xl font-['Gilroy'] font-light text-white w-full">
                       <Link href="/all-places">All Places</Link>
-                    </li>
-                    <li className="self-center hover:text-purple-600 whitespace-nowrap text-2xl font-['Gilroy'] font-light text-white w-full">
-                      <Link href="">Most Popular</Link>
                     </li>
                   </div>
                   <li className="w-full">

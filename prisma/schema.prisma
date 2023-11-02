@@ -3,86 +3,84 @@ generator client {
 }
 
 datasource db {
-  provider = "mongodb"
-  url      = env("MONGODB_URI")
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
 }
 model Banner {
-  id      String  @id @default(auto()) @map("_id") @db.ObjectId
-  owner   String
+  id           String     @id @default(cuid())
+  mapId   String  
   img     String
   title   String
   website String
+  created    DateTime @db.Date @default(now())
+
+  map  Map @relation(fields: [mapId], references: [id], onDelete:Cascade)
 }
-
-
-
 model Skyad {
-  id      String  @id @default(auto()) @map("_id") @db.ObjectId
+  id           String     @id @default(cuid())
   owner   String
-  img     String
   title   String
   website String
+  img     String
+  created    DateTime @db.Date @default(now())
+
 }
 
-model Event {
-  id      String  @id @default(auto()) @map("_id") @db.ObjectId
-  owner   String
-  img     String
-  title   String
-  website String
-}
+
 
 model Map {
-  id         String   @id @default(auto()) @map("_id") @db.ObjectId
-  created    DateTime @db.Date @default(now())
-  desc       String?
-  floormap   String?
-  img        String?
-  interior   String?
-  likes      Int  @default(0)
-  owner      String?
-  ownerEmail String?
+ id           String     @id @default(cuid())
   title      String?
-  userLimit  Int  @default(10)
+  desc       String?
+  img        String?
+  tags       String[]
+  likesCount Int  @default(0)
+  banners     Banner[]
+  ownerId    String 
+  ownerName   String
+  fromDraft  String?
+  userLimit  Int
+  isPrivate  Boolean @default(false)
+  floormap   String?
+  interior   String?
+  created    DateTime @db.Date @default(now())
+
+  owner      User  @relation(fields: [ownerId,ownerName], references: [id,name], onDelete: Cascade)
 }
 
-// model users {
-//   id               String    @id @default(auto()) @map("_id") @db.ObjectId
-//   name             String    @unique(map: "name_1")
-//   email            String    @unique(map: "email_1")
-//   hashedPassword   String
-//   image            String?
-//   rpmId            String?
-//   avatarUrl        String?
-//   stripeCustomerId String
-//   active           Boolean  @default(false)
-//   bannerEnabled    Boolean?
-//   skyEnabled       Boolean?
-//   isActive         Boolean
-//   created          DateTime?  @db.Date @default(now())
-// }
 
-// model session {
-//   id              String    @id @default(auto()) @map("_id") @db.ObjectId
-//   sessionToken    String
-//   userId          String
-//   expires   DateTime
-// }
-
-
-
+model Draft {
+  id           String     @id @default(cuid())
+  created    DateTime @db.Date @default(now())
+  ownerId     String   
+  title      String?
+  floormap   String?
+  interior   String?
+  isPublished  Boolean @default(false)
+}
+model File {
+  id           String     @id @default(cuid())
+  filename      String
+  userId        String   
+  address       String
+  image         String
+  size        Int
+  created    DateTime? @db.Date @default(now())
+  
+  user          User     @relation(fields: [userId], references: [id])
+}
 model Account {
-  id              String    @id @default(auto()) @map("_id") @db.ObjectId
-  userId             String  @db.ObjectId
+  id           String     @id @default(cuid())
+  userId             String  
   type               String
   provider           String
   providerAccountId  String
-  refresh_token      String?  @db.String
-  access_token       String?  @db.String
+  refresh_token      String?  
+  access_token       String?  
   expires_at         Int?
   token_type         String?
   scope              String?
-  id_token           String?  @db.String
+  id_token           String?  
   session_state      String?
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
@@ -91,33 +89,95 @@ model Account {
 }
 
 model Session {
-  id              String    @id @default(auto()) @map("_id") @db.ObjectId
+  id           String     @id @default(cuid())
   sessionToken String   @unique
-  userId       String  @db.ObjectId
+  userId       String 
   expires      DateTime
   user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
 model User {
-  id            String    @id @default(auto()) @map("_id") @db.ObjectId
+  id           String     @id @default(cuid())
   name          String?   @unique
   email         String?   @unique
-  password      String?
+  emailVerified DateTime?
+  provider      String?
   image         String?
-  stripeCustomerId  String?
-  isActive      Boolean?
-  skyEnabled    Boolean?
-  bannerEnabled Boolean?
-  rpmId         String?
-  likedMaps     String[]
-  ownedMaps     String[]
-  avatarUrl     String?
+  stripeCustomerId  String? @unique
+  isActive      Boolean?  
+  bDay          DateTime? 
+  gender        String? 
+  skyEnabled    Boolean? 
+  bannerEnabled Boolean?  
+  subscriptionID   String? @unique
+  subscriptionName  String? 
+  subscriptionEnd   Int? 
+  rpmId         String?  @unique 
+  ownedMaps     Map[]
+  friends       String[]
+  avatarUrl     String?  
   accounts      Account[]
   sessions      Session[]
+  files        File[] 
+  followers   UserFollower[] @relation("followers")
+  followings  UserFollower[] @relation("followings")
+  posts_liked PostLike[]
+  posts       Post[]
+  stories     Story[]
+  storageQuota   Int  @default(209715200)
+  usedQuota    Int  @default(0)
+
+  @@unique([id, name])
 }
 
+model Post {
+  id         String     @id @default(cuid())
+  caption    String
+  user_id    String
+  user       User       @relation(fields: [user_id], references: [id])
+  liked_bys  PostLike[]
+  created_at DateTime   @default(now())
+}
+
+model Story {
+  id         String   @id @default(cuid())
+  caption    String
+  user_id    String
+  user       User     @relation(fields: [user_id], references: [id])
+  created_at DateTime @default(now())
+}
+
+model Image {
+  id            Int    @id @default(autoincrement())
+  type          String
+  url           String
+  associated_id String
+  sequence      Int
+}
+
+model UserFollower {
+  user_id     String
+  user        User     @relation("followers", fields: [user_id], references: [id])
+  follower_id String
+  follower    User     @relation("followings", fields: [follower_id], references: [id])
+  created_at  DateTime @default(now())
+
+  @@id([user_id, follower_id])
+}
+
+model PostLike {
+  user_id    String
+  user       User     @relation(fields: [user_id], references: [id])
+  post_id    String
+  post       Post     @relation(fields: [post_id], references: [id])
+  created_at DateTime @default(now())
+
+  @@id([user_id, post_id])
+}
+
+
 model VerificationToken {
-  id         String    @id @default(auto()) @map("_id") @db.ObjectId
+  id         Int     @id @default(autoincrement())
   identifier String
   token      String   @unique
   expires    DateTime

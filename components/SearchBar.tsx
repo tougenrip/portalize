@@ -24,13 +24,13 @@ const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
         onChange={(e) => setSearchText(e.target.value)}
         className="text-xl font-Gilroy font-light text-white/35 w-full bg-transparent outline-none py-3"
       />
-      <button onClick={handleSearch} className="min-h-0 min-w-0 w-6">
+      <button onClick={handleSearch} className="min-h-0 min-w-0 w-6 mr-2">
     
         <Image
           src="https://file.rendit.io/n/GcJTinFkXKSA8dPj5vAl.svg"
           alt="Search Icon"
-          width={9}
-          height={8}
+          width={24}
+          height={24}
         />
       </button>
     </div>

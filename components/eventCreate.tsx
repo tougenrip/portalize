@@ -102,8 +102,8 @@ const EventCreate = () => {
         <h2 className='  font-light md:ml-auto order-4 text-2xl'>Total Cost : 5 $</h2>
     </div>
     </div>
-    <Input type='text' className='!border-2 !border-white' label='Set Banner Title' name='title' color='purple' onChange={(e) => setTitle(e.target.value)}/>
-    <Input type='text' className='!border-2 !border-white' label='Set Link to Redirect' name='website' color='purple' onChange={(e) => setWebsite(e.target.value)}/>
+    <Input type='text' className='!border-2 !border-white' label='Set Banner Title' name='title' color='purple' onChange={(e) => setTitle(e.target.value)} crossOrigin={undefined}/>
+    <Input type='text' className='!border-2 !border-white' label='Set Link to Redirect' name='website' color='purple' onChange={(e) => setWebsite(e.target.value)} crossOrigin={undefined}/>
     {/* <Input type="file" name='img' id='input-div' color="purple"  className='border-2 border-white' onChange={(e) => handleFileUpload(e)} label='Add banner photo'/> */}
     <Button onClick={handleClick} className='!relative !bg-transparent border-2 border-white !shadow-none'>
     <svg xmlns="http://www.w3.org/2000/svg" width="44" height="54" viewBox="0 0 44 54" fill="none">
@@ -120,11 +120,10 @@ const EventCreate = () => {
           >
             <ListItemPrefix className="mr-3">
             <Checkbox
-              id='horizontal-list-react'
-              color='purple'
-              ripple={false}
-              className="h-8 w-8 rounded-full border-purple-500/50 bg-purple-500/25 transition-all hover:scale-105 hover:before:opacity-0"
-            />            </ListItemPrefix>
+                  id='horizontal-list-react'
+                  color='purple'
+                  ripple={false}
+                  className="h-8 w-8 rounded-full border-purple-500/50 bg-purple-500/25 transition-all hover:scale-105 hover:before:opacity-0" crossOrigin={undefined}            />            </ListItemPrefix>
             <Typography color="white" className="font-medium">
               Art
             </Typography>
@@ -137,11 +136,10 @@ const EventCreate = () => {
           >
             <ListItemPrefix className="mr-3">
             <Checkbox
-              id='horizontal-list-vue'
-              color='purple'
-              ripple={false}
-              className="h-8 w-8 rounded-full border-purple-500/50 bg-purple-500/25 transition-all hover:scale-105 hover:before:opacity-0"
-            />            </ListItemPrefix>
+                  id='horizontal-list-vue'
+                  color='purple'
+                  ripple={false}
+                  className="h-8 w-8 rounded-full border-purple-500/50 bg-purple-500/25 transition-all hover:scale-105 hover:before:opacity-0" crossOrigin={undefined}            />            </ListItemPrefix>
             <Typography color="white" className="font-medium">
               Technology
             </Typography>
@@ -154,11 +152,10 @@ const EventCreate = () => {
           >
             <ListItemPrefix className="mr-3">
             <Checkbox
-              id='horizontal-list-svelte'
-              color='purple'
-              ripple={false}
-              className="h-8 w-8 rounded-full border-purple-500/50 bg-purple-500/25 transition-all hover:scale-105 hover:before:opacity-0"
-            />
+                  id='horizontal-list-svelte'
+                  color='purple'
+                  ripple={false}
+                  className="h-8 w-8 rounded-full border-purple-500/50 bg-purple-500/25 transition-all hover:scale-105 hover:before:opacity-0" crossOrigin={undefined}            />
             </ListItemPrefix>
             <Typography color="white" className="font-medium">
               Cars

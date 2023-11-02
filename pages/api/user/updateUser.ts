@@ -1,32 +1,31 @@
 
 import { NextApiRequest, NextApiResponse } from "next";
-import { getServerAuthSession } from '../auth/[...nextauth]';
+import { getServerSession } from 'next-auth';
+import { authOptions } from "../../../pages/api/auth/[...nextauth]";
 import { PrismaClient } from '@prisma/client';
 const prisma = new PrismaClient();
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
 
+  const session = await getServerSession(req,res,authOptions);
+      const owner = session?.user?.id
+
+
 if (req.method === 'PUT'){
     try{
-        const { userEmail,userName, userImage } = req.body;
-
-      const session = await getServerAuthSession(
-        req as unknown as NextApiRequest,
-        {
-          ...res,
-          getHeader: (name: string) => res.headers?.get(name),
-          setHeader: (name: string, value: string) => res.headers?.set(name, value),
-        } as unknown as NextApiResponse);
-      const owner = session?.user?.id
+        const { userEmail,userName, userImage, gender, bDay } = req.body;
+        
+      
 
       await prisma.user.update({where:{id:owner}, data: {
         name:userName,
         email:userEmail,
         image:userImage,
+        gender:gender,
+        bDay: bDay,
       }});
 
       await prisma.map.updateMany({where:{id:owner}, data:{
-        owner:userName,
-        ownerEmail:userEmail
+        ownerName:userName,
       }})
       res.status(201).json({ message: 'user data saved successfully.' });
     } catch (e) {

@@ -1,43 +1,36 @@
-const https = require('https')
-const { parse } = require('url')
-const fs = require('fs')
-const next = require('next')
- 
-const dev = process.env.NODE_ENV !== 'production'
-const hostname = 'portalize.io'
-const port = 443
-// when using middleware `hostname` and `port` must be provided below
-const app = next({ dev, hostname, port })
-const handle = app.getRequestHandler()
- 
-app.prepare().then(() => {
-  https.createServer({
-	cert:fs.readFileSync('crt.pem'),
-	key:fs.readFileSync('key.pem'),
-	passphrase: "Paff!2023"
-},async (req, res) => {
-  try {
-    // Be sure to pass `true` as the second argument to `url.parse`.
-    // This tells it to parse the query portion of the URL.
-    const parsedUrl = parse(req.url, true)
-    const { pathname, query } = parsedUrl
+const express = require('express');
+const next = require('next');
+const spdy = require('spdy');
+const path = require('path');
+const fs = require('fs');
 
-    if (pathname === '/api/*') {
-      await app.render(req, res, parsedUrl, query)
-    } else {
-      await handle(req, res, parsedUrl)
-    }
-  } catch (err) {
-    console.error('Error occurred handling', req.url, err)
-    res.statusCode = 500
-    res.end('internal server error')
-  }
-}).listen(port, (err) => {
-  if (err) throw err;
-  console.log("> Server started on https://localhost:" + port);
-})
-    .once('error', (err) => {
-      console.error(err)
-      process.exit(1)
-    })
-})
+const dev = process.env.NODE_ENV !== 'production';
+const app = next({ dev });
+const handle = app.getRequestHandler();
+
+app.prepare().then(() => {
+  const server = express();
+
+  // Define custom routes or middleware here (if needed)
+
+    // Serve static files from the 'uploads' directory
+    const uploadsDir = path.join(__dirname, 'uploads');
+    server.use('/uploads', express.static(uploadsDir));
+
+  // Handle all other routes with Next.js
+  server.all('*', (req, res) => {
+    return handle(req, res);
+  });
+
+  const options = {
+    key: fs.readFileSync('portalize.io-key.pem'),
+    cert: fs.readFileSync('portalize.io-chain.pem'),
+    passphrase: "Paff!2023"
+  };
+
+  // Create an HTTP/2 server using 'spdy' on port 443 (HTTPS)
+  spdy.createServer(options, server).listen(443, 'portalize.io', (err) => {
+    if (err) throw err;
+    console.log('Server is running on https://portalize.io');
+  });
+});

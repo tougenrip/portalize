@@ -45,19 +45,19 @@ export default function PricingCardFree({className}) {
             <span className="rounded-full p-0">
               <CheckIcon  strokeWidth={4} className="h-5 w-5 stroke-[#773fff]" />
             </span>
-            <Typography className="font-gilroy font-bold text-white text-2xl leading-6 tracking-tighter">Unlimited Access Worlds</Typography>
+            <Typography className="font-gilroy font-light text-white text-2xl leading-6 tracking-tighter">Unlimited Access Worlds</Typography>
           </li>
           <li className="flex items-center space-x-2">
             <span className="rounded-full p-0">
               <CheckIcon  strokeWidth={4} className="h-5 w-5 stroke-[#773fff]" />
             </span>
-            <Typography className="font-gilroy font-bold text-white text-2xl leading-6 tracking-tighter">Character Creator Access</Typography>
+            <Typography className="font-gilroy font-light text-white text-2xl leading-6 tracking-tighter">Character Creator Access</Typography>
           </li>
           <li className="flex items-center space-x-2">
             <span className="rounded-full p-0">
               <CheckIcon  strokeWidth={4} className="h-5 w-5 stroke-[#773fff]" />
             </span>
-            <Typography className="font-gilroy font-bold text-white text-2xl leading-6 tracking-tighter">Editor Access</Typography>
+            <Typography className="font-gilroy font-light text-white text-2xl leading-6 tracking-tighter">Editor Access</Typography>
           </li>          
         </ul>
       </CardBody>

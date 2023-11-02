@@ -20,9 +20,10 @@
     },
     "typeRoots": [
       "node_modules/@types",
-      "custom_typings/"
+      "custom_typings/",
+      "types/"
     ] 
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "pages/comingsoon.tsx", "pages/api/auth/signin.js", "pages/api/register.ts", "pages/api/insertmap.js", "components/featuredslider.jsx", "components/featuredslider.jsx", "components/UserMaps.jsx", "utils/abbrevitateNumber.js", "pages/api/auth/[...nextauth].js"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "pages/comingsoon.tsx", "pages/api/auth/signin.js", "pages/api/register.ts", "pages/api/insertmap.js", "components/featuredslider.jsx", "components/featuredslider.jsx", "components/UserMaps.tsx", "utils/abbrevitateNumber.js", "pages/api/auth/[...nextauth].ts"],
   "exclude": ["node_modules"]
 }

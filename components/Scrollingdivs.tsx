@@ -62,19 +62,19 @@ function ParallaxText({ baseVelocity = 100 }: ParallaxProps) {
    * dynamically generated number of children.
    */
   return (
-    <div className=" tracking-tighter flex-nowrap whitespace-nowrap ce flex">
+    <div className=" tracking-tighter flex-nowrap whitespace-nowrap overflow-hidden flex">
 
-      <motion.div className="space-x-4  font-bold uppercase flex whitespace-nowrap flex-nowrap mx-auto" style={{ x }}>
-      <span className="h-auto w-96 brightness-50 bg-[url(/img/aseetpre1.png)] bg-cover rounded-3xl aspect-video"></span>
-      <span className="h-auto w-96 brightness-50 bg-assetpre2 bg-cover rounded-3xl aspect-video"></span>
-      <span className="h-auto w-96 brightness-50 bg-assetpre3 bg-cover rounded-3xl aspect-video"></span>
-      <span className="h-auto w-96 brightness-50 bg-assetpre4 bg-cover rounded-3xl aspect-video"></span>
-      <span className="h-auto w-96 brightness-50 bg-assetpre5 bg-cover rounded-3xl aspect-video"></span>
-      <span className="h-auto w-96 brightness-50 bg-assetpre6 bg-cover rounded-3xl aspect-video"></span>
-      <span className="h-auto w-96 brightness-50 bg-assetpre7 bg-cover rounded-3xl aspect-video"></span>
-      <span className="h-auto w-96 brightness-50 bg-assetpre8 bg-cover rounded-3xl aspect-video"></span>
-      <span className="h-auto w-96 brightness-50 bg-assetpre9 bg-cover rounded-3xl aspect-video"></span>
-      <span className="h-auto w-96 brightness-50 bg-assetpre10 bg-cover rounded-3xl aspect-video"></span>
+      <motion.div className="space-x-4  font-bold uppercase flex whitespace-nowrap overflow-hidden flex-nowrap mx-auto" style={{ x }}>
+      <span className="h-auto w-96 brightness-50 bg-cover rounded-3xl aspect-video"><Image src={"/img/aseetpre1comp.webp"} alt="asset photo" className="rounded-3xl" fill unoptimized/></span>
+      <span className="h-auto w-96 brightness-50 bg-cover rounded-3xl aspect-video"><Image src={"/img/aseetpre2comp.webp"} alt="asset photo" className="rounded-3xl" fill unoptimized/></span>
+      <span className="h-auto w-96 brightness-50 bg-cover rounded-3xl aspect-video"><Image src={"/img/aseetpre3comp.webp"} alt="asset photo" className="rounded-3xl" fill unoptimized/></span>
+      <span className="h-auto w-96 brightness-50 bg-cover rounded-3xl aspect-video"><Image src={"/img/aseetpre4comp.webp"} alt="asset photo" className="rounded-3xl" fill unoptimized/></span>
+      <span className="h-auto w-96 brightness-50 bg-cover rounded-3xl aspect-video"><Image src={"/img/aseetpre5comp.webp"} alt="asset photo" className="rounded-3xl" fill unoptimized/></span>
+      <span className="h-auto w-96 brightness-50 bg-cover rounded-3xl aspect-video"><Image src={"/img/aseetpre6comp.webp"} alt="asset photo" className="rounded-3xl" fill unoptimized/></span>
+      <span className="h-auto w-96 brightness-50 bg-cover rounded-3xl aspect-video"><Image src={"/img/aseetpre7comp.webp"} alt="asset photo" className="rounded-3xl" fill unoptimized/></span>
+      <span className="h-auto w-96 brightness-50 bg-cover rounded-3xl aspect-video"><Image src={"/img/aseetpre8comp.webp"} alt="asset photo" className="rounded-3xl" fill unoptimized/></span>
+      <span className="h-auto w-96 brightness-50 bg-cover rounded-3xl aspect-video"><Image src={"/img/aseetpre9comp.webp"} alt="asset photo" className="rounded-3xl" fill unoptimized/></span>
+      <span className="h-auto w-96 brightness-50 bg-cover rounded-3xl aspect-video"><Image src={"/img/aseetpre10comp.webp"} alt="asset photo" className="rounded-3xl" fill unoptimized/></span>
       
       </motion.div>
     </div>
@@ -83,11 +83,11 @@ function ParallaxText({ baseVelocity = 100 }: ParallaxProps) {
 
 export default function ScrollingDiv() {
   return (
-    <div className=" h-screen relative overflow-hidden">
-        <div className="absolute space-y-2 top-1/2 -translate-y-1/2"><ParallaxText baseVelocity={-5}/>
+    <div className=" h-screen relative !overflow-hidden">
+        <div className="absolute space-y-2 overflow-hidden top-1/2 -translate-y-1/2"><ParallaxText baseVelocity={-5}/>
       <ParallaxText baseVelocity={5}/>
       <ParallaxText baseVelocity={-5}/></div>
-        <h2 className="text-white z-40 text-7xl absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 text-center font-bold">10000+ Assets <br/> Build With</h2>
+        <h2 className="text-white z-40 text-7xl absolute top-1/2 left-1/2 -translate-y-1/2 uppercase -translate-x-1/2 text-center font-bold">AI Powered <br/> World Creation</h2>
       
     </div>
   );

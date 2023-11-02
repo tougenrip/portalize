@@ -33,7 +33,7 @@ import {
         </CardBody>
         <CardFooter className="pt-0 flex justify-between">
           
-        <Link href={`${process.env.NEXT_PUBLIC_WEBSITE_URL}game/${game._id}`}><Button color="purple" className="bg-gradient-to-br from-purple-500 to-purple-800">Join</Button></Link>
+        <Link href={`${process.env.NEXT_PUBLIC_WEBSITE_URL}game/${game.id}`}><Button color="purple" className="bg-gradient-to-br from-purple-500 to-purple-800">Join</Button></Link>
         </CardFooter>
       </Card>
     );

@@ -1,17 +1,12 @@
 
-import mongoose from 'mongoose';
-import { getServerSession } from "next-auth";
-import authOptions from "../auth/authOptions";
 import { NextApiRequest, NextApiResponse } from "next";
-import User from "../schemas/usersch";
-import Mapsi from '../schemas/mapsch';
-import { getServerAuthSession } from '../auth/[...nextauth]';
+import { getServerSession } from 'next-auth';
 import { PrismaClient } from '@prisma/client';
+import { authOptions } from "../auth/[...nextauth]";
 const prisma = new PrismaClient();
 // Replace the uri string with your MongoDB deployment's connection string.
 
 
-mongoose.connect(process.env.MONGODB_URI);
 
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
@@ -31,7 +26,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         try{
             const { rpmId } = req.body;
     
-          const session = await getServerAuthSession(req,res)
+          const session = await getServerSession(req,res,authOptions);
           const owner = session?.user?.id
     
           await prisma.user.update({where:{ id: owner }, data:{ rpmId: rpmId }})
@@ -53,7 +48,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         try{
             const { avatarUrl } = req.body;
     
-          const session = await getServerAuthSession(req,res)
+          const session = await getServerSession(req,res,authOptions);
           const owner = session?.user?.id
     
           await prisma.user.update({where:{ id: owner }, data:{ avatarUrl: avatarUrl }})

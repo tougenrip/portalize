@@ -5,10 +5,12 @@ import { useSession, getSession } from "next-auth/react";
 import {
   Bars3Icon,
   CheckBadgeIcon,
-  CodeBracketSquareIcon
+  CodeBracketSquareIcon,
+  ShieldCheckIcon
 } from "@heroicons/react/24/outline";
 import { motion} from 'framer-motion'
 import { Avatar } from '@readyplayerme/visage'
+import CustomerPortalButton from './CustomerPortalButton';
 
 
 const SideBar = (req,res) => {
@@ -38,12 +40,25 @@ const SideBar = (req,res) => {
   const userName = session?.user?.name;
   const userImage = session?.user?.image;
   const userEmail = session?.user?.email;
-  const isActive = session?.user.isActive;
+  const isActive = session?.user?.isActive;
+  const subscriptionType = session?.user?.subscriptionName;
   const isDev= session?.user?.isDev;
   const rpmId= session?.user?.rpmId;
   const avatarUrl= session?.user?.avatarUrl;
   const [x,setX] = useState(0);
   const [checked, setChecked] = useState(false);
+
+
+  function isBusiness(){
+    if (subscriptionType === "prod_Ob1zYnZSq0R3dK"){
+      return true
+    } else {
+      return false
+    }
+  }
+
+  console.log(isBusiness())
+
 
     const soundChange = () => {
       setX(0.75);
@@ -172,7 +187,7 @@ const SideBar = (req,res) => {
         </div>) : ('')}
 </div>  */}
 
-   <div className="fixed z-50 w-60 lg:w-80 xl:bottom-0 left-0 xl:left-20 rounded-t-xl max-w-md backdrop-blur-lg flex flex-col items-center bg-paffbg h-screen xl:h-[80vh]">
+   <div className="fixed z-50 w-60 lg:w-80 xl:bottom-0 left-0 xl:left-20 rounded-t-3xl max-w-md backdrop-blur-lg flex flex-col items-center bg-paffbg h-screen xl:h-[80vh]">
         
         <div className='flex'>
          <Avatar modelSrc={avatarUrl} className='!rounded-full self-end !w-12 !h-12' />
@@ -187,13 +202,14 @@ const SideBar = (req,res) => {
 
         
         </div>
-        <div className='mt-5 text-center'><p className='flex flex-row gap-1 text-center justify-center place-items-center'>{userName} {isDev ? (<Tooltip content="Portalize Developer"><CodeBracketSquareIcon className={`relative w-6 h-6 ${isDev ? (''): ('hidden')}`}></CodeBracketSquareIcon></Tooltip>):('')} {isActive ? (<Tooltip content="Premium"><CheckBadgeIcon className={`relative w-6 h-6 ${isActive ? (''): ('hidden')}`}></CheckBadgeIcon></Tooltip>) : ('')}</p><p className='text-sm flex flex-row gap-2 text-[#666666]'>{userEmail}</p></div>
+        <div className='mt-5 text-center'><p className='flex flex-row gap-1 text-center justify-center place-items-center'>{userName} {isBusiness() ? (<Tooltip content="Business Partner"><ShieldCheckIcon className={`relative w-6 h-6 ${isBusiness() ? (''): ('hidden')}`}></ShieldCheckIcon></Tooltip>) : null} {isDev ? (<Tooltip content="Portalize Developer"><CodeBracketSquareIcon className={`relative w-6 h-6 ${isDev ? (''): ('hidden')}`}></CodeBracketSquareIcon></Tooltip>):('')} {isActive ? (<Tooltip content="Premium"><CheckBadgeIcon className={`relative w-6 h-6 ${isBusiness() ? ('hidden'): ('')} ${isActive ? (''): ('hidden')}`}></CheckBadgeIcon></Tooltip>) : ('')}</p><p className='text-sm flex flex-row gap-2 place-content-center text-[#666666]'>{userEmail}</p></div>
         <div className='w-[80%] flex flex-col space-y-4 mt-20 '>
-       <Link href={''}><Tooltip content="Coming Soon"><Button variant='outlined' size='sm' color='purple' className='border-transparent hover:border-purple-500 rounded-xl group-hover:shadow-lg hover:shadow-md tracking-wider' fullWidth >My Avatar</Button></Tooltip></Link>
-       <Link href={'#myspaces'}> <Button variant='outlined' size='sm' color='purple' className='border-transparent hover:border-purple-500 rounded-xl group-hover:shadow-lg hover:shadow-md tracking-wider' fullWidth >My Spaces</Button></Link>
-        <Link href={'#analytics'}><Button variant='outlined' size='sm' color='purple' className='border-transparent hover:border-purple-500  rounded-xl group-hover:shadow-lg hover:shadow-md tracking-wider' fullWidth >Analytics</Button></Link>
-       <Link href={'#edvertsec'}> <Button variant='outlined' size='sm' color='purple' className='border-transparent hover:border-purple-500 rounded-xl group-hover:shadow-lg hover:shadow-md tracking-wider' fullWidth >Advertisement Panel</Button></Link>
-       <Link href={'#accsettings'}> <Button variant='outlined' size='sm' color='purple' className='border-transparent hover:border-purple-500 rounded-xl group-hover:shadow-lg hover:shadow-md tracking-wider' fullWidth >Account Settings</Button></Link>
+       <Link href={''} scroll={true}><Button variant='outlined' size='sm' color='purple' className='border-transparent hover:border-purple-500 rounded-xl group-hover:shadow-lg hover:shadow-md tracking-wider' fullWidth >My Avatar</Button></Link>
+       <Link href={'#myspaces'} scroll={true}> <Button variant='outlined' size='sm' color='purple' className='border-transparent hover:border-purple-500 rounded-xl group-hover:shadow-lg hover:shadow-md tracking-wider' fullWidth >My Spaces</Button></Link>
+        <Link href={'#analytics'} scroll={true}><Button variant='outlined' size='sm' color='purple' className='border-transparent hover:border-purple-500  rounded-xl group-hover:shadow-lg hover:shadow-md tracking-wider' fullWidth >Analytics</Button></Link>
+       <Link href={'#edvertsec'} scroll={true}> <Button variant='outlined' size='sm' color='purple' className='border-transparent hover:border-purple-500 rounded-xl group-hover:shadow-lg hover:shadow-md tracking-wider' fullWidth >Advertisement Panel</Button></Link>
+       <Link href={'#accsettings'} scroll={true}> <Button variant='outlined' size='sm' color='purple' className='border-transparent hover:border-purple-500 rounded-xl group-hover:shadow-lg hover:shadow-md tracking-wider' fullWidth >Account Settings</Button></Link>
+       <CustomerPortalButton/>
 
         </div>
         {isActive ? (''):(<div className='absolute rounded-2xl bottom-[15%] w-[70%] bg-gradient-to-t h-14 from-purple-700 to-purple-300 text-center' onClick={() => {if (isCheckoutLoading) return;else goToCheckout();}}>

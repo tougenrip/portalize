@@ -115,8 +115,8 @@ const SkyCreate = () => {
     step={5}
     id="customRange2" >
     </input>
-    <Input type='text' className='!border-2 !border-white' label='Set Banner Title' name='title' color='purple' onChange={(e) => setTitle(e.target.value)}/>
-    <Input type='text' className='!border-2 !border-white' label='Set Link to Redirect' name='website' color='purple' onChange={(e) => setWebsite(e.target.value)}/>
+    <Input type='text' className='!border-2 !border-white' label='Set Banner Title' name='title' color='purple' onChange={(e) => setTitle(e.target.value)} crossOrigin={undefined}/>
+    <Input type='text' className='!border-2 !border-white' label='Set Link to Redirect' name='website' color='purple' onChange={(e) => setWebsite(e.target.value)} crossOrigin={undefined}/>
     {/* <Input type="file" name='img' id='input-div' color="purple"  className='border-2 border-white' onChange={(e) => handleFileUpload(e)} label='Add banner photo'/> */}
     <Button onClick={handleClick} className='!relative !bg-transparent border-2 border-white !shadow-none'>
     <svg xmlns="http://www.w3.org/2000/svg" width="44" height="54" viewBox="0 0 44 54" fill="none">

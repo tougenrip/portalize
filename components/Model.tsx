@@ -10,6 +10,8 @@ export default function Modal({ selected, setSelected }) {
     return <></>;
   }
 
+  const tags = selected.tags
+
   return (
     <div
       onClick={() => setSelected(null)}
@@ -47,12 +49,11 @@ export default function Modal({ selected, setSelected }) {
           <div className="relative h-1">
 
           
-          <Link href={`${process.env.NEXT_PUBLIC_WEBSITE_URL}game/${selected._id}`}><Button color="purple" className="flex gap-3 w-56 text-center rounded-3xl h-20 relative bottom-12 right-5 text-5xl font-extrabold float-right"><FaPlayCircle className="h-full w-auto"/>Join</Button></Link>
-          <div className="col-start-2 absolute top-14 right-6 flex flex-row space-x-1 tracking-wider">
-          <Chip value="test1" color="purple" variant="outlined"/>
-            <Chip value="test2" color="purple" variant="outlined"/>
-            <Chip value="test3" color="purple" variant="outlined"/>
-            <Chip value="test4" color="purple" variant="outlined"/>
+          <Link href={`${process.env.NEXT_PUBLIC_WEBSITE_URL}game/${selected.id}`}><Button color="purple" className="flex gap-3 w-56 text-center rounded-3xl h-20 relative bottom-12 right-5 text-5xl font-extrabold float-right"><FaPlayCircle className="h-full w-auto"/>Join</Button></Link>
+          <div className="col-start-2 absolute top-14 right-6 max-w-[250px] inline-flex flex-wrap space-x-1 space-y-1 tracking-wider first:max-h-1">
+          {tags.map((row, i) => {
+                  return <Chip key={i} value={row} color="purple" className="rounded-full"/>
+              })}
           </div>
           
 

@@ -7,8 +7,11 @@ import Image from 'next/image'
 import axios from 'axios'
 import Navbar from '@components/components/Navbar'
 import useSWR from 'swr'
+import { BiXCircle } from 'react-icons/bi'
+import getStripe from '@components/utils/getStripe'
 
 const BannerCreate = () => {
+
   const fetcher = async (url) => {
     const response = await fetch(url);
     if (!response.ok) {
@@ -78,6 +81,25 @@ const BannerCreate = () => {
     console.log(res);
   };
 
+  const handleCreateCheckoutSession = async (productId:string) => {
+
+    const res = await axios.post(
+      "/api/stripe/checkout-session-payment",
+      { title, website, bannerImg, productId },
+      {
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+      }
+    )
+		const checkoutSession = res.data.session
+		const stripe = await getStripe();
+		const { error } = await stripe!.redirectToCheckout({
+			sessionId: checkoutSession.id,
+		});
+	};
+
 
 
     const [title,setTitle] = useState('')
@@ -90,6 +112,7 @@ const BannerCreate = () => {
   return (
     <>
     <form method='POST' onSubmit={uploadBanner} className=' flex flex-col gap-4 mx-auto w-[85%] !z-40 my-28'>
+      
       <div className='flex-col md:flex-row flex space-x-6'>
       <svg xmlns="http://www.w3.org/2000/svg" width="62" height="62" viewBox="0 0 62 62" fill="none">
         <path d="M54.25 7.75H7.75C6.72229 7.75 5.73666 8.15826 5.00996 8.88496C4.28326 9.61166 3.875 10.5973 3.875 11.625V42.625C3.875 43.6527 4.28326 44.6383 5.00996 45.365C5.73666 46.0917 6.72229 46.5 7.75 46.5H23.25V54.25H15.5V58.125H46.5V54.25H38.75V46.5H54.25C55.2777 46.5 56.2633 46.0917 56.99 45.365C57.7167 44.6383 58.125 43.6527 58.125 42.625V11.625C58.125 10.5973 57.7167 9.61166 56.99 8.88496C56.2633 8.15826 55.2777 7.75 54.25 7.75ZM34.875 54.25H27.125V46.5H34.875V54.25ZM54.25 42.625H7.75V11.625H54.25V42.625Z" fill="white"/>
@@ -101,8 +124,8 @@ const BannerCreate = () => {
         <h2 className='  font-light md:ml-auto order-4 text-2xl'>Total Cost : 9.99 $</h2>
     </div>
     </div>
-    <Input type='text' className='!border-2 !border-white' label='Set Banner Title' name='title' color='purple' onChange={(e) => setTitle(e.target.value)}/>
-    <Input type='text' className='!border-2 !border-white' label='Set Link to Redirect' name='website' color='purple' onChange={(e) => setWebsite(e.target.value)}/>
+    <Input type='text' className='!border-2 !border-white' label='Set Banner Title' name='title' color='purple' onChange={(e) => setTitle(e.target.value)} crossOrigin={undefined}/>
+    <Input type='text' className='!border-2 !border-white' label='Set Link to Redirect' name='website' color='purple' onChange={(e) => setWebsite(e.target.value)} crossOrigin={undefined}/>
     {/* <Input type="file" name='img' id='input-div' color="purple"  className='border-2 border-white' onChange={(e) => handleFileUpload(e)} label='Add banner photo'/> */}
     <Button onClick={handleClick} className='!relative !bg-transparent border-2 border-white !shadow-none'>
     <svg xmlns="http://www.w3.org/2000/svg" width="44" height="54" viewBox="0 0 44 54" fill="none">
@@ -116,7 +139,7 @@ const BannerCreate = () => {
         onChange={handleFileUpload}
         style={{display: 'none'}} 
       />
-    <Button type='submit' color='purple'>Test</Button>
+    <Button onClick={() => handleCreateCheckoutSession("price_1Nq13XCzLG9nZPU4qEHy9gB1")} color='purple'>Test</Button>
     <p className='text-center '>Banner Img Preview</p>
     <Image alt='bannerimg' src={`${bannerImg}`} fill className={`!relative !left-1/2 !-translate-x-1/2 !w-64 -z-50 !h-auto `}></Image>
   </form></>

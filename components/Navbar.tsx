@@ -1,17 +1,12 @@
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { Svg, Tube } from "@react-three/drei";
-import { Button, IconButton, MobileNav,MenuHandler,MenuList,MenuItem,Menu, Tooltip,Typography,Avatar, Collapse  } from "@material-tailwind/react";
-import {
-  CloudArrowUpIcon,
-  ArrowLongRightIcon,
-  ArrowPathIcon,
-  BookmarkIcon, Bars3Icon, XMarkIcon, PencilSquareIcon,
-  UserCircleIcon,Cog6ToothIcon,PowerIcon,InboxArrowDownIcon,LifebuoyIcon
+import { Button,MenuHandler,MenuList,MenuItem,Menu, Tooltip,Typography,Avatar, Collapse  } from "@material-tailwind/react";
+import { Bars3Icon, XMarkIcon,
+  UserCircleIcon,Cog6ToothIcon,PowerIcon,LifebuoyIcon
 } from "@heroicons/react/24/outline";
-
 import { useSession, signIn, signOut } from "next-auth/react";
+import InstallPWA from "./InstallPWA";
 
  const Navbar = () => {
 
@@ -36,8 +31,8 @@ import { useSession, signIn, signOut } from "next-auth/react";
   const stickNavbar = () => {
     if (window !== undefined) {
       let windowHeight = window.scrollY;
-      windowHeight > 200 ? setStickyClass('fixed bg-[#151515] top-0 w-[100%] left-0 ') : setStickyClass(' bg-transparent z-50');
-      stickyClass ? setMobileSticky('fixed top-20 left-0 z-50 gap-20') : setMobileSticky('')
+      windowHeight > 0 ? setStickyClass('fixed bg-[#151515] top-0 w-[100%] left-0 !z-50') : setStickyClass('-!bg-gradient-to-b !from-black !to-transparent z-50');
+      stickyClass ? setMobileSticky('fixed top-20 left-0 !z-50 gap-20') : setMobileSticky('!z-50')
     }
   };
 
@@ -63,10 +58,10 @@ import { useSession, signIn, signOut } from "next-auth/react";
 
   return (
     <>
-    <div id="header" className=" w-screen !z-50">
-    <div className={` ${stickyClass} bg-base-100 flex flex-row-reverse z-50  justify-end md:flex-row pt-8 pb-4 px-4 space-x-0 md:!space-x-10 md:w-screen md:justify-between md:px-20`}>
+    <div id="header" className=" w-screen !z-[999]">
+    <div className={`!bg-gradient-to-b !from-black !to-transparent ${stickyClass} bg-base-100 flex flex-row-reverse z-50  justify-end md:flex-row pt-8 pb-4 px-4 space-x-0 md:!space-x-10 md:w-screen md:justify-between md:px-20`}>
       <div className=" self-center">
-        <Link href={`/`}><Image src='/img/logo_comp.webp' className=" scale-75 md:scale-100" width={218} height={38} alt="Logo"></Image></Link>
+        <Link href={`/`}><Image src='/img/logo_comp.webp' className=" scale-75 md:scale-100" width={218} height={38} alt="Logo" unoptimized></Image></Link>
       </div>
 
       {isMobile ? (<div>
@@ -77,13 +72,13 @@ import { useSession, signIn, signOut } from "next-auth/react";
       
       </div>) : (<div className="flex-row">
         <ul className="menu menu-horizontal  text-sm px-1 flex-row inline-flex space-x-6">
-          <li className="self-center hover:text-purple-600">
+          <li className="self-center hover:text-purple-600 transform-gpu duration-200">
             <Link href="/">Home</Link>
           </li>
-          <li className="self-center hover:text-purple-600">
+          <li className="self-center hover:text-purple-600 transform-gpu duration-200">
             <Link href="/about">Editor</Link>
           </li>
-          <li className="self-center hover:text-purple-600">
+          <li className="self-center hover:text-purple-600 transform-gpu duration-200">
             <Link href="https://portalize.gitbook.io/portalize/introduction/welcome-to-portalize">Docs</Link>
           </li>
           <li className="self-center opacity-10">
@@ -91,8 +86,12 @@ import { useSession, signIn, signOut } from "next-auth/react";
             <Link href="">Community</Link>
           </Tooltip>
           </li>
+          <li className="self-center opacity-10">
+              <InstallPWA className={`${isMobile ? null : "hidden"} link-button w-min p-3 !bg-gradient-to-br hover:scale-[1.03] !transform-gpu rounded-full tracking-wider from-[#3b29ff] to-[#9c4fff]`}/>
+               
+              </li>
         {isLogged ? (<li className="self-center ">
-            <Link href="/editor"><Button  variant="gradient" color="purple" className="!bg-gradient-to-br rounded-full tracking-wider from-[#3b29ff] to-[#9c4fff]">Launch Editor</Button></Link>
+            <Link href="/editor"><Button  variant="gradient" color="purple" className="!bg-gradient-to-br hover:scale-[1.03] hover:shadow-3xl !transform-gpu rounded-full tracking-wider from-[#3b29ff] to-[#9c4fff]">Launch Editor</Button></Link>
           </li>):('')}
           
           <li>
@@ -132,20 +131,21 @@ import { useSession, signIn, signOut } from "next-auth/react";
               </MenuItem>
               </Link>
               <hr className="my-2 border-blue-gray-50" />
-              <Link onClick={() => signOut()} href={''}>
-              <MenuItem className="flex items-center gap-2 ">
+              <MenuItem className="flex items-center gap-2 " onClick={() => signOut()}>
+              
                 <PowerIcon strokeWidth={2} className="h-4 w-4" />
                 <Typography variant="small" className="font-normal">
                    Sign Out
                 </Typography>
+               
               </MenuItem>
-              </Link> 
+              
             </MenuList>
           </Menu> 
 
             ) :(
             
-              <Link href={`/auth`}><Button variant="gradient" color="purple" className="!bg-gradient-to-br rounded-full from-[#3b29ff] to-[#9c4fff]">Create Virtual Space</Button></Link>
+              <Link href={`/api/auth/signin`}><Button variant="gradient" color="purple" className="!bg-gradient-to-br rounded-full from-[#3b29ff] to-[#9c4fff]">Create Virtual Space</Button></Link>
   
   
               )  }
@@ -185,7 +185,7 @@ import { useSession, signIn, signOut } from "next-auth/react";
                 <li>
                   {isLogged ? (
                     <>
-                    <li>
+                    <div>
                     <Link href={`/user/dashboard`}>
                     <div className="grid grid-cols-4 grid-rows-2">
                       <Avatar
@@ -200,18 +200,16 @@ import { useSession, signIn, signOut } from "next-auth/react";
                       
                     </div>
                     </Link>
-                    </li>
-                    <li>
-                    <Link onClick={() => signOut()} href={''}>
-                        <MenuItem className="flex place-content-center place-items-center mt-4 ">
+                    </div>
+                    <div>
+                        <div onClick={() => signOut()}  className="flex place-content-center place-items-center mt-4 ">
                           <Typography variant="small" className="font-normal">
                             Sign Out
                           </Typography>
-                        </MenuItem>
-                        </Link>
-                        </li>
+                        </div>
+                        </div>
                         </>
-                  ) :(<Link href={`/auth`}><Button variant="gradient" color="purple" className="inline-flex px-20">Register for Free</Button></Link>)}
+                  ) :(<Link href={`/api/auth/signin`}><Button variant="gradient" color="purple" className="inline-flex px-20">Register for Free</Button></Link>)}
                 </li>
               </ul>
               

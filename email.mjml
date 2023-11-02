@@ -1,0 +1,37 @@
+<mjml>
+  <mj-head>
+    <mj-style inline='inline'>
+        .transparent div {
+          background: transparent !important;
+        }
+      </mj-style>
+    <mj-font name='Gilroy' href='https://gistcdn.githack.com/mfd/09b70eb47474836f25a21660282ce0fd/raw/e06a670afcb2b861ed2ac4a1ef752d062ef6b46b/Gilroy.css' />
+    <mj-breakpoint width="320px" />
+    <mj-attributes>
+      <mj-all font-family='Gilroy ,Sans-Serif' color='white' font-weight='600' />
+    </mj-attributes>
+  </mj-head>
+  <mj-body background-color='#101010'  >
+    
+    <mj-hero height='500px' mode="fixed-height" background-width="800px" background-height="500px" background-url="https://cdn.discordapp.com/attachments/559437705394520065/1159942955814092831/image.png?ex=6532dc0f&is=6520670f&hm=e6b41995477c7d9ce338542eb5ef7f2dde0fdb52d8cdb21a8ef55f6de86bb53c&" background-color='#101010' vertical-align='middle' padding="20px 0px 50px 0px">
+    <mj-image width="150px" src="https://portalize.io/img/logo_comp.webp" align='center'/>
+    <mj-divider border-color='#6F3DFF'/>
+      <mj-text padding="50px 20px 50px 20px" color="#ffffff" align="center" font-size="40px" line-height="45px" font-weight="500">
+        You Can Sign In To The App By Clicking The Button Below 
+      </mj-text>
+      <mj-button href="/" width='100%' align="center" border-radius='8px' background-color='rgba(13, 12, 12, 0.50)' border='Solid #6F3DFF' padding-top='50px'>
+        <mj-text padding-left="25px" padding-right="25px" color="#ffffff" align="center" font-size="45px" line-height="45px" font-weight="800">
+        LOGIN YOUR ACCOUNT
+        </mj-text>
+      </mj-button>
+      <mj-text padding='10px 0px 0px 0px' color="rgba(255, 255, 255, 0.70)" align="center" font-size="10px" font-weight="800" >
+        The link will expire in 1 hour
+      </mj-text>
+      <mj-text padding='0px 15px' color="rgba(255, 255, 255, 0.50)" align="center" font-size="12px" line-height="15px" padding-top='5px' font-weight="400">
+        By signing in and using our app you agree our privacy policy and terms of service agreements
+      </mj-text>
+
+      
+    </mj-hero>
+  </mj-body>
+</mjml>

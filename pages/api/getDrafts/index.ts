@@ -1,0 +1,19 @@
+import { PrismaClient } from '@prisma/client';
+const prisma = new PrismaClient();
+
+export default async function handler(req, res) {
+  const { i:id } = req.query
+        let fmbyid = (await prisma.draft.findMany({
+          where: {
+            ownerId:id
+          },select:{
+            id:true,
+            title:true,
+            floormap:true,
+            interior:true,
+            isPublished:true,
+            created:true
+          }
+        }));
+        res.json(fmbyid);
+}

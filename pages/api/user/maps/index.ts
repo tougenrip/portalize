@@ -1,29 +1,30 @@
-import { getServerSession } from 'next-auth';
-import clientPromise from '../../../../lib/mongodb';
-import { ObjectId } from "mongodb";
-import authOptions from '../../auth/authOptions';
+
 import { NextApiRequest, NextApiResponse } from 'next';
-import { resolve } from 'path';
-import { getServerAuthSession } from '../../auth/[...nextauth]';
+import { getServerSession } from 'next-auth';
+import { PrismaClient } from '@prisma/client';
+import { authOptions } from '../../auth/[...nextauth]';
+const prisma = new PrismaClient();
 
-export default async function handler(req:NextApiRequest, res:NextApiResponse) {
-
-      const session = await getServerAuthSession(req,res);
-
-      // Error handling
-      if (!session?.user?.id) {
-        return res.status(401).json({
-          error: {
-            code: 'no-access',
-            message: 'You are not signed in.',
-          },
-        });
-      }
+export default async function handler(req, res) {
+    
+          const session = await getServerSession(req,res,authOptions);;
+            const owner = session?.user?.id
+   
     
 
-  const client = await clientPromise;
-        const db = client.db("test");
-        let fmbyid = (await db.collection("maps").find({owner: session.user.name}, {projection: {floormap:0,interior:0}}).toArray())
+        const fmbyid = await prisma.map.findMany({where:{ownerId:owner},select:{
+          title:true,
+          id:true,
+          desc:false,
+          owner:false,
+          ownerId:false,
+          img:true,
+          userLimit:false,
+          tags:false,
+          created:false,
+          floormap:false,
+          interior:false
+          } })
         res.json(fmbyid);
 }
 

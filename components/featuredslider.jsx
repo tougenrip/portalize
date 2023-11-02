@@ -23,7 +23,7 @@ const FeaturedSlider = () => {
   
     return { data, error, isLoading };
   };
-  const {data: games, error, isLoading} = useFetch('api/user/getMaps')
+  const {data: games, error, isLoading} = useFetch('api/getMaps')
 
   
     

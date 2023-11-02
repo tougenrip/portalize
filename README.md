@@ -1,8 +1,48 @@
 # Portalize.io Website Repository
 
-## Used technologies 
+## Our Tech Stack
+### What we used for creating our project
 
-![Next JS](https://img.shields.io/badge/Next-black?style=for-the-badge&logo=next.js&logoColor=white) ![NodeJS](https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white) ![MongoDB](https://img.shields.io/badge/MongoDB-%234ea94b.svg?style=for-the-badge&logo=mongodb&logoColor=white) ![Prisma](https://img.shields.io/badge/Prisma-3982CE?style=for-the-badge&logo=Prisma&logoColor=white) ![Unity](https://img.shields.io/badge/unity-%23000000.svg?style=for-the-badge&logo=unity&logoColor=white) ![TailwindCSS](https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white) ![NPM](https://img.shields.io/badge/NPM-%23CB3837.svg?style=for-the-badge&logo=npm&logoColor=white) ![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)
+| Technology       | Purpose                                       | Description                                           |
+|------------------|-----------------------------------------------|-------------------------------------------------------|
+| Development Tools|||
+| Visual Studio Code| Code Editor| A popular source code editor for writing and editing code. |
+| Figma            | Design Collaboration| A cloud-based design and prototyping tool for UI/UX design and collaboration. |
+| Git              | Version Control| Distributed version control system for code tracking. |
+| GitHub           | Code Hosting| Web-based platform for hosting and collaborating on code. |
+| Plastic SCM      | Version Control| Distributed version control system with a focus on branching and merging. |
+| Build & Bundling|||
+| Webpack          | Bundler| A popular JavaScript module bundler for optimizing and bundling code. |
+| Backend|||
+| Node.js          | Server-Side Runtime| JavaScript runtime for building server applications.  |
+| JavaScript       | Backend Language| Programming language used for server-side logic.     |
+| Microsoft IIS    | Web Server| Web server software by Microsoft for hosting web apps.|
+| MongoDB          | Database| NoSQL database for storing and managing data.         |
+| Prisma           | Database ORM| Tool for simplifying database access in Node.js.      |
+| Nodemailer       | Email Sending| Library for sending emails from Node.js applications. |
+| Multer           | File Upload Middleware| Middleware for handling file uploads in Node.js.     |
+| Multer-FTP       | FTP Storage for Multer| Extension for Multer to store uploads on FTP servers. |
+| Let's Encrypt    | SSL/TLS Certificates| Certificate authority for securing web connections.   |
+| Frontend|||
+| React            | Frontend Framework| JavaScript library for building user interfaces.      |
+| Next.js          | React Framework| Framework for server-rendered React applications.    |
+| TypeScript       | Frontend Language| Typed superset of JavaScript for robust development.  |
+| Tailwind CSS     | CSS Framework| Utility-first CSS framework for UI development.      |
+| Material Tailwind| UI Components| UI components based on Material Design and Tailwind.  |
+| Framer           | UI/Animation Tool| Tool for creating interactive UIs and animations.     |
+| React Three Fiber| 3D Graphics in React| React bindings for three.js, enabling 3D graphics.   |
+| API & Data|||
+| Axios            | HTTP Requests| Library for making HTTP requests from the browser.    |
+| SWR              | Data Fetching Library| React hooks for data fetching and synchronization.    |
+| Postman          | API Testing| Tool for testing and documenting APIs.                |
+| Authentication & Payments|||
+| Next-Auth        | Authentication| Authentication library for Next.js applications.     |
+| Iyzipay          | Payment Processing| Payment gateway integration for online payments.      |
+| Stripe           | Payment Processing| Payment processing platform for online businesses.    |
+| Integration|||
+| Ready Player Me  | Avatar/VR Integration| Integration for creating personalized avatars.        |
+| Unity            | 3D Graphics/Game Engine| Game engine for creating 2D and 3D interactive apps. |
+
 
 And much more...
 

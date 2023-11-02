@@ -1,4 +1,8 @@
 {
     "markdown.preview.fontSize": 12,
-    "peacock.color": "#4f000f"
+    "peacock.color": "#4f000f",
+    "workbench.colorCustomizations": {
+        "sash.hoverBorder": "#3c21f4"
+    },
+    "peacock.remoteColor": "#250bd7"
 }

@@ -1,75 +1,51 @@
 
-import { getServerAuthSession } from './auth/[...nextauth]';
-import { PrismaClient } from '@prisma/client';
-const prisma = new PrismaClient();
-
-
-export default  async function handler(req, res) {
-
-    
-
-    switch(req.query.function) {
-      case 'likeMap':
-      await LikeMap(req, res);
-      break
-      case 'unlikeMap':
-      await UnlikeMap(req, res);
-      break
-    }
+// import { getServerSession } from 'next-auth';
+// import { authOptions } from './auth/[...nextauth]';
+// import { PrismaClient } from '@prisma/client';
+// const prisma = new PrismaClient();
+// export default  async function handler(req, res) {
 
   
-}
 
-async function UnlikeMap(req, res) {
-
-  if (req.method === 'PUT'){
-    try{
-      const {mapId} = req.body
-          const session = await getServerAuthSession(req,res)
-          const owner = session?.user?.id
     
-           
 
-      res.status(201).json({ message: `Unliked the map with ID: ${mapId}.` });
-    } catch (e) {
-      // send an error response back to the client
-      res.status(500).json({ error: e.message });
-    }
+//     switch(req.query.function) {
+//       case 'likeorunlike':
+//       await LikeOrUnlikeMap(req, res);
+//       break
+//     }
 
-    }else {
-        // send a 405 Method Not Allowed response back to the client
-        res.status(405).json({ error: 'Only PUT requests allowed.' });
-    }
-
-}
-
-async function LikeMap(req, res) {
   
+// }
 
-    if (req.method === 'PUT'){
-        try{
-          const {mapId} = req.body
-          const session = await getServerAuthSession(req,res)
-          const owner = session?.user?.id
-    
-          const user = await prisma.user.findUnique({where:{id:owner}})
-          user.likedMaps.push(mapId)
-          await prisma.map.update({
-            where: { id: mapId },
-            data: { likes: { increment: 1 } }
-          })
-                    
-          
-     
-    
-          res.status(201).json({ message: `Liked the map with ID: ${mapId}.` });
-        } catch (e) {
-          // send an error response back to the client
-          res.status(500).json({ error: e.message });
-        }
-    
-        }else {
-            // send a 405 Method Not Allowed response back to the client
-            res.status(405).json({ error: 'Only PUT requests allowed.' });
-        }
-}
+// async function LikeOrUnlikeMap(req, res) {
+
+//   if (req.method === 'POST') {
+//     const { mapId, userId } = req.body;
+
+//     // Check if the user has already liked the post
+//     const existingLike = await prisma.likeMap.findUnique({
+//       where: { mapId_userId: { mapId, userId } },
+//     });
+
+//     if (existingLike) {
+//       // If the like exists, delete it (unlike)
+//       await prisma.likeMap.delete({
+//         where: { id: existingLike.id },
+//       });
+
+//       res.json({ message: 'Unliked' });
+//     } else {
+//       // If the like does not exist, create it (like)
+//       await prisma.likeMap.create({
+//         data: { mapId, userId },
+//       });
+
+//       res.json({ message: 'Liked' });
+//     }
+//   } else {
+//     res.status(405).json({ message: 'Method not allowed' });
+//   }
+
+// }
+
