@@ -1,7 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-import { AttachImage } from "@/features/images/attach-image";
+import { AttachImage } from "@components/features/images/attach-image";
 import { Prisma, User } from "@prisma/client";
-import findUserPosts from "@/features/posts/findUserPosts";
+import findUserPosts from "@components/features/posts/findUserPosts";
 
 export type UserPostData = {
   posts: AttachImage<

@@ -1,7 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-import { AttachImage } from "@/features/images/attach-image";
+import { AttachImage } from "@components/features/images/attach-image";
 import { Post, Prisma, User } from "@prisma/client";
-import findSinglePost from "@/features/posts/findSinglePost";
+import findSinglePost from "@components/features/posts/findSinglePost";
 import { getServerSession } from "next-auth";
 import { authOptions } from "../../auth/[...nextauth]";
 

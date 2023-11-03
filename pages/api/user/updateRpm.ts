@@ -3,7 +3,7 @@ import { NextApiRequest, NextApiResponse } from "next";
 import { getServerSession } from 'next-auth';
 import { PrismaClient } from '@prisma/client';
 import { authOptions } from "../auth/[...nextauth]";
-const prisma = new PrismaClient();
+import prisma from "@components/prisma/prisma";
 // Replace the uri string with your MongoDB deployment's connection string.
 
 

@@ -1,6 +1,6 @@
-import createImage from "@/features/images/createImage/createImage";
+import createImage from "@components/features/images/createImage/createImage";
 import { CreateStoryParams } from "./createStory.schema";
-import prisma from "@/utils/prisma";
+import prisma from "@components/prisma/prisma";
 
 export default async function createStory(
   data: CreateStoryParams,

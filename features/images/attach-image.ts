@@ -1,5 +1,5 @@
 import { Image } from "@prisma/client";
-import prisma from "@/utils/prisma";
+import prisma from "@components/prisma/prisma";
 
 export type AttachImage<T, Type extends string> = Type extends "user"
   ? T & { profile_pic?: Image } // for User's profile picture

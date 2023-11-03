@@ -9,7 +9,7 @@ import Stripe from "stripe";
 import { Adapter } from "next-auth/adapters";
 import {createTransport} from 'nodemailer'
 
-const prisma = new PrismaClient()
+import prisma from "@components/prisma/prisma";
 
 export const authOptions:NextAuthOptions = {
   adapter: PrismaAdapter(prisma) as Adapter,

@@ -1,5 +1,5 @@
 import attachImage from "../images/attach-image";
-import prisma from "@/utils/prisma";
+import prisma from "@components/prisma/prisma";
 
 const findFollowingStories = async (userId: string) => {
   const users = await prisma.user.findMany({

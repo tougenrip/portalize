@@ -1,4 +1,4 @@
-import prisma from "@/utils/prisma";
+import prisma from "@components/prisma/prisma";
 
 const createUserFollower = async (userId: string, followerId: string) => {
   return await prisma.userFollower.upsert({

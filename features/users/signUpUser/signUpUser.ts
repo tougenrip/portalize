@@ -1,6 +1,6 @@
-import prisma from "@/utils/prisma";
+import prisma from "@components/prisma/prisma";
 import { SignUpUserParams } from "./signUpUser.schema";
-import hashPassword from "@/features/password/hashPassword";
+import hashPassword from "@components/features/password/hashPassword";
 
 export default async function signUpUser(data: SignUpUserParams) {
   const user = await prisma.user.create({

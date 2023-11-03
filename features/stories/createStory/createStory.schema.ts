@@ -1,4 +1,4 @@
-import { CreateImageParams } from "@/features/images/createImage/createImage.schema";
+import { CreateImageParams } from "@components/features/images/createImage/createImage.schema";
 import { z } from "zod";
 
 export type CreateStoryParams = {

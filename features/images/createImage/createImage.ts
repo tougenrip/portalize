@@ -1,4 +1,4 @@
-import prisma from "@/utils/prisma";
+import prisma from "@components/prisma/prisma";
 import { CreateImageParams } from "./createImage.schema";
 
 export default async function createImage(

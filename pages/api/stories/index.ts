@@ -1,11 +1,11 @@
 import { Story, User } from "@prisma/client";
 import type { NextApiRequest, NextApiResponse } from "next";
-import { AttachImage } from "@/features/images/attach-image";
-import findFollowingStories from "@/features/stories/findFollowingStories";
+import { AttachImage } from "@components/features/images/attach-image";
+import findFollowingStories from "@components/features/stories/findFollowingStories";
 import { getServerSession } from "next-auth";
 import { authOptions } from "../auth/[...nextauth]";
-import { createStorySchema } from "@/features/stories/createStory/createStory.schema";
-import createStory from "@/features/stories/createStory/createStory";
+import { createStorySchema } from "@components/features/stories/createStory/createStory.schema";
+import createStory from "@components/features/stories/createStory/createStory";
 
 export type AllStoriesData = {
   stories: {

@@ -1,5 +1,5 @@
-import { CreateStoryParams } from "@/features/stories/createStory/createStory.schema";
-import { AllStoriesData, CreatedStoryData } from "@/pages/api/stories";
+import { CreateStoryParams } from "@components/features/stories/createStory/createStory.schema";
+import { AllStoriesData, CreatedStoryData } from "@components/pages/api/stories";
 import axios from "axios";
 
 export const getAllStories = async (): Promise<AllStoriesData> => {

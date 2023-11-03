@@ -1,9 +1,9 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import { getServerSession } from "next-auth";
 import { authOptions } from "../../auth/[...nextauth]";
-import findUserInfo from "@/features/users/findUserInfo";
-import createUserFollower from "@/features/userFollowers/createUserFollower";
-import deleteUserFollower from "@/features/userFollowers/deleteUserFollower";
+import findUserInfo from "@components/features/users/findUserInfo";
+import createUserFollower from "@components/features/userFollowers/createUserFollower";
+import deleteUserFollower from "@components/features/userFollowers/deleteUserFollower";
 
 export default async function handler(
   req: NextApiRequest,

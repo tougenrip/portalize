@@ -1,7 +1,7 @@
 import {
   CreateImageParams,
   createImageSchema,
-} from "@/features/images/createImage/createImage.schema";
+} from "@components/features/images/createImage/createImage.schema";
 import { z } from "zod";
 
 export type CreatePostParams = {

@@ -1,5 +1,5 @@
-import createPostLikes from "@/features/postLikes/createPostLikes";
-import deletePostLikes from "@/features/postLikes/deletePostLikes";
+import createPostLikes from "@components/features/postLikes/createPostLikes";
+import deletePostLikes from "@components/features/postLikes/deletePostLikes";
 import type { NextApiRequest, NextApiResponse } from "next";
 import { getServerSession } from "next-auth";
 import { authOptions } from "../../auth/[...nextauth]";

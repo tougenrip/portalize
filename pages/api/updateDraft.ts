@@ -1,5 +1,5 @@
 import { PrismaClient } from "@prisma/client";
-const prisma = new PrismaClient();
+import prisma from "@components/prisma/prisma";
 import type { NextApiRequest, NextApiResponse } from "next";
 
 export default async function hendler(req:NextApiRequest,res:NextApiResponse) {

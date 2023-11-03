@@ -1,11 +1,11 @@
 import { Post, PostLike, User } from "@prisma/client";
 import type { NextApiRequest, NextApiResponse } from "next";
-import { AttachImage } from "@/features/images/attach-image";
-import findFollowingPosts from "@/features/posts/findFollowingPosts";
+import { AttachImage } from "@components/features/images/attach-image";
+import findFollowingPosts from "@components/features/posts/findFollowingPosts";
 import { getServerSession } from "next-auth";
 import { authOptions } from "../auth/[...nextauth]";
-import { createPostSchema } from "@/features/posts/createPost/createPost.schema";
-import createPost from "@/features/posts/createPost/createPost";
+import { createPostSchema } from "@components/features/posts/createPost/createPost.schema";
+import createPost from "@components/features/posts/createPost/createPost";
 
 export type PostWithAuthor = AttachImage<Post, "post"> & {
   _count: {

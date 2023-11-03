@@ -1,8 +1,8 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-import findPostLikedUsers from "@/features/posts/findPostLikedUsers";
+import findPostLikedUsers from "@components/features/posts/findPostLikedUsers";
 import { getServerSession } from "next-auth";
 import { authOptions } from "../../auth/[...nextauth]";
-import { UserWithFollowersAndImage } from "@/utils/types";
+import { UserWithFollowersAndImage } from "@components/utils/types";
 
 export type PostLikedUsersData = {
   users: UserWithFollowersAndImage[];

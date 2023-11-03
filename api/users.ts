@@ -1,6 +1,6 @@
-import { SignUpUserParams } from "@/features/users/signUpUser/signUpUser.schema";
-import { CreatedUserData } from "@/pages/api/users";
-import { UserInfoData } from "@/pages/api/users/[username]";
+import { SignUpUserParams } from "@components/features/users/signUpUser/signUpUser.schema";
+import { CreatedUserData } from "@components/pages/api/users";
+import { UserInfoData } from "@components/pages/api/users/[username]";
 import axios from "axios";
 
 export const getUserInfo = async (username: string): Promise<UserInfoData> => {

@@ -1,9 +1,6 @@
 import { Button, Drawer, Typography, IconButton } from '@material-tailwind/react'
-import mongoose from 'mongoose'
 import React from 'react'
 import { BiCross } from 'react-icons/bi'
-import User from '../pages/api/schemas/usersch'
-import { ObjectId } from 'mongodb'
 import useSWR from 'swr'
 
 
@@ -21,7 +18,7 @@ const DrawerButton = ({id}) => {
       };
       
       const useFetch = (path) => {
-        const { data, error } = useSWR(`http://localhost:3000/${path}`, fetcher);
+        const { data, error } = useSWR(`${process.env.NEXT_PUBLIC_WEBSITE_URL}${path}`, fetcher);
       
         const isLoading = !data && !error;
       

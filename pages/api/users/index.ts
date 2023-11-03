@@ -1,9 +1,9 @@
 import { User } from "@prisma/client";
 import type { NextApiRequest, NextApiResponse } from "next";
-import { AttachImage } from "@/features/images/attach-image";
-import findManyUsers from "@/features/users/findManyUsers";
-import signUpUser from "@/features/users/signUpUser/signUpUser";
-import { signUpUserSchema } from "@/features/users/signUpUser/signUpUser.schema";
+import { AttachImage } from "@components/features/images/attach-image";
+import findManyUsers from "@components/features/users/findManyUsers";
+import signUpUser from "@components/features/users/signUpUser/signUpUser";
+import { signUpUserSchema } from "@components/features/users/signUpUser/signUpUser.schema";
 
 export type AllUsersData = {
   users: AttachImage<User, "user">[];

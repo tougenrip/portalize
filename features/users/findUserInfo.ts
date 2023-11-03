@@ -1,4 +1,4 @@
-import prisma from "@/utils/prisma";
+import prisma from "@components/prisma/prisma";
 import attachImage from "../images/attach-image";
 
 const findUserInfo = async (username: string, userId: string) => {

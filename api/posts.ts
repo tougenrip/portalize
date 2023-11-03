@@ -1,8 +1,8 @@
-import { CreatePostParams } from "@/features/posts/createPost/createPost.schema";
-import { AllPostsData, CreatedPostData } from "@/pages/api/posts";
-import { PostData } from "@/pages/api/posts/[post_id]";
-import { PostLikedUsersData } from "@/pages/api/posts/[post_id]/likeds";
-import { UserPostData } from "@/pages/api/users/[username]/posts";
+import { CreatePostParams } from "@components/features/posts/createPost/createPost.schema";
+import { AllPostsData, CreatedPostData } from "@components/pages/api/posts";
+import { PostData } from "@components/pages/api/posts/[post_id]";
+import { PostLikedUsersData } from "@components/pages/api/posts/[post_id]/likeds";
+import { UserPostData } from "@components/pages/api/users/[username]/posts";
 import axios from "axios";
 
 export const getAllPosts = async (): Promise<AllPostsData> => {

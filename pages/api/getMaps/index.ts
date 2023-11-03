@@ -1,6 +1,6 @@
 import { PrismaClient } from '@prisma/client';
 import { NextApiRequest, NextApiResponse } from 'next';
-const prisma = new PrismaClient();
+import prisma from "@components/prisma/prisma";
 
 export default async function handler(req:NextApiRequest,res:NextApiResponse) {
   var fmbyid
