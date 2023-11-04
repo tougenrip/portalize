@@ -1,8 +1,7 @@
-import ImageUpload from '@components/components/ImageUpload'
-import ModelUpload from '@components/components/ModelUpload'
+import ImageUpload from '@/components/ImageUpload'
+import ModelUpload from '@/components/ModelUpload'
 import { Button } from '@material-tailwind/react'
 import axios from 'axios'
-import { deleteModel } from 'mongoose'
 import React, { useState } from 'react'
 import useSWR from 'swr'
 

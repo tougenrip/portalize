@@ -5,10 +5,10 @@ import { useState } from 'react'
 import { Button, Checkbox, IconButton, Input, List, ListItem, ListItemPrefix, Typography } from '@material-tailwind/react'
 import Image from 'next/image'
 import axios from 'axios'
-import Navbar from '@components/components/Navbar'
+import Navbar from '@/components/Navbar'
 import useSWR from 'swr'
 import { BiXCircle } from 'react-icons/bi'
-import getStripe from '@components/utils/getStripe'
+import getStripe from '@/utils/getStripe'
 
 const BannerCreate = () => {
 

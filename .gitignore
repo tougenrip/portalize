@@ -43,3 +43,4 @@ build
 uploads
 .env.production
 .env.development
+.env

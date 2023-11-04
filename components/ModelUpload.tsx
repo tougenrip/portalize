@@ -13,7 +13,7 @@ import {
 } from "@material-tailwind/react";
 import ModelViewer from "@google/model-viewer"
 import ModelViewerElementBase from '@google/model-viewer/lib/model-viewer-base';
-import {modelToImage}from '@components/utils/modelToImage'
+import {modelToImage}from '@/utils/modelToImage'
 import Image from 'next/image';
 
 

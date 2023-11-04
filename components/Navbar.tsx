@@ -1,3 +1,4 @@
+"use client"
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
@@ -78,13 +79,14 @@ import InstallPWA from "./InstallPWA";
           <li className="self-center hover:text-purple-600 transform-gpu duration-200">
             <Link href="/about">Editor</Link>
           </li>
+          
           <li className="self-center hover:text-purple-600 transform-gpu duration-200">
             <Link href="https://portalize.gitbook.io/portalize/introduction/welcome-to-portalize">Docs</Link>
           </li>
-          <li className="self-center opacity-10">
-          <Tooltip content="Coming Soon">
-            <Link href="">Community</Link>
-          </Tooltip>
+          <li className="self-center  hover:text-purple-600 transform-gpu duration-200">
+         
+            <Link href="/social">Community</Link>
+
           </li>
           <li className="self-center opacity-10">
               <InstallPWA className={`${isMobile ? null : "hidden"} link-button w-min p-3 !bg-gradient-to-br hover:scale-[1.03] !transform-gpu rounded-full tracking-wider from-[#3b29ff] to-[#9c4fff]`}/>

@@ -1,6 +1,6 @@
-import { FeaCard } from '@components/components/List';
-import Navbar from '@components/components/Navbar'
-import PortalNav from '@components/components/portalNav';
+import { FeaCard } from '@/components/List';
+import Navbar from '@/components/Navbar'
+import PortalNav from '@/components/portalNav';
 import Head from 'next/head';
 import { useRouter, useSearchParams } from 'next/navigation';
 import React, { useState } from 'react';

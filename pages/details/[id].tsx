@@ -1,5 +1,5 @@
-import { FooterWithLogo } from '@components/components/FooterWithLogo'
-import Navbar from '@components/components/Navbar'
+import { FooterWithLogo } from '@/components/FooterWithLogo'
+import Navbar from '@/components/Navbar'
 import { Avatar, Button, Chip, Tooltip } from '@material-tailwind/react'
 import Link from 'next/link'
 import React, { useEffect, useState} from 'react'

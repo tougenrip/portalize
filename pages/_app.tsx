@@ -1,10 +1,9 @@
 
-import '@components/styles/globals.css'
+import '@/styles/globals.css'
 import type { AppProps } from 'next/app'
 import { SessionProvider, useSession } from "next-auth/react"
 import NextNProgress from 'nextjs-progressbar';
 import { mode } from "@chakra-ui/theme-tools";
-import Navbar from '@components/components/Navbar';
 
 // const theme = extendTheme({
 //   config: {

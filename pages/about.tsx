@@ -5,13 +5,13 @@ import Head from "next/head";
 import {TypeAnimation} from 'react-type-animation';
 import { motion } from "framer-motion";
 import PricingCardFree from "../components/pricingcard-free"
-import { ServiceCard } from "@components/components/servicecard";
-import List from "@components/components/List";
-import ScrollingDiv from "@components/components/Scrollingdivs";
+import { ServiceCard } from "@/components/servicecard";
+import List from "@/components/List";
+import ScrollingDiv from "@/components/Scrollingdivs";
 import Script from "next/script";
-import { SubscriptionCard } from "@components/components/SubscriptionCard";
-import { subscription, services } from "@components/constants";
-import { FooterWithLogo } from "@components/components/FooterWithLogo";
+import { SubscriptionCard } from "@/components/SubscriptionCard";
+import { subscription, services } from "@/constants";
+import { FooterWithLogo } from "@/components/FooterWithLogo";
 
 
 

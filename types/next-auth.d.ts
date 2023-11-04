@@ -10,8 +10,16 @@ declare global {
   }
 }
 
+declare module 'next-auth/jwt' {
+  interface JWT {
+    id: UserId
+    username?: string | null
+  }
+}
+
 declare module "next-auth" {
     interface User extends DefaultUser {
+        id: string;
         stripeCustomerId: string;
         isActive:boolean;
         skyEnabled:boolean;
@@ -32,6 +40,7 @@ declare module "next-auth" {
         user?: DefaultUser & User;
       }
       interface AdapterUser extends DefaultUser {
+        id: string;
         stripeCustomerId: string;
         isActive:boolean;
         skyEnabled:boolean;

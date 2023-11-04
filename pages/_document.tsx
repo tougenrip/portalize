@@ -1,7 +1,7 @@
 import { Html, Head, Main, NextScript } from 'next/document'
 import NextNProgress from 'nextjs-progressbar'
 import { useEffect, useState } from 'react'
-import InstallPWA from '@components/components/InstallPWA'
+import InstallPWA from '@/components/InstallPWA'
 
 
 export default function Document() {

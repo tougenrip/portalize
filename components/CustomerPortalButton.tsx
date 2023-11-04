@@ -1,4 +1,4 @@
-import getStripe from '@components/utils/getStripe';
+import getStripe from '@/utils/getStripe';
 import { Button } from '@material-tailwind/react';
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/router';

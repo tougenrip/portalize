@@ -1,6 +1,6 @@
 // import { PrismaClient } from "@prisma/client";
 // import Stripe from "stripe";
-// import prisma from "@components/prisma/prisma";
+// import prisma from "@/prisma/prisma";
 // const bcrypt = require("bcrypt");
 // const nodemailer = require('nodemailer');
 

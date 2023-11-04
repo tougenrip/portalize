@@ -1,7 +1,7 @@
 import fs from "fs";
 import { getServerSession } from "next-auth";
 import { authOptions } from "../auth/[...nextauth]";
-import prisma from "@components/prisma/prisma";
+import prisma from "@/prisma/prisma";
 import path from 'path'
 
 

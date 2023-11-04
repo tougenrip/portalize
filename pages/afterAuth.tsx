@@ -1,4 +1,4 @@
-import Navbar from '@components/components/Navbar'
+import Navbar from '@/components/Navbar'
 import { Button, Input, Option, Select, Typography } from '@material-tailwind/react'
 import axios from 'axios'
 import { useSession } from 'next-auth/react';

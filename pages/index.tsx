@@ -6,7 +6,7 @@ import PortalNav from '../components/portalNav';
 import Script from 'next/script';
 import Head from 'next/head';
 import { motion } from 'framer-motion'; 
-import { FooterWithLogo } from '@components/components/FooterWithLogo';
+import { FooterWithLogo } from '@/components/FooterWithLogo';
 import NextNProgress from 'nextjs-progressbar'
 
 

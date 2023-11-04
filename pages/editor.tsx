@@ -12,7 +12,7 @@ import { toast, ToastContainer } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
 import { CircularProgressbar } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
-import { modelToImage } from "@components/utils/modelToImage";
+import { modelToImage } from "@/utils/modelToImage";
 
 
 
@@ -469,7 +469,7 @@ function OpenEmpty() {
         <p className='w-min whitespace-nowrap px-5'>User Limit</p>
         <Slider color="purple" defaultValue={5} min={1} max={isActive ? 33 : 11} step={1} onChange={(e) =>{setUserLimit(e.target.valueAsNumber); console.log("UserLimit set to: " + userLimit)}} />
       </div>
-      <Button onClick={uploadToServer} style={{pointerEvents: isLoading ? 'none' : null, opacity: isLoading ? '0.5' : '1'}} variant="gradient" color="purple">{isLoading ? `PLEASE WAIT`: `PUBLISH YOUR MAP`}</Button>
+      <Button onClick={uploadToServer} style={{pointerEvents: isLoading ? 'none' : undefined, opacity: isLoading ? '0.5' : '1'}} variant="gradient" color="purple">{isLoading ? `PLEASE WAIT`: `PUBLISH YOUR MAP`}</Button>
     </form>
 
    {/*${modelvisibility ? null : 'hidden'}*/}
