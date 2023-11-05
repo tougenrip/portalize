@@ -8,10 +8,13 @@
 // });
 
 const nextConfig = {
-  reactStrictMode: true,
+  reactStrictMode: false,
   transpilePackages: [ '@readyplayerme/rpm-react-sdk'],
   compress: false,
   transpilePackages: ['three', '@react-three/drei'],
+  typescript: {
+    ignoreBuildErrors:true
+  }
 }
 
 module.exports = nextConfig

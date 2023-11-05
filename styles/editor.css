@@ -6,9 +6,10 @@
 .dark .ce-settings__button,
 .dark .ce-toolbar__settings-btn,
 .dark .cdx-button,
-.dark .ce-popover,
+.dark .ce-popover,.tc_popover,
 .dark .ce-toolbar__plus:hover {
   background: theme('colors.popover.DEFAULT');
+  background-color: black !important;
   color: inherit;
   border-color: theme('colors.border');
 }
@@ -58,6 +59,16 @@
 .dark .cdx-notify__cross::after,
 .dark .cdx-notify__cross::before {
   background: white;
+}
+
+.ce-inline-toolbar,
+.ce-conversion-toolbar,
+.ce-conversion-tool__icon,
+.tc-popover,
+.tc-popover__item .tc-popover__item-icon
+{
+  background-color: black !important;
+  background: black;
 }
 
 .codex-editor__redactor {
