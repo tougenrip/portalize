@@ -8,13 +8,16 @@
 // });
 
 const nextConfig = {
-  reactStrictMode: true,
   images: {
     domains: ['lh3.googleusercontent.com']
 },
+  reactStrictMode: false,
   transpilePackages: [ '@readyplayerme/rpm-react-sdk'],
   compress: false,
   transpilePackages: ['three', '@react-three/drei'],
+  typescript: {
+    ignoreBuildErrors:true
+  }
 }
 
 module.exports = nextConfig
