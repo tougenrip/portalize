@@ -9,6 +9,9 @@
 
 const nextConfig = {
   reactStrictMode: true,
+  images: {
+    domains: ['lh3.googleusercontent.com']
+},
   transpilePackages: [ '@readyplayerme/rpm-react-sdk'],
   compress: false,
   transpilePackages: ['three', '@react-three/drei'],

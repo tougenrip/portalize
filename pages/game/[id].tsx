@@ -57,10 +57,10 @@ function App({floormapdata, interiordata,gamedatares}) {
 
  
   const { unityProvider, loadingProgression, isLoaded, sendMessage, addEventListener, removeEventListener, UNSAFE__unityInstance } = useUnityContext({
-    loaderUrl: `${process.env.NEXT_PUBLIC_WEBSITE_URL}Builds/game/Build/webgl-portalize-playmode-15.loader.js`,
-    dataUrl: `${process.env.NEXT_PUBLIC_WEBSITE_URL}Builds/game/Build/webgl-portalize-playmode-15.data.unityweb`,
-    frameworkUrl: `${process.env.NEXT_PUBLIC_WEBSITE_URL}Builds/game/Build/webgl-portalize-playmode-15.framework.js.unityweb`,
-    codeUrl: `${process.env.NEXT_PUBLIC_WEBSITE_URL}Builds/game/Build/webgl-portalize-playmode-15.wasm.unityweb`,
+    loaderUrl: `${process.env.NEXT_PUBLIC_WEBSITE_URL}uploads/Builds/game/Build/webgl-portalize-playmode-21.loader.js`,
+    dataUrl: `${process.env.NEXT_PUBLIC_WEBSITE_URL}uploads/Builds/game/Build/webgl-portalize-playmode-21.data.unityweb`,
+    frameworkUrl: `${process.env.NEXT_PUBLIC_WEBSITE_URL}uploads/Builds/game/Build/webgl-portalize-playmode-21.framework.js.unityweb`,
+    codeUrl: `${process.env.NEXT_PUBLIC_WEBSITE_URL}uploads/Builds/game/Build/webgl-portalize-playmode-21.wasm.unityweb`,
     streamingAssetsUrl: "streamingassets",
 
     
