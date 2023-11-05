@@ -8,10 +8,40 @@
 // });
 
 const nextConfig = {
+  experimental: {
+    serverActions: true,
+    serverActionsBodySizeLimit: '5mb',
+  },
   images: {
-    domains: ['lh3.googleusercontent.com']
+    domains: ['lh3.googleusercontent.com'],
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "ik.imagekit.io",
+      },
+      {
+        protocol: "https",
+        hostname: "images.unsplash.com",
+      },
+      {
+        protocol: "https",
+        hostname: "cdn.discordapp.com",
+      },
+      {
+        protocol: "https",
+        hostname: "plus.unsplash.com",
+      },
+      {
+        protocol: "https",
+        hostname: "api.dicebear.com",
+      },
+      {
+        protocol: "https",
+        hostname: "unsplash.com",
+      },
+    ],
 },
-  reactStrictMode: false,
+  reactStrictMode: true,
   transpilePackages: [ '@readyplayerme/rpm-react-sdk'],
   compress: false,
   transpilePackages: ['three', '@react-three/drei'],

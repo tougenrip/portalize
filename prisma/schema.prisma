@@ -6,6 +6,8 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+
 model Banner {
   id           String     @id @default(cuid())
   mapId   String  
@@ -16,6 +18,8 @@ model Banner {
 
   map  Map @relation(fields: [mapId], references: [id], onDelete:Cascade)
 }
+
+
 model Skyad {
   id           String     @id @default(cuid())
   owner   String
@@ -69,6 +73,8 @@ model File {
   
   user          User     @relation(fields: [userId], references: [id])
 }
+
+
 model Account {
   id           String     @id @default(cuid())
   userId             String  
@@ -96,16 +102,40 @@ model Session {
   user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
+enum Role {
+  ADMIN
+  USER
+}
+
+enum Gender {
+  MALE
+  FEMALE
+}
+
+
 model User {
   id           String     @id @default(cuid())
   name          String?   @unique
   email         String?   @unique
   emailVerified DateTime?
+  role          Role      @default(USER)
+  private       Boolean   @default(false)
   image         String?
+  website       String?
+  bio           String?   @db.Text
+  gender        Gender?
+
+  posts          Post[]
+  likedPosts     Likes[]
+  commentedPosts Comments[]
+  followers      Follows[]      @relation("following")
+  following      Follows[]      @relation("follower")
+  commentLikes   CommentLikes[]
+  stories        Stories[]
+  storyViews     StoryViews[]
 
 
   bDay          DateTime? 
-  gender        String? 
 
   stripeCustomerId  String? @unique
   isActive      Boolean?  
@@ -122,12 +152,6 @@ model User {
   
   accounts      Account[]
   sessions      Session[]
-  Post        Post[]
-  Comment     Comment[]
-  CommentVote CommentVote[]
-  createdSubreddits Subreddit[]    @relation("CreatedBy")
-  subscriptions     Subscription[]
-  votes             Vote[]
   friends       String[]
 
   files        File[] 
@@ -137,85 +161,90 @@ model User {
   @@unique([id, name])
 }
 
-enum VoteType {
-  UP
-  DOWN
-}
-
-model Subreddit {
-  id        String   @id @default(cuid())
-  name      String   @unique
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  posts     Post[]
-
-  creatorId   String?
-  Creator     User?          @relation("CreatedBy", fields: [creatorId], references: [id])
-  subscribers Subscription[]
-
-  @@index([name])
-}
-
-model Subscription {
-  user        User      @relation(fields: [userId], references: [id])
-  userId      String
-  subreddit   Subreddit @relation(fields: [subredditId], references: [id])
-  subredditId String
-
-  @@id([userId, subredditId])
-}
 
 model Post {
-  id          String    @id @default(cuid())
-  title       String
-  content     Json?
-  createdAt   DateTime  @default(now())
-  updatedAt   DateTime  @updatedAt
-  author      User      @relation(fields: [authorId], references: [id])
-  authorId    String
-  subreddit   Subreddit @relation(fields: [subredditId], references: [id])
-  subredditId String
-  comments    Comment[] 
-  votes       Vote[]
-}
-
-model Comment {
   id        String   @id @default(cuid())
-  text      String
+  caption   String
+  location  String?
+  images    Image[]
   createdAt DateTime @default(now())
-  author    User     @relation(fields: [authorId], references: [id])
-  authorId  String
-  post      Post     @relation(fields: [postId], references: [id], onDelete: Cascade)
-  postId    String
+  updatedAt DateTime @updatedAt
 
-  replyToId String?
-  replyTo   Comment?  @relation("ReplyTo", fields: [replyToId], references: [id], onDelete: NoAction, onUpdate: NoAction)
-  replies   Comment[] @relation("ReplyTo")
+  author   User?   @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  authorId String?
 
-  votes     CommentVote[]
-  commentId String?
+  likedByUsers     Likes[]
+  commentedByUsers Comments[]
 }
 
-model Vote {
-  user   User     @relation(fields: [userId], references: [id])
+model Stories {
+  id         String       @id @default(cuid())
+  authorId   String
+  media_url  String
+  postedAt   DateTime     @default(now())
+  expiresAt  DateTime     @default(dbgenerated("NOW() + interval '1 DAYS'"))
+  caption    String?
+  storyViews StoryViews[]
+
+  author User @relation(fields: [authorId], references: [id], onDelete: Cascade)
+}
+
+model StoryViews {
+  user      User    @relation(fields: [userId], references: [id])
+  userId    String
+  stories   Stories @relation(fields: [storiesId], references: [id])
+  storiesId String
+
+  @@id([userId, storiesId])
+}
+
+model Image {
+  id         String   @id @default(cuid())
+  name       String   @unique
+  path       String
+  uploadedAt DateTime @default(now())
+  post       Post     @relation(fields: [postId], references: [id], onDelete: Cascade)
+  postId     String
+}
+
+model Likes {
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId String
-  post   Post     @relation(fields: [postId], references: [id], onDelete: Cascade)
+  post   Post   @relation(fields: [postId], references: [id], onDelete: Cascade)
   postId String
-  type   VoteType
 
   @@id([userId, postId])
 }
 
-model CommentVote {
+model CommentLikes {
   user      User     @relation(fields: [userId], references: [id])
   userId    String
-  comment   Comment  @relation(fields: [commentId], references: [id], onDelete: Cascade)
+  comment   Comments @relation(fields: [commentId], references: [id])
   commentId String
-  type      VoteType
 
-  @@id([userId, commentId])
+  @@unique([userId, commentId])
 }
 
+model Comments {
+  id            String         @id @default(cuid())
+  post          Post           @relation(fields: [postId], references: [id], onDelete: Cascade)
+  postId        String
+  user          User           @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId        String
+  content       String
+  postedAt      DateTime       @default(now())
+  lastUpdatedAt DateTime       @updatedAt
+  commentLikes  CommentLikes[]
+}
+
+model Follows {
+  follower    User   @relation("follower", fields: [followerId], references: [id], onDelete: Cascade)
+  followerId  String
+  following   User   @relation("following", fields: [followingId], references: [id], onDelete: Cascade)
+  followingId String
+
+  @@id([followerId, followingId])
+}
 
 model VerificationToken {
   id         Int     @id @default(autoincrement())
