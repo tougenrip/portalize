@@ -89,7 +89,7 @@ async function UnlikeFriend(req, res) {
 
 async function FetchFriends(req: any, res: any) {
 
-    if (req.method === 'PUT'){
+    if (req.method === 'GET'){
         try{
             const {id:userId} = req.query
             const session = await getServerSession(req,res,authOptions);
@@ -99,7 +99,7 @@ async function FetchFriends(req: any, res: any) {
             },select:{
                 friends:true
             }})
-            if(friend === null){
+            if(!friend){
                 res.status(404).json('you have no friends :(')
             }
             res.status(200).json(friend)
