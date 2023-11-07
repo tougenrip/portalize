@@ -51,7 +51,7 @@ export default async function handler(req, res) {
       }
 
       // Construct the URL of the uploaded file based on your server configuration
-      const fileUrl = `https://example.com/uploads/${userId}/logo${files.file.name}`
+      const fileUrl = `https://example.com/uploads/${userId}/logo${files.file[0].name}`
 
       // Send the URL as the response
       res.status(200).json({ message: 'Upload successful', fileUrl })

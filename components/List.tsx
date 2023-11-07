@@ -387,5 +387,3 @@ const easingFunctions = {
     t < 0.5 ? 16 * t * t * t * t * t : 1 + 16 * --t * t * t * t * t,
   // Source https://gist.github.com/gre/1650294#file-easing-js
 };
-
-

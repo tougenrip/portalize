@@ -13,7 +13,7 @@ const nextConfig = {
     serverActionsBodySizeLimit: '5mb',
   },
   images: {
-    domains: ['lh3.googleusercontent.com'],
+    domains: ['lh3.googleusercontent.com', 'localhost'],
     remotePatterns: [
       {
         protocol: "https",
@@ -45,9 +45,6 @@ const nextConfig = {
   transpilePackages: [ '@readyplayerme/rpm-react-sdk'],
   compress: false,
   transpilePackages: ['three', '@react-three/drei'],
-  typescript: {
-    ignoreBuildErrors:true
-  }
 }
 
 module.exports = nextConfig
