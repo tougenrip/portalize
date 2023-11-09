@@ -10,7 +10,7 @@
 // }
 
 import { PrismaClient } from '@prisma/client';
-import prisma from "@/prisma/prisma";
+const prisma = new PrismaClient();
 export default async function run(req, res) {
   try {
     const {id:uid} = req.query

@@ -135,10 +135,10 @@ function OpenEmpty() {
   
  
     const { unityProvider, loadingProgression, isLoaded, sendMessage, addEventListener, removeEventListener, UNSAFE__unityInstance } =  useUnityContext({
-      loaderUrl: `${process.env.NEXT_PUBLIC_WEBSITE_URL}uploads/Builds/editor/Build/webgl-portalize-editor-21.loader.js`,
-    dataUrl: `${process.env.NEXT_PUBLIC_WEBSITE_URL}uploads/Builds/editor/Build/webgl-portalize-editor-21.data.unityweb`,
-    frameworkUrl: `${process.env.NEXT_PUBLIC_WEBSITE_URL}uploads/Builds/editor/Build/webgl-portalize-editor-21.framework.js.unityweb`,
-    codeUrl: `${process.env.NEXT_PUBLIC_WEBSITE_URL}uploads/Builds/editor/Build/webgl-portalize-editor-21.wasm.unityweb`,
+      loaderUrl: `${process.env.NEXT_PUBLIC_WEBSITE_URL}uploads/Builds/editor/Build/PortalizeEditorBuild-7-11-23.loader.js`,
+    dataUrl: `${process.env.NEXT_PUBLIC_WEBSITE_URL}uploads/Builds/editor/Build/PortalizeEditorBuild-7-11-23.data.unityweb`,
+    frameworkUrl: `${process.env.NEXT_PUBLIC_WEBSITE_URL}uploads/Builds/editor/Build/PortalizeEditorBuild-7-11-23.framework.js.unityweb`,
+    codeUrl: `${process.env.NEXT_PUBLIC_WEBSITE_URL}uploads/Builds/editor/Build/PortalizeEditorBuild-7-11-23.wasm.unityweb`,
     streamingAssetsUrl: "streamingassets",
     });
 
@@ -435,6 +435,7 @@ function OpenEmpty() {
 
 
 
+
         <form className={`${visibility ? null : "hidden"} z-40 absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 flex flex-col space-y-5 bg-[#242424] p-5 rounded-3xl min-w-[400px] max-w-[400px] `}>
           <div className="flex flex-row-reverse justify-between">
             <BiXCircle className='h-10 w-10' onClick={(curr) => setVisibility(curr => !curr)}/>
@@ -468,7 +469,7 @@ function OpenEmpty() {
         <p className='w-min whitespace-nowrap px-5'>User Limit</p>
         <Slider color="purple" defaultValue={5} min={1} max={isActive ? 33 : 11} step={1} onChange={(e) =>{setUserLimit(e.target.valueAsNumber); console.log("UserLimit set to: " + userLimit)}} />
       </div>
-      <Button onClick={uploadToServer} style={{pointerEvents: isLoading ? 'none' : undefined, opacity: isLoading ? '0.5' : '1'}} variant="gradient" color="purple">{isLoading ? `PLEASE WAIT`: `PUBLISH YOUR MAP`}</Button>
+      <Button onClick={uploadToServer} style={{pointerEvents: isLoading ? 'none' : null, opacity: isLoading ? '0.5' : '1'}} variant="gradient" color="purple">{isLoading ? `PLEASE WAIT`: `PUBLISH YOUR MAP`}</Button>
     </form>
 
    {/*${modelvisibility ? null : 'hidden'}*/}

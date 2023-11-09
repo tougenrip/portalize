@@ -24,7 +24,7 @@ const post = async (req, res) => {
   form.parse(req, async function (err, fields, files) {
     if (err) console.log(err)
     try{
-      if(currentQuota + files.file[0].file >= storageQuota){
+      if(currentQuota + files.file.size >= storageQuota){
         res.status(400).json({message:'not enough storage'})
       }else{
         await saveFile1(req,res,files.file,fields,userId,currentQuota);

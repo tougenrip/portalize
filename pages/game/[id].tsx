@@ -57,10 +57,10 @@ function App({floormapdata, interiordata,gamedatares}) {
 
  
   const { unityProvider, loadingProgression, isLoaded, sendMessage, addEventListener, removeEventListener, UNSAFE__unityInstance } = useUnityContext({
-    loaderUrl: `${process.env.NEXT_PUBLIC_WEBSITE_URL}uploads/Builds/game/Build/webgl-portalize-playmode-21.loader.js`,
-    dataUrl: `${process.env.NEXT_PUBLIC_WEBSITE_URL}uploads/Builds/game/Build/webgl-portalize-playmode-21.data.unityweb`,
-    frameworkUrl: `${process.env.NEXT_PUBLIC_WEBSITE_URL}uploads/Builds/game/Build/webgl-portalize-playmode-21.framework.js.unityweb`,
-    codeUrl: `${process.env.NEXT_PUBLIC_WEBSITE_URL}uploads/Builds/game/Build/webgl-portalize-playmode-21.wasm.unityweb`,
+    loaderUrl: `${process.env.NEXT_PUBLIC_WEBSITE_URL}uploads/Builds/game/Build/PortalizePlaymodeBuild-7-11-23.loader.js`,
+    dataUrl: `${process.env.NEXT_PUBLIC_WEBSITE_URL}uploads/Builds/game/Build/PortalizePlaymodeBuild-7-11-23.data.unityweb`,
+    frameworkUrl: `${process.env.NEXT_PUBLIC_WEBSITE_URL}uploads/Builds/game/Build/PortalizePlaymodeBuild-7-11-23.framework.js.unityweb`,
+    codeUrl: `${process.env.NEXT_PUBLIC_WEBSITE_URL}uploads/Builds/game/Build/PortalizePlaymodeBuild-7-11-23.wasm.unityweb`,
     streamingAssetsUrl: "streamingassets",
 
     
@@ -104,25 +104,25 @@ function App({floormapdata, interiordata,gamedatares}) {
       <Head>
         <title>Portalize | {gamedatares.title}</title>
       </Head>
-          <Script src="/Builds/game/AgoraWebSDK/libs/agora-extension-virtual-background.js" strategy="beforeInteractive"/>
-          <Script src="/Builds/game/AgoraWebSDK/libs/virtualbackground.js"  strategy="beforeInteractive"/>
-          <Script src="/Builds/game/AgoraWebSDK/libs/databuilder.js"  strategy="beforeInteractive"/>
-          <Script src="/Builds/game/AgoraWebSDK/libs/clientmanager.js"  strategy="beforeInteractive"/>
-          <Script src="/Builds/game/AgoraWebSDK/libs/wglwrapper.js" strategy="beforeInteractive"/>
-          <Script src="/Builds/game/AgoraWebSDK/libs/audioeffects.js" strategy="beforeInteractive"/>
-          <Script src="/Builds/game/AgoraWebSDK/libs/eventmanager.js" strategy="beforeInteractive"/>
-          <Script src="/Builds/game/AgoraWebSDK/libs/engineglobals.js" strategy="beforeInteractive"/>
-          <Script src="/Builds/game/AgoraWebSDK/libs/watermark.js" strategy="beforeInteractive"/>
-          <Script src="/Builds/game/AgoraWebSDK/libs/customvideo.js" strategy="beforeInteractive"/>
-          <Script src="/Builds/game/AgoraWebSDK/libs/agorachannel.js" strategy="beforeInteractive"/>
-          <Script src="/Builds/game/AgoraWebSDK/libs/multichannel.js" strategy="beforeInteractive"/>
-          <Script src="/Builds/game/AgoraWebSDK/libs/audiosystem.js" strategy="beforeInteractive"/>
-          <Script src="/Builds/game/AgoraWebSDK/libs/testing.js"  strategy="beforeInteractive"/>
-          <Script src="/Builds/game/AgoraWebSDK/libs/agorautils.js" strategy="beforeInteractive"/>
-          <Script src="/Builds/game/AgoraWebSDK/libs/audiomixing.js" strategy="beforeInteractive"/>
-          <Script src="/Builds/game/AgoraWebSDK/agorartcenginev2.js" strategy="beforeInteractive"/>
-          <Script src="/Builds/game/AgoraRTC_N.js" strategy="beforeInteractive"/>
-          <Script src="/Builds/game/AgoraWebSDK/libs/spatial-audio-main.js" strategy="beforeInteractive"/>
+          <Script src="/uploads/Builds/game/AgoraWebSDK/libs/agora-extension-virtual-background.js" strategy="beforeInteractive"/>
+          <Script src="/uploads/Builds/game/AgoraWebSDK/libs/virtualbackground.js"  strategy="beforeInteractive"/>
+          <Script src="/uploads/Builds/game/AgoraWebSDK/libs/databuilder.js"  strategy="beforeInteractive"/>
+          <Script src="/uploads/Builds/game/AgoraWebSDK/libs/clientmanager.js"  strategy="beforeInteractive"/>
+          <Script src="/uploads/Builds/game/AgoraWebSDK/libs/wglwrapper.js" strategy="beforeInteractive"/>
+          <Script src="/uploads/Builds/game/AgoraWebSDK/libs/audioeffects.js" strategy="beforeInteractive"/>
+          <Script src="/uploads/Builds/game/AgoraWebSDK/libs/eventmanager.js" strategy="beforeInteractive"/>
+          <Script src="/uploads/Builds/game/AgoraWebSDK/libs/engineglobals.js" strategy="beforeInteractive"/>
+          <Script src="/uploads/Builds/game/AgoraWebSDK/libs/watermark.js" strategy="beforeInteractive"/>
+          <Script src="/uploads/Builds/game/AgoraWebSDK/libs/customvideo.js" strategy="beforeInteractive"/>
+          <Script src="/uploads/Builds/game/AgoraWebSDK/libs/agorachannel.js" strategy="beforeInteractive"/>
+          <Script src="/uploads/Builds/game/AgoraWebSDK/libs/multichannel.js" strategy="beforeInteractive"/>
+          <Script src="/uploads/Builds/game/AgoraWebSDK/libs/audiosystem.js" strategy="beforeInteractive"/>
+          <Script src="/uploads/Builds/game/AgoraWebSDK/libs/testing.js"  strategy="beforeInteractive"/>
+          <Script src="/uploads/Builds/game/AgoraWebSDK/libs/agorautils.js" strategy="beforeInteractive"/>
+          <Script src="/uploads/Builds/game/AgoraWebSDK/libs/audiomixing.js" strategy="beforeInteractive"/>
+          <Script src="/uploads/Builds/game/AgoraWebSDK/agorartcenginev2.js" strategy="beforeInteractive"/>
+          <Script src="/uploads/Builds/game/AgoraRTC_N.js" strategy="beforeInteractive"/>
+          <Script src="/uploads/Builds/game/AgoraWebSDK/libs/spatial-audio-main.js" strategy="beforeInteractive"/>
       {!isLoaded && (
         <>
         <div className={`fixed w-screen h-screen -z-10 `} style={{backgroundImage:`url(${gamedatares.img})`, backgroundPosition:'center', backgroundSize:'cover',}}></div>

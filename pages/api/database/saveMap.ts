@@ -4,7 +4,7 @@ import { getSession } from 'next-auth/react';
 import { PrismaClient } from '@prisma/client';
 import { getServerSession } from 'next-auth';
 import { authOptions } from '../auth/[...nextauth]';
-import prisma from "@/prisma/prisma";
+const prisma = new PrismaClient();
 
 // connect to MongoDB
 
