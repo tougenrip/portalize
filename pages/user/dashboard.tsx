@@ -117,6 +117,7 @@ const Dashboard = () => {
   const [userName, setUsername] = useState(session?.user?.name)
   const [userEmail, setUseremail] = useState(session?.user?.email)
   const [userImage, setUserimg] = useState(session?.user?.image)
+  const provider = session?.account?.provider
   const [rpmId, setRpmId] = useState('')
   const [avatarUrl, setAvatarUrl] = useState('')
   const [advpanelOpen, setAdvPanelOpen] = useState(false)
@@ -126,6 +127,7 @@ const Dashboard = () => {
   const [productvisibility, setProductVisibility] = useState(false)
   const [eventvisibility, setEventVisibility] = useState(false)
 
+  console.log(session?.account?.provider)
 
   return (
     <>
@@ -239,7 +241,8 @@ const Dashboard = () => {
               <Input type="file" color="purple" className='border-2 !h-[46px]' onChange={(e) => handleFileUpload(e)} style={{ backgroundColor: 'transparent' }} label='Change profile picture' crossOrigin={undefined}></Input>
               </div>
               <Input label='Change Nickname' color="purple" className='border-2 border-white' style={{ backgroundColor: 'transparent', }} onChange={(e) => { setUsername(e.target.value); console.log(e.target.value) } } crossOrigin={undefined}></Input>
-              <Input label='Change Email*' color="purple" className='border-2 border-white' style={{ backgroundColor: 'transparent' }} onChange={(e) => setUseremail(e.target.value)} crossOrigin={undefined}></Input>
+              {provider && <Input label='Change Email*' color="purple" className='border-2 border-white' style={{ backgroundColor: 'transparent' }} onChange={(e) => setUseremail(e.target.value)} crossOrigin={undefined}></Input>}
+              
               <Button type='button' onClick={() => updateUser()} color='purple' className='w-max self-center'> Save </Button>
               <p className='text-center text-xs text-red-500'>*Your stripe customer mail will not change</p>
               

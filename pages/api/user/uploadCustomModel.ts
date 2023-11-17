@@ -22,23 +22,26 @@ const post = async (req, res) => {
   console.log('handling file...');
   const form = new formidable.IncomingForm();
   form.parse(req, async function (err, fields, files) {
+
     if (err) console.log(err)
+    if(currentQuota + files.file.size >= storageQuota){
+      console.log('storage wasnt enough')
+      res.status(400).json({message:'not enough storage'})
+    } else{
     try{
-      if(currentQuota + files.file.size >= storageQuota){
-        res.status(400).json({message:'not enough storage'})
-      }else{
-        await saveFile1(req,res,files.file,fields,userId,currentQuota);
-      }
+        await saveFile1(req,res,files.file,fields,userId,currentQuota, storageQuota);
+      
 
     }
     catch(e){
       console.log('Error was catched: ',e);
     }
-    return res.status(201).send("Nothing");
-  });
+    return res.status(201).send("file sent" + files.file.toJSON);
+  }
+});
 };
 
-const saveFile1 = async (req,res,file,fields,userId,currentQuota:number) => {
+const saveFile1 = async (req,res,file,fields,userId,currentQuota:number, storageQuota:number) => {
   
   console.log(file.size); //**TypeError**
 

@@ -1,4 +1,4 @@
-import NextAuth, { DefaultUser } from "next-auth";
+import NextAuth, { Account, DefaultUser } from "next-auth";
 
 import { ModelViewerElement } from '@google/model-viewer';
 
@@ -30,6 +30,7 @@ declare module "next-auth" {
         bDay:Date;
         avatarUrl:string;
         active:boolean;
+        accounts:Account;
         subscriptionID:string;
         subscriptionEnd:number;
         subscriptionName:string;
@@ -38,6 +39,7 @@ declare module "next-auth" {
       }
       export interface Session extends DefaultSession {
         user?: DefaultUser & User;
+        account: Account
       }
       interface AdapterUser extends DefaultUser {
         id: string;
@@ -51,6 +53,7 @@ declare module "next-auth" {
         bDay:Date;
         avatarUrl:string;
         active:boolean;
+        accounts:Account;
         subscriptionID:string;
         subscriptionEnd:number;
         subscriptionName:string;

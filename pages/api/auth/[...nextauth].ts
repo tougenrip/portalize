@@ -248,11 +248,17 @@ export const authOptions:NextAuthOptions = {
 
   },
   callbacks: {
-    async session({ session,  user }) {
+    async jwt({ token, account }) {
+      // Persist the OAuth access_token and or the user id to the token right after signin
+      if (account) {
+        token.provider = account.provider
+      }
+      
+      return token
+    },
+    async session({ session,  user, token }) {
       // Send properties to the client, like an access_token and user id from a provider.
       session.user = user
-
-      
       return session
     },
   }

@@ -10,6 +10,9 @@ export default mt({
   ],
   theme: {
     extend: {
+      aspectRatio: {
+        'card': '375 / 517'
+      },
       backgroundColor: {
         'paffbg': '#151515',
         'inputBg': '#282828',
@@ -18,8 +21,8 @@ export default mt({
       },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-        'gradient-conic':
-          'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
+        'gradient-conic':'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
+        'paff-gradient-card': 'linear-gradient(101deg, #9C4FFF -22.87%, #7A42FF 24.9%, #3B29FF 58.3%)',
         'Hero': 'url(/img/landing-page/herobg.webm)',
         'gamebg': 'url(/img/biggamebgcomp.webp)',
         'assetpre1': 'url(/img/aseetpre1comp.webp)',
