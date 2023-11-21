@@ -1,4 +1,4 @@
-import { FeaCard } from '@/components/List';
+import {  GameCardNew } from '@/components/List';
 import Navbar from '@/components/Navbar'
 import PortalNav from '@/components/portalNav';
 import Head from 'next/head';
@@ -57,9 +57,9 @@ const AllPlaces = () => {
           <div className='w-[30%] hidden md:flex flex-row space-y-3 '>
             <h2 className='mx-auto text-'>Sidebar</h2>
           </div>
-          <div className="w-[70%] -translate-x-6 mx-auto flex flex-col md:grid md:grid-cols-3 space-y-10">
+          <div className="w-max gap-9 -translate-x-6 mx-auto flex flex-col md:grid md:grid-cols-3 space-y-10">
           {data?.map((item) => (
-            <FeaCard key={item.id} itemId={item.id} setSelected={undefined} item={item} />
+            <GameCardNew key={item.id} itemId={item.id} setSelected={undefined} item={item} />
           ))}
           </div>
         </div>

@@ -6,13 +6,14 @@ import { Unity, useUnityContext } from "react-unity-webgl";
 import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
-import { Button, Input, Switch, Slider, CardFooter, CardBody, CardHeader, Card, Typography } from "@material-tailwind/react";
+import { Button, Input, Switch, Slider, CardFooter, CardBody, CardHeader, Card, Typography, Select } from "@material-tailwind/react";
 import { BiXCircle } from "react-icons/bi";
 import { toast, ToastContainer } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
 import { CircularProgressbar } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 import { modelToImage } from "@/utils/modelToImage";
+import SelectOption from "@material-tailwind/react/components/Select/SelectOption";
 
 
 
@@ -47,6 +48,7 @@ function OpenEmpty() {
   const [title, setTitle] = useState("");
   const [desc, setDesc] = useState("");
   const [tags, setTags] = useState([]);
+  const [cat, setCat] = useState("")
   const [userLimit, setUserLimit] = useState(1);
   const [isPrivate, setIsPrivate] = useState(false);
   const [draftId, setDraftId] = useState();

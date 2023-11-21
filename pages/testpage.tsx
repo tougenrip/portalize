@@ -4,7 +4,7 @@ import React from 'react'
 const testpage = () => {
   return (
     <>
-        <GameCardNew />
+        <GameCardNew setSelected={undefined} item={undefined} itemId={undefined} />
     </>
   )
 }

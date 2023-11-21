@@ -2,14 +2,27 @@ import { Card, CardBody, CardFooter, CardHeader } from '@material-tailwind/react
 import { motion as m } from 'framer-motion'
 import React, { useState } from 'react'
 import { BiUser } from 'react-icons/bi'
+import { useRouter } from 'next/router';
 
-const GameCardNew = () => {
+const GameCardNew = ({ setSelected, item, itemId }) => {
     const [isOpen,setOpen] = useState(false)
+    const router = useRouter();
 
-
+    const handleDivClick = (url:string) => {
+        // Redirect to Page A
+        router.push(`/details/${url}`)
+      };
+    
+      const handleButtonClick = (event) => {
+        // Prevent the button click event from propagating to the div
+        event.stopPropagation();
+        // Redirect to Page B
+        router.push(`${process.env.NEXT_PUBLIC_WEBSITE_URL}game/${item.id}`);
+      };
+    
 
   return (
-    <m.div layout  onMouseEnter={() => setOpen(curr => !curr)} onMouseLeave={() => setOpen(curr => !curr)} data-isopen={isOpen} className='relative top-0 aspect-card h-[400px] duration-500 data-[isopen=true]:h-[500px] w-auto bg-blue-gray-300 bg-[url("/img/biggamebgcomp.webp")] bg-center rounded-xl'>
+    <m.div layout  onMouseEnter={() => setOpen(curr => !curr)} onClick={() => handleDivClick(`${itemId}`)} onMouseLeave={() => setOpen(curr => !curr)} data-isopen={isOpen} className='relative top-0 aspect-card h-[400px] duration-500 data-[isopen=true]:h-[500px] w-auto bg-blue-gray-300 bg-[url("/img/biggamebgcomp.webp")] bg-center rounded-xl'>
         <main data-isopen={isOpen} className='w-full h-full !rounded-xl backdrop-brightness-75 data-[isopen=true]:backdrop-blur-sm data-[isopen=true]:backdrop-brightness-[.25] '>
         <m.div layout data-isopen={isOpen} className='absolute bottom-[5%] data-[isopen=true]:bottom-[75%] left-8 space-y-0'>
         <m.p layout="position" data-isopen={isOpen} className='relative flex space-x-[0.5px]  h-min transition-all delay-500 rounded-xl bg-gray-900 p-2 w-min whitespace-nowrap'><BiUser className='h-4 w-4 mt-[4px] mr-1'/><span className=''>200</span></m.p>
@@ -27,6 +40,7 @@ const GameCardNew = () => {
                     test
                 </div>
                 <button
+                onClick={handleButtonClick}
                 className='aspect-[86/25] h-8 w-auto rounded-full bg-paff-gradient-card'
                 >
                     Join

@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import useSWR from "swr";
+import { motion as m } from 'framer-motion'
 import { Card ,Button, CardHeader, CardFooter, CardBody, Typography, Tooltip } from "@material-tailwind/react";
 import { BiUser } from "react-icons/bi";
 import Link from "next/link";
@@ -60,103 +61,54 @@ const onWheel = (
 
 
 
-export const FeaCard = ({ setSelected, item, itemId }) => {
+export const GameCardNew = ({ setSelected, item, itemId }) => {
+  const [isOpen,setOpen] = useState(false)
+  const router = useRouter();
 
+  const handleDivClick = (url:string) => {
+      // Redirect to Page A
+      router.push(`/details/${url}`)
+    };
+  
+    const handleButtonClick = (event) => {
+      // Prevent the button click event from propagating to the div
+      event.stopPropagation();
+      // Redirect to Page B
+      router.push(`${process.env.NEXT_PUBLIC_WEBSITE_URL}game/${item.id}`);
+    };
+  
 
-  const router = useRouter()
-
-  function redirectToDetails(url:string){
-    return router.push(`/details/${url}`)
-    
-    
-  }
-
-  const likeMap = async () => await axios
-  .put(
-    "/api/MapInteractions?function=likeMap",
-    { mapId:item.id as string },
-    {
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-    }
-  )
-
-    const unlikeMap = () => {axios.put
-      (`api/MapInteractions?function=unlikeMap`,
-        {mapId:item.id} )}
-
-
-    
-
-  return (
-
-    <Card data-cy={itemId} onClick={() => redirectToDetails(`${itemId}`)} className="mt-0  w-[80vw] md:w-80 min-w-[18rem] min-h-[18rem] bg-[#222222] shadow-sm shadow-black hover:shadow-2xl hover:scale-[1.02] active:scale-95 transform-gpu duration-200 text-center ">
-        <CardHeader style={{background:`#ffffff url(${item.img || '/img/mapcomp.webp'})`}} color="blue-gray" className={`w-full mx-0 h-56 shadow-none bg-white !bg-cover !bg-bottom`} >
-          
-        </CardHeader>
-        <CardBody >
-        <Tooltip content={
-          <>
-            <div className="max-w-sm">
-              {item.title}
-            </div>
-          </>
-        }>
-          <Typography variant="paragraph" color="white" className="mb-0 font-bold text-xl whitespace-nowrap">
-          {item.title.length > 15 ? `${item.title.substring(0,15)}...` : `${item.title}`}
-          </Typography>
-          </Tooltip>
-          <Tooltip content={
-          <>
-            <div className="max-w-sm">
-              {item.desc}
-            </div>
-          </>
-        }>
-          <Typography color="white">
-            {item.desc.length === 0 ? ` `: `${item.desc.length > 15 ? `${item.desc.substring(0,15)}...` : `${item.desc}`}`}
-          
-          </Typography>
-          </Tooltip>
-          <Typography className="inline-flex space-x-2" color="white">
-            <BiUser className="relative top-[3px] h-5 w-5"/>{item.owner.name || "unknown"}
-          </Typography>
-        </CardBody>
-        <CardFooter className="pt-0 flex justify-between">
-          <div className="flex flex-col items-center">
-          {/* <HeartIcon onClick={isliked ? (likeMap):(unlikeMap)} className={`h-6 w-6 fill-[${isliked ? ('purple-500'): ('none')}]`}></HeartIcon>
-          <p>{AbbreviateNumber(item.likes)}</p> */}
+return (
+  <m.div layout style={{background:`#ffffff url(${item.img || '/img/mapcomp.webp'})`}} onMouseEnter={() => setOpen(curr => !curr)} onClick={() => handleDivClick(`${itemId}`)} onMouseLeave={() => setOpen(curr => !curr)} data-isopen={isOpen} className='relative top-0 aspect-card h-[400px] duration-500 data-[isopen=true]:h-[500px] w-auto bg-blue-gray-300 bg-[url("/img/biggamebgcomp.webp")] !bg-center !bg-cover !bg-no-repeat rounded-xl'>
+      <main data-isopen={isOpen} className='w-full h-full !rounded-xl backdrop-brightness-75 data-[isopen=true]:backdrop-blur-sm data-[isopen=true]:backdrop-brightness-[.25] '>
+      <m.div layout data-isopen={isOpen} className='absolute bottom-[5%] data-[isopen=true]:bottom-[80%] left-8 space-y-0'>
+      {/* <m.p layout="position" data-isopen={isOpen} className='relative flex space-x-[0.5px]  h-min transition-all delay-500 rounded-xl bg-gray-900 p-2 w-min whitespace-nowrap'><BiUser className='h-4 w-4 mt-[4px] mr-1'/><span className=''>200</span></m.p> */}
+      <m.p layout="position" data-isopen={isOpen} className='transition-all transform-none duration-500 font-extrabold data-[isopen=true]:text-3xl text-5xl max-w-[250px]'>{item.title.length > 15 ? `${item.title.substring(0,15)}...` : `${item.title}`}</m.p>
+      <p data-isopen={isOpen} className='opacity-0 data-[isopen=true]:opacity-100 transition-opacity delay-500 '>{item.owner.name || "unknown"}</p>
+      </m.div>
+      <div data-isopen={isOpen} className='absolute bottom-[5%] mx-[8%] font-300 space-y-5  opacity-0 data-[isopen=true]:opacity-100 transition-opacity duration-200 delay-300'>
+          <m.p 
+          layout
+           data-isopen={isOpen}
+            className='data-[isopen=false]:hidden mr-16 relative -left-[300px] data-[isopen=true]:left-0 transition-[left] transform-gpu duration-200'
+            >{item.desc.length === 0 ? ` `: `${item.desc.length > 50 ? `${item.desc.substring(0,50)}...` : `${item.desc}`}`}</m.p>
+          <div data-isopen={isOpen} className='justify-between flex data-[isopen=false]:hidden '>
+              <div>
+                  test
+              </div>
+              <button
+              onClick={handleButtonClick}
+              className='aspect-[86/25] h-8 w-auto rounded-full bg-paff-gradient-card'
+              >
+                  Join
+              </button>
           </div>
-        
-        <Link href={`${process.env.NEXT_PUBLIC_WEBSITE_URL}game/${item.id}`}><Button color="purple" className="bg-gradient-to-br from-purple-500 to-purple-800 tracking-wider">Join</Button></Link>
-        </CardFooter>
-      </Card>
-    // <div className="inline-block w-full mb-4">
-    //   <motion.img
-    //     whileHover={{
-    //       scale: 1.025,
-    //       transition: {
-    //         duration: 0.2,
-    //       },
-    //     }}
-    //     whileTap={{
-    //       scale: 0.95,
-    //     }}
-    //     onClick={() => {
-    //       setSelected(item);
-    //     }}
-    //     layoutId={`card-${item._id}`}
-    //     src={item.img || '/img/map.png'}
-    //     className="w-full bg-base-100 shadow-xl image-full cursor-pointer"
-    //   />
-    //   <div className="flex flex-wrap mt-2">
-    //   </div>
-    // </div>
-  );
-};
-
+          
+      </div>
+      </main>
+  </m.div>
+)
+}
 export default function List() {
 
   const [selected, setSelected] = React.useState<string[]>([]);
@@ -281,7 +233,7 @@ export default function List() {
               onTouchStart={onTouchStart}
             >
     {games?.map((item) => (
-          <FeaCard key={item.id}  itemId={item.id} setSelected={setSelected} item={item} />
+          <GameCardNew key={item.id}  itemId={item.id} setSelected={setSelected} item={item} />
         ))}
     </ScrollMenu>
     </div>
