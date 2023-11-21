@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Image from "next/image";
+import { BiSearch } from "react-icons/bi";
 
 
 interface SearchBarProps {
@@ -16,22 +17,17 @@ const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
   };
 
   return (
-    <div className="bg-[#282828] flex flex-row justify-between w-full h-auto items-center pl-6 pr-4 rounded-lg">
+    <div className="bg-[#282828] flex flex-row justify-between w-full h-auto items-center pl-4 pr-0  !my-auto rounded-lg border border-gray-800">
       <input
         type="text"
         placeholder="Search"
         value={searchText}
         onChange={(e) => setSearchText(e.target.value)}
-        className="text-xl font-Gilroy font-light text-white/35 w-full bg-transparent outline-none py-3"
+        className="text-sm  font-Gilroy font-light text-white/35 w-full bg-transparent outline-none py-[6.5px]"
       />
       <button onClick={handleSearch} className="min-h-0 min-w-0 w-6 mr-2">
     
-        <Image
-          src="https://file.rendit.io/n/GcJTinFkXKSA8dPj5vAl.svg"
-          alt="Search Icon"
-          width={24}
-          height={24}
-        />
+        <BiSearch className="h-5 w-5 text-gray-600"/>   
       </button>
     </div>
   );

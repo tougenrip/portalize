@@ -8,9 +8,12 @@ import { Bars3Icon, XMarkIcon,
 } from "@heroicons/react/24/outline";
 import { useSession, signIn, signOut } from "next-auth/react";
 import InstallPWA from "./InstallPWA";
+import SearchBar from "./SearchBar";
+import { useRouter } from "next/router";
 
  const Navbar = () => {
 
+  const router = useRouter()
   const { data: session, status } = useSession();
   const userEmail = session?.user?.email;
   const userImage = session?.user?.image;
@@ -20,10 +23,10 @@ import InstallPWA from "./InstallPWA";
   const [windowDimension, setWindowDimension] = useState(null);
   const [stickyClass, setStickyClass] = useState('relative');
   const [mobileSticky, setMobileSticky] = useState('relative');
+  const [searchVisibility, setSearchVisibility] = useState(false)
 
   useEffect(() => {
     window.addEventListener('scroll', stickNavbar);
-
     return () => {
       window.removeEventListener('scroll', stickNavbar);
     };
@@ -32,8 +35,9 @@ import InstallPWA from "./InstallPWA";
   const stickNavbar = () => {
     if (window !== undefined) {
       let windowHeight = window.scrollY;
-      windowHeight > 0 ? setStickyClass('fixed bg-[#151515] top-0 w-[100%] left-0 !z-50') : setStickyClass('-!bg-gradient-to-b !from-black !to-transparent z-50');
-      stickyClass ? setMobileSticky('fixed top-20 left-0 !z-50 gap-20') : setMobileSticky('!z-50')
+      windowHeight > 50 ? setSearchVisibility(true) : setSearchVisibility(false)
+      windowHeight > 50 ? setStickyClass('fixed bg-[#101010] top-0 w-[100%] left-0 !z-50') : setStickyClass(' z-50');
+      stickyClass ? setMobileSticky('fixed top-20 left-0 !z-50 gap-20') : setMobileSticky('!z-50');
     }
   };
 
@@ -59,8 +63,8 @@ import InstallPWA from "./InstallPWA";
 
   return (
     <>
-    <div id="header" className=" w-screen !z-[999]">
-    <div className={`!bg-gradient-to-b !from-black !to-transparent ${stickyClass} bg-base-100 flex flex-row-reverse z-50  justify-end md:flex-row pt-8 pb-4 px-4 space-x-0 md:!space-x-10 md:w-screen md:justify-between md:px-20`}>
+    <div id="header" className="w-screen !z-[999]">
+    <div className={` ${stickyClass} ${stickyClass ? "!bg-gradient-to-b !from-black !to-transparent" : ""} flex flex-row-reverse z-50 md:flex-row py-5 px-4 space-x-0 md:!space-x-32 md:w-screen md:px-20`}>
       <div className=" self-center">
         <Link href={`/`}><Image src='/img/logo_comp.webp' className=" scale-75 md:scale-100" width={218} height={38} alt="Logo" unoptimized></Image></Link>
       </div>
@@ -71,8 +75,14 @@ import InstallPWA from "./InstallPWA";
         {navOpen ? (<XMarkIcon color="purple" strokeWidth={2} className="h-5 w-5" />) : (<Bars3Icon color="purple" strokeWidth={2} className="h-5 w-5" />)}
       </Button>
       
-      </div>) : (<div className="flex-row">
-        <ul className="menu menu-horizontal  text-sm px-1 flex-row inline-flex space-x-6">
+      </div>) : (<div className="flex flex-row justify-between w-full items-center space-x-5">
+        <div className={searchVisibility ? "w-full" : "hidden"}>
+        <SearchBar onSearch={function (searchText: string): void {
+                throw new Error("Function not implemented.");
+              } }/>
+        </div>
+       
+        <ul className="menu menu-horizontal  text-sm px-1 flex-row !ml-auto pl-10 inline-flex space-x-6">
           <li className="self-center hover:text-purple-600 transform-gpu duration-200">
             <Link href="/">Home</Link>
           </li>
@@ -93,7 +103,7 @@ import InstallPWA from "./InstallPWA";
                
               </li>
         {isLogged ? (<li className="self-center ">
-            <Link href="/editor"><Button  variant="gradient" color="purple" className="!bg-gradient-to-br hover:scale-[1.03] hover:shadow-3xl !transform-gpu rounded-full tracking-wider from-[#3b29ff] to-[#9c4fff]">Launch Editor</Button></Link>
+            <Link href="/editor"><Button  variant="gradient" color="purple" className="!bg-gradient-to-br whitespace-nowrap hover:scale-[1.03] hover:shadow-3xl !transform-gpu rounded-full tracking-wider from-[#3b29ff] to-[#9c4fff]">Launch Editor</Button></Link>
           </li>):('')}
           
           <li>
@@ -147,7 +157,7 @@ import InstallPWA from "./InstallPWA";
 
             ) :(
             
-              <Link href={`/api/auth/signin`}><Button variant="gradient" color="purple" className="!bg-gradient-to-br rounded-full from-[#3b29ff] to-[#9c4fff]">Create Virtual Space</Button></Link>
+              <Button variant="gradient" onClick={() => router.push(`/api/auth/signin`)} color="purple" className={`!bg-gradient-to-br  ${searchVisibility ? "relative top-[2px]" : ""}    whitespace-nowrap rounded-full  from-[#3b29ff] to-[#9c4fff]`}>Create Virtual Space</Button>
   
   
               )  }

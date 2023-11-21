@@ -1,11 +1,10 @@
 /** @type {import('next').NextConfig} */
 // const withPlugins = require("next-compose-plugins");
-// const withPWA = require("next-pwa")({
-//   dest: "public",
-//   register: true,
-//   skipWaiting: true,
-//   disable: true,
-// });
+const withPWA = require("next-pwa")({
+  dest: "public",
+  register: true,
+  skipWaiting: true,
+});
 
 const nextConfig = {
   reactStrictMode: false,
@@ -14,7 +13,7 @@ const nextConfig = {
   transpilePackages: ['three', '@react-three/drei'],
 }
 
-module.exports = nextConfig
+// module.exports = nextConfig
 
 // module.exports = withPlugins(
 //   [[withPWA, {
@@ -27,9 +26,4 @@ module.exports = nextConfig
 //   nextConfig
 // );
 
-// module.exports = withPWA({
-//   reactStrictMode: true,
-//   transpilePackages: [ '@readyplayerme/rpm-react-sdk'],
-//   compress: true,
-//   transpilePackages: ['three', '@react-three/drei'],
-// });
+module.exports = withPWA(nextConfig);
