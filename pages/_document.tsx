@@ -46,7 +46,7 @@ export default function Document() {
       <link rel="manifest" href="/manifest.json" />
       <meta name="theme-color" content="#fff" />
 </Head>
-      <body className=' font-sans '>
+      <body className=' font-sans text-white'>
         
         <NextNProgress color='773fff'/>
           <Main />

@@ -56,11 +56,11 @@ function App({floormapdata, interiordata,gamedatares}) {
   
 
  
-  const { unityProvider, loadingProgression, isLoaded, sendMessage, addEventListener, removeEventListener, UNSAFE__unityInstance } = useUnityContext({
-    loaderUrl: `${process.env.NEXT_PUBLIC_WEBSITE_URL}uploads/Builds/game/Build/PortalizePlaymodeBuild-7-11-23.loader.js`,
-    dataUrl: `${process.env.NEXT_PUBLIC_WEBSITE_URL}uploads/Builds/game/Build/PortalizePlaymodeBuild-7-11-23.data.unityweb`,
-    frameworkUrl: `${process.env.NEXT_PUBLIC_WEBSITE_URL}uploads/Builds/game/Build/PortalizePlaymodeBuild-7-11-23.framework.js.unityweb`,
-    codeUrl: `${process.env.NEXT_PUBLIC_WEBSITE_URL}uploads/Builds/game/Build/PortalizePlaymodeBuild-7-11-23.wasm.unityweb`,
+  const { unityProvider, loadingProgression, isLoaded, unload,  sendMessage, addEventListener, removeEventListener, UNSAFE__unityInstance } = useUnityContext({
+    loaderUrl: `${process.env.NEXT_PUBLIC_WEBSITE_URL}uploads/Builds/game/Build/webgl-portalize-playmode-25.loader.js`,
+    dataUrl: `${process.env.NEXT_PUBLIC_WEBSITE_URL}uploads/Builds/game/Build/webgl-portalize-playmode-25.data.unityweb`,
+    frameworkUrl: `${process.env.NEXT_PUBLIC_WEBSITE_URL}uploads/Builds/game/Build/webgl-portalize-playmode-25.framework.js.unityweb`,
+    codeUrl: `${process.env.NEXT_PUBLIC_WEBSITE_URL}uploads/Builds/game/Build/webgl-portalize-playmode-25.wasm.unityweb`,
     streamingAssetsUrl: "streamingassets",
 
     
@@ -78,9 +78,14 @@ function App({floormapdata, interiordata,gamedatares}) {
     [UNSAFE__unityInstance]}
   );  
 
+  async function unloadUnity() {
+    await unload();
+  }
+
 
   const launchNewWorld = useCallback((_worldURL) => {
     console.log(`getting into the world ${_worldURL}`)
+    unloadUnity();
     router.push(_worldURL)
   },[])
 

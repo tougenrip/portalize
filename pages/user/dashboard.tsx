@@ -63,6 +63,10 @@ const Dashboard = () => {
           "Content-Type": "application/json",
         },
       }
+      ).then( async () => {
+        toast.success('Congratulations! You just created your avatar!');
+        update({avatarUrl:url});
+      }
     )
     console.log(`Avatar URL is: ${avatarUrl}`)
   };
