@@ -1,48 +1,24 @@
 
 import prisma from "@/prisma/prisma";
+import {Map} from "@prisma/client"
 import type { NextApiRequest, NextApiResponse } from "next";
 
-export default async function handler(req:NextApiRequest,res:NextApiResponse) {
-    const {q:query} = req.query;
-    console.log("Search Query", query);
-
-    const worlds = await prisma.map.findMany({
-        where: {
-            OR:[
-                {
-                    title: {
-                        contains: query as string,
-                        mode: "insensitive"
-                    }
-                },
-                {
-                    tags: {
-                        has: query as string,
-                    }
-                },
-                {
-                    desc: {
-                        contains: query as string,
-                        mode: "insensitive"
-                    }
-                },
-            ]
-        },
-        select:{
-            title:true,
-            id:true,
-            desc:true,
-            owner:true,
-            ownerId:true,
-            img:true,
-            userLimit:false,
-            tags:false,
-            created:false,
-            floormap:false,
-            interior:false
-        }
-    })
-
-
-    res.status(200).json(worlds);
-}
+  interface Data {
+    posts: Map[]
+    nextId: number | undefined
+  }
+  
+  export default async (req: NextApiRequest, res: NextApiResponse<Data>) => {
+    if (req.method === 'GET') {
+      const limit = 5
+      const cursor = req.query.cursor ?? ''
+      const cursorObj = cursor === '' ? undefined : { id: parseInt(cursor as string, 10) }
+  
+      const posts = await prisma.map.findMany({
+        skip: cursor !== '' ? 1 : 0,
+        cursor: cursorObj,
+        take: limit,
+      })
+      return res.json({ posts, nextId: posts.length === limit ? posts[limit - 1].id : undefined })
+    }
+  }

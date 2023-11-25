@@ -79,19 +79,19 @@ export const GameCardNew = ({ setSelected, item, itemId }) => {
   
 
 return (
-  <m.div layout style={{background:`#ffffff url(${item.img || '/img/mapcomp.webp'})`}} onMouseEnter={() => setOpen(curr => !curr)} onClick={() => handleDivClick(`${itemId}`)} onMouseLeave={() => setOpen(curr => !curr)} data-isopen={isOpen} className='relative top-0 aspect-card h-[400px] duration-200 data-[isopen=true]:h-[500px] w-auto bg-blue-gray-300 bg-[url("/img/biggamebgcomp.webp")] !bg-center !bg-cover !bg-no-repeat rounded-xl'>
+  <m.div layout style={{background:`#ffffff url(${item?.img || '/img/mapcomp.webp'})`}} onMouseEnter={() => setOpen(curr => !curr)} onClick={() => handleDivClick(`${itemId}`)} onMouseLeave={() => setOpen(curr => !curr)} data-isopen={isOpen} className='relative top-0 aspect-card h-[400px] duration-200 data-[isopen=true]:h-[500px] w-auto bg-blue-gray-300 bg-[url("/img/biggamebgcomp.webp")] !bg-center !bg-cover !bg-no-repeat rounded-xl'>
       <main data-isopen={isOpen} className='w-full h-full !rounded-xl backdrop-brightness-75 data-[isopen=true]:backdrop-blur-sm data-[isopen=true]:backdrop-brightness-[.25] '>
       <m.div layout data-isopen={isOpen} className='absolute top-[75%] data-[isopen=true]:top-[10%] left-8 space-y-0'>
       {/* <m.p layout="position" data-isopen={isOpen} className='relative flex space-x-[0.5px]  h-min transition-all delay-500 rounded-xl bg-gray-900 p-2 w-min whitespace-nowrap'><BiUser className='h-4 w-4 mt-[4px] mr-1'/><span className=''>200</span></m.p> */}
-      <m.p layout="position" data-isopen={isOpen} className='transition-all transform-none duration-200 font-extrabold data-[isopen=true]:text-3xl text-4xl max-w-[250px]'>{isOpen ? (`${item.title}`) : (`${item.title.length > 10 ? `${item.title.substring(0,10)}...` : `${item.title}`}`)} </m.p>
-      <p data-isopen={isOpen} className='opacity-0 data-[isopen=true]:opacity-100 transition-opacity delay-200 '>{item.owner.name || "unknown"}</p>
+      <m.p layout="position" data-isopen={isOpen} className='transition-all transform-none duration-200 font-extrabold data-[isopen=true]:text-3xl text-4xl max-w-[250px]'>{isOpen ? (`${item?.title}`) : (`${item?.title.length > 10 ? `${item?.title.substring(0,10)}...` : `${item?.title}`}`)} </m.p>
+      <p data-isopen={isOpen} className='opacity-0 data-[isopen=true]:opacity-100 transition-opacity delay-200 '>{item?.owner.name || "unknown"}</p>
       </m.div>
       <div data-isopen={isOpen} className='absolute bottom-[5%] mx-[8%] font-300 space-y-5  opacity-0 data-[isopen=true]:opacity-100 transition-opacity duration-100 delay-200'>
           <m.p 
           layout
            data-isopen={isOpen}
             className='data-[isopen=false]:hidden mr-16 relative -left-[300px] data-[isopen=true]:left-0 transition-all transform-gpu duration-100 delay-150'
-            >{item.desc.length === 0 ? ` `: `${item.desc.length > 50 ? `${item.desc.substring(0,50)}...` : `${item.desc}`}`}</m.p>
+            >{item?.desc.length === 0 ? ` `: `${item?.desc.length > 50 ? `${item?.desc.substring(0,50)}...` : `${item?.desc}`}`}</m.p>
           <div data-isopen={isOpen} className='justify-between flex data-[isopen=false]:hidden '>
               <div>
                   test

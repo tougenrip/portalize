@@ -10,7 +10,7 @@ datasource db {
 
 model Banner {
   id           String     @id @default(cuid())
-  mapId   String  
+  mapId   Int  
   img     String
   title   String
   website String
@@ -33,7 +33,7 @@ model Skyad {
 
 
 model Map {
- id           String     @id @default(cuid())
+  id         Int        @id @default(autoincrement())
   title      String?
   desc       String?
   img        String?
@@ -43,12 +43,16 @@ model Map {
   ownerId    String 
   ownerName   String
   fromDraft  String?
-  userLimit  Int
+  userLimit  Int?
+  ageLimit   Int?
   isPrivate  Boolean @default(false)
   floormap   String?
   interior   String?
   created    DateTime @db.Date @default(now())
   cat        String[]
+  approved   Boolean? @default(false)
+  editor     Boolean? @default(false)
+  
 
   owner      User  @relation(fields: [ownerId,ownerName], references: [id,name], onDelete: Cascade)
 }

@@ -437,9 +437,9 @@ function OpenEmpty() {
         />
 
 
+{/* */}
 
-
-        <form className={`${visibility ? null : "hidden"} z-40 absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 flex flex-col space-y-5 bg-[#242424] p-5 rounded-3xl min-w-[400px] max-w-[400px] `}>
+        <form className={`${visibility ? null : "hidden"}  absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 flex flex-col space-y-5 bg-[#242424] p-5 rounded-3xl min-w-[400px] max-w-[400px] `}>
           <div className="flex flex-row-reverse justify-between">
             <BiXCircle className='h-10 w-10' onClick={(curr) => setVisibility(curr => !curr)}/>
             <h1 className='self-center text-4xl font-bold mb-5'>PUBLISH YOUR MAP</h1>
@@ -475,43 +475,59 @@ function OpenEmpty() {
       <Button onClick={uploadToServer} style={{pointerEvents: isLoading ? 'none' : null, opacity: isLoading ? '0.5' : '1'}} variant="gradient" color="purple">{isLoading ? `PLEASE WAIT`: `PUBLISH YOUR MAP`}</Button>
     </form>
 
-   {/*${modelvisibility ? null : 'hidden'}*/}
+   {/**/}
 
-    <Card className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-max !max-w-[500px] bg-gray-900 ${modelvisibility ? null : 'hidden'}`} style={{transition:'all', transitionProperty:'all', transitionDuration:'300ms'}}>
-      <CardHeader
+    <Card className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2  !shadow-none bg-transparent z-50 ${modelvisibility ? null : 'hidden'}`} style={{transition:'all', transitionProperty:'all', transitionDuration:'300ms'}}>
+      {/* <CardHeader
         variant="gradient"
         color="purple"
         className="mb-4 flex h-28 justify-between p-5 relative"
       >
+        
+        
+      </CardHeader> */}
+      <CardBody className="relative flex flex-row gap-4 bg-[#151515] rounded-3xl aspect-[1784/518]  !h-[400px] w-auto" >
+        <div className="flex flex-col flex-grow justify-between h-full">
+
         <Typography variant="h3" color="white">
-          Add Your Model
+          Import 3D Asset
         </Typography>
-        <BiXCircle className='h-10 w-10 top-5 left-5' onClick={(curr) => setModelVisibility(curr => !curr)}/>
-      </CardHeader>
-      <CardBody className="flex flex-col gap-4 bg-gray-900" >
-        <Input  label="Type File Name" color='purple' size="lg" value={modelName} onChange={handleModelNameChange} crossOrigin={undefined} />
-        <Button onClick={handleModelUploadClick} className='!relative !bg-transparent border-2 border-white !shadow-none'>
-    <svg xmlns="http://www.w3.org/2000/svg" width="44" height="54" viewBox="0 0 44 54" fill="none">
-      <path d="M19.5153 45.7128L24.8903 45.7156L24.8959 34.6518L29.1937 38.894L32.9581 35.1197L22.2135 24.5142L11.4581 35.1088L15.2859 38.8207L19.5209 34.6491L19.5153 45.7128ZM6.07373 53.656C4.5956 53.6553 3.33005 53.1352 2.27708 52.0959C1.22411 51.0566 0.698885 49.809 0.701415 48.3533L0.722904 5.95332C0.723643 4.49582 1.25102 3.24794 2.30505 2.20967C3.35908 1.17141 4.62426 0.653534 6.10059 0.656049L27.6006 0.666946L43.7175 16.5751L43.7014 48.3751C43.7007 49.8326 43.1733 51.0805 42.1193 52.1187C41.0652 53.157 39.8001 53.6749 38.3237 53.6724L6.07373 53.656ZM24.9037 19.2156L24.9104 5.96558L6.0979 5.95605L6.07641 48.356L38.3264 48.3724L38.3412 19.2224L24.9037 19.2156Z" fill="white"/>
-    </svg>
-       <p className='absolute bottom-1/2 translate-y-1/2 left-1/2 -translate-x-1/2'> Upload a file</p>
-      </Button>
-        <input type="file" ref={hiddenModelInput} style={{display:'none'}} onChange={handleModelChange} />
-      </CardBody>
-      <CardFooter className="pt-0">
-        <Button onClick={handleUploadModel} className={isLoading ? '!opacity-50 !pointer-events-none' : undefined} variant="gradient" color="purple" fullWidth>
-          { isLoading?'Please Wait':'Upload your Model'}
-        </Button>
-        <Typography variant="small" style={{textAlign:'center', position:'relative', top:'10px'}}>
-            Preview of your Model
-        </Typography>
+            <BiXCircle className='absolute h-10 w-10 z-50 top-5 right-5 stroke-blue-gray-50 text-white' onClick={(curr) => setModelVisibility(curr => !curr)}/>
+              <hr className="h-2"/>
+              <Input  className="!bg-[#242424] border-none" label="Write Object Name" color='purple' size="lg" value={modelName} onChange={handleModelNameChange} crossOrigin={undefined} />
+              <Button onClick={handleModelUploadClick} className='!relative !bg-[#242424] h-40 border-1 border-white !shadow-none'>
+          <svg xmlns="http://www.w3.org/2000/svg" width="44" height="54" viewBox="0 0 44 54" fill="none">
+            <path d="M19.5153 45.7128L24.8903 45.7156L24.8959 34.6518L29.1937 38.894L32.9581 35.1197L22.2135 24.5142L11.4581 35.1088L15.2859 38.8207L19.5209 34.6491L19.5153 45.7128ZM6.07373 53.656C4.5956 53.6553 3.33005 53.1352 2.27708 52.0959C1.22411 51.0566 0.698885 49.809 0.701415 48.3533L0.722904 5.95332C0.723643 4.49582 1.25102 3.24794 2.30505 2.20967C3.35908 1.17141 4.62426 0.653534 6.10059 0.656049L27.6006 0.666946L43.7175 16.5751L43.7014 48.3751C43.7007 49.8326 43.1733 51.0805 42.1193 52.1187C41.0652 53.157 39.8001 53.6749 38.3237 53.6724L6.07373 53.656ZM24.9037 19.2156L24.9104 5.96558L6.0979 5.95605L6.07641 48.356L38.3264 48.3724L38.3412 19.2224L24.9037 19.2156Z" fill="white"/>
+          </svg>
+            <p className='absolute bottom-1/2 translate-y-1/2 left-1/2 -translate-x-1/2'> Upload a model</p>
+            </Button>
+              <input type="file" ref={hiddenModelInput} style={{display:'none'}} onChange={handleModelChange} />
+
+        </div>
+        <div className="flex-1 relative bg-[#242424] rounded-xl">
+        <Typography variant="h3" className="bottom-5 left-4 font-thin" style={{textAlign:'start', position:'absolute'}}>
+                  Preview
+              </Typography>
+            <div className=' aspect-square h-full w-auto mx-auto mt-6'>
+            <img className={`${imageLink ? null : 'hidden'}`} alt='model preview' src={imageLink} />
+            
+            </div>
+            
+              </div>
+{/* 
         {
           imageLink && (
-            <div className='h-64 w-64 mx-auto mt-6'>
-            <img className={`${imageLink ? null : 'hidden'}`} alt='model preview' src={imageLink} />
-            </div>
+            
           )
-        }
+        } */}
+
+      </CardBody>
+      <CardFooter className="pt-0 text-center p-10">
+        <Button onClick={handleUploadModel} className={`${isLoading ? '!opacity-50 !pointer-events-none' : ""} bg-gradient-to-r from-[#3B29FF] to-[#9C4FFF]`} >
+          { isLoading?'Please Wait':'Upload your Model'}
+        </Button>
+        
+        
         
         
       </CardFooter>

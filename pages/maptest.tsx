@@ -74,8 +74,10 @@ const Maptest = (req, {visibility ,floormap, interior}) => {
     console.log(user);
   };
 
+  // ${visibility ? null : "hidden"}
+
   return (
-    <form className={`${visibility ? null : "hidden"} absolute top-1/2 left-1/2 translate-y-1/2 -translate-x-1/2 flex flex-col space-y-5 bg-[#242424] p-5 rounded-3xl max-w-[800px] `}>
+    <form className={` visible z-50 absolute top-1/2 left-1/2 translate-y-1/2 -translate-x-1/2 flex flex-col space-y-5 bg-[#242424] p-5 rounded-3xl max-w-[800px] `}>
       <h1 className='self-center text-4xl font-bold mb-5'>PUBLISH YOUR MAP</h1>
       <Input type="text" label="Map Title" onChange={(e) => setTitle(e.target.value)} crossOrigin={undefined}/>
       <Input type="text" label='Description' onChange={(e) => setDesc(e.target.value)} crossOrigin={undefined}/>

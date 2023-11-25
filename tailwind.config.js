@@ -16,7 +16,7 @@ export default mt({
       backgroundColor: {
         'paffbg': '#151515',
         'inputBg': '#282828',
-        'paffGraA': '#3b29ff',
+        'paffGraA': '(95deg, #3B29FF 12.04%, #9C4FFF 92.7%)',
         'paffGraB': '#9c4fff'
       },
       backgroundImage: {

@@ -8,7 +8,7 @@ export default async function handler(req:NextApiRequest,res:NextApiResponse) {
   const page = req.query.p as unknown as number || 0
 
       if(id){ 
-        fmbyid = await prisma.map.findUnique({where: {id:id as unknown as string}, select:{
+        fmbyid = await prisma.map.findUnique({where: {id:id as unknown as number}, select:{
           title:true,
           id:true,
           desc:true,

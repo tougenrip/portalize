@@ -9,7 +9,7 @@ import {
   ShieldCheckIcon
 } from "@heroicons/react/24/outline";
 import { motion} from 'framer-motion'
-import { Avatar } from '@readyplayerme/visage'
+import { Avatar} from '@readyplayerme/visage'
 import CustomerPortalButton from './CustomerPortalButton';
 
 
@@ -204,6 +204,7 @@ const SideBar = (req,res) => {
         </div>
         <div className='mt-5 text-center'><p className='flex flex-row gap-1 text-center justify-center place-items-center'>{userName} {isBusiness() ? (<Tooltip content="Business Partner"><ShieldCheckIcon className={`relative w-6 h-6 ${isBusiness() ? (''): ('hidden')}`}></ShieldCheckIcon></Tooltip>) : null} {isDev ? (<Tooltip content="Portalize Developer"><CodeBracketSquareIcon className={`relative w-6 h-6 ${isDev ? (''): ('hidden')}`}></CodeBracketSquareIcon></Tooltip>):('')} {isActive ? (<Tooltip content="Premium"><CheckBadgeIcon className={`relative w-6 h-6 ${isBusiness() ? ('hidden'): ('')} ${isActive ? (''): ('hidden')}`}></CheckBadgeIcon></Tooltip>) : ('')}</p><p className='text-sm flex flex-row gap-2 place-content-center text-[#666666]'>{userEmail}</p></div>
         <div className='w-[80%] flex flex-col space-y-4 mt-20 '>
+        <Avatar halfBody={false} poseSrc={"/male.glb"}  modelSrc={avatarUrl} className='!relative  self-center !w-auto !h-[300px]  aspect-[9/13]' />
        <Link href={''} scroll={true}><Button variant='outlined' size='sm' color='purple' className='border-transparent hover:border-purple-500 rounded-xl group-hover:shadow-lg hover:shadow-md tracking-wider' fullWidth >My Avatar</Button></Link>
        <Link href={'#myspaces'} scroll={true}> <Button variant='outlined' size='sm' color='purple' className='border-transparent hover:border-purple-500 rounded-xl group-hover:shadow-lg hover:shadow-md tracking-wider' fullWidth >My Spaces</Button></Link>
         <Link href={'#analytics'} scroll={true}><Button variant='outlined' size='sm' color='purple' className='border-transparent hover:border-purple-500  rounded-xl group-hover:shadow-lg hover:shadow-md tracking-wider' fullWidth >Analytics</Button></Link>

@@ -8,6 +8,7 @@ import Head from 'next/head';
 import { motion } from 'framer-motion'; 
 import { FooterWithLogo } from '@/components/FooterWithLogo';
 import NextNProgress from 'nextjs-progressbar'
+import FeaturedGameSlider from '@/components/FeaturedGameSlider';
 
 
 function Maintenance() {
@@ -117,35 +118,36 @@ const PortalizeSB = ({data}) => {
           `}
         </Script>
       </div>
-        <main className='overflow-hidden'>
+        <main className=''>
         <div>
-            <PortalNav/>
+            {/* <PortalNav/> */}
           </div>
-            <div className=''>
-                <GameSlider repo={undefined}/>
+            <div className='relative -top-24 '>
+                {/* <GameSlider repo={undefined}/> */}
+                <FeaturedGameSlider/>
             </div>
-            <div className=' h-fit mr-0 overflow-visible'>
-              <h2 className='relative font-extrabold text-4xl left-14 w-18 mb-7'>Featured Servers</h2>
+            <div className=' h-fit mr-0'>
+              <h2 className='relative font-extrabold text-4xl w-max left-14 w-18 mb-7'>Featured Servers</h2>
               <div className="!scrollbar-none">
               <List  />
               </div>
             </div>
-            <div className=' h-fit mr-0 overflow-visible'>
-              <h2 className='relative font-extrabold text-4xl left-14 w-18 mb-7'>Recommended</h2>
-              <div className="!scrollbar-none">
-              <List  />
-              </div>
-              
-            </div>
-            <div className=' h-fit mr-0 overflow-visible'>
-              <h2 className='relative font-extrabold text-4xl left-14 w-18 mb-7'>Popular</h2>
+            <div className=' h-fit mr-0'>
+              <h2 className='relative font-extrabold text-4xl w-max left-14 w-18 mb-7'>Recommended</h2>
               <div className="!scrollbar-none">
               <List  />
               </div>
               
             </div>
-            <div className=' h-fit mr-0 overflow-visible'>
-              <h2 className='relative font-extrabold text-4xl left-14 w-18 mb-7'>Editor`s Choice</h2>
+            <div className=' h-fit mr-0'>
+              <h2 className='relative font-extrabold text-4xl w-max left-14 w-18 mb-7'>Popular</h2>
+              <div className="!scrollbar-none">
+              <List  />
+              </div>
+              
+            </div>
+            <div className=' h-fit mr-0'>
+              <h2 className='relative font-extrabold text-4xl w-max left-14 w-18 mb-7'>Editor`s Choice</h2>
               <div className="!scrollbar-none">
               <List  />
               </div>

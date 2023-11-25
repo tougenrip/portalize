@@ -36,7 +36,7 @@ import { useRouter } from "next/router";
     if (window !== undefined) {
       let windowHeight = window.scrollY;
       windowHeight > 50 ? setSearchVisibility(true) : setSearchVisibility(false)
-      windowHeight > 50 ? setStickyClass('fixed bg-[#101010] top-0 w-[100%] left-0 !z-50') : setStickyClass(' z-50');
+      windowHeight > 50 ? setStickyClass('fixed bg-[#101010] top-0 w-[100%] left-0 !z-50') : setStickyClass('fixed !z-50');
       stickyClass ? setMobileSticky('fixed top-20 left-0 !z-50 gap-20') : setMobileSticky('!z-50');
     }
   };
@@ -63,7 +63,7 @@ import { useRouter } from "next/router";
 
   return (
     <>
-    <div id="header" className="w-screen !z-[999]">
+    <div id="header" className="w-screen z-50">
     <div className={` ${stickyClass} ${stickyClass ? "!bg-gradient-to-b !from-black !to-transparent" : ""} flex flex-row-reverse z-50 md:flex-row py-5 px-4 space-x-0 md:!space-x-32 md:w-screen md:px-20`}>
       <div className=" self-center">
         <Link href={`/`}><Image src='/img/logo_comp.webp' className=" scale-75 md:scale-100" width={218} height={38} alt="Logo" unoptimized></Image></Link>
