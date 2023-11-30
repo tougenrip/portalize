@@ -68,7 +68,7 @@ async function UploadMap(){
     
     try {
       // extract the map data and session from the request body
-      const {title, desc, userLimit, floormap, interior, tags, isPrivate, bannerImg, selectedDraft} = req.body;
+      const {title, desc, userLimit, floormap, interior, tags, isPrivate, bannerImg, selectedDraft, cat} = req.body;
       const session = await getServerSession(req,res,authOptions);;
       const owner = session?.user?.name;
       const ownerId = session?.user?.id;
@@ -88,6 +88,8 @@ async function UploadMap(){
         tags: tags,
         isPrivate: isPrivate,
         fromDraft: selectedDraft,
+        cat: cat,
+        ageLimit: 50,
         userLimit:userLimit as number, 
         floormap: floormap,
         interior: interior,
@@ -107,7 +109,7 @@ async function UploadMap(){
 }
 
 async function UpdateMap(){
-  const worldId = req.query
+  /*const worldId = req.query
   
   if (req.method === 'PUT') {
     
@@ -127,7 +129,7 @@ async function UpdateMap(){
 
 
       // create a new document in the Worlds collection
-      await prisma.map.update({where: {id:worldId as unknown as string} ,data: {
+      await prisma.map.update({where: {id:worldId} ,data: {
         title: title,
         desc: desc,
         // ownerName: owner,
@@ -147,7 +149,7 @@ async function UpdateMap(){
   } else {
     // send a 405 Method Not Allowed response back to the client
     res.status(405).json({ error: 'Only PUT requests allowed.' });
-  }
+  }*/
 }
 
 }

@@ -4,11 +4,12 @@ const prisma = new PrismaClient();
 
 export default async function handler(req:NextApiRequest,res:NextApiResponse) {
   var fmbyid
-  const {world:id, o:owner } = req.query
+  const id = req.query.world
+  const owner = req.query.o
   const page = req.query.p as unknown as number || 0
 
       if(id){ 
-        fmbyid = await prisma.map.findUnique({where: {id:id as unknown as number}, select:{
+        fmbyid = await prisma.map.findUnique({where: {id:parseInt(id as unknown as string)}, select:{
           title:true,
           id:true,
           desc:true,
@@ -16,6 +17,8 @@ export default async function handler(req:NextApiRequest,res:NextApiResponse) {
           ownerId:true,
           img:true,
           userLimit:true,
+          ageLimit:true,
+          cat:true,
           tags:true,
           created:true,
           floormap:false,

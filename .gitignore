@@ -45,3 +45,4 @@ uploads
 .env.development
 .env
 *.pem
+/public/WebGL

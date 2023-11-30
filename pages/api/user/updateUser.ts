@@ -24,7 +24,7 @@ if (req.method === 'PUT'){
         bDay: bDay,
       }});
 
-      await prisma.map.updateMany({where:{id:owner}, data:{
+      await prisma.map.updateMany({where:{id:owner as unknown as number}, data:{
         ownerName:userName,
       }})
       res.status(201).json({ message: 'user data saved successfully.' });

@@ -9,45 +9,7 @@
     <type fullname="Exoa.Designer.ModuleController" preserve="all" />
     <type fullname="Floater" preserve="all" />
     <type fullname="Interactable" preserve="all" />
-    <type fullname="JUTPS.ActionScripts.DriveVehicles" preserve="all" />
-    <type fullname="JUTPS.AI.AIRandomDestination" preserve="all" />
-    <type fullname="JUTPS.AI.PatrolAI" preserve="all" />
-    <type fullname="JUTPS.AI.ZombieAI" preserve="all" />
-    <type fullname="JUTPS.AnimatorStateMachineBehaviours.ForceNOFiringMode" preserve="all" />
-    <type fullname="JUTPS.AnimatorStateMachineBehaviours.ForceRootMotion" preserve="all" />
-    <type fullname="JUTPS.AnimatorStateMachineBehaviours.JUAnimationEvent" preserve="all" />
-    <type fullname="JUTPS.AnimatorStateMachineBehaviours.MeleeAttack" preserve="all" />
-    <type fullname="JUTPS.AnimatorStateMachineBehaviours.UseCurrentMeleeWeapon" preserve="all" />
-    <type fullname="JUTPS.ArmorSystem.DamageableBody" preserve="all" />
-    <type fullname="JUTPS.ArmorSystem.DamageableBodyPart" preserve="all" />
-    <type fullname="JUTPS.Damager" preserve="all" />
-    <type fullname="JUTPS.FX.BodyLeanInert" preserve="all" />
-    <type fullname="JUTPS.FX.JUFootstep" preserve="all" />
-    <type fullname="JUTPS.FX.ProceduralDrivingAnimation" preserve="all" />
-    <type fullname="JUTPS.FX.ShakeOneTime" preserve="all" />
-    <type fullname="JUTPS.InventorySystem.JUInventory" preserve="all" />
-    <type fullname="JUTPS.ItemSystem.ItemSwitchManager" preserve="all" />
-    <type fullname="JUTPS.JUCharacterController" preserve="all" />
-    <type fullname="JUTPS.JUFootPlacement" preserve="all" />
     <type fullname="JUTPS.JUGizmoDrawer" preserve="all" />
-    <type fullname="JUTPS.JUHealth" preserve="all" />
-    <type fullname="JUTPS.PhysicsScripts.AdvancedRagdollController" preserve="all" />
-    <type fullname="JUTPS.PhysicsScripts.Explosion" preserve="all" />
-    <type fullname="JUTPS.PowerUps.HealthPowerUp" preserve="all" />
-    <type fullname="JUTPS.UI.AutoDisable" preserve="all" />
-    <type fullname="JUTPS.Utilities.AutoDestroy" preserve="all" />
-    <type fullname="JUTPS.Utilities.JUAutoInstantiate" preserve="all" />
-    <type fullname="JUTPS.Utilities.JUAutoRotator" preserve="all" />
-    <type fullname="JUTPS.Utilities.JUCharacterSettingsDrawer" preserve="all" />
-    <type fullname="JUTPS.VehicleSystem.BikePedal" preserve="all" />
-    <type fullname="JUTPS.VehicleSystem.CarController" preserve="all" />
-    <type fullname="JUTPS.VehicleSystem.JUVehicleEngineSound" preserve="all" />
-    <type fullname="JUTPS.VehicleSystem.MotorcycleController" preserve="all" />
-    <type fullname="JUTPS.VehicleSystem.MotorcycleSuspensionScaler" preserve="all" />
-    <type fullname="JUTPS.WeaponSystem.AmmoBox" preserve="all" />
-    <type fullname="JUTPS.WeaponSystem.Bullet" preserve="all" />
-    <type fullname="JUTPS.WeaponSystem.Weapon" preserve="all" />
-    <type fullname="JUTPS.WeaponSystem.WeaponAimRotationCenter" preserve="all" />
     <type fullname="MinigameSelector" preserve="all" />
     <type fullname="OpenVideo" preserve="all" />
     <type fullname="SwitchChannel" preserve="all" />
@@ -59,18 +21,7 @@
     <type fullname="Exoa.Designer.ModuleColorVariants/Variant" preserve="nothing" serialized="true" />
     <type fullname="GLTFile" preserve="nothing" serialized="true" />
     <type fullname="ExternalAnimation" preserve="nothing" serialized="true" />
-    <type fullname="JUTPS.VehicleSystem.Vehicle/DrivingProceduralAnimationWeights" preserve="nothing" serialized="true" />
-    <type fullname="JUTPS.VehicleSystem.Vehicle/IKTargetPositions" preserve="nothing" serialized="true" />
-    <type fullname="JUTPS.VehicleSystem.Vehicle/VehicleEngineSettings" preserve="nothing" serialized="true" />
-    <type fullname="JUTPS.VehicleSystem.Vehicle/VehicleGroundCheck" preserve="nothing" serialized="true" />
-    <type fullname="JUTPS.VehicleSystem.Vehicle/VehicleOverturnCheck" preserve="nothing" serialized="true" />
     <type fullname="Minigame" preserve="nothing" serialized="true" />
-    <type fullname="JUTPS.AI.FieldView" preserve="nothing" serialized="true" />
-    <type fullname="JUTPS.CharacterBrain.JUAnimatorParameters" preserve="nothing" serialized="true" />
-    <type fullname="JUTPS.FX.SurfaceAudiosWithFX" preserve="nothing" serialized="true" />
-    <type fullname="JUTPS.FX.SurfaceFX" preserve="nothing" serialized="true" />
-    <type fullname="JUTPS.InventorySystem.JUInventory/SequentialSlot" preserve="nothing" serialized="true" />
-    <type fullname="JUTPS.Utilities.GizmosSettings" preserve="nothing" serialized="true" />
   </assembly>
   <assembly fullname="Cinemachine, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
     <type fullname="Cinemachine.CinemachineComposer" preserve="all" />
@@ -124,10 +75,6 @@
     <type fullname="UnityEngine.Avatar" preserve="all" />
     <type fullname="UnityEngine.RuntimeAnimatorController" preserve="all" />
   </assembly>
-  <assembly fullname="UnityEngine.AudioModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
-    <type fullname="UnityEngine.AudioClip" preserve="all" />
-    <type fullname="UnityEngine.AudioSource" preserve="all" />
-  </assembly>
   <assembly fullname="UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
     <type fullname="UnityEngine.Cubemap" preserve="all" />
     <type fullname="UnityEngine.GameObject" preserve="all" />
@@ -143,15 +90,14 @@
     <type fullname="UnityEngine.Sprite" preserve="all" />
     <type fullname="UnityEngine.SpriteRenderer" preserve="all" />
     <type fullname="UnityEngine.Texture2D" preserve="all" />
-    <type fullname="UnityEngine.TrailRenderer" preserve="all" />
     <type fullname="UnityEngine.Transform" preserve="all" />
     <type fullname="UnityEngine.Events.PersistentCallGroup" preserve="nothing" serialized="true" />
     <type fullname="UnityEngine.Events.UnityEvent" preserve="nothing" serialized="true" />
-    <type fullname="UnityEngine.Events.ArgumentCache" preserve="nothing" serialized="true" />
-    <type fullname="UnityEngine.Events.PersistentListenerMode" preserve="nothing" serialized="true" />
     <type fullname="UnityEngine.Events.UnityEvent`1[System.Int32]" preserve="nothing" serialized="true" />
     <type fullname="UnityEngine.Events.UnityEvent`2[System.Int32,System.Int32]" preserve="nothing" serialized="true" />
     <type fullname="UnityEngine.Events.UnityEvent`2[UnityEngine.GameObject,System.Single]" preserve="nothing" serialized="true" />
+    <type fullname="UnityEngine.Events.ArgumentCache" preserve="nothing" serialized="true" />
+    <type fullname="UnityEngine.Events.PersistentListenerMode" preserve="nothing" serialized="true" />
   </assembly>
   <assembly fullname="UnityEngine.ParticleSystemModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
     <type fullname="UnityEngine.ParticleSystem" preserve="all" />
@@ -163,11 +109,8 @@
   </assembly>
   <assembly fullname="UnityEngine.PhysicsModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
     <type fullname="UnityEngine.BoxCollider" preserve="all" />
-    <type fullname="UnityEngine.CapsuleCollider" preserve="all" />
     <type fullname="UnityEngine.CharacterController" preserve="all" />
-    <type fullname="UnityEngine.CharacterJoint" preserve="all" />
     <type fullname="UnityEngine.MeshCollider" preserve="all" />
-    <type fullname="UnityEngine.PhysicMaterial" preserve="all" />
     <type fullname="UnityEngine.Rigidbody" preserve="all" />
     <type fullname="UnityEngine.SphereCollider" preserve="all" />
   </assembly>
@@ -195,9 +138,6 @@
     <type fullname="UnityEngine.Canvas" preserve="all" />
     <type fullname="UnityEngine.CanvasGroup" preserve="all" />
     <type fullname="UnityEngine.CanvasRenderer" preserve="all" />
-  </assembly>
-  <assembly fullname="UnityEngine.VehiclesModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
-    <type fullname="UnityEngine.WheelCollider" preserve="all" />
   </assembly>
   <assembly fullname="UnityEngine.VideoModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
     <type fullname="UnityEngine.Video.VideoPlayer" preserve="all" />

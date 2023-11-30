@@ -123,8 +123,8 @@ const PortalizeSB = ({data}) => {
             {/* <PortalNav/> */}
           </div>
             <div className='relative -top-24 '>
-                {/* <GameSlider repo={undefined}/> */}
-                <FeaturedGameSlider/>
+                <GameSlider repo={undefined}/> 
+                {/* <FeaturedGameSlider/>*/}
             </div>
             <div className=' h-fit mr-0'>
               <h2 className='relative font-extrabold text-4xl w-max left-14 w-18 mb-7'>Featured Servers</h2>
