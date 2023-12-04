@@ -137,10 +137,10 @@ function OpenEmpty() {
   
  
     const { unityProvider, loadingProgression, isLoaded, sendMessage, addEventListener, removeEventListener, UNSAFE__unityInstance } =  useUnityContext({
-      loaderUrl: `${process.env.NEXT_PUBLIC_WEBSITE_URL}uploads/Builds/editor/Build/PortalizeEditorBuild-29-11-23.loader.js`,
-      dataUrl: `${process.env.NEXT_PUBLIC_WEBSITE_URL}uploads/Builds/editor/Build/PortalizeEditorBuild-29-11-23.data.unityweb`,
-      frameworkUrl: `${process.env.NEXT_PUBLIC_WEBSITE_URL}uploads/Builds/editor/Build/PortalizeEditorBuild-29-11-23.framework.js.unityweb`,
-      codeUrl: `${process.env.NEXT_PUBLIC_WEBSITE_URL}uploads/Builds/editor/Build/PortalizeEditorBuild-29-11-23.wasm.unityweb`,
+      loaderUrl: `${process.env.NEXT_PUBLIC_WEBSITE_URL}uploads/Builds/editor/Build/webgl-portalize-editor-27.loader.js`,
+      dataUrl: `${process.env.NEXT_PUBLIC_WEBSITE_URL}uploads/Builds/editor/Build/webgl-portalize-editor-27.data.unityweb`,
+      frameworkUrl: `${process.env.NEXT_PUBLIC_WEBSITE_URL}uploads/Builds/editor/Build/webgl-portalize-editor-27.framework.js.unityweb`,
+      codeUrl: `${process.env.NEXT_PUBLIC_WEBSITE_URL}uploads/Builds/editor/Build/webgl-portalize-editor-27.wasm.unityweb`,
       
     streamingAssetsUrl: "streamingassets",
     });
