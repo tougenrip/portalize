@@ -86,8 +86,7 @@
     "swr": "^2.2.4",
     "tailwind-scrollbar": "^3.0.5",
     "tailwindcss": "3.3.1",
-    "typescript": "5.0.4",
-    "webpod": "^1.0.0"
+    "typescript": "5.0.4"
   },
   "devDependencies": {
     "@types/compression": "^1.7.3",
