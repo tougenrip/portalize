@@ -185,13 +185,13 @@ export default function List() {
       };
       
       const useFetch = (path) => {
-        const { data, error } = useSWR(`${process.env.NEXT_PUBLIC_WEBSITE_URL}${path}`, fetcher);
+        const { data, error } = useSWR(`${process.env.NEXT_PUBLIC_WEBSITE_URL}/api/${path}`, fetcher);
       
         const isLoading = !data && !error;
       
         return { data, error, isLoading };
       };
-      const {data: games} = useFetch('api/getMaps')
+      const {data: games} = useFetch('getMaps')
 
       const scrollBehavior = (instructions) => {
         const [{ el, left }] = instructions;

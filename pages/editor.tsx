@@ -134,13 +134,12 @@ function OpenEmpty() {
       });
     console.log(user);
   };
-  
  
     const { unityProvider, loadingProgression, isLoaded, sendMessage, addEventListener, removeEventListener, UNSAFE__unityInstance } =  useUnityContext({
-      loaderUrl: `${process.env.NEXT_PUBLIC_WEBSITE_URL}uploads/Builds/editor/Build/webgl-portalize-editor-27.loader.js`,
-      dataUrl: `${process.env.NEXT_PUBLIC_WEBSITE_URL}uploads/Builds/editor/Build/webgl-portalize-editor-27.data.unityweb`,
-      frameworkUrl: `${process.env.NEXT_PUBLIC_WEBSITE_URL}uploads/Builds/editor/Build/webgl-portalize-editor-27.framework.js.unityweb`,
-      codeUrl: `${process.env.NEXT_PUBLIC_WEBSITE_URL}uploads/Builds/editor/Build/webgl-portalize-editor-27.wasm.unityweb`,
+      loaderUrl: `${process.env.NEXT_PUBLIC_WEBSITE_URL}uploads/Builds/editor/Build/webgl-portalize-editor-3.loader.js`,
+      dataUrl: `${process.env.NEXT_PUBLIC_WEBSITE_URL}uploads/Builds/editor/Build/webgl-portalize-editor-3.data.unityweb`,
+      frameworkUrl: `${process.env.NEXT_PUBLIC_WEBSITE_URL}uploads/Builds/editor/Build/webgl-portalize-editor-3.framework.js.unityweb`,
+      codeUrl: `${process.env.NEXT_PUBLIC_WEBSITE_URL}uploads/Builds/editor/Build/webgl-portalize-editor-3.wasm.unityweb`,
       
     streamingAssetsUrl: "streamingassets",
     });

@@ -1,10 +1,12 @@
 import { PrismaClient } from '@prisma/client';
 import { NextApiRequest, NextApiResponse } from 'next';
+import { userAgent } from 'next/server';
 const prisma = new PrismaClient();
 
 export default async function handler(req:NextApiRequest,res:NextApiResponse) {
   var fmbyid
   const id = req.query.world
+  const u = req.query.user
   const owner = req.query.o
   const page = req.query.p as unknown as number || 0
 
@@ -46,7 +48,16 @@ export default async function handler(req:NextApiRequest,res:NextApiResponse) {
           }
       })
 
-  } 
+  } else if (u) {
+    fmbyid = await prisma.map.findMany({
+      where: {
+        ownerId: u as unknown as string
+      },
+      orderBy:{
+        created:'desc'
+      }
+    })
+  }
     else{
       fmbyid = await prisma.map.findMany({select:{
         title:true,

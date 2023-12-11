@@ -3,6 +3,7 @@ import { getServerSession } from 'next-auth';
 import { join, resolve } from 'path'
 import { authOptions } from '../auth/[...nextauth]'
 import fs from 'fs'
+import prisma from '@/prisma/prisma';
 
 export const config = {
   api: {
@@ -51,7 +52,15 @@ export default async function handler(req, res) {
       }
 
       // Construct the URL of the uploaded file based on your server configuration
-      const fileUrl = `https://example.com/uploads/${userId}/logo${files.file.name}`
+      const fileUrl = `https://portalize.io/uploads/${userId}/logo${files.file.name}`
+      await prisma.user.update({
+        where:{
+          id:userId
+        }, 
+        data:{
+          image: fileUrl
+        }
+      })
 
       // Send the URL as the response
       res.status(200).json({ message: 'Upload successful', fileUrl })

@@ -43,10 +43,32 @@ const Dashboard = () => {
       };
     });
   };
+
+  const handleModelChange = (e) => {
+    setUserimg(e.target.files[0]);
+    const url = URL.createObjectURL(e.target.files[0])
+    setUserImgUrl(url)
+
+  };
+
   const handleFileUpload = async (e) => {
+    const formData = new FormData();
+      formData.append('file', userImage);
     const file = e.target.files[0];
-    const base64 = await convertToBase64(file);
-    setUserimg(base64 as unknown as string);
+    await axios.put(
+      "/api/user/updateUserImage",
+      formData,
+      {
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+      }
+      ).then( async () => {
+        toast.success('Updated profile picture successfully!');
+      }
+    )
+    console.log(`Avatar URL is: ${avatarUrl}`)
   };
 
   const handleOnAvatarExported = async (url: string) => {
@@ -121,6 +143,7 @@ const Dashboard = () => {
   const [userName, setUsername] = useState(session?.user?.name)
   const [userEmail, setUseremail] = useState(session?.user?.email)
   const [userImage, setUserimg] = useState(session?.user?.image)
+  const [userImgUrl, setUserImgUrl] = useState("")
   const provider = session?.account?.provider
   const [rpmId, setRpmId] = useState('')
   const [avatarUrl, setAvatarUrl] = useState('')
