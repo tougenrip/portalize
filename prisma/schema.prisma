@@ -160,8 +160,8 @@ model User {
   friends       String[]
 
   files        File[] 
-  storageQuota   Int  @default(209715200)
-  usedQuota    Int  @default(0)
+  storageQuota   BigInt  @default(209715200)
+  usedQuota    BigInt  @default(0)
 
   @@unique([id, name])
 }

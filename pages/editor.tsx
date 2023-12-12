@@ -6,7 +6,7 @@ import { Unity, useUnityContext } from "react-unity-webgl";
 import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
-import { Button, Input, Switch, Slider, CardFooter, CardBody, CardHeader, Card, Typography, Select } from "@material-tailwind/react";
+import { Button, Input, Switch, Slider, CardFooter, CardBody, CardHeader, Card, Typography, Select, Option } from "@material-tailwind/react";
 import { BiXCircle } from "react-icons/bi";
 import { toast, ToastContainer } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
@@ -44,12 +44,14 @@ function OpenEmpty() {
   const [floormapdraft, setFloormapDraft] = useState(null);
   const [interiordraft, setInteriorDraft] = useState(null);
   const [draftTitle, setDraftTitle] = useState(null)
-  const [bannerImg, setBannerImg] = useState('')
+  const [bannerImg, setBannerImg] = useState(null)
+  const [bannerUrl, setBannerUrl] = useState("")
   const [title, setTitle] = useState("");
   const [desc, setDesc] = useState("");
   const [tags, setTags] = useState([]);
-  const [cat, setCat] = useState([])
+  const [cat, setCat] = useState("")
   const [userLimit, setUserLimit] = useState(1);
+  const [ageLimit, setAgeLimit] = useState(1);
   const [isPrivate, setIsPrivate] = useState(false);
   const [draftId, setDraftId] = useState();
   const [selectedDraft, setSelectedDraft] =useState('')
@@ -86,11 +88,11 @@ function OpenEmpty() {
   const hiddenFileInput = React.useRef(null);
 
   const handleFileUpload = async (e) => {
-    const file = e.target.files[0];
-    const base64 = await convertToBase64(file);
-    setBannerImg(base64 as unknown as string);
+    setBannerImg(e.target.files[0]);
+    const url = URL.createObjectURL(e.target.files[0])
+    setBannerUrl(url)
+    
   };
-
   // Programatically click the hidden file input element
   // when the Button component is clicked
   const handleClick = event => {
@@ -112,16 +114,17 @@ function OpenEmpty() {
   }
 
   const uploadToServer = async () => {
+
+
     const id = toast.loading("Please wait...")
     setIsLoading(true)
     setVisibility(false)
     const user = await axios.post(
         "/api/database/saveMap?function=uploadMap",
-        { title, desc, bannerImg, userLimit, tags, isPrivate, floormap, interior, selectedDraft, cat },
+        { title, desc, bannerImg, ageLimit, userLimit, tags, isPrivate, floormap, interior, selectedDraft, cat},
         {
           headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json",
+            "Content-Type": "multipart/form-data",
           },
         }
       ).then(res => { 
@@ -438,14 +441,29 @@ function OpenEmpty() {
 
 {/* */}
 
-        <form className={`${visibility ? null : "hidden"}  absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 flex flex-col space-y-5 bg-[#242424] p-5 rounded-3xl min-w-[400px] max-w-[400px] `}>
+        <form className={`${visibility ? null : null}  absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 flex flex-col space-y-5 bg-[#242424] p-5 rounded-3xl min-w-[400px] max-w-[400px] z-50 `}>
           <div className="flex flex-row-reverse justify-between">
             <BiXCircle className='h-10 w-10' onClick={(curr) => setVisibility(curr => !curr)}/>
             <h1 className='self-center text-4xl font-bold mb-5'>PUBLISH YOUR MAP</h1>
           </div>
         
-      <Input crossOrigin={undefined} type="text" label="Map Title" onChange={(e) => setTitle(e.target.value)}/>
-      <Input type="text" label='Description' onChange={(e) => setDesc(e.target.value)} crossOrigin={undefined}/>
+      <Input value={title} crossOrigin={undefined} type="text" label="Map Title" onChange={(e) => setTitle(e.target.value)}/>
+      <Input value={desc} type="text" label='Description' onChange={(e) => setDesc(e.target.value)} crossOrigin={undefined}/>
+      <Select value={cat} color="purple" onChange={(e) => {setCat(e); console.log(cat)}} label="Select Category">
+        <Option value="worldaffairs">🌍 World Affairs</Option>
+        <Option value="life">💭 Arts</Option>
+        <Option value="arts">💡 Knowledge</Option>
+        <Option value="knowledge">🧭 Tech</Option>
+        <Option value="tech">🌆 Places</Option>
+        <Option value="places">🕊️ Faith</Option>
+        <Option value="faith">🥳 Hanging Out</Option>
+        <Option value="hangingout">🏆 Sports</Option>
+        <Option value="sports">🗣️ Identity</Option>
+        <Option value="hustle">🔥 Hustle</Option>
+        <Option value="languages">💬 Languages</Option>
+        <Option value="wellness">🌿 Wellness</Option>
+        <Option value="entertainment">🎸 Entertainment</Option>
+      </Select>
       <Button onClick={handleClick} className='!relative !bg-transparent border-2 border-white !shadow-none'>
         <svg xmlns="http://www.w3.org/2000/svg" width="44" height="54" viewBox="0 0 44 54" fill="none">
           <path d="M19.5153 45.7128L24.8903 45.7156L24.8959 34.6518L29.1937 38.894L32.9581 35.1197L22.2135 24.5142L11.4581 35.1088L15.2859 38.8207L19.5209 34.6491L19.5153 45.7128ZM6.07373 53.656C4.5956 53.6553 3.33005 53.1352 2.27708 52.0959C1.22411 51.0566 0.698885 49.809 0.701415 48.3533L0.722904 5.95332C0.723643 4.49582 1.25102 3.24794 2.30505 2.20967C3.35908 1.17141 4.62426 0.653534 6.10059 0.656049L27.6006 0.666946L43.7175 16.5751L43.7014 48.3751C43.7007 49.8326 43.1733 51.0805 42.1193 52.1187C41.0652 53.157 39.8001 53.6749 38.3237 53.6724L6.07373 53.656ZM24.9037 19.2156L24.9104 5.96558L6.0979 5.95605L6.07641 48.356L38.3264 48.3724L38.3412 19.2224L24.9037 19.2156Z" fill="white"/>
@@ -467,10 +485,17 @@ function OpenEmpty() {
         <p className='px-5'>Privite</p>
         <Switch color="purple" onChange={(current) => { setIsPrivate(current => !current); console.log(isPrivate); } } crossOrigin={undefined}/>
       </div>
-      <div className='flex flex-row justify-between'>
-        <p className='w-min whitespace-nowrap px-5'>User Limit</p>
-        <Slider color="purple" defaultValue={5} min={1} max={isActive ? 33 : 11} step={1} onChange={(e) =>{setUserLimit(e.target.valueAsNumber); console.log("UserLimit set to: " + userLimit)}} />
+      <div className='pt-3 flex flex-row justify-between'>
+        <p className='w-min whitespace-nowrap px-5  relative bottom-[6px]'>User Limit</p>
+        <Slider color="purple" value={userLimit}  min={1} max={isActive ? 33 : 11} step={1} onChange={(e) =>{setUserLimit(e.target.valueAsNumber); console.log("UserLimit set to: " + userLimit)}} />
+        
       </div>
+      <div className='flex flex-row justify-between'>
+        <p className='w-min whitespace-nowrap px-5 relative bottom-[6px]'>Age Limit</p>
+        <Slider color="purple" value={ageLimit} min={1} max={100} step={1} onChange={(e) =>{setAgeLimit(e.target.valueAsNumber); console.log("AgeLimit set to: " + ageLimit)}} />
+        
+      </div>
+     
       <Button onClick={uploadToServer} style={{pointerEvents: isLoading ? 'none' : null, opacity: isLoading ? '0.5' : '1'}} variant="gradient" color="purple">{isLoading ? `PLEASE WAIT`: `PUBLISH YOUR MAP`}</Button>
     </form>
 
