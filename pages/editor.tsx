@@ -441,7 +441,7 @@ function OpenEmpty() {
 
 {/* */}
 
-        <form className={`${visibility ? null : null}  absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 flex flex-col space-y-5 bg-[#242424] p-5 rounded-3xl min-w-[400px] max-w-[400px] z-50 `}>
+        <form className={`${visibility ? null : "hidden"}  absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 flex flex-col space-y-5 bg-[#242424] p-5 rounded-3xl min-w-[400px] max-w-[400px] z-50 `}>
           <div className="flex flex-row-reverse justify-between">
             <BiXCircle className='h-10 w-10' onClick={(curr) => setVisibility(curr => !curr)}/>
             <h1 className='self-center text-4xl font-bold mb-5'>PUBLISH YOUR MAP</h1>

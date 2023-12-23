@@ -46,6 +46,7 @@ model Map {
   userLimit  Int?
   ageLimit   Int?
   isPrivate  Boolean @default(false)
+  password   String?
   floormap   String?
   interior   String?
   created    DateTime @db.Date @default(now())
@@ -160,8 +161,8 @@ model User {
   friends       String[]
 
   files        File[] 
-  storageQuota   BigInt  @default(209715200)
-  usedQuota    BigInt  @default(0)
+  storageQuota   Int  @default(209715200)
+  usedQuota    Int  @default(0)
 
   @@unique([id, name])
 }

@@ -34,12 +34,12 @@ export default async function handler(req, res) {
 
     const options = {
       uploadDir: uploadDir,
-      keepExtensions: true,
+      keepExtensions: false,
       maxFileSize: 10 * 1024 * 1024, // 10mb
       maxFieldsSize: 10 * 1024 * 1024, // 10mb
       filename: function (name, ext, part, form) {
         // Set the filename to "logo" with the original extension
-        return 'logo' + ext
+        return 'logo'
       }
     }
 

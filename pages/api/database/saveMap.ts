@@ -1,7 +1,7 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import formidable from "formidable";
 import fs from "fs";
-import path from 'path'
+import path, { join, resolve } from 'path'
 import { getServerSession } from 'next-auth';
 import { authOptions } from '../auth/[...nextauth]';
 import prisma from "@/prisma/prisma";
@@ -11,13 +11,13 @@ import prisma from "@/prisma/prisma";
 
 
 // define and export the POST endpoint handler function
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+export default async function handler(req, res) {
   //  if(req.headers['x-api-key'] !== process.env.API_ROUTE_SECRET){return res.status(401).send('Unauthorized Access2')}
   // if(!session){res.status(401).send('You`re not signed in!')}
 
   switch(req.query.function){
     case 'uploadMap':
-      await UploadMap(req, res)
+      await UploadMap()
       break;
     case 'updateMap':
       await UpdateMap()
@@ -61,7 +61,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   }
 
 
-async function UploadMap(req, res){
+async function UploadMap(){
   
   
   if (req.method === 'POST') {
@@ -79,9 +79,16 @@ async function UploadMap(req, res){
         res.status(401).json({message: 'unauthorized'})
       }
 
-      
+      const uploadDir = join(resolve(), '/uploads', `${ownerId}`, `/thumbnails`)
 
-      const form = new formidable.IncomingForm();
+      const options = {
+        uploadDir: uploadDir,
+        keepExtensions: true,
+        maxFileSize: 10 * 1024 * 1024, // 10mb
+        maxFieldsSize: 10 * 1024 * 1024, // 10mb
+      }
+
+      const form = new formidable.IncomingForm(options);
 
       form.parse(req, async function (err, fields, files){
         if (err) console.log(err)
@@ -90,7 +97,7 @@ async function UploadMap(req, res){
         }else{
           try{
             
-            mapData = await prisma.map.create({data: {
+            await prisma.map.create({data: {
               title: fields.title,
               desc: fields.desc,
               ownerName: owner,
@@ -99,18 +106,20 @@ async function UploadMap(req, res){
               isPrivate: fields.isPrivate,
               fromDraft: fields.selectedDraft,
               cat: fields.cat,
-              ageLimit: 50,
+              ageLimit: fields.ageLimit as number,
               userLimit:fields.userLimit as number, 
               floormap: fields.floormap,
               interior: fields.interior,
               img: "",
             }});
           
-            await saveThumbnail(req,res,files.file,fields,ownerId,mapData.id);
-
+            if(fields.bannerImg){ await saveThumbnail(req,res,files.file,fields,ownerId,mapData.id);}
+            
+            res.status(201).json({ message: 'Map data saved successfully.', mapData });
           
         }catch(e){
-          console.log('Error was catched: ',e);
+          console.log('Error was catched: ', e);
+          res.status(500).json({ error: e.message });
         }
         }
       })
@@ -122,10 +131,10 @@ async function UploadMap(req, res){
       
 
       // send a success response back to the client with the CSRF token
-      res.status(201).json({ message: 'Map data saved successfully.', mapData });
+      
     } catch (e) {
       // send an error response back to the client
-      res.status(500).json({ error: e.message });
+      console.log(e)
     }
   } else {
     // send a 405 Method Not Allowed response back to the client
@@ -201,7 +210,7 @@ async function UpdateMap(){
 export const config = {
   api: {
     bodyParser: {
-      sizeLimit: "10mb",
+      sizeLimit: "20mb",
     },
   },
 }
