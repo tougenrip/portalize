@@ -1,4 +1,5 @@
 
+import prisma from '@/prisma/prisma';
 import { NextApiRequest, NextApiResponse } from 'next';
 import { userAgent } from 'next/server';
 
