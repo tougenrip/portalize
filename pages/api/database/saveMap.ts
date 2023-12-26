@@ -1,7 +1,7 @@
-import { NextApiRequest, NextApiResponse } from 'next';
+
 import formidable from "formidable";
 import fs from "fs";
-import path, { join, resolve } from 'path'
+import path from 'path'
 import { getServerSession } from 'next-auth';
 import { authOptions } from '../auth/[...nextauth]';
 import prisma from "@/prisma/prisma";
@@ -17,7 +17,7 @@ export default async function handler(req, res) {
 
   switch(req.query.function){
     case 'uploadMap':
-      await UploadMap()
+      await UploadMap(req, res)
       break;
     case 'updateMap':
       await UpdateMap()
@@ -61,105 +61,74 @@ export default async function handler(req, res) {
   }
 
 
-async function UploadMap(){
-  
-  
-  if (req.method === 'POST') {
-    
-    try {
-      // extract the map data and session from the request body
-      // const {title, desc, userLimit, floormap, interior, tags, isPrivate, bannerImg, selectedDraft, cat} = req.body;
+async function UploadMap(req, res){
       const session = await getServerSession(req,res,authOptions);;
       const owner = session?.user?.name;
-      const ownerId = session?.user?.id;
-      const hardLimit = session?.user.isActive ? 32 : 10
-      let mapData
-
+      const ownerId = session?.user?.id as string;
+      const hardLimit = session?.user.isActive ? 32 : 10;
       if(!session){
         res.status(401).json({message: 'unauthorized'})
       }
-
-      const uploadDir = join(resolve(), '/uploads', `${ownerId}`, `/thumbnails`)
-
-      const options = {
-        uploadDir: uploadDir,
-        keepExtensions: true,
-        maxFileSize: 10 * 1024 * 1024, // 10mb
-        maxFieldsSize: 10 * 1024 * 1024, // 10mb
-      }
-
-      const form = new formidable.IncomingForm(options);
-
+      console.log('handling map...');
+      const form = new formidable.IncomingForm();
       form.parse(req, async function (err, fields, files){
         if (err) console.log(err)
         if(fields.userLimit > hardLimit){
           throw new Error('You cannot set userLimit higher then dedicated limit. Which is 10 for free users and 32 for premium')
-        }else{
+        }
+        if(!files){
+          res.status(400).json({ error:"No image provided or found" });
+          throw new Error("You have to insert a file")
+        }
+        else{
           try{
-            
-            await prisma.map.create({data: {
-              title: fields.title,
-              desc: fields.desc,
-              ownerName: owner,
-              ownerId: ownerId,
-              tags: fields.tags,
-              isPrivate: fields.isPrivate,
-              fromDraft: fields.selectedDraft,
-              cat: fields.cat,
-              ageLimit: fields.ageLimit as number,
-              userLimit:fields.userLimit as number, 
-              floormap: fields.floormap,
-              interior: fields.interior,
-              img: "",
-            }});
-          
-            if(fields.bannerImg){ await saveThumbnail(req,res,files.file,fields,ownerId,mapData.id);}
-            
-            res.status(201).json({ message: 'Map data saved successfully.', mapData });
-          
+            await saveThumbnail(req,res,files.file,fields,owner,ownerId)
         }catch(e){
           console.log('Error was catched: ', e);
-          res.status(500).json({ error: e.message });
         }
+        return res.status(201).send("file sent" + files.file.toJSON);
         }
       })
 
-      
-
-
-      // create a new document in the Worlds collection
-      
-
-      // send a success response back to the client with the CSRF token
-      
-    } catch (e) {
-      // send an error response back to the client
-      console.log(e)
-    }
-  } else {
-    // send a 405 Method Not Allowed response back to the client
-    res.status(405).json({ error: 'Only POST requests allowed.' });
-  }
 }
 
-const saveThumbnail = async(req,res,file,fields,userId,mapId) => {
+const saveThumbnail = async(req,res,file,fields,user,userId) => {
 
   console.log(file.size);
 
-  const filePath = path.join(process.cwd(), 'uploads', userId, 'thumbnails', mapId, file.originalFilename);
+  const map = await prisma.map.create({data: {
+    title: fields.title,
+    desc: fields.desc,
+    ownerName: user,
+    ownerId: userId,
+    tags: fields.tags,
+    isPrivate: fields.isPrivate,
+    fromDraft: fields.selectedDraft,
+    cat: fields.cat,
+    ageLimit: parseInt(fields.ageLimit),
+    userLimit: parseInt(fields.userLimit), 
+    floormap: fields.floormap,
+    interior: fields.interior,
+  }});
+
+  const filePath = path.join(process.cwd(), 'uploads', userId, 'thumbnails', `${map.id}`, file.originalFilename);
   const data = fs.readFileSync(file.filepath);
   fs.mkdirSync(path.dirname(filePath), { recursive: true });
   fs.writeFileSync(filePath , data);
+  fs.rmdirSync(file.filepath);
 
-  const webFilePath: string = `https://portalize.io/uploads/${userId}/thumbnails/${mapId}/${file.originalFilename}`
+  const webFilePath: string = `https://portalize.io/uploads/${userId}/thumbnails/${map.id}/${file.originalFilename}`
 
   await prisma.map.update({
-    where: {
-      id: mapId
-    },data:{
-      img: webFilePath
+    where:{
+      id:map.id
+    },
+    data:{
+      img:webFilePath
     }
   })
+  
+  return;
 }
 
 async function UpdateMap(){
@@ -214,3 +183,32 @@ export const config = {
     },
   },
 }
+
+
+// const post = async (req, res) => {
+//   const session = await getServerSession(req,res,authOptions)
+//   const userId = session?.user?.id as string
+//   const currentQuota = session?.user?.usedQuota
+//   const storageQuota = session?.user?.storageQuota
+//   if(!session){
+//     res.status(401).json({message: 'unauthorized'})
+//   }
+//   console.log('handling file...');
+//   const form = new formidable.IncomingForm();
+//   form.parse(req, async function (err, fields, files) {
+
+//     if (err) console.log(err)
+//     if(currentQuota + files.file.size >= storageQuota){
+//       console.log('storage wasnt enough')
+//       res.status(400).json({message:'not enough storage'})
+//     } else{
+//     try{
+//         await saveFile1(req,res,files.file,fields,userId,currentQuota, storageQuota);
+//     }
+//     catch(e){
+//       console.log('Error was catched: ',e);
+//     }
+//     return res.status(201).send("file sent" + files.file.toJSON);
+//   }
+// });
+// };

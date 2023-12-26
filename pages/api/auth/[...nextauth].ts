@@ -4,12 +4,12 @@ import EmailProvider from "next-auth/providers/email";
 import GithubProvider from "next-auth/providers/github";
 import GoogleProvider from "next-auth/providers/google";
 import { PrismaAdapter } from "@auth/prisma-adapter"
-import { PrismaClient } from "@prisma/client";
+import prisma from '@/prisma/prisma';
 import Stripe from "stripe";
 import { Adapter } from "next-auth/adapters";
 import {createTransport} from 'nodemailer'
 
-const prisma = new PrismaClient()
+
 
 export const authOptions:NextAuthOptions = {
   adapter: PrismaAdapter(prisma) as Adapter,

@@ -46,7 +46,6 @@ model Map {
   userLimit  Int?
   ageLimit   Int?
   isPrivate  Boolean @default(false)
-  password   String?
   floormap   String?
   interior   String?
   created    DateTime @db.Date @default(now())

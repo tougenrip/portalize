@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import SideBar from '../../components/SideBar'
 import { Avatar, Button, Input } from '@material-tailwind/react'
 import { useSession } from 'next-auth/react'
@@ -17,8 +17,26 @@ import Head from 'next/head'
 import { toast, ToastContainer } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
 
+      
+
 
 const Dashboard = () => {
+
+  const {data: session, status, update} = useSession();
+  const [userName, setUsername] = useState(session?.user?.name)
+  const [userEmail, setUseremail] = useState(session?.user?.email)
+  const [userImage, setUserimg] = useState(session?.user?.image)
+  const [uploadImg, setUploadImg] = useState(null)
+  const [uploadImgUrl, setUploadImgUrl] = useState("")
+  const provider = session?.account?.provider
+  const [rpmId, setRpmId] = useState('')
+  const [avatarUrl, setAvatarUrl] = useState('')
+  const [advpanelOpen, setAdvPanelOpen] = useState(false)
+  const [minutes ,setMinutes] = useState(null)
+  const [bannervisibility, setBannerVisibility] = useState(false)
+  const [skyvisibility, setSkyVisibility] = useState(false)
+  const [productvisibility, setProductVisibility] = useState(false)
+  const [eventvisibility, setEventVisibility] = useState(false)
 
   const config: EditorConfig  = {
     clearCache: true,
@@ -26,10 +44,6 @@ const Dashboard = () => {
     quickStart: true,
     language: 'en',
   };
-  
-
-  
-
 
   const convertToBase64 = (file) => {
     return new Promise((resolve, reject) => {
@@ -44,31 +58,34 @@ const Dashboard = () => {
     });
   };
 
-  const handleModelChange = (e) => {
-    setUserimg(e.target.files[0]);
-    const url = URL.createObjectURL(e.target.files[0])
-    setUserImgUrl(url)
-
+  const handleFileUpload = async (e) => {
+    setUploadImg(e.target.files[0]);
+      const url = URL.createObjectURL(e.target.files[0])
+      setUploadImgUrl(url)
   };
 
-  const handleFileUpload = async (e) => {
-    const formData = new FormData();
-      formData.append('file', userImage);
-    const file = e.target.files[0];
+  const uploadUserImage = async () => {
+    try{
+      const uploadTost = toast.loading("Please wait...")
+      const formData = new FormData();
+      formData.append('file', uploadImg);
     await axios.put(
-      "/api/user/updateUserImage",
+      "/api/user/uploadUserImage",
       formData,
       {
         headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
+          'Content-Type': 'multipart/form-data',
         },
       }
       ).then( async () => {
-        toast.success('Updated profile picture successfully!');
+        toast.update(uploadTost, {render: "Updated user profile picture!", type: "success", isLoading: false, autoClose: 5000});
+        update({image:userImage});
       }
     )
-    console.log(`Avatar URL is: ${avatarUrl}`)
+    console.log(`Image URL is: ${avatarUrl}`)
+    }catch(e){
+      console.log(e)
+    }
   };
 
   const handleOnAvatarExported = async (url: string) => {
@@ -114,7 +131,6 @@ const Dashboard = () => {
     
   }
  
-
   const updateUser = async () => {
 
     const user = await axios.put(
@@ -137,24 +153,11 @@ const Dashboard = () => {
       });
     console.log(user);
   };
-  
 
-  const {data: session, status, update} = useSession();
-  const [userName, setUsername] = useState(session?.user?.name)
-  const [userEmail, setUseremail] = useState(session?.user?.email)
-  const [userImage, setUserimg] = useState(session?.user?.image)
-  const [userImgUrl, setUserImgUrl] = useState("")
-  const provider = session?.account?.provider
-  const [rpmId, setRpmId] = useState('')
-  const [avatarUrl, setAvatarUrl] = useState('')
-  const [advpanelOpen, setAdvPanelOpen] = useState(false)
-  const [minutes ,setMinutes] = useState(null)
-  const [bannervisibility, setBannerVisibility] = useState(false)
-  const [skyvisibility, setSkyVisibility] = useState(false)
-  const [productvisibility, setProductVisibility] = useState(false)
-  const [eventvisibility, setEventVisibility] = useState(false)
-
-  console.log(session?.account?.provider)
+  useEffect(() => {
+    console.log('Count has been updated:', uploadImg);
+    uploadUserImage()
+  }, [uploadImg]);
 
   return (
     <>

@@ -9,7 +9,7 @@
     "lint": "next lint",
     "server": "set NODE_ENV=production&node servnew.js",
     "serverhttp2": "set NODE_ENV=production&node server_http2.js",
-    "servdev": "set NODE_ENV=development&node servnew.js",
+    "servdev": "set NODE_ENV=development&node server.js",
     "startagora": "node agoraserv.js",
     "prisma": "prisma generate"
   },

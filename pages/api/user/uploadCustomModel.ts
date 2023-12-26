@@ -30,8 +30,6 @@ const post = async (req, res) => {
     } else{
     try{
         await saveFile1(req,res,files.file,fields,userId,currentQuota, storageQuota);
-      
-
     }
     catch(e){
       console.log('Error was catched: ',e);
@@ -50,6 +48,7 @@ const saveFile1 = async (req,res,file,fields,userId,currentQuota:number, storage
   const data = fs.readFileSync(file.filepath);
   fs.mkdirSync(path.dirname(filePath), { recursive: true });
   fs.writeFileSync(filePath , data);
+  fs.rmdirSync(file.filepath);
 
   const webFilePath: string = `https://portalize.io/uploads/${userId}/models/${file.originalFilename}`
 

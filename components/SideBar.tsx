@@ -57,7 +57,6 @@ const SideBar = (req,res) => {
     }
   }
 
-  console.log(isBusiness())
 
 
     const soundChange = () => {

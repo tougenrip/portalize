@@ -1,6 +1,6 @@
 import formidable from 'formidable';
 import { getServerSession } from 'next-auth';
-import { join, resolve } from 'path'
+import path, { join, resolve } from 'path'
 import { authOptions } from '../auth/[...nextauth]'
 import fs from 'fs'
 import prisma from '@/prisma/prisma';
@@ -12,9 +12,16 @@ export const config = {
   
 }
 
-export default async function handler(req, res) {
+const post = async(req, res) => {
+  const session = await getServerSession(req,res,authOptions)
+  const userId = session?.user?.id as string
+  const currentQuota = session?.user?.usedQuota
+  const storageQuota = session?.user?.storageQuota
+  if(!session){
+    res.status(401).json({message: 'unauthorized'})
+  }
   try {
-    const session = await getServerSession(req, res, authOptions)
+    
     
     // Check if session is not present (user is not authenticated)
     if (!session) {
@@ -35,8 +42,8 @@ export default async function handler(req, res) {
     const options = {
       uploadDir: uploadDir,
       keepExtensions: false,
-      maxFileSize: 10 * 1024 * 1024, // 10mb
-      maxFieldsSize: 10 * 1024 * 1024, // 10mb
+      maxFileSize: 8 * 1024 * 1024, // 8mb
+      maxFieldsSize: 8 * 1024 * 1024, // 8mb
       filename: function (name, ext, part, form) {
         // Set the filename to "logo" with the original extension
         return 'logo'
@@ -48,11 +55,16 @@ export default async function handler(req, res) {
       if (err) {
         console.error(err)
         res.status(500).json({ error: 'An error occurred while processing the upload.' })
-        return
       }
 
+  
+        // const filePath = path.join(process.cwd(), 'uploads', userId, files.file.originalFilename);
+        // const data = fs.readFileSync(files.file.filepath);
+        // fs.mkdirSync(path.dirname(filePath), { recursive: true });
+        // fs.writeFileSync(filePath , data);
+
       // Construct the URL of the uploaded file based on your server configuration
-      const fileUrl = `https://portalize.io/uploads/${userId}/logo${files.file.name}`
+      const fileUrl = `https://portalize.io/uploads/${userId}/logo`
       await prisma.user.update({
         where:{
           id:userId
@@ -70,3 +82,16 @@ export default async function handler(req, res) {
     res.status(500).json({ error: 'An error occurred while processing the request.' })
   }
 }
+
+
+export default (req, res) => {
+  req.method === "POST"
+    ? console.log("POST")
+    : req.method === "PUT"
+    ? post(req, res)
+    : req.method === "DELETE"
+    ? console.log("DELETE")
+    : req.method === "GET"
+    ? console.log("GET")
+    : res.status(404).send("");
+};
