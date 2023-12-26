@@ -48,7 +48,6 @@ const saveFile1 = async (req,res,file,fields,userId,currentQuota:number, storage
   const data = fs.readFileSync(file.filepath);
   fs.mkdirSync(path.dirname(filePath), { recursive: true });
   fs.writeFileSync(filePath , data);
-  fs.rmdirSync(file.filepath);
 
   const webFilePath: string = `https://portalize.io/uploads/${userId}/models/${file.originalFilename}`
 

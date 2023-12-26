@@ -1,0 +1,6 @@
+-- AlterTable
+ALTER TABLE "Map" ALTER COLUMN "cat" DROP NOT NULL,
+ALTER COLUMN "cat" SET DATA TYPE TEXT;
+
+-- AlterTable
+ALTER TABLE "Stories" ALTER COLUMN "expiresAt" SET DEFAULT NOW() + interval '1 DAYS';

@@ -120,6 +120,14 @@ function OpenEmpty() {
 
   const uploadToServer = async () => {
 
+    // const mapForm = new FormData();
+    // mapForm.append('title', title);
+    // mapForm.append('desc', desc);
+    // mapForm.append('file', bannerImg)
+    // mapForm.append('ageLimit', `${ageLimit}`)
+    // mapForm.append('userLimit', `${userLimit}`)
+    // mapForm.append('tags[]', tags)
+
     const id = toast.loading("Please wait...")
     setIsLoading(true)
     setVisibility(false)

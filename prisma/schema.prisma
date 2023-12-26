@@ -46,10 +46,11 @@ model Map {
   userLimit  Int?
   ageLimit   Int?
   isPrivate  Boolean @default(false)
+  password   String?
   floormap   String?
   interior   String?
   created    DateTime @db.Date @default(now())
-  cat        String[]
+  cat        String?
   approved   Boolean? @default(false)
   editor     Boolean? @default(false)
   

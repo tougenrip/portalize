@@ -69,17 +69,21 @@ async function UploadMap(req, res){
       if(!session){
         res.status(401).json({message: 'unauthorized'})
       }
-      console.log('handling map...');
-      const form = new formidable.IncomingForm();
+      const options = {
+        keepExtensions: false,
+        maxFileSize: 8 * 1024 * 1024, // 8mb
+        maxFieldsSize: 8 * 1024 * 1024, // 8mb
+        filename: function (name, ext, part, form) {
+          // Set the filename to "logo" with the original extension
+          return 'thumbnail'
+        }
+      }
+      const form = new formidable.IncomingForm(options);
       form.parse(req, async function (err, fields, files){
+        console.log('handling map...');
+        console.log(fields);
+        console.log(files);
         if (err) console.log(err)
-        if(fields.userLimit > hardLimit){
-          throw new Error('You cannot set userLimit higher then dedicated limit. Which is 10 for free users and 32 for premium')
-        }
-        if(!files){
-          res.status(400).json({ error:"No image provided or found" });
-          throw new Error("You have to insert a file")
-        }
         else{
           try{
             await saveThumbnail(req,res,files.file,fields,owner,ownerId)
@@ -96,13 +100,21 @@ const saveThumbnail = async(req,res,file,fields,user,userId) => {
 
   console.log(file.size);
 
+  const isPrivateForm = () => {
+    if(fields.isPrivate === "true"){
+      return true
+    }else{
+      return false
+    }
+  }
+
   const map = await prisma.map.create({data: {
     title: fields.title,
     desc: fields.desc,
     ownerName: user,
     ownerId: userId,
     tags: fields.tags,
-    isPrivate: fields.isPrivate,
+    isPrivate: isPrivateForm(),
     fromDraft: fields.selectedDraft,
     cat: fields.cat,
     ageLimit: parseInt(fields.ageLimit),
@@ -111,13 +123,12 @@ const saveThumbnail = async(req,res,file,fields,user,userId) => {
     interior: fields.interior,
   }});
 
-  const filePath = path.join(process.cwd(), 'uploads', userId, 'thumbnails', `${map.id}`, file.originalFilename);
+  const filePath = path.join(process.cwd(), 'uploads', userId, 'thumbnails', `${map.id}`, file.newFilename);
   const data = fs.readFileSync(file.filepath);
   fs.mkdirSync(path.dirname(filePath), { recursive: true });
   fs.writeFileSync(filePath , data);
-  fs.rmdirSync(file.filepath);
 
-  const webFilePath: string = `https://portalize.io/uploads/${userId}/thumbnails/${map.id}/${file.originalFilename}`
+  const webFilePath: string = `https://portalize.io/uploads/${userId}/thumbnails/${map.id}/${file.newFilename}`
 
   await prisma.map.update({
     where:{
@@ -176,13 +187,12 @@ async function UpdateMap(){
 }
 
 }
+
 export const config = {
   api: {
-    bodyParser: {
-      sizeLimit: "20mb",
-    },
-  },
-}
+    bodyParser: false
+  }
+};
 
 
 // const post = async (req, res) => {
