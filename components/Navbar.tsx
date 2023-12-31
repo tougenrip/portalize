@@ -63,8 +63,8 @@ import { useRouter } from "next/router";
 
   return (
     <>
-    <div id="header" className="w-screen z-50">
-    <div className={` ${stickyClass} ${stickyClass ? "!bg-gradient-to-b !from-black !to-transparent" : ""} flex flex-row-reverse z-50 md:flex-row py-5 px-4 space-x-0 md:!space-x-32 md:w-screen md:px-20`}>
+    <div id="header" className="w-screen z-50 ">
+    <div className={`bg-[#151515] ${stickyClass} ${stickyClass ? "!bg-gradient-to-b !from-black !to-transparent" : ""} flex flex-row-reverse z-50 md:flex-row py-5 px-4 space-x-0 md:!space-x-32 md:w-screen md:px-20`}>
       <div className=" self-center">
         <Link href={`/`}><Image src='/img/logo_comp.webp' className=" scale-75 md:scale-100" width={218} height={38} alt="Logo" unoptimized></Image></Link>
       </div>

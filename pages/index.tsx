@@ -123,38 +123,103 @@ const PortalizeSB = ({data}) => {
             {/* <PortalNav/> */}
           </div>
             <div className='relative -top-24 '>
-                <GameSlider repo={undefined}/> 
+                <GameSlider/> 
                 {/* <FeaturedGameSlider/>*/}
             </div>
+
             <div className=' h-fit mr-0'>
               <h2 className='relative font-extrabold text-4xl w-max left-14 w-18 mb-7'>Featured Servers</h2>
               <div className="!scrollbar-none">
-              <List  />
+              <List cat="" />
               </div>
             </div>
-            <div className=' h-fit mr-0'>
-              <h2 className='relative font-extrabold text-4xl w-max left-14 w-18 mb-7'>Recommended</h2>
-              <div className="!scrollbar-none">
-              <List  />
-              </div>
-              
-            </div>
-            <div className=' h-fit mr-0'>
-              <h2 className='relative font-extrabold text-4xl w-max left-14 w-18 mb-7'>Popular</h2>
-              <div className="!scrollbar-none">
-              <List  />
-              </div>
-              
-            </div>
-            <div className=' h-fit mr-0'>
-              <h2 className='relative font-extrabold text-4xl w-max left-14 w-18 mb-7'>Editor`s Choice</h2>
-              <div className="!scrollbar-none">
-              <List  />
-              </div>
-              
 
-
+            
+            <div className=' h-fit mr-0'>
+              <h2 className='relative font-extrabold text-4xl w-max left-14 w-18 mb-7'>🌍 World Affairs</h2>
+              <div className="!scrollbar-none">
+              <List cat="worldaffairs" />
+              </div>
             </div>
+            <div className=' h-fit mr-0'>
+              <h2 className='relative font-extrabold text-4xl w-max left-14 w-18 mb-7'>🌻 Life</h2>
+              <div className="!scrollbar-none">
+              <List cat="life" />
+              </div>
+            </div>
+            <div className=' h-fit mr-0'>
+              <h2 className='relative font-extrabold text-4xl w-max left-14 w-18 mb-7'>💭 Arts</h2>
+              <div className="!scrollbar-none">
+              <List cat="arts" />
+              </div>
+            </div>
+            <div className=' h-fit mr-0'>
+              <h2 className='relative font-extrabold text-4xl w-max left-14 w-18 mb-7'>💡 Knowledge</h2>
+              <div className="!scrollbar-none">
+              <List cat="knowledge" />
+              </div>
+            </div>
+            <div className=' h-fit mr-0'>
+              <h2 className='relative font-extrabold text-4xl w-max left-14 w-18 mb-7'>🧭 Tech</h2>
+              <div className="!scrollbar-none">
+              <List cat="tech" />
+              </div>
+            </div>
+            <div className=' h-fit mr-0'>
+              <h2 className='relative font-extrabold text-4xl w-max left-14 w-18 mb-7'>🌆 Places</h2>
+              <div className="!scrollbar-none">
+              <List cat="places" />
+              </div>
+            </div>
+            <div className=' h-fit mr-0'>
+              <h2 className='relative font-extrabold text-4xl w-max left-14 w-18 mb-7'>🕊️ Faith</h2>
+              <div className="!scrollbar-none">
+              <List cat="faith" />
+              </div>
+            </div>
+            <div className=' h-fit mr-0'>
+              <h2 className='relative font-extrabold text-4xl w-max left-14 w-18 mb-7'>🥳 Hanging Out</h2>
+              <div className="!scrollbar-none">
+              <List cat="hangingout" />
+              </div>
+            </div>
+            <div className=' h-fit mr-0'>
+              <h2 className='relative font-extrabold text-4xl w-max left-14 w-18 mb-7'>🏆 Sports</h2>
+              <div className="!scrollbar-none">
+              <List cat="sports" />
+              </div>
+            </div>
+            <div className=' h-fit mr-0'>
+              <h2 className='relative font-extrabold text-4xl w-max left-14 w-18 mb-7'>🗣️ Identity</h2>
+              <div className="!scrollbar-none">
+              <List cat="identity" />
+              </div>
+            </div>
+            <div className=' h-fit mr-0'>
+              <h2 className='relative font-extrabold text-4xl w-max left-14 w-18 mb-7'>🔥 Hustles</h2>
+              <div className="!scrollbar-none">
+              <List cat="hustle" />
+              </div>
+            </div>
+            <div className=' h-fit mr-0'>
+              <h2 className='relative font-extrabold text-4xl w-max left-14 w-18 mb-7'>💬 Languages</h2>
+              <div className="!scrollbar-none">
+              <List cat="languages" />
+              </div>
+            </div>
+            <div className=' h-fit mr-0'>
+              <h2 className='relative font-extrabold text-4xl w-max left-14 w-18 mb-7'>🌿 Wellness</h2>
+              <div className="!scrollbar-none">
+              <List cat="wellness" />
+              </div>
+            </div>
+            <div className=' h-fit mr-0'>
+              <h2 className='relative font-extrabold text-4xl w-max left-14 w-18 mb-7'>🎸 Entertainment</h2>
+              <div className="!scrollbar-none">
+              <List cat="entertainment" />
+              </div>
+            </div>
+
 
             {/* <div>
             <FeaGameBanner/>

@@ -5,7 +5,7 @@ import { SessionProvider, useSession } from "next-auth/react"
 import NextNProgress from 'nextjs-progressbar';
 import { mode } from "@chakra-ui/theme-tools";
 import Providers from '@/components/Providers';
-
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 // const theme = extendTheme({
 //   config: {
 //     useSystemColorMode: true,
@@ -21,6 +21,8 @@ import Providers from '@/components/Providers';
   
 // });
 
+const queryClient = new QueryClient();
+
 export default function App({ Component, pageProps: {session , ...pageProps}, }: AppProps) {
 
 
@@ -31,10 +33,13 @@ export default function App({ Component, pageProps: {session , ...pageProps}, }:
     <Providers>
       <SessionProvider session={pageProps.session}>
         <NextNProgress color="#773fff"/>
+        <QueryClientProvider client={queryClient}>
+
         {/* <ChakraProvider theme={theme}>
           
           </ChakraProvider> */}
           <Component {...pageProps} />
+          </QueryClientProvider>
         </SessionProvider>
         </Providers>
       

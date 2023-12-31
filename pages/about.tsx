@@ -192,11 +192,11 @@ export default function Home() {
             <div className="w-screen h-min">
           <h1 className="text-4xl m-5 font-bold">Explore Worlds</h1>
           <div className="!scrollbar-none">
-              <List  />
+              <List cat=""  />
               </div>
           <h1 className="text-4xl m-5 font-bold">Featured</h1>
           <div className="!scrollbar-none">
-              <List />
+              <List cat="" />
               </div>
           </div>
 

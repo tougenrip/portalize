@@ -213,7 +213,7 @@ const router = useRouter();
                 return (
                   <React.Fragment key={page.nextId ?? 'lastPage'}>
                     {page.posts.map((post) => (
-                      <GameCardNew key={post.id} itemId={post.id} setSelected={undefined} item={post} />
+                      <GameCardNew isDragging={undefined} key={post.id} itemId={post.id} setSelected={undefined} item={post} />
                     ))}
                   </React.Fragment>
                 )
