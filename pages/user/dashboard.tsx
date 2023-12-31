@@ -62,6 +62,7 @@ const Dashboard = () => {
     setUploadImg(e.target.files[0]);
       const url = URL.createObjectURL(e.target.files[0])
       setUploadImgUrl(url)
+      uploadUserImage()
   };
 
   const uploadUserImage = async () => {
@@ -79,7 +80,7 @@ const Dashboard = () => {
       }
       ).then( async () => {
         toast.update(uploadTost, {render: "Updated user profile picture!", type: "success", isLoading: false, autoClose: 5000});
-        update({image:userImage});
+        update({image:uploadImg});
       }
     )
     console.log(`Image URL is: ${avatarUrl}`)
@@ -153,11 +154,6 @@ const Dashboard = () => {
       });
     console.log(user);
   };
-
-  useEffect(() => {
-    console.log('Count has been updated:', uploadImg);
-    uploadUserImage()
-  }, [uploadImg]);
 
   return (
     <>

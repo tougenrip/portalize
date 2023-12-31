@@ -45,6 +45,7 @@ function App({floormapdata, interiordata,gamedatares}) {
   const floormap = JSON.stringify(floormapdata.floormap)
   const interior = JSON.stringify(interiordata.interior)
   const worldId = gamedatares.id 
+  const password = gamedatares.password
   const router = useRouter()
   var newWorld
   const userId = session?.user?.id
@@ -52,15 +53,15 @@ function App({floormapdata, interiordata,gamedatares}) {
   const avatarId = session?.user?.avatarUrl
   console.log(userId,avatarId)
 
-  const fulldata = JSON.stringify({floormap,interior,worldId,userId,avatarId})
+  const fulldata = JSON.stringify({floormap,interior,worldId,password,userId,avatarId})
   
 
  
   const { unityProvider, loadingProgression, isLoaded, unload,  sendMessage, addEventListener, removeEventListener, UNSAFE__unityInstance } = useUnityContext({
-    loaderUrl: `${process.env.NEXT_PUBLIC_WEBSITE_URL}uploads/Builds/game/Build/webgl-portalize-playmode-3.loader.js`,
-    dataUrl: `${process.env.NEXT_PUBLIC_WEBSITE_URL}uploads/Builds/game/Build/webgl-portalize-playmode-3.data.unityweb`,
-    frameworkUrl: `${process.env.NEXT_PUBLIC_WEBSITE_URL}uploads/Builds/game/Build/webgl-portalize-playmode-3.framework.js.unityweb`,
-    codeUrl: `${process.env.NEXT_PUBLIC_WEBSITE_URL}uploads/Builds/game/Build/webgl-portalize-playmode-3.wasm.unityweb`,
+    loaderUrl: `${process.env.NEXT_PUBLIC_WEBSITE_URL}uploads/Builds/game/Build/webgl-portalize-playmode-6.loader.js`,
+    dataUrl: `${process.env.NEXT_PUBLIC_WEBSITE_URL}uploads/Builds/game/Build/webgl-portalize-playmode-6.data.unityweb`,
+    frameworkUrl: `${process.env.NEXT_PUBLIC_WEBSITE_URL}uploads/Builds/game/Build/webgl-portalize-playmode-6.framework.js.unityweb`,
+    codeUrl: `${process.env.NEXT_PUBLIC_WEBSITE_URL}uploads/Builds/game/Build/webgl-portalize-playmode-6.wasm.unityweb`,
     streamingAssetsUrl: "streamingassets",
 
     
@@ -81,6 +82,13 @@ function App({floormapdata, interiordata,gamedatares}) {
   async function unloadUnity() {
     await unload();
   }
+
+  useEffect(() => {
+    window.addEventListener('beforeunload', unloadUnity);
+    return () => {
+      window.removeEventListener('beforeunload', unloadUnity);
+    };
+  }, []);
 
 
   const launchNewWorld = useCallback((_worldURL) => {

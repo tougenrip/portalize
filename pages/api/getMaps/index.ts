@@ -21,6 +21,8 @@ export default async function handler(req:NextApiRequest,res:NextApiResponse) {
           img:true,
           userLimit:true,
           ageLimit:true,
+          isPrivate:true,
+          password:true,
           cat:true,
           tags:true,
           created:true,

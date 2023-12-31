@@ -115,6 +115,7 @@ const saveThumbnail = async(req,res,file,fields,user,userId) => {
     ownerId: userId,
     tags: fields.tags,
     isPrivate: isPrivateForm(),
+    password: fields.password,
     fromDraft: fields.selectedDraft,
     cat: fields.cat,
     ageLimit: parseInt(fields.ageLimit),

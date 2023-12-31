@@ -53,6 +53,7 @@ function OpenEmpty() {
   const [userLimit, setUserLimit] = useState(1);
   const [ageLimit, setAgeLimit] = useState(1);
   const [isPrivate, setIsPrivate] = useState(false);
+  const [password, setPassword] = useState("");
   const [draftId, setDraftId] = useState();
   const [selectedDraft, setSelectedDraft] =useState('')
   const [isLoading, setIsLoading] = useState(false)
@@ -133,7 +134,7 @@ function OpenEmpty() {
     setVisibility(false)
     const user = await axios.post(
         "/api/database/saveMap?function=uploadMap",
-        { title, desc, file:bannerImg, ageLimit, userLimit, tags, isPrivate, floormap, interior, selectedDraft, cat},
+        { title, desc, file:bannerImg, ageLimit, userLimit, tags, isPrivate, password, floormap, interior, selectedDraft, cat},
         {
           headers: {
             "Content-Type": "multipart/form-data",
@@ -145,16 +146,17 @@ function OpenEmpty() {
         toast.update(id, {render: "Congratulations! Your world just got uploaded to Portalize!", type: "success", isLoading: false, autoClose: 5000});
    }).catch((error) => {
         console.log(error);
-        toast.update(id, {render: "Something went wrong", type: "error", isLoading: false , autoClose: 5000}); 
+        toast.update(id, {render: "Something went wrong", type: "error", isLoading: false , autoClose: 5000});
+        setIsLoading(false);
       });
     console.log(user);
   };
  
     const { unityProvider, loadingProgression, isLoaded, sendMessage, addEventListener, removeEventListener, UNSAFE__unityInstance } =  useUnityContext({
-      loaderUrl: `${process.env.NEXT_PUBLIC_WEBSITE_URL}uploads/Builds/editor/Build/webgl-portalize-editor-3.loader.js`,
-      dataUrl: `${process.env.NEXT_PUBLIC_WEBSITE_URL}uploads/Builds/editor/Build/webgl-portalize-editor-3.data.unityweb`,
-      frameworkUrl: `${process.env.NEXT_PUBLIC_WEBSITE_URL}uploads/Builds/editor/Build/webgl-portalize-editor-3.framework.js.unityweb`,
-      codeUrl: `${process.env.NEXT_PUBLIC_WEBSITE_URL}uploads/Builds/editor/Build/webgl-portalize-editor-3.wasm.unityweb`,
+      loaderUrl: `${process.env.NEXT_PUBLIC_WEBSITE_URL}uploads/Builds/editor/Build/webgl-portalize-editor-6.loader.js`,
+      dataUrl: `${process.env.NEXT_PUBLIC_WEBSITE_URL}uploads/Builds/editor/Build/webgl-portalize-editor-6.data.unityweb`,
+      frameworkUrl: `${process.env.NEXT_PUBLIC_WEBSITE_URL}uploads/Builds/editor/Build/webgl-portalize-editor-6.framework.js.unityweb`,
+      codeUrl: `${process.env.NEXT_PUBLIC_WEBSITE_URL}uploads/Builds/editor/Build/webgl-portalize-editor-6.wasm.unityweb`,
       
     streamingAssetsUrl: "streamingassets",
     });
@@ -453,7 +455,7 @@ function OpenEmpty() {
 
 {/* */}
 
-        <form className={`${visibility ? null : null}  absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 flex flex-col space-y-5 bg-[#242424] p-5 rounded-3xl min-w-[400px] max-w-[400px] z-50 `}>
+        <form className={`${visibility ? null : "hidden"}  absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 flex flex-col space-y-5 bg-[#242424] p-5 rounded-3xl min-w-[400px] max-w-[400px] z-50 `}>
           <div className="flex flex-row-reverse justify-between">
             <BiXCircle className='h-10 w-10' onClick={(curr) => setVisibility(curr => !curr)}/>
             <h1 className='self-center text-4xl font-bold mb-5'>PUBLISH YOUR MAP</h1>
@@ -493,9 +495,16 @@ function OpenEmpty() {
             {/*<span className="bg-blue-gray-100 inline-flex px-3 py-2 rounded-full space-x-2 text-black"><p>hello</p><span className='relative top-[1px] h-5 w-5 bg-[#151515] rounded-full text-center inline-block text-white' onClick={() => removeTag(index)}>&times:</span></span>*/}
             <input type='text' onKeyDown={handleAddTag} className='flex-grow-1 border-none outline-none bg-transparent' placeholder='Type your tags'></input>
           </div>
-      <div className='flex flex-row justify-between'>
+      <div className='flex flex-col '>
+        <div className="flex flex-row justify-between">
         <p className='px-5'>Privite</p>
         <Switch color="purple" onChange={(current) => { setIsPrivate(current => !current); console.log(isPrivate); } } crossOrigin={undefined}/>
+        </div>
+        <div  className={`${isPrivate ? null :"hidden"}`}>
+        <Input value={password} crossOrigin={undefined} type="text" label="Set Password" onChange={(e) => setPassword(e.target.value)}/>
+        </div>
+        
+        
       </div>
       <div className='pt-3 flex flex-row justify-between'>
         <p className='w-min whitespace-nowrap px-5  relative bottom-[6px]'>User Limit</p>
