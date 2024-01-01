@@ -71,7 +71,7 @@ function OpenEmpty() {
   const userAvatar = session?.user?.avatarUrl
   const isActive = session?.user?.isActive
 
-
+  useEffect(() => { console.log('Category set to' + cat) },[cat])
 
   const convertToBase64 = (file) => {
     return new Promise((resolve, reject) => {
