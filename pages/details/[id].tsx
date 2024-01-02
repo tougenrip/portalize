@@ -63,7 +63,7 @@ const Details = ({gamedatares, ownerDataRes}) => {
     
     
     <Navbar/>
-       <div className=' relative h-96 md:h-[35rem] md:bottom-32 w-full bg-no-repeat bg-cover bg-center' style={{backgroundImage: `url(${gamedatares.img || "/img/mapcomp.webp"})`, zIndex:"-1"}}>
+       <div className=' relative h-96 md:h-[35rem] md:bottom-32 w-full bg-no-repeat bg-cover bg-center' style={{backgroundImage: `url(${gamedatares.img || "/img/mapcomp.webp"})`}}>
             <div className={`${isSmall ? "hidden": null} absolute py-5 px-5  flex justify-between space-x-2 bg-paffbg rounded-t-3xl md:rounded-[35px] w-full h-20 md:h-32 md:w-[85%] shadow-2xl shadow-[#030303c5] -bottom-1 md:bottom-12 left-1/2 -translate-x-1/2 `}>
               <div className='flex space-x-6'>
                 <h2 className='flex space-x-3 font-bold text-5xl self-center ml-5'><span>{gamedatares.title}</span><Tooltip content="Coming Soon"><TbHeartHandshake className='h-8 w-8 self-center bg-clip-text stroke-[#9C4FFF] !bg-gradient-to-br !from-[#3B29FF] !to-[#9C4FFF] '/></Tooltip></h2>
@@ -86,7 +86,7 @@ const Details = ({gamedatares, ownerDataRes}) => {
               </div>
            
             
-            <Link href={`/game/${gamedatares.id}`}><Button  className="flex gap-3 justify-center !mx-5 w-56 !bg-gradient-to-br !from-[#3B29FF] !to-[#9C4FFF] text-center rounded-full h-min text-2xl whitespace-nowrap normal-case font-light !z-50">Join Space</Button></Link>
+            <Link className='!z-50' href={`/game/${gamedatares.id}`}><Button  className="flex gap-3 justify-center !mx-5 w-56 !bg-gradient-to-br !from-[#3B29FF] !to-[#9C4FFF] text-center rounded-full h-min text-2xl whitespace-nowrap normal-case font-light ">Join Space</Button></Link>
             </div>
             </div>
        </div>

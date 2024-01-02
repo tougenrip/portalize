@@ -1,104 +1,104 @@
-// /app/components/users/users.tsx
+// // /app/components/users/users.tsx
 
-"use client";
+// "use client";
 
-import { useEffect, useState } from "react";
-import axios from "axios";
-import { useInfiniteQuery } from "@tanstack/react-query";
-import { useInView } from "react-intersection-observer";
-import {GameCardNew} from "@/components/List";
-import { useSearchParams } from "next/navigation";
+// import { useEffect, useState } from "react";
+// import axios from "axios";
+// import { useInfiniteQuery } from "@tanstack/react-query";
+// import { useInView } from "react-intersection-observer";
+// import {GameCardNew} from "@/components/List";
+// import { useSearchParams } from "next/navigation";
 
-type UserQueryParams = {
-  take?: number;
-  lastCursor?: string;
-};
+// type UserQueryParams = {
+//   take?: number;
+//   lastCursor?: string;
+// };
 
-const allUsers = async ({ take, lastCursor }: UserQueryParams) => {
-  const response = await axios.get("/api/getMaps", {
-    params: { take, lastCursor },
-  });
-  return response?.data;
-};
+// const allUsers = async ({ take, lastCursor }: UserQueryParams) => {
+//   const response = await axios.get("/api/getMaps", {
+//     params: { take, lastCursor },
+//   });
+//   return response?.data;
+// };
 
-type UsersType = {
-  id: string;
-  name: string;
-  email: string;
-  avatar: string;
-};
+// type UsersType = {
+//   id: string;
+//   name: string;
+//   email: string;
+//   avatar: string;
+// };
 
-const Users = () => {
-  // to know when the last element is in view
-  const { ref, inView } = useInView();
-  const search = useSearchParams();
+// const Users = () => {
+//   // to know when the last element is in view
+//   const { ref, inView } = useInView();
+//   const search = useSearchParams();
 
-  const [feaquery, setFeaQuery] = useState<string | null>(search ? search.get("fea") : null)
-  const [maxUser, setMaxUser] = useState<string | null>(search ? search.get("maxu") : null);
-  const [minUser, setMinUser] = useState<string | null>(search ? search.get("minu") : null);
-  const [selVal, setSelVal] = useState("");
-  const [radioVal, setRadioVal] = useState("");
-  const [checked, setChecked] = useState([]);
+//   const [feaquery, setFeaQuery] = useState<string | null>(search ? search.get("fea") : null)
+//   const [maxUser, setMaxUser] = useState<string | null>(search ? search.get("maxu") : null);
+//   const [minUser, setMinUser] = useState<string | null>(search ? search.get("minu") : null);
+//   const [selVal, setSelVal] = useState("");
+//   const [radioVal, setRadioVal] = useState("");
+//   const [checked, setChecked] = useState([]);
 
-  // useInfiniteQuery is a hook that accepts a queryFn and queryKey and returns the result of the queryFn
-  const {
-    data,
-    error,
-    isLoading,
-    hasNextPage,
-    fetchNextPage,
-    isSuccess,
-    isFetchingNextPage,
-  } = useInfiniteQuery({
-    queryFn: ({ pageParam = "" }) =>
-      allUsers({ take: 10, lastCursor: pageParam }),
-    queryKey: ["users"],
- // getNextPageParam is used to get the cursor of the last element in the current page
- // which is then used as the pageParam in the queryFn
-    getNextPageParam: (lastPage) => {
-      return lastPage?.metaData.lastCursor;
-    },
-  });
+//   // useInfiniteQuery is a hook that accepts a queryFn and queryKey and returns the result of the queryFn
+//   const {
+//     data,
+//     error,
+//     isLoading,
+//     hasNextPage,
+//     fetchNextPage,
+//     isSuccess,
+//     isFetchingNextPage,
+//   } = useInfiniteQuery({
+//     queryFn: ({ pageParam = "" }) =>
+//       allUsers({ take: 10, lastCursor: pageParam }),
+//     queryKey: ["users"],
+//  // getNextPageParam is used to get the cursor of the last element in the current page
+//  // which is then used as the pageParam in the queryFn
+//     getNextPageParam: (lastPage) => {
+//       return lastPage?.metaData.lastCursor;
+//     },
+//   });
 
-  useEffect(() => {
- // if the last element is in view and there is a next page, fetch the next page
-    if (inView && hasNextPage) {
-      fetchNextPage();
-    }
-  }, [hasNextPage, inView, fetchNextPage]);
+//   useEffect(() => {
+//  // if the last element is in view and there is a next page, fetch the next page
+//     if (inView && hasNextPage) {
+//       fetchNextPage();
+//     }
+//   }, [hasNextPage, inView, fetchNextPage]);
 
-  if (error as any)
-    return (
-      <div className="mt-10">
-        {"An error has occurred: " + (error as any).message}
-      </div>
-    );
+//   if (error as any)
+//     return (
+//       <div className="mt-10">
+//         {"An error has occurred: " + (error as any).message}
+//       </div>
+//     );
 
-  // console.log("data:",data);
+//   // console.log("data:",data);
 
-  return (
-    <div className="mt-10">
-      {isSuccess &&
-        data?.pages.map((item) =>
-        item.data.map((user: UsersType, index: number) => {
-   // if the last element in the page is in view, add a ref to it
-            if (item.data.length === index + 1) {
-              return (
-                <div ref={ref} key={index}>
-                  <GameCardNew key={item.id} isDragging={false} itemId={item.id} setSelected={undefined} item={item} />
-                </div>
-              );
-            } else {
-              return (
-                <GameCardNew key={item.id} isDragging={false} itemId={item.id} setSelected={undefined} item={item} />
-              );
-            }
-          })
-        )}
+//   return (
+//     <div className="mt-10">
+//       {isSuccess &&
+//         data?.pages.map((item) =>
+//         item.data.map((user: UsersType, index: number) => {
+//    // if the last element in the page is in view, add a ref to it
+//             if (item.data.length === index + 1) {
+//               return (
+//                 <div ref={ref} key={index}>
+//                   <GameCardNew key={item.id} isDragging={false} itemId={item.id} setSelected={undefined} item={item} />
+//                 </div>
+//               );
+//             } else {
+//               return (
+//                 <GameCardNew key={item.id} isDragging={false} itemId={item.id} setSelected={undefined} item={item} />
+//               );
+//             }
+//           })
+//         )}
 
-      {(isLoading || isFetchingNextPage) && <p className="mb-4">Loading...</p>}
-    </div>
-  );
-};
+//       {(isLoading || isFetchingNextPage) && <p className="mb-4">Loading...</p>}
+//     </div>
+//   );
+// };
 
-export default Users;
+// export default Users;

@@ -75,6 +75,7 @@ const AfterAuth = () => {
                 <Typography variant="h1" color="white" className="text-center">You`re Almost Ready</Typography>
                 <Typography variant="h5" color="white" className="text-center font-thin">We just need a little bit more information of you.</Typography>
                 <Input type='date' onChange={e => { setBDay(new Date(e.target.value).toISOString()); console.log(bDay); } } size='lg' label='Enter your Birthday' crossOrigin={undefined}/>
+                <Input type='date' onChange={e => { setBDay(new Date(e.target.value).toISOString()); console.log(bDay); } } size='lg' label='Enter your Birthday' crossOrigin={undefined}/>
                 <Select size='lg' onChange={e => {setGender(e); console.log(bDay)}} value={gender} label="Select your Gender">
                     <Option value='male'>Male</Option>
                     <Option value='female'>Female</Option>

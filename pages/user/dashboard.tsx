@@ -62,8 +62,10 @@ const Dashboard = () => {
     setUploadImg(e.target.files[0]);
       const url = URL.createObjectURL(e.target.files[0])
       setUploadImgUrl(url)
-      uploadUserImage()
+      
   };
+
+  useEffect(() => {uploadUserImage()}, [uploadImg])
 
   const uploadUserImage = async () => {
     try{

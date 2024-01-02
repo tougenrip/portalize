@@ -38,7 +38,7 @@ import SelectOption from "@material-tailwind/react/components/Select/SelectOptio
 
 
 function OpenEmpty() {
-  const [visibility, setVisibility] = useState(false);
+  const [visibility, setVisibility] = useState(true);
   const [floormap, setFloormap] = useState("");
   const [interior, setInterior] = useState("");
   const [floormapdraft, setFloormapDraft] = useState(null);
@@ -225,7 +225,6 @@ function OpenEmpty() {
        
       axios.get(`/api/getDrafts?i=${userId}`).then((res) => {
         draftData = JSON.stringify(res.data);
-        console.log(draftData);
         sendMessage('MenuSave', 'GetDraftsFromDB', draftData);
 
       })).catch((err) => {toast.error('An error occured when fetching drafts. Please try again'); console.log(err)});
@@ -246,7 +245,6 @@ function OpenEmpty() {
       const deleteDraftFromDb = useCallback((draftId) => {
         axios.put(`/api/deleteDraft?i=${draftId}`).then(() => axios.get(`/api/getDrafts?i=${userId}`).then((res) => {
           draftData = JSON.stringify(res.data);
-          console.log(draftData);
           sendMessage('MenuSave', 'GetDraftsFromDB', draftData);
         }))
       }, [])
@@ -315,7 +313,6 @@ function OpenEmpty() {
       const modelLink = await modelToImage(modelUrl)
       // inFilePathUrl  - this will path of file or its dynamic for input tag then you can generate the filepath from file using blob
       setImageLink(modelLink)
-      console.log(imageLink)
     }
   
     const handleModelChange = (e) => {
@@ -463,16 +460,17 @@ function OpenEmpty() {
         
       <Input value={title} crossOrigin={undefined} type="text" label="Map Title" onChange={(e) => setTitle(e.target.value)}/>
       <Input value={desc} type="text" label='Description' onChange={(e) => setDesc(e.target.value)} crossOrigin={undefined}/>
-      <Select value={cat} color="purple" onChange={(e) => {setCat(e); console.log(cat)}} label="Select Category">
+      <Select value={cat} color="purple" onChange={(e) => {setCat(e)}} label="Select Category">
         <Option value="worldaffairs">🌍 World Affairs</Option>
-        <Option value="life">💭 Arts</Option>
-        <Option value="arts">💡 Knowledge</Option>
-        <Option value="knowledge">🧭 Tech</Option>
-        <Option value="tech">🌆 Places</Option>
-        <Option value="places">🕊️ Faith</Option>
-        <Option value="faith">🥳 Hanging Out</Option>
-        <Option value="hangingout">🏆 Sports</Option>
-        <Option value="sports">🗣️ Identity</Option>
+        <Option value="life">🌻 Life</Option>
+        <Option value="arts">💭 Arts</Option>
+        <Option value="knowledge">💡 Knowledge</Option>
+        <Option value="tech">🧭 Tech</Option>
+        <Option value="places">🌆 Places</Option>
+        <Option value="faith">🕊️ Faith</Option>
+        <Option value="hangingout">🥳 Hanging Out</Option>
+        <Option value="sports">🏆 Sports</Option>
+        <Option value="identity">🗣️ Identity</Option>
         <Option value="hustle">🔥 Hustle</Option>
         <Option value="languages">💬 Languages</Option>
         <Option value="wellness">🌿 Wellness</Option>
