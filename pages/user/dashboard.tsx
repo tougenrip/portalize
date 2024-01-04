@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import SideBar from '../../components/SideBar'
 import { Avatar, Button, Input } from '@material-tailwind/react'
 import { useSession } from 'next-auth/react'
@@ -37,6 +37,9 @@ const Dashboard = () => {
   const [skyvisibility, setSkyVisibility] = useState(false)
   const [productvisibility, setProductVisibility] = useState(false)
   const [eventvisibility, setEventVisibility] = useState(false)
+  const firstUpdate = useRef(true);
+
+  
 
   const config: EditorConfig  = {
     clearCache: true,
@@ -65,8 +68,6 @@ const Dashboard = () => {
       
   };
 
-  useEffect(() => {uploadUserImage()}, [uploadImg])
-
   const uploadUserImage = async () => {
     try{
       const uploadTost = toast.loading("Please wait...")
@@ -82,14 +83,27 @@ const Dashboard = () => {
       }
       ).then( async () => {
         toast.update(uploadTost, {render: "Updated user profile picture!", type: "success", isLoading: false, autoClose: 5000});
-        update({image:uploadImg});
+        
       }
     )
-    console.log(`Image URL is: ${avatarUrl}`)
+    .finally(
+      async() => {update({image:uploadImg})}
+    )
+    console.log(`Image URL is: ${uploadImg}`)
     }catch(e){
       console.log(e)
     }
   };
+
+  useEffect(() => {
+    if (firstUpdate.current) {
+    firstUpdate.current = false;
+    return;
+  
+  }
+  console.log('uploading this image now' + uploadImg)
+  uploadUserImage()
+  },[uploadImg])
 
   const handleOnAvatarExported = async (url: string) => {
     
@@ -263,8 +277,8 @@ const Dashboard = () => {
                 variant="circular"
                 size="xxl"
                 alt="UserLogo"
-                className={`cursor-pointer mt-5 h-24 w-24 place-self-center`}
-                src={userImage || '/img/pp_comp.webp'}
+                className={`cursor-pointer mt-5 h-24 w-24 place-self-center aspect-square`}
+                src={session?.user?.image || '/img/pp_comp.webp'}
               />
               <Input type="file" color="purple" className='border-2 !h-[46px]' onChange={(e) => handleFileUpload(e)} style={{ backgroundColor: 'transparent' }} label='Change profile picture' crossOrigin={undefined}></Input>
               </div>
