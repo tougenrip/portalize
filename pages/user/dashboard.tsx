@@ -106,7 +106,6 @@ const Dashboard = () => {
   },[uploadImg])
 
   const handleOnAvatarExported = async (url: string) => {
-    
 
     setAvatarUrl(url)
 

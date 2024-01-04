@@ -1,4 +1,5 @@
 import { CheckboxWithDescription } from '@/components/CheckboxComp'
+import FriendsPortal from '@/components/FriendsPortal'
 import GameCardNew from '@/components/GameCardNew'
 import MultiRangeSlider from '@/components/MultiRangeSlider'
 import SelectComp from '@/components/SelectComponent'
@@ -13,14 +14,18 @@ const Testpage = () => {
 
   return (
     <main className='flex flex-col justify-normal space-y-5'>
-        <GameCardNew setSelected={undefined} item={undefined} itemId={undefined} />
+        <FriendsPortal/>
+
+        {/* <GameCardNew setSelected={undefined} item={undefined} itemId={undefined} /> */}
        
-        <MultiRangeSlider
+        {/* <MultiRangeSlider
             min={0}
             max={32}
             onChange={({ min, max }) => console.log(`min = ${min}, max = ${max}`)}
-          />
-          <SelectComp 
+          /> */}
+
+          
+          {/* <SelectComp 
           options={[
             "test",
             "2",
@@ -28,8 +33,9 @@ const Testpage = () => {
           ]}
           val={selVal}
           onChange={({val}) => {setSelVal(val); console.log(selVal)}}
-          />
-          <RadioWithDescription
+          /> */}
+
+          {/* <RadioWithDescription
           selOpt={radioVal}
           onChange={({selOpt}) => {setRadioVal(selOpt); console.log(radioVal)}}
           options={[
@@ -69,7 +75,9 @@ const Testpage = () => {
               value:"3"
               }
           ]}
-          onChange={({chckitms}) => {setChecked(chckitms); console.log(checked)}}  />
+          onChange={({chckitms}) => {setChecked(chckitms); console.log(checked)}}  /> */}
+
+          
     </main>
   )
 }

@@ -12,7 +12,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
 if (req.method === 'PUT'){
     try{
-        const { userEmail,userName, userImage, gender, bDay } = req.body;
+        const { userEmail,userName, userImage, gender, bDay, avatar } = req.body;
         
       
 
@@ -22,6 +22,7 @@ if (req.method === 'PUT'){
         image:userImage,
         gender:gender,
         bDay: bDay,
+        avatarUrl: avatar
       }});
 
       await prisma.map.updateMany({where:{id:owner as unknown as number}, data:{
