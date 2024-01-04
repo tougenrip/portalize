@@ -50,8 +50,16 @@ function App({floormapdata, interiordata,gamedatares}) {
   var newWorld
   const userId = session?.user?.id
   const userName = session?.user?.name
+  const userGender = session?.user?.gender
   const avatarId = session?.user?.avatarUrl
+  const userBday = session?.user?.bDay
   console.log(userId,avatarId)
+
+  useEffect(() => {
+    if (!(userName || userGender || userBday || avatarId)) {
+      router.push('/afterAuth')
+    }
+  }, [userName, avatarId, userGender, userBday])
 
   const fulldata = JSON.stringify({floormap,interior,worldId,password,userId,avatarId})
   

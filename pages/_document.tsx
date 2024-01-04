@@ -1,20 +1,14 @@
+import { useSession } from 'next-auth/react';
+import { RouteKind } from 'next/dist/server/future/route-kind';
 import { Html, Head, Main, NextScript } from 'next/document'
+import Router, { useRouter } from 'next/router';
 import NextNProgress from 'nextjs-progressbar'
 import { useEffect, useState } from 'react'
 
 
 export default function Document() {
-
-  
-
   
   const [windowDimension, setWindowDimension] = useState(null);
-
-  useEffect(() => {
-    
-  });
-  
-
   useEffect(() => {
     setWindowDimension(window.innerWidth);
   }, []);

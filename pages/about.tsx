@@ -12,16 +12,27 @@ import Script from "next/script";
 import { SubscriptionCard } from "@/components/SubscriptionCard";
 import { subscription, services } from "@/constants";
 import { FooterWithLogo } from "@/components/FooterWithLogo";
+import { useRouter } from "next/router";
+import { useSession } from "next-auth/react";
 
 
 
 function Maintenance() {
   const [windowDimension, setWindowDimension] = useState(null);
 
+  const {data:session, status, update} = useSession();
+  const userName = session?.user?.name
+  const userGender = session?.user?.gender
+  const userBday = session?.user?.bDay
+  const userAvatar = session?.user?.avatarUrl
+
+  const router = useRouter()
+
   useEffect(() => {
-    
-  });
-  
+    if (!(userName || userGender || userBday || userAvatar)) {
+      router.push('/afterAuth')
+    }
+  }, [userName, userAvatar, userGender, userBday])
 
   useEffect(() => {
     setWindowDimension(window.innerWidth);
@@ -87,6 +98,20 @@ export default function Home() {
   useEffect(() => {
     
   });
+
+  const {data:session, status, update} = useSession();
+  const userName = session?.user?.name
+  const userGender = session?.user?.gender
+  const userBday = session?.user?.bDay
+  const userAvatar = session?.user?.avatarUrl
+
+  const router = useRouter()
+
+  useEffect(() => {
+    if (!(userName || userGender || userBday || userAvatar)) {
+      router.push('/afterAuth')
+    }
+  })
   
 
   useEffect(() => {

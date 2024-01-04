@@ -6,6 +6,8 @@ import React, { useEffect, useState} from 'react'
 import { FaPlayCircle } from 'react-icons/fa'
 import {TbHeartHandshake} from 'react-icons/tb' 
 import NextNProgress from 'nextjs-progressbar'
+import { useRouter } from 'next/router'
+import { useSession } from 'next-auth/react'
 
  
 export const getServerSideProps = async(req,res,ctx) => {
@@ -32,6 +34,20 @@ return{
 };
 }
 const Details = ({gamedatares, ownerDataRes}) => {
+
+  const {data:session, status, update} = useSession();
+  const userName = session?.user?.name
+  const userGender = session?.user?.gender
+  const userBday = session?.user?.bDay
+  const userAvatar = session?.user?.avatarUrl
+
+  const router = useRouter()
+
+  useEffect(() => {
+    if (!(userName || userGender || userBday || userAvatar)) {
+      router.push('/afterAuth')
+    }
+  }, [userName, userAvatar, userGender, userBday])
 
   const [windowDimension, setWindowDimension] = useState(null);
   const gameCreated = gamedatares.created as unknown as string

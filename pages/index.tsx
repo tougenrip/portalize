@@ -9,6 +9,8 @@ import { motion } from 'framer-motion';
 import { FooterWithLogo } from '@/components/FooterWithLogo';
 import NextNProgress from 'nextjs-progressbar'
 import FeaturedGameSlider from '@/components/FeaturedGameSlider';
+import { useRouter } from 'next/router';
+import { useSession } from 'next-auth/react';
 
 
 function Maintenance() {
@@ -76,6 +78,20 @@ function Maintenance() {
 
 
 const PortalizeSB = ({data}) => {
+
+  const {data:session, status, update} = useSession();
+  const userName = session?.user?.name
+  const userGender = session?.user?.gender
+  const userBday = session?.user?.bDay
+  const userAvatar = session?.user?.avatarUrl
+
+  const router = useRouter()
+
+  useEffect(() => {
+    if (!(userName || userGender || userBday || userAvatar)) {
+      router.push('/afterAuth')
+    }
+  }, [userName, userAvatar, userGender, userBday])
 
   const [selected, setSelected] = useState(null);
   const [windowDimension, setWindowDimension] = useState(null);

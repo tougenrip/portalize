@@ -6,6 +6,8 @@ import NextNProgress from 'nextjs-progressbar';
 import { mode } from "@chakra-ui/theme-tools";
 import Providers from '@/components/Providers';
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { useRouter } from 'next/router';
+import { useEffect } from 'react';
 // const theme = extendTheme({
 //   config: {
 //     useSystemColorMode: true,
@@ -25,7 +27,8 @@ const queryClient = new QueryClient();
 
 export default function App({ Component, pageProps: {session , ...pageProps}, }: AppProps) {
 
-
+  
+  
   
   return (
     

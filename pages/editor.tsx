@@ -14,6 +14,7 @@ import { CircularProgressbar } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 import { modelToImage } from "@/utils/modelToImage";
 import SelectOption from "@material-tailwind/react/components/Select/SelectOption";
+import { useRouter } from "next/router";
 
 
 
@@ -67,9 +68,20 @@ function OpenEmpty() {
 
   const {data:session} = useSession()
   const userId = session?.user?.id
-  const userName = session?.user?.name
-  const userAvatar = session?.user?.avatarUrl
   const isActive = session?.user?.isActive
+
+  const userName = session?.user?.name
+  const userGender = session?.user?.gender
+  const userBday = session?.user?.bDay
+  const userAvatar = session?.user?.avatarUrl
+
+  const router = useRouter()
+
+  useEffect(() => {
+    if (!(userName || userGender || userBday || userAvatar)) {
+      router.push('/afterAuth')
+    }
+  }, [userName, userAvatar, userGender, userBday])
 
   useEffect(() => { console.log('Category set to' + cat) },[cat])
 
