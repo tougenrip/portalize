@@ -28,6 +28,7 @@ declare module "next-auth" {
         rpmId:string;
         gender:string;
         bDay:Date;
+        friends:Array<string>;
         avatarUrl:string;
         active:boolean;
         accounts:Account;
@@ -50,6 +51,7 @@ declare module "next-auth" {
         isDev:boolean;
         rpmId:string;
         gender:string;
+        friends:Array<string>;
         bDay:Date;
         avatarUrl:string;
         active:boolean;

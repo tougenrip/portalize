@@ -37,7 +37,7 @@ export default async function handler(req:NextApiRequest,res:NextApiResponse) {
         fmbyid = await prisma.map.findMany({
           where: {
             cat: cat as unknown as string,
-            ownerName:owner as string,
+            ownerId:owner as string,
             userLimit:usrLimit,
             
             
