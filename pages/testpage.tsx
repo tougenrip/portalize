@@ -14,7 +14,7 @@ const Testpage = () => {
 
   return (
     <main className='flex flex-col justify-normal space-y-5'>
-        <FriendsPortal/>
+        <FriendsPortal visibility={undefined}/>
 
         {/* <GameCardNew setSelected={undefined} item={undefined} itemId={undefined} /> */}
        

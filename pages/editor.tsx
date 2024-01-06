@@ -39,7 +39,7 @@ import { useRouter } from "next/router";
 
 
 function OpenEmpty() {
-  const [visibility, setVisibility] = useState(true);
+  const [visibility, setVisibility] = useState(false);
   const [floormap, setFloormap] = useState("");
   const [interior, setInterior] = useState("");
   const [floormapdraft, setFloormapDraft] = useState(null);
@@ -77,11 +77,7 @@ function OpenEmpty() {
 
   const router = useRouter()
 
-  useEffect(() => {
-    if (!(userName || userGender || userBday || userAvatar)) {
-      router.push('/afterAuth')
-    }
-  }, [userName, userAvatar, userGender, userBday])
+  
 
   useEffect(() => { console.log('Category set to' + cat) },[cat])
 
@@ -165,10 +161,10 @@ function OpenEmpty() {
   };
  
     const { unityProvider, loadingProgression, isLoaded, sendMessage, addEventListener, removeEventListener, UNSAFE__unityInstance } =  useUnityContext({
-      loaderUrl: `${process.env.NEXT_PUBLIC_WEBSITE_URL}uploads/Builds/editor/Build/webgl-portalize-editor-8.loader.js`,
-      dataUrl: `${process.env.NEXT_PUBLIC_WEBSITE_URL}uploads/Builds/editor/Build/webgl-portalize-editor-8.data.unityweb`,
-      frameworkUrl: `${process.env.NEXT_PUBLIC_WEBSITE_URL}uploads/Builds/editor/Build/webgl-portalize-editor-8.framework.js.unityweb`,
-      codeUrl: `${process.env.NEXT_PUBLIC_WEBSITE_URL}uploads/Builds/editor/Build/webgl-portalize-editor-8.wasm.unityweb`,
+      loaderUrl: `${process.env.NEXT_PUBLIC_WEBSITE_URL}uploads/Builds/editor/Build/webgl-portalize-editor-11.loader.js`,
+      dataUrl: `${process.env.NEXT_PUBLIC_WEBSITE_URL}uploads/Builds/editor/Build/webgl-portalize-editor-11.data.unityweb`,
+      frameworkUrl: `${process.env.NEXT_PUBLIC_WEBSITE_URL}uploads/Builds/editor/Build/webgl-portalize-editor-11.framework.js.unityweb`,
+      codeUrl: `${process.env.NEXT_PUBLIC_WEBSITE_URL}uploads/Builds/editor/Build/webgl-portalize-editor-11.wasm.unityweb`,
       
     streamingAssetsUrl: "streamingassets",
     });
@@ -357,7 +353,7 @@ function OpenEmpty() {
           setIsLoading(false)
           toast.update(id, {render: "Congratulations! Your world just got uploaded to Portalize!", type: "success", isLoading: false, autoClose: 5000});
         }
-        if(response.status === 400){
+        if(response.status === 413){
           setIsLoading(false)
           toast.update(id, {render: "You don't have enough storage left.", type: "warning", isLoading: false, autoClose: 5000});
         }

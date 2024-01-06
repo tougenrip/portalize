@@ -28,11 +28,7 @@ function Maintenance() {
 
   const router = useRouter()
 
-  useEffect(() => {
-    if (!(userName || userGender || userBday || userAvatar)) {
-      router.push('/afterAuth')
-    }
-  }, [userName, userAvatar, userGender, userBday])
+  
 
   useEffect(() => {
     setWindowDimension(window.innerWidth);

@@ -20,13 +20,16 @@ const post = async (req, res) => {
     res.status(401).json({message: 'unauthorized'})
   }
   console.log('handling file...');
-  const form = new formidable.IncomingForm();
+  const form = new formidable.IncomingForm({
+    maxFileSize: 8000 * 1024 * 1024, // 8mb
+      maxFieldsSize: 8000 * 1024 * 1024, // 8mb
+  });
   form.parse(req, async function (err, fields, files) {
 
     if (err) console.log(err)
     if(currentQuota + files.file.size >= storageQuota){
       console.log('storage wasnt enough')
-      res.status(400).json({message:'not enough storage'})
+      res.status(413).json({message:'not enough storage'})
     } else{
     try{
         await saveFile1(req,res,files.file,fields,userId,currentQuota, storageQuota);

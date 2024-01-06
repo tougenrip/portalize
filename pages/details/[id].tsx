@@ -43,11 +43,7 @@ const Details = ({gamedatares, ownerDataRes}) => {
 
   const router = useRouter()
 
-  useEffect(() => {
-    if (!(userName || userGender || userBday || userAvatar)) {
-      router.push('/afterAuth')
-    }
-  }, [userName, userAvatar, userGender, userBday])
+  
 
   const [windowDimension, setWindowDimension] = useState(null);
   const gameCreated = gamedatares.created as unknown as string

@@ -11,6 +11,7 @@ import NextNProgress from 'nextjs-progressbar'
 import FeaturedGameSlider from '@/components/FeaturedGameSlider';
 import { useRouter } from 'next/router';
 import { useSession } from 'next-auth/react';
+import { GetServerSideProps } from 'next';
 
 
 function Maintenance() {
@@ -76,8 +77,16 @@ function Maintenance() {
   )
 }
 
+export const getServerSideProps: GetServerSideProps<{
+}> = async () => {
 
-const PortalizeSB = ({data}) => {
+  const [map1, map2, map3] = await Promise.all([fetch(`${process.env.NEXT_PUBLIC_WEBSITE_URL}api/getMaps?world=20`), fetch(`${process.env.NEXT_PUBLIC_WEBSITE_URL}api/getMaps?world=26`), fetch(`${process.env.NEXT_PUBLIC_WEBSITE_URL}api/getMaps?world=28`)]);
+  const [map1json, map2json, map3json] = await Promise.all([map1.json(), map2.json(), map3.json()])
+  return { props: { map1json, map2json, map3json } }
+}
+
+
+const PortalizeSB = ({data, map1json, map2json, map3json}) => {
 
   const {data:session, status, update} = useSession();
   const userName = session?.user?.name
@@ -87,11 +96,9 @@ const PortalizeSB = ({data}) => {
 
   const router = useRouter()
 
-  useEffect(() => {
-    if (!(userName || userGender || userBday || userAvatar)) {
-      router.push('/afterAuth')
-    }
-  }, [userName, userAvatar, userGender, userBday])
+
+  
+  
 
   const [selected, setSelected] = useState(null);
   const [windowDimension, setWindowDimension] = useState(null);
@@ -145,7 +152,7 @@ const PortalizeSB = ({data}) => {
             {/* <PortalNav/> */}
           </div>
             <div className='relative -top-24 '>
-                <GameSlider/> 
+                <GameSlider map1json={map1json} map2json={map2json} map3json={map3json}/> 
                 {/* <FeaturedGameSlider/>*/}
             </div>
 

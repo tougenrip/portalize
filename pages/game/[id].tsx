@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-before-interactive-script-outside-document */
 
-import React, { Fragment, useCallback, useEffect} from "react";
+import React, { Fragment, useCallback, useEffect, useState} from "react";
 import { Unity, useUnityContext } from "react-unity-webgl";
 import fetch from 'node-fetch'
 import { useSession } from "next-auth/react";
@@ -10,6 +10,9 @@ import Script from "next/script";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import NextNProgress from 'nextjs-progressbar'
+import { useQuery } from "@tanstack/react-query";
+import { BiXCircle } from "react-icons/bi";
+import FriendsPortal from "@/components/FriendsPortal";
 
 export const getServerSideProps = async(req,res,ctx) => {
   
@@ -53,15 +56,11 @@ function App({floormapdata, interiordata,gamedatares}) {
   const userName = session?.user?.name
   const userGender = session?.user?.gender
   const avatarId = session?.user?.avatarUrl
+  const userFriends = session?.user?.friends
   const userBday = session?.user?.bDay
-  console.log(userId,avatarId)
 
 
-  useEffect(() => {
-    if (!(userName || userGender || userBday || avatarId)) {
-      router.push('/afterAuth')
-    }
-  }, [userName, avatarId, userGender, userBday])
+  
 
   
   const fulldata = JSON.stringify({floormap,interior,worldId,password,userId,avatarId})
@@ -69,18 +68,17 @@ function App({floormapdata, interiordata,gamedatares}) {
 
  
   const { unityProvider, loadingProgression, isLoaded, unload,  sendMessage, addEventListener, removeEventListener, UNSAFE__unityInstance } = useUnityContext({
-    loaderUrl: `${process.env.NEXT_PUBLIC_WEBSITE_URL}uploads/Builds/game/Build/webgl-portalize-playmode-8.loader.js`,
-    dataUrl: `${process.env.NEXT_PUBLIC_WEBSITE_URL}uploads/Builds/game/Build/webgl-portalize-playmode-8.data.unityweb`,
-    frameworkUrl: `${process.env.NEXT_PUBLIC_WEBSITE_URL}uploads/Builds/game/Build/webgl-portalize-playmode-8.framework.js.unityweb`,
-    codeUrl: `${process.env.NEXT_PUBLIC_WEBSITE_URL}uploads/Builds/game/Build/webgl-portalize-playmode-8.wasm.unityweb`,
+    loaderUrl: `${process.env.NEXT_PUBLIC_WEBSITE_URL}uploads/Builds/game/Build/webgl-portalize-playmode-11.loader.js`,
+    dataUrl: `${process.env.NEXT_PUBLIC_WEBSITE_URL}uploads/Builds/game/Build/webgl-portalize-playmode-11.data.unityweb`,
+    frameworkUrl: `${process.env.NEXT_PUBLIC_WEBSITE_URL}uploads/Builds/game/Build/webgl-portalize-playmode-11.framework.js.unityweb`,
+    codeUrl: `${process.env.NEXT_PUBLIC_WEBSITE_URL}uploads/Builds/game/Build/webgl-portalize-playmode-11.wasm.unityweb`,
     streamingAssetsUrl: "streamingassets",
 
     
     
   });
    if(isLoaded === true){
-    
-    console.log(fulldata)
+    console.log(fulldata);
     setTimeout(() => sendMessage('PlaymodeManager','StartSession', fulldata), 500);
     
    }
@@ -109,6 +107,7 @@ function App({floormapdata, interiordata,gamedatares}) {
   },[])
 
 
+
   useEffect(() => {
       addEventListener("NewWorld", launchNewWorld);
       return () => {
@@ -116,9 +115,22 @@ function App({floormapdata, interiordata,gamedatares}) {
       };
     }, [addEventListener, removeEventListener, launchNewWorld]);
 
+    function OpenPortalList() {
+      console.log('portal list should be open now')
+      setPMV(curr => !curr)
+    }
+    
+
+    useEffect(() => {
+      addEventListener("OpenPortalList", OpenPortalList);
+      return () => {
+        removeEventListener("OpenPortalList", OpenPortalList);
+      };
+    }, [addEventListener, removeEventListener, OpenPortalList]);
 
 
 
+    const [portalModelVisibility, setPMV] = useState(true)
   
   return (
     
@@ -172,7 +184,12 @@ function App({floormapdata, interiordata,gamedatares}) {
         unityProvider={unityProvider}
         style={{transitionDelay:'3s', visibility: isLoaded ? "visible" : "hidden", "width": "100%", "height": "100vh" }}
       />
-
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 translate-y-1/2 h-min w-min">
+      <BiXCircle className={`${portalModelVisibility ? 'hidden' : null } h-10 w-10 top-1 right-2`} onClick={(curr) => setPMV(curr => !curr)}/>
+      <FriendsPortal visibility={portalModelVisibility}/>
+      </div>
+      
+      
       
       <>
       </>
@@ -192,3 +209,4 @@ function App({floormapdata, interiordata,gamedatares}) {
 }
 
 export default App
+
