@@ -173,6 +173,11 @@ function App({floormapdata, interiordata,gamedatares}) {
             <div className='bg-white h-3 transition' style={{width:`${Math.round(loadingProgression * 100)}%`, transition:"width 1s ease 0s"}}></div>
         </div>
         </div>
+        <div className={`${portalModelVisibility ? null : 'hidden'} fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-row items-start justify-center z-50`}>
+          <FriendsPortal visibility={portalModelVisibility}/>
+          <BiXCircle className={` ${portalModelVisibility ? null : 'hidden'} -ml-12 mt-2 h-10 w-10`} onClick={(curr) => setPMV(curr => !curr)}/>
+        </div>
+        
         </>
         
     
@@ -183,15 +188,13 @@ function App({floormapdata, interiordata,gamedatares}) {
         unityProvider={unityProvider}
         style={{transitionDelay:'3s', visibility: isLoaded ? "visible" : "hidden", "width": "100%", "height": "100vh" }}
       />
-      <div className={`${portalModelVisibility ? null : 'hidden'} absolute top-0 left-0 flex flex-col-reverse w-screen h-screen`} >
-      <BiXCircle className={` h-10 w-10 top-1 right-2`} onClick={(curr) => setPMV(curr => !curr)}/>
-      <FriendsPortal visibility={portalModelVisibility}/>
-      </div>
       
       
       
-      <>
-      </>
+      
+      
+      
+      
       {/*<ButtonGroup className="fixed top-5 left-5">
       <Input type="number" value={unityNumber} onChange={(e) => {setUnityNumber(e.target.valueAsNumber)}}/>
       <Input type="text" onChange={(e) => {e.preventDefault(); setUnityString(e.target.value)}}/>

@@ -41,12 +41,13 @@ const FriendsPortal =  ({visibility}) => {
     
 
   return (
-    <div className={`${visibility ?null : 'hidden'} absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2  aspect-video w-[60vw] bg-paffbg rounded-3xl`}>
-        <div className=' w-11/12 h-auto aspect-video bg-gray-700 overflow-hidden rounded-3xl grid grid-cols-2'>
+    <div className={`  flex flex-col p-2 items-center  aspect-video w-screen md:w-[50vw] md:max-w[60vw]  bg-paffbg rounded-3xl`}>
+        <h1 className='text-4xl font-bold text-center'>Select a world to travel!</h1>
+        <div className=' w-11/12 h-auto aspect-video bg-paffbg border-purple-500 border-2  overflow-hidden rounded-3xl grid grid-cols-2'>
             <div className=' overflow-y-scroll'>
                 <ul>
                     {userFriends?.map((friend,i) => (
-                        <li onClick={() => {setSelected(friend);}} key={i} className='py-2 px-4 bg-blue-gray-900 hover:bg-blue-gray-800 active:bg-blue-gray-700'>
+                        <li onClick={() => {setSelected(friend);}} key={i} className='py-2 px-4 text-sm bg-purple-900  hover:bg-purple-800 active:bg-purple-700'>
                             {friend}
                         </li>
                     ))}
@@ -59,7 +60,7 @@ const FriendsPortal =  ({visibility}) => {
                 <ul>
                     {friendMaps?.map((map,i) => (
                         <a href={`${process.env.NEXT_PUBLIC_WEBSITE_URL}game/${map.id}`} key={i}>
-                            <li key={i} onClick={(e) => {launchNewWorld(`${process.env.NEXT_PUBLIC_WEBSITE_URL}game/${map.id}`)}} className='py-2 px-4 bg-blue-gray-900 hover:bg-blue-gray-800 active:bg-blue-gray-700'>
+                            <li key={i} onClick={(e) => {launchNewWorld(`${process.env.NEXT_PUBLIC_WEBSITE_URL}game/${map.id}`)}} className='py-2 px-4 text-sm bg-purple-900 hover:bg-purple-800 active:bg-purple-700'>
                                 {map.title} 
                             </li>
                         </a>
