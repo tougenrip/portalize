@@ -41,8 +41,8 @@ const FriendsPortal =  ({visibility}) => {
     
 
   return (
-    <div className={`${visibility ? 'hidden' : null} relative aspect-video w-[60vw] bg-paffbg rounded-3xl`}>
-        <div className='absolute top-1/2 left-1/2 -translate-x-1/2 translate-y-1/2 w-11/12 h-auto aspect-video bg-gray-700 overflow-hidden rounded-3xl grid grid-cols-2'>
+    <div className={`${visibility ?null : 'hidden'} absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2  aspect-video w-[60vw] bg-paffbg rounded-3xl`}>
+        <div className=' w-11/12 h-auto aspect-video bg-gray-700 overflow-hidden rounded-3xl grid grid-cols-2'>
             <div className=' overflow-y-scroll'>
                 <ul>
                     {userFriends?.map((friend,i) => (

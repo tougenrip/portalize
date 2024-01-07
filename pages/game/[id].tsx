@@ -68,17 +68,16 @@ function App({floormapdata, interiordata,gamedatares}) {
 
  
   const { unityProvider, loadingProgression, isLoaded, unload,  sendMessage, addEventListener, removeEventListener, UNSAFE__unityInstance } = useUnityContext({
-    loaderUrl: `${process.env.NEXT_PUBLIC_WEBSITE_URL}uploads/Builds/game/Build/webgl-portalize-playmode-11.loader.js`,
-    dataUrl: `${process.env.NEXT_PUBLIC_WEBSITE_URL}uploads/Builds/game/Build/webgl-portalize-playmode-11.data.unityweb`,
-    frameworkUrl: `${process.env.NEXT_PUBLIC_WEBSITE_URL}uploads/Builds/game/Build/webgl-portalize-playmode-11.framework.js.unityweb`,
-    codeUrl: `${process.env.NEXT_PUBLIC_WEBSITE_URL}uploads/Builds/game/Build/webgl-portalize-playmode-11.wasm.unityweb`,
+    loaderUrl: `${process.env.NEXT_PUBLIC_WEBSITE_URL}uploads/Builds/game/Build/webgl-portalize-playmode-12.loader.js`,
+    dataUrl: `${process.env.NEXT_PUBLIC_WEBSITE_URL}uploads/Builds/game/Build/webgl-portalize-playmode-12.data.unityweb`,
+    frameworkUrl: `${process.env.NEXT_PUBLIC_WEBSITE_URL}uploads/Builds/game/Build/webgl-portalize-playmode-12.framework.js.unityweb`,
+    codeUrl: `${process.env.NEXT_PUBLIC_WEBSITE_URL}uploads/Builds/game/Build/webgl-portalize-playmode-12.wasm.unityweb`,
     streamingAssetsUrl: "streamingassets",
 
     
     
   });
    if(isLoaded === true){
-    console.log(fulldata);
     setTimeout(() => sendMessage('PlaymodeManager','StartSession', fulldata), 500);
     
    }
@@ -117,7 +116,7 @@ function App({floormapdata, interiordata,gamedatares}) {
 
     function OpenPortalList() {
       console.log('portal list should be open now')
-      setPMV(curr => !curr)
+      setPMV(true);
     }
     
 
@@ -130,7 +129,7 @@ function App({floormapdata, interiordata,gamedatares}) {
 
 
 
-    const [portalModelVisibility, setPMV] = useState(true)
+    const [portalModelVisibility, setPMV] = useState(false)
   
   return (
     
@@ -184,8 +183,8 @@ function App({floormapdata, interiordata,gamedatares}) {
         unityProvider={unityProvider}
         style={{transitionDelay:'3s', visibility: isLoaded ? "visible" : "hidden", "width": "100%", "height": "100vh" }}
       />
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 translate-y-1/2 h-min w-min">
-      <BiXCircle className={`${portalModelVisibility ? 'hidden' : null } h-10 w-10 top-1 right-2`} onClick={(curr) => setPMV(curr => !curr)}/>
+      <div className={`${portalModelVisibility ? null : 'hidden'} absolute top-0 left-0 flex flex-col-reverse w-screen h-screen`} >
+      <BiXCircle className={` h-10 w-10 top-1 right-2`} onClick={(curr) => setPMV(curr => !curr)}/>
       <FriendsPortal visibility={portalModelVisibility}/>
       </div>
       
