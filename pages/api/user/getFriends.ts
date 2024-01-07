@@ -21,16 +21,16 @@ export default  async function handler(req, res) {
                 friends:true
             }
         })
+              const response = await Promise.all(friends.map((friend,i) => fetch(`${process.env.NEXT_PUBLIC_WEBSITE_URL}api/user/${friend}`)));
+              const data = await Promise.all(response.map(r => r.json()))
+              console.log(data.flat());
+
+              res.status(201).json(data);
 
 
-        const responses = await Promise.all(friends.map(async(friend) => {
-           await fetch(`${process.env.NEXT_PUBLIC_WEBSITE_URL}api/user?id=${friend}`)
-        }))
+      };
+
+      
 
             
-            
-        
-            //return all responses
-            res.status(200).json(responses);
     }
-}

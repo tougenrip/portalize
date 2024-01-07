@@ -129,7 +129,7 @@ function App({floormapdata, interiordata,gamedatares}) {
 
 
 
-    const [portalModelVisibility, setPMV] = useState(false)
+    const [portalModelVisibility, setPMV] = useState(true)
   
   return (
     

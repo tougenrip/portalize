@@ -12,6 +12,16 @@ const nextConfig = {
   transpilePackages: [ '@readyplayerme/rpm-react-sdk'],
   compress: true,
   transpilePackages: ['three', '@react-three/drei'],
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'lh3.googleusercontent.com',
+        port: '',
+        pathname: '/**/**',
+      },
+    ],
+  },
 }
 
 module.exports = nextConfig
