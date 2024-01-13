@@ -60,7 +60,7 @@ const FriendsPortal =  ({visibility}) => {
     
 
   return (
-    <div className={`  flex flex-col p-2 items-center  aspect-video w-screen md:w-[50vw] md:max-w[60vw]  bg-paffbg rounded-3xl`}>
+    <div className={`${visibility ? null : 'hidden'} flex flex-col p-2 items-center  aspect-video w-screen md:w-[50vw] md:max-w[60vw]  bg-paffbg rounded-3xl`}>
         <h1 className='text-4xl font-bold text-center'>Select a world to travel!</h1>
         <div className=' w-11/12 h-auto aspect-video bg-paffbg border-purple-500 border-2  overflow-hidden rounded-3xl grid grid-cols-2'>
             <div className=' overflow-y-scroll'>

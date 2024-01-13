@@ -68,10 +68,10 @@ function App({floormapdata, interiordata,gamedatares}) {
 
  
   const { unityProvider, loadingProgression, isLoaded, unload,  sendMessage, addEventListener, removeEventListener, UNSAFE__unityInstance } = useUnityContext({
-    loaderUrl: `${process.env.NEXT_PUBLIC_WEBSITE_URL}uploads/Builds/game/Build/webgl-portalize-playmode-12.loader.js`,
-    dataUrl: `${process.env.NEXT_PUBLIC_WEBSITE_URL}uploads/Builds/game/Build/webgl-portalize-playmode-12.data.unityweb`,
-    frameworkUrl: `${process.env.NEXT_PUBLIC_WEBSITE_URL}uploads/Builds/game/Build/webgl-portalize-playmode-12.framework.js.unityweb`,
-    codeUrl: `${process.env.NEXT_PUBLIC_WEBSITE_URL}uploads/Builds/game/Build/webgl-portalize-playmode-12.wasm.unityweb`,
+    loaderUrl: `${process.env.NEXT_PUBLIC_WEBSITE_URL}uploads/Builds/game/Build/webgl-portalize-playmode-13.loader.js`,
+    dataUrl: `${process.env.NEXT_PUBLIC_WEBSITE_URL}uploads/Builds/game/Build/webgl-portalize-playmode-13.data.unityweb`,
+    frameworkUrl: `${process.env.NEXT_PUBLIC_WEBSITE_URL}uploads/Builds/game/Build/webgl-portalize-playmode-13.framework.js.unityweb`,
+    codeUrl: `${process.env.NEXT_PUBLIC_WEBSITE_URL}uploads/Builds/game/Build/webgl-portalize-playmode-13.wasm.unityweb`,
     streamingAssetsUrl: "streamingassets",
 
     
@@ -129,7 +129,7 @@ function App({floormapdata, interiordata,gamedatares}) {
 
 
 
-    const [portalModelVisibility, setPMV] = useState(true)
+    const [portalModelVisibility, setPMV] = useState(false)
   
   return (
     
@@ -173,10 +173,6 @@ function App({floormapdata, interiordata,gamedatares}) {
             <div className='bg-white h-3 transition' style={{width:`${Math.round(loadingProgression * 100)}%`, transition:"width 1s ease 0s"}}></div>
         </div>
         </div>
-        <div className={`${portalModelVisibility ? null : 'hidden'} fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-row items-start justify-center z-50`}>
-          <FriendsPortal visibility={portalModelVisibility}/>
-          <BiXCircle className={` ${portalModelVisibility ? null : 'hidden'} -ml-12 mt-2 h-10 w-10`} onClick={(curr) => setPMV(curr => !curr)}/>
-        </div>
         
         </>
         
@@ -189,7 +185,11 @@ function App({floormapdata, interiordata,gamedatares}) {
         style={{transitionDelay:'3s', visibility: isLoaded ? "visible" : "hidden", "width": "100%", "height": "100vh" }}
       />
       
-      
+      <div className={`${portalModelVisibility ? null : 'hidden'} fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-row items-start justify-center z-50`}>
+          <FriendsPortal visibility={portalModelVisibility}/>
+          <BiXCircle className={` ${portalModelVisibility ? null : 'hidden'} -ml-12 mt-2 h-10 w-10`} onClick={(curr) => setPMV(curr => !curr)}/>
+        </div>
+        
       
       
       
