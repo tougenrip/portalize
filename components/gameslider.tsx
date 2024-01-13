@@ -4,13 +4,31 @@ import ExpandCard from './expandcard';
 import { GetServerSideProps } from 'next'
 import { motion } from 'framer-motion';
 import { IconButton } from '@material-tailwind/react';
+import { useEffect, useState } from 'react';
 
 
 
 
 const GameSlider = ({map1json, map2json, map3json}) => {
 
+  const [windowDimension, setWindowDimension] = useState(null);
 
+  useEffect(() => {
+    setWindowDimension(window.innerWidth);
+  }, []);
+
+  useEffect(() => {
+    function handleResize() {
+      setWindowDimension(window.innerWidth);
+    }
+  
+  
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+  
+
+  const isMobile = windowDimension <= 900;
 
   
   const [sliderRef] = useKeenSlider<HTMLDivElement>(
@@ -51,7 +69,7 @@ const GameSlider = ({map1json, map2json, map3json}) => {
     return (
       <div ref={sliderRef} className="keen-slider overflow-x-hidden">
         
-        <div className="keen-slider__slide" ><motion.div  whileHover="hover" className='h-[70vh] hover:h-[80vh] transition-all flex align-middle place-content-center items-center tracking-wider'>
+        <div className="keen-slider__slide" ><motion.div  whileHover="hover" className={`${isMobile ? 'h-[70vh]' : 'h-[70vh] hover:h-[80vh]'} transition-all flex align-middle place-content-center items-center tracking-wider`}>
         <motion.div
             className={`relative bg-cover bg-no-repeat  w-screen h-[100%] text-center `}
             transition={{layout:{duration:1, type:'spring'}}}
@@ -65,7 +83,7 @@ const GameSlider = ({map1json, map2json, map3json}) => {
           transition={{duration:.5}}
           >
             <motion.h2
-            initial={{opacity:1,y:50  }}
+            initial={{opacity:1,y:isMobile ? 0 : 50}}
           variants={{
             hover:{
               y:0
@@ -74,7 +92,7 @@ const GameSlider = ({map1json, map2json, map3json}) => {
             >
                 {map1json.title}
             </motion.h2>
-            <motion.div 
+            {!isMobile && <motion.div 
             initial={{opacity:0}}
             variants={{
               hover:{
@@ -85,7 +103,7 @@ const GameSlider = ({map1json, map2json, map3json}) => {
             className='font-normal  tracking-normal max-w-[75%] text-xl'
             >
               {map1json.desc}
-            </motion.div>
+            </motion.div>}
           </motion.div>
             <motion.div className='absolute bottom-5 right-14 w-24 ' >
               <a href={`${process.env.NEXT_PUBLIC_WEBSITE_URL}game/${map1json.id}`}></a>
@@ -102,7 +120,7 @@ const GameSlider = ({map1json, map2json, map3json}) => {
         </motion.div>
         </div>
 
-        <div className="keen-slider__slide" ><motion.div  whileHover="hover" className='h-[70vh] hover:h-[80vh] transition-all flex align-middle place-content-center items-center tracking-wider'>
+        <div className="keen-slider__slide" ><motion.div  whileHover="hover" className={`${isMobile ? 'h-[70vh]' : 'h-[70vh] hover:h-[80vh]'} transition-all flex align-middle place-content-center items-center tracking-wider`}>
         <motion.div
             className={`relative  bg-cover bg-no-repeat  w-screen h-[100%] text-center `}
             transition={{layout:{duration:1, type:'spring'}}}
@@ -116,7 +134,7 @@ const GameSlider = ({map1json, map2json, map3json}) => {
           transition={{duration:.5}}
           >
             <motion.h2
-            initial={{opacity:1,y:50  }}
+            initial={{opacity:1,y:isMobile ? 0 : 50  }}
           variants={{
             hover:{
               y:0
@@ -125,7 +143,7 @@ const GameSlider = ({map1json, map2json, map3json}) => {
             >
                 {map2json.title}
             </motion.h2>
-            <motion.div 
+            {!isMobile && <motion.div 
             initial={{opacity:0}}
             variants={{
               hover:{
@@ -136,7 +154,7 @@ const GameSlider = ({map1json, map2json, map3json}) => {
             className='font-normal  tracking-normal max-w-[75%] text-xl'
             >
               {map2json.desc}
-            </motion.div>
+            </motion.div>}
           </motion.div>
             <motion.div className='absolute bottom-5 right-14 w-24 ' >
               <a href={`${process.env.NEXT_PUBLIC_WEBSITE_URL}game/${map2json.id}`}></a>
@@ -154,7 +172,7 @@ const GameSlider = ({map1json, map2json, map3json}) => {
         </div>
 
 
-        <div className="keen-slider__slide" ><motion.div  whileHover="hover" className='h-[70vh] hover:h-[80vh] transition-all flex align-middle place-content-center items-center tracking-wider'>
+        <div className="keen-slider__slide" ><motion.div  whileHover="hover" className={`${isMobile ? 'h-[70vh]' : 'h-[70vh] hover:h-[80vh]'} transition-all flex align-middle place-content-center items-center tracking-wider`}>
         <motion.div
             className={`relative bg-cover bg-no-repeat  w-screen h-[100%] text-center `}
             transition={{layout:{duration:1, type:'spring'}}}
@@ -168,7 +186,7 @@ const GameSlider = ({map1json, map2json, map3json}) => {
           transition={{duration:.5}}
           >
             <motion.h2
-            initial={{opacity:1,y:50  }}
+            initial={{opacity:1,y:isMobile ? 0 : 50  }}
           variants={{
             hover:{
               y:0
@@ -177,7 +195,7 @@ const GameSlider = ({map1json, map2json, map3json}) => {
             >
                 {map3json.title}
             </motion.h2>
-            <motion.div 
+            {!isMobile && <motion.div 
             initial={{opacity:0}}
             variants={{
               hover:{
@@ -188,7 +206,7 @@ const GameSlider = ({map1json, map2json, map3json}) => {
             className='font-normal  tracking-normal max-w-[75%] text-xl'
             >
               {map3json.desc}
-            </motion.div>
+            </motion.div>}
           </motion.div>
             <motion.div className='absolute bottom-5 right-14 w-24 ' >
               <a href={`${process.env.NEXT_PUBLIC_WEBSITE_URL}game/${map3json.id}`}></a>

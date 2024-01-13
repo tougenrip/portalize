@@ -157,7 +157,7 @@ const PortalizeSB = ({data, map1json, map2json, map3json}) => {
             </div>
 
             <div className=' h-fit mr-0'>
-              <h2 className='relative font-extrabold text-4xl w-max left-14 w-18 mb-7'>Featured Servers</h2>
+              <h2 className='relative font-extrabold text-4xl w-max left-14 w-18 mb-7 '>Featured Servers</h2>
               <div className="!scrollbar-none">
               <List cat="" />
               </div>

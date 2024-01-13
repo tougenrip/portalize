@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import useSWR from "swr";
 import { motion as m } from 'framer-motion'
 import { Card ,Button, CardHeader, CardFooter, CardBody, Typography, Tooltip } from "@material-tailwind/react";
@@ -77,10 +77,11 @@ export const GameCardNew = ({ setSelected, item, itemId, isDragging }) => {
       // Redirect to Page B
       router.push(`${process.env.NEXT_PUBLIC_WEBSITE_URL}game/${item.id}`);
     };
+    
   
 
 return (
-  <m.div layout style={{background:`#ffffff url(${item?.img || '/img/mapcomp.webp'})`, pointerEvents:`${isDragging ? 'none': 'auto'}`}} onMouseEnter={() => setOpen(curr => !curr)} onClick={() => handleDivClick(`${itemId}`)} onMouseLeave={() => setOpen(curr => !curr)} data-isopen={isOpen} className='relative top-0 aspect-card h-[400px] duration-200 data-[isopen=true]:h-[500px] w-auto bg-blue-gray-300 bg-[url("/img/biggamebgcomp.webp")] !bg-center !bg-cover !bg-no-repeat rounded-xl'>
+  <m.div layout style={{background:`#ffffff url(${item?.img || '/img/mapcomp.webp'})`, }} onMouseEnter={() => setOpen(curr => !curr)} onClick={() => handleDivClick(`${itemId}`)} onMouseLeave={() => setOpen(curr => !curr)} data-isopen={isOpen} className='relative top-0 aspect-card h-[400px] scale-90 duration-200 data-[isopen=true]:h-[500px] w-auto bg-blue-gray-300 bg-[url("/img/biggamebgcomp.webp")] !bg-center !bg-cover !bg-no-repeat rounded-xl'>
       <main data-isopen={isOpen} className='w-full h-full !rounded-xl backdrop-brightness-75 data-[isopen=true]:backdrop-blur-sm data-[isopen=true]:backdrop-brightness-[.25] '>
       <m.div layout data-isopen={isOpen} className='absolute top-[75%] data-[isopen=true]:top-[10%] left-8 space-y-0'>
       {/* <m.p layout="position" data-isopen={isOpen} className='relative flex space-x-[0.5px]  h-min transition-all delay-500 rounded-xl bg-gray-900 p-2 w-min whitespace-nowrap'><BiUser className='h-4 w-4 mt-[4px] mr-1'/><span className=''>200</span></m.p> */}
@@ -212,12 +213,9 @@ export default function List({cat}) {
   return (
 
     <>
-    <div  className="my-5">
-    <div 
-    onMouseLeave={dragStop}
-    >
+    <div>
     <ScrollMenu
-              scrollContainerClassName="space-x-5 !min-h-min scrollbar-none px-5 pt-8"
+              scrollContainerClassName="!min-h-min scrollbar-none space-x-1 pt-8"
               LeftArrow={LeftArrow}
               RightArrow={RightArrow}
               // onInit={restorePosition}
@@ -233,11 +231,10 @@ export default function List({cat}) {
               onTouchMove={onTouchMove}
               onTouchStart={onTouchStart}
             >
-    {games?.map((item) => (
-          <GameCardNew key={item.id} isDragging={dragging} itemId={item.id} setSelected={setSelected} item={item} />
-        ))}
+      {games?.map((item) => (
+            <GameCardNew key={item.id} isDragging={dragging} itemId={item.id} setSelected={setSelected} item={item} />
+          ))}
     </ScrollMenu>
-    </div>
     </div>
     </>
     
@@ -255,7 +252,7 @@ function LeftArrow() {
     <Arrow
       disabled={!initComplete || (initComplete && isFirstItemVisible)}
       onClick={() => scrollPrev(isTest ? 'auto' : undefined)}
-      className="left px-6"
+      className="left px-2"
     >
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="w-6 h-6">
   <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
@@ -274,7 +271,7 @@ function RightArrow() {
     <Arrow
       disabled={initComplete && isLastItemVisible}
       onClick={() => scrollNext(isTest ? 'auto' : undefined)}
-      className="right px-6"
+      className="right px-2"
     >
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="w-6 h-6">
   <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
