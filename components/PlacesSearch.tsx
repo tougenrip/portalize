@@ -11,48 +11,21 @@ import MultiRangeSlider from '@/components/MultiRangeSlider'
 import { useInView } from 'react-intersection-observer'
 import { GameCardNew } from './List';
 import { Loader2 } from 'lucide-react';
+import useSWR from 'swr';
+import { RadioWithDescription } from './SwitchComponent';
 
 
 const PlacesSearch = () => {
 const router = useRouter();
-    const search = useSearchParams();
+
+const search = useSearchParams();
     const [searchquery, setSearchQuery] = useState<string | null>(
       search ? search.get("q") : ""
     );
-    const [feaquery, setFeaQuery] = useState<string | null>(search ? search.get("fea") : null)
-    const [maxUser, setMaxUser] = useState<string | null>(search ? search.get("maxu") : null);
-    const [minUser, setMinUser] = useState<string | null>(search ? search.get("minu") : null);
-    const [selVal, setSelVal] = useState("");
-    const [radioVal, setRadioVal] = useState("");
-    const [checked, setChecked] = useState([]);
+    const [feaquery, setFeaQuery] = useState<string | null>(search ? search.get("category") : null)
+    const [userLimit, setUserLimit] = useState<string | null>(search ? search.get("userLimit") : null);
     const searchQ = search ? search?.get('q') : null;
     const encodedSearchQuery = encodeURI(searchquery || "");
-   
-    const lastPostRef = useRef<HTMLElement>(null)
-    
-    const { ref, inView } = useInView()
-
-      const { isLoading, isError, data, error, isFetchingNextPage, fetchNextPage, hasNextPage } =
-        useInfiniteQuery(
-          'posts',
-          async ({ pageParam = '' }) => {
-            await new Promise((res) => setTimeout(res, 1000))
-            const res = await axios.get('/api/post?cursor=' + pageParam)
-            return res.data
-          },
-          {
-            getNextPageParam: (lastPage) => lastPage.nextId ?? false,
-          }
-        )
-
-      useEffect(() => {
-        if (inView && hasNextPage) {
-          fetchNextPage()
-        }
-      }, [inView])
-
-      if (isLoading) return <div className="loading">Loading...</div>
-      if (isError) return <div>Error! {JSON.stringify(error)}</div>
 
   
     const onSearch = (event) => {
@@ -60,6 +33,41 @@ const router = useRouter();
       router.push(`/search?q=${encodedSearchQuery}&l=10&p=1`)
       console.log("current query", searchquery);
     }
+
+
+
+    const [selVal, setSelVal] = useState("");
+    const [radioVal, setRadioVal] = useState("");
+    const [checked, setChecked] = useState("");
+
+    console.log(checked)
+    const [pageIndex, setPageIndex] = useState(1);
+    const fetcher = async (url) => {
+      const response = await fetch(url);
+      if (!response.ok) {
+        throw new Error('An error occurred while fetching the data.');
+      }
+      return response.json();
+    };
+
+function Page ({ index, cat }) {
+  
+  
+  const { data, error } = useSWR(`/api/getMaps?category=${cat}&page=${index}&pageSize=10&sort=newest`, fetcher);
+
+  const mapData = data?.data
+ 
+  // ... handle loading and error states
+
+  if (error) return <h1>Error</h1>;
+  return (
+    mapData?.map((post) => (<GameCardNew isDragging={undefined} key={post.id} itemId={post.id} setSelected={undefined} item={post} />))
+  )
+
+  return null
+}
+ 
+
 
   return (
     <main className='absolute left-1/2 flex flex-col -translate-x-1/2 md:w-[80%] w-screen justify-center'>
@@ -78,12 +86,13 @@ const router = useRouter();
             >
               Interests
             </Typography>
-            <div className='grid grid-flow-row gap-2 grid-cols-2'>
+            <div className='grid grid-flow-row gap-2 grid-cols-1'>
 
               
-          <CheckboxWithDescription
-          chckitms={checked}
-          checklist={[
+          <RadioWithDescription
+          selOpt={radioVal}
+          onChange={({selOpt}) => {setRadioVal(selOpt); console.log(radioVal)}}
+          options={[
             {
               title:"🌍 World Affairs",
               desc:"Politics, Social Issues, Markets, Economics",
@@ -155,7 +164,7 @@ const router = useRouter();
               value:"entertainment"
             },
           ]}
-          onChange={({chckitms}) => {setChecked(chckitms); console.log(checked)}}  />
+          />
           </div>
           
           <Typography
@@ -207,24 +216,26 @@ const router = useRouter();
           ]}
           onChange={({chckitms}) => {setChecked(chckitms); console.log(checked)}}  />
           </div>
+          <div className='flex-col flex'>
+
           <div className="w-max gap-9 -translate-x-6 mx-auto flex flex-col md:grid md:grid-cols-3 space-y-10">
-          {data &&
-              data.pages.map((page) => {
-                return (
-                  <React.Fragment key={page.nextId ?? 'lastPage'}>
-                    {page.posts.map((post) => (
-                      <GameCardNew isDragging={undefined} key={post.id} itemId={post.id} setSelected={undefined} item={post} />
-                    ))}
-                  </React.Fragment>
-                )
-              })}
+          
+                    
+          <Page cat={radioVal} index={pageIndex}/>
+    <div style={{ display: 'none' }}><Page cat={radioVal} index={pageIndex + 1}/></div>
 
-            {isFetchingNextPage ? <div className="loading">Loading...</div> : null}
-
-            <span style={{ visibility: 'hidden' }} ref={ref}>
-              intersection observer marker
-            </span>
           </div>
+
+          <div className='flex-row flex space-x-5'>
+          <button className='p-5 border-1 border-white rounded-xl' onClick={() => setPageIndex(pageIndex - 1)}>Previous</button>
+          <button className='p-5 border-1 border-white rounded-xl' onClick={() => setPageIndex(pageIndex + 1)}>Next</button>
+          </div>
+          
+
+          </div>
+          
+          
+    
         </div>
     </main> 
   

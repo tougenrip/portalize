@@ -20,7 +20,7 @@ export const getServerSideProps = async(req,res,ctx) => {
   };
 
   const {id} = req.query
-  const gamedata = await fetch(`${process.env.NEXT_PUBLIC_WEBSITE_URL}api/getMaps?world=${id}`, options)
+  const gamedata = await fetch(`${process.env.NEXT_PUBLIC_WEBSITE_URL}api/getMaps?id=${id}`, options)
   const gamedatares = await gamedata.json()
   const gameownerId = gamedatares.ownerId
   const ownerData = await fetch(`${process.env.NEXT_PUBLIC_WEBSITE_URL}api/user?id=${gameownerId}`, options)

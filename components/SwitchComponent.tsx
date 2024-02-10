@@ -16,7 +16,7 @@ export function RadioWithDescription({selOpt, options , onChange}) {
   
 
   return (
-    <div className="grid grid-flow-row grid-cols-2 col gap-8">
+    <div className="grid grid-flow-row grid-cols-2  col gap-2">
         {options?.map((option) => (
             <Radio
             color="purple"
