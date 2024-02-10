@@ -86,7 +86,7 @@ return (
       <m.div layout data-isopen={isOpen} className='absolute top-[75%] data-[isopen=true]:top-[10%] left-8 space-y-0'>
       {/* <m.p layout="position" data-isopen={isOpen} className='relative flex space-x-[0.5px]  h-min transition-all delay-500 rounded-xl bg-gray-900 p-2 w-min whitespace-nowrap'><BiUser className='h-4 w-4 mt-[4px] mr-1'/><span className=''>200</span></m.p> */}
       <m.p layout="position" data-isopen={isOpen} className='transition-all transform-none duration-200 font-extrabold data-[isopen=true]:text-3xl text-4xl max-w-[250px]'>{isOpen ? (`${item?.title}`) : (`${item?.title.length > 10 ? `${item?.title.substring(0,10)}...` : `${item?.title}`}`)} </m.p>
-      <p data-isopen={isOpen} className='opacity-0 data-[isopen=true]:opacity-100 transition-opacity delay-200 '>{item?.owner.name || "unknown"}</p>
+      <p data-isopen={isOpen} className='opacity-0 data-[isopen=true]:opacity-100 transition-opacity delay-200 '>{item?.ownerName || "unknown"}</p>
       </m.div>
       <div data-isopen={isOpen} className='absolute bottom-[5%] mx-[8%] font-300 space-y-5  opacity-0 data-[isopen=true]:opacity-100 transition-opacity duration-100 delay-200'>
           <m.p 
@@ -193,7 +193,7 @@ export default function List({cat}) {
       
         return { data, error, isLoading };
       };
-      const {data: games} = useFetch(`getMaps?cat=${cat}`)
+      const {data: games} = useFetch(`getMaps?category=${cat}&sort=oldest`)
 
       const scrollBehavior = (instructions) => {
         const [{ el, left }] = instructions;
@@ -215,7 +215,7 @@ export default function List({cat}) {
     <>
     <div>
     <ScrollMenu
-              scrollContainerClassName="!min-h-min scrollbar-none space-x-1 pt-8"
+              scrollContainerClassName="!min-h-min scrollbar-none space-x-1é pt-8"
               LeftArrow={LeftArrow}
               RightArrow={RightArrow}
               // onInit={restorePosition}
@@ -231,7 +231,7 @@ export default function List({cat}) {
               onTouchMove={onTouchMove}
               onTouchStart={onTouchStart}
             >
-      {games?.map((item) => (
+      {games?.data.map((item) => (
             <GameCardNew key={item.id} isDragging={dragging} itemId={item.id} setSelected={setSelected} item={item} />
           ))}
     </ScrollMenu>

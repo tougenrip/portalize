@@ -110,7 +110,22 @@ const findMaps = async (
       skip,
       take,
     }),
-    prisma.map.count(),
+    prisma.map.count({where: {
+      ...(search
+        ? {
+            OR: [
+              { title: { contains: search, mode: "insensitive" } },
+              { desc: { contains: search, mode: "insensitive" } },
+            ],
+          }
+        : {}),
+      ...(filters.age && { ageLimit: { equals: filters.age } }),
+      ...(filters.userLimit && { userLimit: { equals: filters.userLimit } }),
+      ...(filters.tags && { tags: { hasSome: filters.tags.split(",") } }),
+      ...(filters.category && {
+        cat: { contains: filters.category, mode: "insensitive" },
+      }),
+    }}),
   ]);
 
   return { data, count };
