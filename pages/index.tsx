@@ -80,7 +80,7 @@ function Maintenance() {
 export const getServerSideProps: GetServerSideProps<{
 }> = async () => {
 
-  const [map1, map2, map3] = await Promise.all([fetch(`${process.env.NEXT_PUBLIC_WEBSITE_URL}api/getMaps?world=20`), fetch(`${process.env.NEXT_PUBLIC_WEBSITE_URL}api/getMaps?world=26`), fetch(`${process.env.NEXT_PUBLIC_WEBSITE_URL}api/getMaps?world=28`)]);
+  const [map1, map2, map3] = await Promise.all([fetch(`${process.env.NEXT_PUBLIC_WEBSITE_URL}api/getMaps?id=66`), fetch(`${process.env.NEXT_PUBLIC_WEBSITE_URL}api/getMaps?id=57`), fetch(`${process.env.NEXT_PUBLIC_WEBSITE_URL}api/getMaps?id=64`)]);
   const [map1json, map2json, map3json] = await Promise.all([map1.json(), map2.json(), map3.json()])
   return { props: { map1json, map2json, map3json } }
 }

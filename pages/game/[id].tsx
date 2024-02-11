@@ -3,7 +3,7 @@
 import React, { Fragment, useCallback, useEffect, useState} from "react";
 import { Unity, useUnityContext } from "react-unity-webgl";
 import fetch from 'node-fetch'
-import { useSession } from "next-auth/react";
+import { signIn, useSession } from "next-auth/react";
 import Link from "next/link";
 import Image from "next/image";
 import Script from "next/script";
@@ -13,6 +13,8 @@ import NextNProgress from 'nextjs-progressbar'
 import { useQuery } from "@tanstack/react-query";
 import { BiXCircle } from "react-icons/bi";
 import FriendsPortal from "@/components/FriendsPortal";
+import Navbar from "@/components/Navbar";
+import cat from "@/public/img/catlogo.png"
 
 export const getServerSideProps = async(req,res,ctx) => {
   
@@ -142,10 +144,14 @@ function App({floormapdata, interiordata,gamedatares}) {
 
     const [portalModelVisibility, setPMV] = useState(false)
   
-  return (
-    
+  return (session? 
 
-    <main>
+
+    (avatarId? 
+
+      (userName?  
+
+        <main>
       <NextNProgress color='773fff'/>
       <Head>
         <title>Portalize | {gamedatares.title}</title>
@@ -201,23 +207,60 @@ function App({floormapdata, interiordata,gamedatares}) {
           <BiXCircle className={` ${portalModelVisibility ? null : 'hidden'} -ml-12 mt-2 h-10 w-10`} onClick={(curr) => setPMV(curr => !curr)}/>
         </div>
         
-      
-      
-      
-      
-      
-      {/*<ButtonGroup className="fixed top-5 left-5">
-      <Input type="number" value={unityNumber} onChange={(e) => {setUnityNumber(e.target.valueAsNumber)}}/>
-      <Input type="text" onChange={(e) => {e.preventDefault(); setUnityString(e.target.value)}}/>
-      <Button onClick={() => sendMessage('JavascriptHook','TintRed')}>Red</Button>
-      <Button onClick={() => sendMessage('JavascriptHook','TintGreen')}>Green</Button>
-      <Button onClick={() => sendMessage('JavascriptHook', 'SetNumber', unityNumber)}>number</Button>
-      <Button onClick={() => sendMessage('JavascriptHook','SetString', unityString)}>text</Button>
-       <Button onClick={() => sendMessage('JavascriptHook','SetString', floormapdata)}>floormapdata</Button>
-      <Button onClick={() => sendMessage('JavascriptHook','SetString', interiordata)}>interiordata</Button> 
-    </ButtonGroup>*/}
     
     </main>
+        
+        :
+
+        <main>
+      <Head>
+        <title>Portalize | Please set your name</title>
+      </Head>
+      <Navbar/>
+      <div className="flex flex-col h-screen items-center justify-center space-y-5">
+        <Image src={cat} height={0} width={200} objectFit="fit" alt={""} />
+        <h2 className="text-7xl text-center font-bold">What happened here?</h2>
+        <p>Well... you set your name yet. Well please do from <a className="cursor-pointer text-purple-500" href="/dashboard">here</a></p>
+      </div>
+    </main>
+
+        
+        )
+      
+      
+      :
+      
+      <main>
+      <Head>
+        <title>Portalize | Please add your avatar</title>
+      </Head>
+      <Navbar/>
+      <div className="flex flex-col h-screen items-center justify-center space-y-5">
+        <Image src={cat} height={0} width={200} objectFit="fit" alt={""} />
+        <h2 className="text-7xl text-center font-bold">What happened here?</h2>
+        <p>Well... you set your avatar yet. Well please do from <a className="cursor-pointer text-purple-500" href="/dashboard">here</a></p>
+      </div>
+    </main>
+
+
+      )
+    
+    
+    :
+    <main>
+      <Head>
+        <title>Portalize | Please login</title>
+      </Head>
+      <Navbar/>
+      <div className="flex flex-col h-screen items-center justify-center space-y-5">
+        <Image src={cat} height={0} width={200} objectFit="fit" alt={""} />
+        <h2 className="text-7xl text-center font-bold">What happened here?</h2>
+        <p>Well... you didn`t logged in. Well please do from <a className="cursor-pointer text-purple-500" onClick={() => signIn(undefined,{callbackUrl:`${process.env.NEXT_PUBLIC_WEBSITE_URL}/dashboard`})}>here</a></p>
+      </div>
+    </main>
+    
+
+    
   );
 }
 

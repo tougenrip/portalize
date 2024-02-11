@@ -81,13 +81,15 @@ const Dashboard = () => {
           'Content-Type': 'multipart/form-data',
         },
       }
-      ).then( async () => {
+      ).then(
+        async() => {update({image:uploadImg})}
+        
+    )
+    .finally(
+      async () => {
         toast.update(uploadTost, {render: "Updated user profile picture!", type: "success", isLoading: false, autoClose: 5000});
         
       }
-    )
-    .finally(
-      async() => {update({image:uploadImg})}
     )
     console.log(`Image URL is: ${uploadImg}`)
     }catch(e){
@@ -162,7 +164,7 @@ const Dashboard = () => {
       .then(async () => {
         toast.success('Updated user details successfully!')
         
-      }).finally(async() => {update({name:userName,email:userEmail,image:userImage})})
+      }).finally(async() => {update({name:userName,email:userEmail})})
       .catch((error) => {
         console.log(error);
         toast.error('A error has occured. Please try again')

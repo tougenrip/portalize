@@ -7,7 +7,7 @@ import Link from "next/link";
 import {HeartIcon} from "@heroicons/react/24/outline";
 import AbbreviateNumber from '../utils/abbrevitateNumber'
 import axios from "axios";
-
+import { FaRegUser } from "react-icons/fa";
 import throttle from 'lodash/throttle';
 import Styler from 'stylefire';
 import { animate } from 'popmotion';
@@ -95,8 +95,9 @@ return (
             className='data-[isopen=false]:hidden mr-16 relative -left-[300px] data-[isopen=true]:left-0 transition-all transform-gpu duration-100 delay-150'
             >{item?.desc.length === 0 ? ` `: `${item?.desc.length > 50 ? `${item?.desc.substring(0,50)}...` : `${item?.desc}`}`}</m.p>
           <div data-isopen={isOpen} className='justify-between flex data-[isopen=false]:hidden '>
-              <div>
-                  test
+              <div className="flex flex-row gap-2">
+              <FaRegUser className="mt-1" />
+              {item?.playerCount}
               </div>
               <button
               onClick={handleButtonClick}
