@@ -19,7 +19,7 @@ export const getServerSideProps = async(req,res,ctx) => {
   
   
   const {id} = req.query
-  const gamedata = await fetch(`${process.env.NEXT_PUBLIC_WEBSITE_URL}api/getMaps?world=${id}`)
+  const gamedata = await fetch(`${process.env.NEXT_PUBLIC_WEBSITE_URL}api/getMaps?id=${id}`)
   const gamedatares = await gamedata.json()
   console.log(gamedatares);
   const [floormapurl,interiorurl] = [`${process.env.NEXT_PUBLIC_WEBSITE_URL}api/worlds/floormap/${id}`,`${process.env.NEXT_PUBLIC_WEBSITE_URL}api/worlds/interior/${id}`]
@@ -73,7 +73,9 @@ function App({floormapdata, interiordata,gamedatares}) {
     frameworkUrl: `${process.env.NEXT_PUBLIC_WEBSITE_URL}uploads/Builds/game/Build/webgl-portalize-playmode-13.framework.js.unityweb`,
     codeUrl: `${process.env.NEXT_PUBLIC_WEBSITE_URL}uploads/Builds/game/Build/webgl-portalize-playmode-13.wasm.unityweb`,
     streamingAssetsUrl: "streamingassets",
-
+    webglContextAttributes: {
+      preserveDrawingBuffer: true,
+    },
     
     
   });
@@ -86,12 +88,19 @@ function App({floormapdata, interiordata,gamedatares}) {
     () => {(globalThis.unityInstance = UNSAFE__unityInstance),
     [UNSAFE__unityInstance]}
   );  
+ 
 
-  async function unloadUnity() {
-    await unload();
-  }
+
+  
+  
 
   useEffect(() => {
+
+    function unloadUnity() {
+      UNSAFE__unityInstance.Quit().then(function() {
+          console.log("done!");
+      });
+      }
     window.addEventListener('beforeunload', unloadUnity);
     return () => {
       window.removeEventListener('beforeunload', unloadUnity);
@@ -101,7 +110,9 @@ function App({floormapdata, interiordata,gamedatares}) {
 
   const launchNewWorld = useCallback((_worldURL) => {
     console.log(`getting into the world ${_worldURL}`)
-    unloadUnity();
+    UNSAFE__unityInstance.Quit().then(function() {
+      console.log("done!");
+  });
     router.push(_worldURL)
   },[])
 

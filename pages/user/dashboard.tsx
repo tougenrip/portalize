@@ -151,7 +151,7 @@ const Dashboard = () => {
 
     const user = await axios.put(
         "/api/user/updateUser",
-        { userName, userEmail, userImage},
+        { userName, userEmail},
         {
           headers: {
             Accept: "application/json",
